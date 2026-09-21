@@ -2722,8 +2722,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Partial/full pile pickup; unknown pile first admitted separately.",
-      "authority_boundary": "Compound transfer plus admission boundary",
+      "classification": "Tracked pile pickup computes whole-coin amounts within wallet field capacity and optional denomination limits, preserving remainder denominations. Submits pile debit/consumption and wallet credit together; completion projects source pile and reports actual received difference.",
+      "authority_boundary": "Conserved pile-to-wallet transfer; empty shell consumption is linked rather than an independent monetary sink. Bulk continuation and corpse write calls do not establish native save acknowledgement.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2742,7 +2742,13 @@
       "test_candidates": [
         "tests/async/test_coin_get_completion.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4402,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -12602,6 +12608,241 @@
           "src/cmd/actobj.c",
           4024,
           "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.existing_pile_admission",
+      "path": "src/cmd/actobj.c",
+      "symbol": "submit_coin_get",
+      "reason": "first_admission",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Missing runtime custody triggers an absent-item movement with the same source/destination. Admission callback rechecks UID, container, outer location and owner before continuing pickup. Failed continuation leaves the admitted pile available and does not credit a wallet.",
+      "authority_boundary": "Existing pile admission is separate from pickup; absence from runtime registry does not prove fresh economic issuance. Preserve source provenance and original lifetime; admission replay must not mint coins.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4335,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.npc_pile_pickup",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void get(",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "PC money pickup returns through submit_coin_get. Remaining NPC branch clears pile denomination values, computes int copper total, calls ADD_MONEY and detaches/extracts the pile. Retained notall display/description branch is guarded by a local initialized to zero and never assigned again in this function.",
+      "authority_boundary": "NPC pile-to-live-wallet transfer needs explicit holding/lifetime policy; do not model extraction as independent sink. Arithmetic/refusal outcomes and scanner-missed value[] writes must be reviewed; no durable NPC wallet is proven here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          1101,
+          "money_helper"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1189,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1207,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1226,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1232,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.get_admission",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void get(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "PC durable pickup submits source-to-player movement using locker/corpse/get reason. Tracked NPC pickup submits a same-owner mobile_claim boundary before live handoff, leaving room/corpse authority rather than inventing persistent NPC inventory.",
+      "authority_boundary": "Preserve exact source, selected subtree, claimant and actual authority policy; a live handoff or mobile_claim is not evidence of new durable NPC ownership.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          1002,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1038,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.get_broken_scrap",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void get(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Condition-zero pickup invokes MakeScrap and returns before normal item/coin transfer submission.",
+      "authority_boundary": "Source retirement and any scrap helper output need linked input/output identities; failed pickup is not automatically no economic change.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          887,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.trusted_junk_reward",
+      "path": "src/cmd/actobj.c",
+      "symbol": "do_junk",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Only alive trusted characters pass entry guard. Junk rejects artifacts; ordinary item destruction rewards ten copper, while visible nontransient bulk items invoke an additional ten-copper ADD_MONEY before destruction. Transient items dissolve without reward.",
+      "authority_boundary": "Preserve current bulk/single/visibility economics explicitly, including two reward calls for visible bulk items. Link retired item/container subtree to reward children; asynchronous reward acceptance is not durable completion and must not silently change reward policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3139,
+          "money_helper"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3173,
+          "money_helper"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3217,
+          "money_helper"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3160,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3169,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3213,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3231,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3168,
+          "item_publication"
         ]
       ],
       "evidence": []
