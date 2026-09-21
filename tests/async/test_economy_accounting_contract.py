@@ -278,6 +278,18 @@ class AccountingContractTest(unittest.TestCase):
             self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
                 [(1,'sql_economy'),(2,'sql_economy'),(3,'sql_economy')])
 
+    def test_census_tracks_indirect_inventory_consumption(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                'void vnum_from_inv(P_char ch, int vnum, int count);\n'
+                'void consume() { vnum_from_inv(ch, material, 2); }\n'
+                '// vnum_from_inv(ch, material, 1);\n'
+                'const char *text = "vnum_from_inv(ch, material, 1)";\n'
+                'void inspect() { vnum_in_inv(ch, material); }\n')
+            self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
+                [(1,'item_lifecycle'),(2,'item_lifecycle')])
+
     def test_census_tracks_order_preserving_container_publication(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir()

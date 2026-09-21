@@ -9358,6 +9358,11 @@
           "src/item/enhance.c",
           610,
           "money_helper"
+        ],
+        [
+          "src/item/enhance.c",
+          613,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
@@ -9588,6 +9593,251 @@
           "src/item/enhance.c",
           2024,
           "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.consume_by_vnum",
+      "path": "src/classes/drannak.c",
+      "symbol": "vnum_from_inv",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Count matching carried objects, then unlink and extract the requested number; artifact extraction is logged. Caller selects by template, but consumption acts on concrete instances.",
+      "authority_boundary": "Capture exact consumed UIDs, nested disposition and original cause before retirement. A template/count is not durable item identity; helper success is not a persisted economic receipt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          322,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          340,
+          "item_publication"
+        ],
+        [
+          "src/classes/drannak.c",
+          347,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.shard_exchange",
+      "path": "src/classes/drannak.c",
+      "symbol": "pvp_store",
+      "reason": "crafting_cost",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate an orb, consume the configured soul-shard count and publish the orb.",
+      "authority_boundary": "Link exact input UIDs and output admission, preserving the exchange outcome across allocation/payment/publication failure.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          419,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          420,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          429,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "spell.conjure_orb_cost",
+      "path": "src/classes/drannak.c",
+      "symbol": "do_conjure",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "For a sufficiently high-level conjured pet, consume one greater orb before final pet setup/publication; trusted callers bypass it.",
+      "authority_boundary": "Retain consumed orb identity and original summon outcome; technical failure cannot silently duplicate or lose the input.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          1164,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "spell.faerie_sight_dust",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "spell_faerie_sight",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consume faerie dust when refreshing eligible detection affects or adding detection to an existing sight effect.",
+      "authority_boundary": "Each actual dust instance must be consumed once for the retained spell outcome, including multiple eligible refresh branches.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          210,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          221,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.disabled_descent_cost",
+      "path": "src/cmd/actoth.c",
+      "symbol": "do_descend",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Three ingredient-consumption calls occur after the unconditional disabled-command return. They are dormant source, not active item retirement; reactivation must link exact inputs to the character transformation.",
+      "authority_boundary": "Retain original enclosing operation and actual consumed UIDs; preserve dormant versus executable status and do not infer durable consumption from a helper call alone.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          7552,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          7553,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          7554,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.salvage_tools",
+      "path": "src/item/salvage.c",
+      "symbol": "do_salvage",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consume a set of scientific tools while adjusting salvage recipe chance/protection. Retain exact tool identity and the original salvage outcome; protection and chance changes do not create a second consumable grant.",
+      "authority_boundary": "Retain original enclosing operation and actual consumed UIDs; preserve dormant versus executable status and do not infer durable consumption from a helper call alone.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/salvage.c",
+          594,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
@@ -10055,6 +10305,17 @@
       "rationale": "Reviewed obj_to_obj_at_end function prototype only; implementation and callers remain independent census candidates.",
       "end_line": 1368,
       "source_sha256": "465315548b632ffb180ae64291a3c59b81dbda3ea44f2eb888d28bbba00ee0e6"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        892,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Function prototype only; implementation and consumption callers are separately classified.",
+      "end_line": 892,
+      "source_sha256": "9f6b4936d40811b9151476052012e9e9ee0d7f2ed6eb4c8c7b1248322880df9b"
     }
   ],
   "census": [
@@ -10110,15 +10371,18 @@
     {"path": "src/classes/disguise.c", "line": 371, "family": "item_lifecycle", "excerpt": "extract_obj(temp, TRUE); // An artifact disguise kit?"},
     {"path": "src/classes/disguise.c", "line": 284, "family": "item_publication", "excerpt": "unequip_char(ch, HOLD);"},
     {"path": "src/classes/disguise.c", "line": 369, "family": "item_publication", "excerpt": "unequip_char(ch, HOLD);"},
+    {"path": "src/classes/drannak.c", "line": 322, "family": "item_lifecycle", "excerpt": "void vnum_from_inv(P_char ch, int item, int count)"},
     {"path": "src/classes/drannak.c", "line": 347, "family": "item_lifecycle", "excerpt": "extract_obj(t_obj);"},
     {"path": "src/classes/drannak.c", "line": 376, "family": "item_lifecycle", "excerpt": "orb = read_object(VOBJ_GREATER_ORB_MAGIC, VIRTUAL);"},
     {"path": "src/classes/drannak.c", "line": 392, "family": "item_lifecycle", "excerpt": "extract_obj(orb);"},
     {"path": "src/classes/drannak.c", "line": 419, "family": "item_lifecycle", "excerpt": "orb = read_object(VOBJ_GREATER_ORB_MAGIC, VIRTUAL);"},
+    {"path": "src/classes/drannak.c", "line": 420, "family": "item_lifecycle", "excerpt": "vnum_from_inv(pl, VOBJ_SOUL_SHARD, SHARDS_FOR_ORB);"},
     {"path": "src/classes/drannak.c", "line": 803, "family": "item_lifecycle", "excerpt": "objrecipe = read_object(400210, VIRTUAL);"},
     {"path": "src/classes/drannak.c", "line": 851, "family": "item_lifecycle", "excerpt": "extract_obj(reward);"},
     {"path": "src/classes/drannak.c", "line": 855, "family": "item_lifecycle", "excerpt": "extract_obj(reward);"},
     {"path": "src/classes/drannak.c", "line": 865, "family": "item_lifecycle", "excerpt": "reward = read_object(real_object(getItemFromZone(GET_ZONE(ch))), REAL);"},
     {"path": "src/classes/drannak.c", "line": 869, "family": "item_lifecycle", "excerpt": "extract_obj(reward);"},
+    {"path": "src/classes/drannak.c", "line": 1164, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, VOBJ_GREATER_ORB_MAGIC, 1);"},
     {"path": "src/classes/drannak.c", "line": 1632, "family": "item_lifecycle", "excerpt": "obj_to_char(read_object(400217, VIRTUAL), mob);"},
     {"path": "src/classes/drannak.c", "line": 340, "family": "item_publication", "excerpt": "obj_from_char(t_obj);"},
     {"path": "src/classes/drannak.c", "line": 429, "family": "item_publication", "excerpt": "obj_to_char(orb, pl);"},
@@ -10128,6 +10392,8 @@
     {"path": "src/classes/epic_skills.c", "line": 1312, "family": "item_lifecycle", "excerpt": "extract_obj(stone, FALSE);"},
     {"path": "src/classes/epic_skills.c", "line": 1311, "family": "item_publication", "excerpt": "obj_from_char(stone);"},
     {"path": "src/classes/ethermancer.c", "line": 592, "family": "economic_submit", "excerpt": "if (!item_creation_grant_submit_to_player_with_completion("},
+    {"path": "src/classes/ethermancer.c", "line": 210, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, VOBJ_FORAGE_FAERIE_DUST, 1);"},
+    {"path": "src/classes/ethermancer.c", "line": 221, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, VOBJ_FORAGE_FAERIE_DUST, 1);"},
     {"path": "src/classes/ethermancer.c", "line": 280, "family": "item_lifecycle", "excerpt": "extract_obj(t_obj);"},
     {"path": "src/classes/ethermancer.c", "line": 543, "family": "item_lifecycle", "excerpt": "blade = read_object(real_object(blade_vnum), REAL);"},
     {"path": "src/classes/ethermancer.c", "line": 595, "family": "item_lifecycle", "excerpt": "extract_obj(blade, FALSE);"},
@@ -10560,6 +10826,9 @@
     {"path": "src/cmd/actoth.c", "line": 4920, "family": "item_lifecycle", "excerpt": "extract_obj(scroll);"},
     {"path": "src/cmd/actoth.c", "line": 6720, "family": "item_lifecycle", "excerpt": "extract_obj(obj_to_put);"},
     {"path": "src/cmd/actoth.c", "line": 7213, "family": "item_lifecycle", "excerpt": "extract_obj(obj);"},
+    {"path": "src/cmd/actoth.c", "line": 7552, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, 58424, 1);"},
+    {"path": "src/cmd/actoth.c", "line": 7553, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, 500032, 1);"},
+    {"path": "src/cmd/actoth.c", "line": 7554, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, 400231, 5);"},
     {"path": "src/cmd/actoth.c", "line": 1345, "family": "item_publication", "excerpt": "obj_to_char(forage_obj, ch);"},
     {"path": "src/cmd/actoth.c", "line": 1580, "family": "item_publication", "excerpt": "obj_to_room(treeobj, ch->in_room);"},
     {"path": "src/cmd/actoth.c", "line": 1673, "family": "item_publication", "excerpt": "obj = unequip_char(ch, l);"},
@@ -10827,6 +11096,7 @@
     {"path": "src/core/prototypes.h", "line": 1327, "family": "coin_bulk_mutation", "excerpt": "void add_coins(P_obj, int, int, int, int);"},
     {"path": "src/core/prototypes.h", "line": 828, "family": "item_lifecycle", "excerpt": "void MakeScrap(P_char, P_obj);"},
     {"path": "src/core/prototypes.h", "line": 838, "family": "item_lifecycle", "excerpt": "P_obj read_object(int, int);"},
+    {"path": "src/core/prototypes.h", "line": 892, "family": "item_lifecycle", "excerpt": "void vnum_from_inv(P_char ch, int item, int count);"},
     {"path": "src/core/prototypes.h", "line": 1292, "family": "item_lifecycle", "excerpt": "P_obj create_money(int, int, int, int);"},
     {"path": "src/core/prototypes.h", "line": 1352, "family": "item_lifecycle", "excerpt": "void extract_obj(P_obj obj,"},
     {"path": "src/core/prototypes.h", "line": 1301, "family": "item_publication", "excerpt": "P_obj unequip_char(P_char, int, bool = FALSE);"},
@@ -11360,6 +11630,7 @@
     {"path": "src/item/enhance.c", "line": 368, "family": "item_lifecycle", "excerpt": "extract_obj(material);"},
     {"path": "src/item/enhance.c", "line": 513, "family": "item_lifecycle", "excerpt": "if (!target || !(target_obj = read_object(target->vnum, VIRTUAL)))"},
     {"path": "src/item/enhance.c", "line": 517, "family": "item_lifecycle", "excerpt": "extract_obj(target_obj);"},
+    {"path": "src/item/enhance.c", "line": 613, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, plan->materials[i].vnum, plan->materials[i].count);"},
     {"path": "src/item/enhance.c", "line": 1030, "family": "item_lifecycle", "excerpt": "extract_obj(material);"},
     {"path": "src/item/enhance.c", "line": 1035, "family": "item_lifecycle", "excerpt": "P_obj tempobj = read_object(OBJ_VNUM(source), VIRTUAL);"},
     {"path": "src/item/enhance.c", "line": 1045, "family": "item_lifecycle", "excerpt": "extract_obj(tempobj);"},
@@ -11466,6 +11737,7 @@
     {"path": "src/item/salvage.c", "line": 495, "family": "item_lifecycle", "excerpt": "salvaged = read_object(matvnum, VIRTUAL);"},
     {"path": "src/item/salvage.c", "line": 516, "family": "item_lifecycle", "excerpt": "salvaged = read_object(matvnum, VIRTUAL);"},
     {"path": "src/item/salvage.c", "line": 536, "family": "item_lifecycle", "excerpt": "salvaged = read_object(matvnum, VIRTUAL);"},
+    {"path": "src/item/salvage.c", "line": 594, "family": "item_lifecycle", "excerpt": "vnum_from_inv(ch, crafting_scientific_tools_vnum(), 1);"},
     {"path": "src/item/salvage.c", "line": 617, "family": "item_lifecycle", "excerpt": "recipe = read_object(SALVAGE_RECIPE_VNUM, VIRTUAL);"},
     {"path": "src/item/salvage.c", "line": 657, "family": "item_lifecycle", "excerpt": "extract_obj(item);"},
     {"path": "src/item/salvage.c", "line": 208, "family": "item_publication", "excerpt": "obj_from_char(item);"},

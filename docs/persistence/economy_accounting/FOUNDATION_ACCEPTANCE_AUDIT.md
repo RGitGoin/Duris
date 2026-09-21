@@ -360,3 +360,23 @@ coverage before this helper and object payload mutations are reviewed.
 Current inventory: 205 routes, 2,745 raw matches, 2,687 unique coordinates,
 656 writer-mapped coordinates, 42 reviewed declarations, 1,989 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+## Indirect inventory consumption discovery
+
+The lifecycle scanner now includes vnum_from_inv. A regression test proves that
+calls/declarations are discovered while comments, strings and read-only
+vnum_in_inv are ignored. All 38 contract tests pass. The full scan adds 11 sites:
+the consuming definition, nine callers and one declaration. Every new site is
+classified; the declaration is excluded with its reviewed source hash.
+
+The helper checks a template/count then extracts concrete carried instances.
+Exact UIDs and child disposition must belong to the enclosing operation.
+Reviewed callers cover shard-to-orb exchange, conjuration orb cost, faerie-sight
+dust, superior enhancement and salvage tools. The three descent ingredient calls
+are after an unconditional disabled-command return and are explicitly dormant.
+Four previously discovered helper-body/exchange sites were also mapped.
+
+Current inventory: 211 routes, 2,756 raw matches, 2,698 unique coordinates,
+670 writer-mapped coordinates, 43 reviewed declarations, 1,985 unclassified.
+This closes the named helper-discovery gap, not overall semantic completeness.
+Runtime behavior and qualification remain unchanged.
