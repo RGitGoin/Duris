@@ -1298,7 +1298,7 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Dispatch saved world restoration to backend authority.",
+      "classification": "Flat-file path returns because restoreCorpses already staged/published the shared room catalog; SQL dispatches sql_restore_saved_items. Dispatch is not fresh creation or a second flat-file replay.",
       "authority_boundary": "SQL saved item handoff or flatfile world catalog",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -1392,8 +1392,8 @@
       "integration_issue": 489,
       "owner": "primary / #489",
       "coverage": "legacy",
-      "classification": "Character holdings retirement; soft deletion alone is not evidence of value removal.",
-      "authority_boundary": "SQL outer transaction; flatfile authority dispatch; uncertain commit retains reconciliation fence",
+      "classification": "Flat-file deletion refuses unsupported locker retention; SQL path owns soft-delete/artifact/locker/guild/ship/player cleanup in one transaction. Runtime cleanup follows commit; lost commit acknowledgement or later zone-story cleanup returns reconciliation_required. Cascaded accounting holdings still require full retirement integration.",
+      "authority_boundary": "Original durable deletion outcome and complete holding/custody retirement; no live publication while SQL can roll back and no new operation after an uncertain commit.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2343,8 +2343,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Retained direct SQL bank writers outside critical ledger; active caller not found.",
-      "authority_boundary": "SQL own transaction; flatfile stubs refuse",
+      "classification": "Legacy direct account_banks deposit and denomination/value withdrawal SQL own transactions and return balances/change, but do not attach #474 operation/source identity or update bank_revision in these statements. They cannot bypass activated accounting merely because transaction commit succeeds.",
+      "authority_boundary": "Map or refuse each compatibility caller under accounting authority; preserve original-ID handling for uncertain commit instead of retrying as an unrelated mutation.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2363,7 +2363,23 @@
       "test_candidates": [
         "tests/async/run_account_bank_delta_mysql.sh"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          11759,
+          "sql_economy"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11840,
+          "sql_economy"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11938,
+          "sql_economy"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -4943,8 +4959,8 @@
       "integration_issue": 489,
       "owner": "primary / #489",
       "coverage": "legacy",
-      "classification": "Legacy buffer restore publishes parsed objects in saved order into quiver/container, character inventory or room, with an _PFILE_ alternate path. Repeated stored instances may allocate additional objects. Hydration is not fresh issuance; missing retained identity requires explicit baseline/admission policy.",
-      "authority_boundary": "Restore owner, UID and authority before treating placement as projection. Recorded sites cover the final publication loop only; the rest of deserialization remains to be reviewed.",
+      "classification": "Legacy buffer restore allocates object templates, parses saved instances and publishes in saved order into quiver/container, character inventory or room, with an _PFILE_ alternate path. Missing prototypes use a dummy object. Repeated stored instances may allocate additional objects. Hydration is not fresh issuance; missing retained identity requires explicit baseline/admission policy.",
+      "authority_boundary": "Restore owner, UID and authority before treating placement as projection. All current lexical sites are classified, but this is not a complete audit of binary parser validity or every direct field alias.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -4962,6 +4978,11 @@
       },
       "test_candidates": [],
       "sites": [
+        [
+          "src/core/files.c",
+          3356,
+          "item_lifecycle"
+        ],
         [
           "src/core/files.c",
           3659,
@@ -4991,6 +5012,723 @@
           "src/core/files.c",
           3690,
           "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.serializer_probes",
+      "path": "src/core/files.c",
+      "symbol": "writeObjectlist",
+      "reason": "item_create",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "writeObjectlist and write_one_object instantiate comparison prototypes and later free them while serializing existing items. Probe construction/cleanup is not admission/destruction. Serialization may assign missing item UIDs, which needs explicit legacy baseline policy.",
+      "authority_boundary": "Persist the existing item identity and payload; comparison objects must remain provisional even though shared construction/cleanup helpers have side effects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          834,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          838,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          993,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1212,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1218,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1247,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "lifecycle.character_save_items",
+      "path": "src/core/files.c",
+      "symbol": "writeCharacter",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Flat-file baseline save hydrates authoritative wallet/bank balances after acknowledged save and validated owner revisions. Terminal saves unload equipment/inventory; ordinary or failed legacy saves re-equip the live source. SQL/locker fallback and hooks have separate authority paths.",
+      "authority_boundary": "Save acknowledgement and authoritative domain reads precede projection/unload. Snapshot capture, re-equipping and live cleanup do not create new money or retire retained custody; failed save cannot authorize destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_terminal_extract_item_retention.py"
+      ],
+      "sites": [
+        [
+          "src/core/files.c",
+          1828,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1829,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1830,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1831,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1833,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1834,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1835,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1836,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          1855,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          1861,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1867,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1904,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          1974,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          1983,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          1989,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.legacy_player_status",
+      "path": "src/core/files.c",
+      "symbol": "restoreStatus",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Deserialize the four legacy player wallet denominations from status bytes. These values are not independent issuance evidence and must not overwrite a newer authoritative wallet.",
+      "authority_boundary": "Loader must resolve baseline versus current domain authority before publication; this parser alone does not establish account identity or revision.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          2419,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          2420,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          2421,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          2422,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.single_item_decode",
+      "path": "src/core/files.c",
+      "symbol": "read_one_object",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Instantiate a template for legacy single-item decoding, clear creation-candidate state and restore stored UID when present. Allocation is preparation for retained-item reconstruction, not automatic item creation.",
+      "authority_boundary": "Caller must validate retained identity and custody before admission/publication; decoding a payload is not an authoritative economic operation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          3749,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "expenses.item_confiscation",
+      "path": "src/core/files.c",
+      "symbol": "confiscate_item",
+      "reason": "item_destroy",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Debt confiscation removes selected items at a cost-derived credit, optionally moving contents back to player; confiscate_all removes equipment/inventory. The second content-promotion block is under #if 0 and is not compiled. Item destruction and debt credit require linked effects, not invented wallet cash.",
+      "authority_boundary": "Debt/service decision must own exact confiscated UIDs and any promoted children. Returning a numeric debt credit is not a durable transaction or proof that currency changed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          4072,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          4073,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          4077,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          4115,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          4116,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          4120,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          4134,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          4142,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "lifecycle.legacy_pet_save",
+      "path": "src/core/files.c",
+      "symbol": "writePet",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Temporarily unequip a pet, serialize status/items, then re-equip. The two extract_obj sites occur in a #if 0 block, not current execution. This snapshot path must not turn temporary topology changes into item transfers or destruction.",
+      "authority_boundary": "Saved pet identity/custody remains authoritative across snapshot staging; these local movements do not establish retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          4463,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          4479,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          4485,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          4492,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.legacy_pet_status",
+      "path": "src/core/files.c",
+      "symbol": "restorePetStatus",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Read four saved pet wallet denominations and immediately clear all four. restorePet subsequently calls convertMob(false), which recalculates coins. This is legacy reconstruction behavior, not proof of a conserved wallet or new reward.",
+      "authority_boundary": "Bind restored pet/NPC lifetime to retained holdings or explicit baseline/refusal policy; never infer issuance or sink solely from these temporary assignments.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          4683,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4684,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4685,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4686,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4688,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4689,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4690,
+          "coin_assignment"
+        ],
+        [
+          "src/core/files.c",
+          4691,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_serializer_probe",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_format_item_diff_fields_and_free_proto",
+      "reason": "item_create",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Create and free a comparison prototype while formatting saved-item field differences. No owner publication; this is serializer staging, not admitted creation/destruction.",
+      "authority_boundary": "Existing saved item remains the accounting subject; constructor/cleanup side effects must not manufacture events for comparison objects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          889,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          942,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_player_status",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_load_player_status",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Load wallet denominations/revision from player row, skip obsolete per-player bank columns and zero the live bank until shared-account loading. Intermediate bank zeroing is not a debit.",
+      "authority_boundary": "Load authoritative wallet and shared bank for the correct lifetime/account context before exposing balances; staged defaults do not constitute accounting operations.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          4043,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4044,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4045,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4046,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4051,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4052,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4053,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4054,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_player_items",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_load_player_items",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Instantiate player-item payloads, restore saved UIDs, reject ownership mismatches, then rebuild containers/equipment/inventory. Rejected temporary instances are cleaned up; accepted instances reconstruct retained custody rather than issue new items.",
+      "authority_boundary": "Saved ownership validation and topology reconstruction precede live placement; current lexical mapping is not proof of complete loader or backend qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          4408,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4480,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4638,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4664,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4668,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          4674,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_shared_bank",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_load_account_bank",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Zero live bank/revision before querying shared account row, then parse nonnegative bounded denominations and publish row balances/revision. Failure leaves staged zeros and cannot be interpreted as economic destruction.",
+      "authority_boundary": "Successful authoritative account/race-war load binds balance publication; temporary defaults are not ledger postings.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          11596,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11597,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11598,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11599,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11630,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11631,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11632,
+          "coin_assignment"
+        ],
+        [
+          "src/sql/sql_player.c",
+          11633,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.compat_sql_bank_open",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_ensure_account_bank",
+      "reason": "baseline",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "INSERT IGNORE shared-bank row and legacy currency_bank_baseline snapshot. This establishes legacy storage, not a verified #474 epoch baseline or new player currency grant.",
+      "authority_boundary": "Enclosing transaction/lifecycle must own bank creation and initial authority; compatibility baseline table is not accounting enrollment proof.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          11572,
+          "sql_economy"
         ]
       ],
       "evidence": []
@@ -7867,6 +8605,10 @@
     {"path": "src/sql/sql_player.c", "line": 9211, "family": "sql_economy", "excerpt": "snprintf(del_query, sizeof(del_query), \"DELETE FROM saved_items WHERE item_key='%s'\","},
     {"path": "src/sql/sql_player.c", "line": 9248, "family": "sql_economy", "excerpt": "snprintf(query, sizeof(query), \"DELETE FROM saved_items WHERE item_key='%s'\", esc_key);"},
     {"path": "src/sql/sql_player.c", "line": 10368, "family": "sql_economy", "excerpt": "\"DELETE FROM saved_items WHERE id=%d AND item_key='%s'\", source_root_id,"},
+    {"path": "src/sql/sql_player.c", "line": 11572, "family": "sql_economy", "excerpt": "\"insert ignore into account_banks (account_name, racewar) values ('%s', %d)\","},
+    {"path": "src/sql/sql_player.c", "line": 11759, "family": "sql_economy", "excerpt": "\"update account_banks set bank_copper=bank_copper+%d, \""},
+    {"path": "src/sql/sql_player.c", "line": 11840, "family": "sql_economy", "excerpt": "\"update account_banks set %s = %s - %d where account_name='%s' and racewar=%d and %s >= %d\","},
+    {"path": "src/sql/sql_player.c", "line": 11938, "family": "sql_economy", "excerpt": "\"update account_banks set bank_copper=bank_copper-%d, \""},
     {"path": "src/world/achievements.c", "line": 436, "family": "money_helper", "excerpt": "ADD_MONEY(ch, 100000);"},
     {"path": "src/world/achievements.c", "line": 631, "family": "money_helper", "excerpt": "ADD_MONEY(ch, 100000);"},
     {"path": "src/world/achievements.c", "line": 410, "family": "item_lifecycle", "excerpt": "gift = read_object(400222, VIRTUAL);"},

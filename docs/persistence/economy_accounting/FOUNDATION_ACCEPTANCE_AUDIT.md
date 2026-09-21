@@ -130,3 +130,32 @@ must retain identity or use explicit baseline policy before claiming projection.
 The unreviewed remainder of restoreObjects is explicitly left open.
 Final batch totals: 128 routes, 2,683 unique coordinates, 213 mapped writer
 coordinates, 42 declarations, 2,428 unclassified. The raw census remains 2,741.
+
+## Character files and initial SQL loader review
+
+All current lexical coordinates in core/files.c are mapped. New routes distinguish
+serializer comparison prototypes, acknowledged-save projection and terminal
+unload, player/pet status decoding, single-object decoding, confiscation, and pet
+snapshot equipment staging. The #if 0 confiscation-content and pet-extraction
+blocks are recorded as dormant source, not claimed executable behavior.
+
+- writeCharacter restores live equipment on failed/nonterminal save; successful
+  terminal cleanup does not retire saved ownership. Flat-file new-player domain
+  balances publish only after the required authoritative reads succeed.
+- Legacy pet status reads saved currency then zeroes it; later convertMob can
+  recalculate coins. A retained holding/baseline policy remains necessary.
+- Confiscation combines item destruction with a cost-derived debt credit. It must
+  not invent wallet currency; any promoted contents need linked transfer effects.
+- SQL serializer probes, player status/items and shared-bank loading are now
+  classified. Loading zeros into the bank before the account query is not a sink.
+  Prototype allocation and rejection cleanup are not independent issuance events.
+- SQL discovery now ignores keyword case. This exposes four existing lowercase
+  account_banks statements: legacy row creation and direct deposit/withdrawals.
+  Their transactions do not carry #474 identity/evidence and cannot bypass future
+  activation. A current source search found no callers of the legacy deposit or
+  withdrawal helpers outside sql_player.c/header; that is not dead-code proof.
+
+Other SQL loader/storage coordinates remain unclassified; this does not declare
+sql_player.c fully reviewed. Current inventory: 140 routes, 2,745 raw matches,
+2,687 unique coordinates, 288 writer-mapped coordinates, 42 declarations, and
+2,357 unclassified. All 37 contract tests pass. Census completion remains false.

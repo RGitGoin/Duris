@@ -202,7 +202,8 @@ def scan_sources(root):
         comments_masked=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]) if m[0].startswith(('/',)) else m[0], source)
         code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),source)
         for family,pattern in PATTERNS.items():
-            for match in re.finditer(pattern,comments_masked if family=='sql_economy' else code):
+            for match in re.finditer(pattern,comments_masked if family=='sql_economy' else code,
+                                     re.IGNORECASE if family=='sql_economy' else 0):
                 line=source.count('\n',0,match.start())+1
                 excerpt=source.splitlines()[line-1].strip()
                 found.append(dict(path=path.relative_to(root).as_posix(),line=line,family=family,excerpt=excerpt))

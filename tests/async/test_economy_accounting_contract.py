@@ -265,6 +265,19 @@ class AccountingContractTest(unittest.TestCase):
             with self.assertRaisesRegex(contract.ContractError,'executable evidence'):
                 contract.validate_inventory(inventory,self.registry,root,release=True)
 
+    def test_sql_census_is_case_insensitive_but_ignores_comments(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                'query("insert ignore into account_banks values (1)");\n'
+                'query("UpDaTe account_banks set bank_copper=1");\n'
+                'query("delete from saved_items where id=1");\n'
+                '// update account_banks set bank_copper=2\n'
+                '/* INSERT INTO saved_items values (2) */\n'
+                'add_money(ch, 1);\n')
+            self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
+                [(1,'sql_economy'),(2,'sql_economy'),(3,'sql_economy')])
+
     def test_census_tracks_order_preserving_container_publication(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir()
