@@ -23,11 +23,11 @@ do not close or rewrite them as part of this status check.
 | --- | --- | --- |
 | #599, #600 | #475 contracts/inventory; #476 plans/links | Partial; acceptance audit incomplete. Writer census remains incomplete. |
 | #602, #603, #604 | #477 SQL evidence/transactions; parts of #480 bank transport | Partial; bank-focused evidence does not establish complete issue qualification. |
-| #605, #606, #607, #608 | #478 flat-file evidence/authority/transactions; parts of #479/#480 | Partial; lifecycle and end-to-end activation/publication remain missing. |
+| #605, #606, #607, #608 | #478 flat-file evidence/authority/transactions; parts of #479/#480 | Partial; common item/child bundle qualification and native backend golden/error parity remain. Lifecycle and backup registration exist. |
 | #609, #610, #612, #613 | #479 baseline preparation/storage/source capture | Partial; no real cutover owner or qualified activation journey. |
 | #601 | #481 reward completion prerequisite | Prerequisite only; does not complete issuance/expense coverage. |
 
-The current uncommitted phase14 branch adds initial SQL wallet/shared-bank
+The locally committed, unpublished phase14 branch adds initial SQL wallet/shared-bank
 enrollment and a synthetic capture-to-opening integration. It has no PR and does
 not complete #479. Its full SQL/client-free/admission suites and both builds have passed locally;
 see SQL_ENROLLMENT.md. These are component results, not issue closure evidence.
@@ -41,7 +41,7 @@ The wider coin/item/domain integrations, reconciliation/corrections, lifecycle
 restores and final enforcement qualification also remain. There is no defensible
 whole-feature completion percentage or revised ETA from PR count alone.
 
-## Next acceptance audit
+## Acceptance audit and next issue-sized delivery
 
 Start with #475–#478, where existing components are concentrated. For each original
 acceptance criterion, record exact source/tests, whether evidence is sufficient,
@@ -51,3 +51,7 @@ that issue-sized batch before resuming lower-level component publication.
 
 A delivery report must distinguish: implemented locally, qualified, review-ready,
 merged, and issue closed. Closing #474 still requires all original child scopes.
+The completed foundation gap audit is in FOUNDATION_ACCEPTANCE_AUDIT.md. Start
+with the genuine #475 census gap; do not gate pure foundation completion on
+later gameplay activation. #476 is substantially implemented but still needs
+closing-head qualification and its prerequisite. No child is closure-ready yet.

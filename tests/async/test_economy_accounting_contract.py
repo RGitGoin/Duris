@@ -166,6 +166,38 @@ class AccountingContractTest(unittest.TestCase):
                 with self.subTest(field=field), self.assertRaisesRegex(contract.ContractError,'source site'):
                     contract.validate_inventory(stale,self.registry,root)
 
+    def census_fixture(self, root):
+        (root/'src').mkdir()
+        (root/'src/example.c').write_text('void example() { ch->points.cash[index] += amount; }\n')
+        writer=dict(id='example',reason='bank_transfer',owner='test',authority_boundary='test',
+            classification='transfer',integration_issue=480,coverage='legacy',path='src/example.c',
+            symbol='example',test_candidates=[],sites=[['src/example.c',1,'direct_cash_assignment']],
+            backends={name:dict(status='unverified') for name in ('mysql','mariadb','flatfile')})
+        return dict(schema_version=1,writers=[writer],census=contract.scan_sources(root),census_complete=True)
+
+    def test_complete_census_does_not_require_gameplay_enforcement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            contract.validate_inventory(inventory,self.registry,root,census=True)
+            with self.assertRaisesRegex(contract.ContractError,'executable evidence'):
+                contract.validate_inventory(inventory,self.registry,root,release=True)
+
+    def test_census_gate_refuses_unreviewed_inventory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            inventory['census_complete']=False
+            contract.validate_inventory(inventory,self.registry,root)
+            with self.assertRaisesRegex(contract.ContractError,'writer census not complete'):
+                contract.validate_inventory(inventory,self.registry,root,census=True)
+
+    def test_complete_claim_cannot_hide_unmapped_candidate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            inventory['writers'][0]['sites']=[]
+            for strict in (False,True):
+                with self.subTest(census=strict), self.assertRaisesRegex(contract.ContractError,'unclassified writer candidate'):
+                    contract.validate_inventory(inventory,self.registry,root,census=strict)
+
     def test_unproven_projection_cannot_bypass_release_gate(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir();(root/'src/example.c').write_text('void example() {}\n')

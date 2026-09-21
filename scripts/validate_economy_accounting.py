@@ -208,7 +208,7 @@ def scan_sources(root):
     return found
 
 
-def validate_inventory(inventory, registry, root, release=False):
+def validate_inventory(inventory, registry, root, release=False, census=False):
     require(inventory['schema_version']==1,'unsupported inventory version')
     unique(inventory['writers'],'id','writer ID')
     reasons={r['id'] for r in registry['reasons']}
@@ -235,17 +235,20 @@ def validate_inventory(inventory, registry, root, release=False):
             require(all(b['status']==expected and b.get('evidence') for b in writer['backends'].values()),'backend not qualified')
     current=scan_sources(root)
     require(current==inventory['census'],'economic writer census drift; review new/changed sites')
-    if release:
-        require(inventory['census_complete'],'writer census not complete')
-        require(registry['status']=='frozen','registry contract not frozen')
+    if census or release or inventory.get('census_complete',False):
+        require(inventory.get('census_complete') is True,'writer census not complete')
         mapped={tuple(site) for writer in inventory['writers'] for site in writer.get('sites',[])}
         require(all((s['path'],s['line'],s['family']) in mapped for s in current),'unclassified writer candidate')
+    if release:
+        require(registry['status']=='frozen','registry contract not frozen')
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
     parser.add_argument('--release',action='store_true')
+    parser.add_argument('--census',action='store_true',
+                        help='require complete writer mapping without requiring runtime enforcement')
     args=parser.parse_args()
     folder=args.root/CONTRACT
     registry=json.loads((folder/'registry.json').read_text())
@@ -256,7 +259,7 @@ def main():
     unique(golden['fixtures'],'id','fixture ID')
     for fixture in golden['fixtures']:
         validate_fixture(fixture,registry)
-    validate_inventory(inventory,registry,args.root,args.release)
+    validate_inventory(inventory,registry,args.root,args.release,args.census)
     print(f"accounting contracts: {len(golden['fixtures'])} fixtures; {len(inventory['writers'])} writer routes; "
           f"{len(inventory['census'])} candidate sites; release_ready={args.release}")
     if not args.release:
