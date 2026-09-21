@@ -380,3 +380,21 @@ Current inventory: 211 routes, 2,756 raw matches, 2,698 unique coordinates,
 670 writer-mapped coordinates, 43 reviewed declarations, 1,985 unclassified.
 This closes the named helper-discovery gap, not overall semantic completeness.
 Runtime behavior and qualification remain unchanged.
+
+## Salvage inputs, outcomes and partial delivery
+
+All current lexical item/salvage.c coordinates are mapped. Material downgrade
+submits two lower-quality outputs then retires the input without checking both
+grant outcomes. Ordinary salvage can submit luck/guaranteed essence, one or two
+materials with rolled cost payloads, and a recipe scroll before retiring the
+source. Scientific-tool consumption remains a linked input.
+
+Separate routes distinguish intended skill/quality breakage from technical grant
+refusal. The grant helper disposes only a provisional rejected output. Retain
+every rolled child, input UID and tool under the original salvage operation;
+independent successful children do not prove complete delivery. Rolled item cost
+is payload rather than issued wallet currency. No gameplay behavior changed.
+
+Current inventory: 215 routes, 2,756 raw matches, 2,698 unique coordinates,
+685 writer-mapped coordinates, 43 reviewed declarations, 1,970 unclassified.
+Census and runtime qualification remain incomplete.

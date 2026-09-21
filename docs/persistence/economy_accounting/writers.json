@@ -9841,6 +9841,201 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "crafting.salvage_grant",
+      "path": "src/item/salvage.c",
+      "symbol": "grant_salvage_item",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Submit a provisional salvage output through item creation; refusal extracts the unadmitted candidate and returns false.",
+      "authority_boundary": "Caller must retain original salvage operation and output identity. Queue acceptance is not durable publication, and technical refusal is not intended salvage breakage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/salvage.c",
+          27,
+          "economic_submit"
+        ],
+        [
+          "src/item/salvage.c",
+          30,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.material_downgrade",
+      "path": "src/item/salvage.c",
+      "symbol": "do_salvage",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate and submit two lower-quality materials, then unlink/extract the higher-quality input. The two grant return values do not gate input destruction.",
+      "authority_boundary": "Retain one input and both exact output identities as a compound transformation; partial technical delivery must remain recoverable under original identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/salvage.c",
+          202,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          203,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          208,
+          "item_publication"
+        ],
+        [
+          "src/item/salvage.c",
+          209,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.salvage_breakage",
+      "path": "src/item/salvage.c",
+      "symbol": "do_salvage",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Failed skill or poor-quality random outcome destroys the input without usable output, subject to scientific-tool protection policy.",
+      "authority_boundary": "Persist the original intended gameplay outcome and consumed UID; retries must neither reroll breakage nor treat storage failure as this gameplay loss.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/salvage.c",
+          236,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          253,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.salvage_outputs",
+      "path": "src/item/salvage.c",
+      "symbol": "do_salvage",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Generate optional luck essence and guaranteed magical-item essence, one or two materials with rolled sale costs, and an eligible recipe scroll with target payload; finally extract the original item. Output submissions are separate and can fail independently.",
+      "authority_boundary": "Group input retirement, tools and every retained rolled output under one salvage identity. Item cost is payload, not wallet issuance. Recipe payload must retain target identity; partial success is not a complete salvage operation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/salvage.c",
+          448,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          457,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          495,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          516,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          536,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          617,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/salvage.c",
+          657,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
