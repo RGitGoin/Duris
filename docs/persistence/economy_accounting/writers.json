@@ -8691,6 +8691,506 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.random_zone_features",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_zone",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate entrance features and difficulty signs, and place a generated quest sigil in the terminal room. Decorative features and transferable sigils require distinct admission policy despite shared generation.",
+      "authority_boundary": "Bind generated instance identity to the actual zone lifetime, not recycled room/VNUM; explicitly classify nontransferable features and retain transferable sigil identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          254,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          262,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          545,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          571,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          579,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.random_zone_loot",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_zone",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Create a chest and key, configure contained object payload and random theme loot, move the chest from room to guardian inventory, and optionally grant an epic stone to the guardian. Moving the populated chest is not another issuance.",
+      "authority_boundary": "Retain rolled payload, nested item UIDs and zone-generation identity. Review value-array assignments, including object template 3 value[3], against data semantics; document transient NPC custody rather than inventing durable mobile authority.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          393,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          401,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          405,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          413,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          421,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          425,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          429,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          432,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          502,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          503,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          510,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          526,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.random_zone_disabled_potions",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_zone",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Potion allocation and chest insertion are behind an explicit false condition. These are dormant source candidates, not active generated loot.",
+      "authority_boundary": "Reactivation requires retained random outcome and admission provenance; dormant mapping does not claim runtime coverage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          446,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          452,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          457,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          462,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          467,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          472,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          479,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.relic_potion_reward",
+      "path": "src/world/random.zone.c",
+      "symbol": "relic_proc",
+      "reason": "quest_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "On initial eligible relic activation, update relic state/timer and randomly allocate and give a level potion to its carrier.",
+      "authority_boundary": "Tie one-time relic activation and exact rolled reward identity together; retries or reload must not reroll or award again after committed activation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          944,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          948,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          951,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          954,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          957,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          960,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          965,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.random_quest_turnin",
+      "path": "src/world/random.zone.c",
+      "symbol": "random_quest_mob_proc",
+      "reason": "quest_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Consume a matching carried sigil, award epics to eligible participants, and create stones, materials and random equipment for the player. Repeated random reward iterations are distinct children of one turn-in.",
+      "authority_boundary": "Retain consumed sigil, recipient set, rolled payloads and child identities as one economic operation. Do not equate technical partial delivery with an intended smaller reward.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          1187,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          1188,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1222,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          1230,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          1235,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.random_sigil_allocation",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_sigil",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate and label a takeable no-rent sigil using a random zone description and the generated-zone index; caller publishes it.",
+      "authority_boundary": "No-rent does not mean outside transferable supply. Preserve generated instance identity and payload at first admission rather than treating the reused index as durable identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          1326,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.labyrinth_reset",
+      "path": "src/world/random.zone.c",
+      "symbol": "reset_lab",
+      "reason": "item_destroy",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Reset destroys eligible takeable nonartifact objects and empty corpses, preserves walls, and moves surviving corpse/artifact roots to the entrance when it exists. NPC teardown occurs separately.",
+      "authority_boundary": "Record actual recursive retirement versus surviving custody transfer, including missing-entrance disposition; reset is not a blanket sink for all room contents.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          1419,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1425,
+          "item_publication"
+        ],
+        [
+          "src/world/random.zone.c",
+          1426,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.labyrinth_probe",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_lab",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Load a relic prototype to inspect artifact tracking, then dispose it whether generation is accepted or refused.",
+      "authority_boundary": "Probe allocation and cleanup do not admit or destroy an authoritative relic; existing tracked state must remain unchanged.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          1484,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1490,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1496,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.labyrinth_relic",
+      "path": "src/world/random.zone.c",
+      "symbol": "create_lab",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate a relic candidate for an end guardian; discard it when already tracked, otherwise set its timer and publish to the mobile.",
+      "authority_boundary": "Retain artifact admission decision, original item identity and payload under zone-generation authority. Provisional refusal cleanup is not destruction of the tracked relic.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.zone.c",
+          1569,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1575,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/random.zone.c",
+          1581,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

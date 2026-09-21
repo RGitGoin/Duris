@@ -313,3 +313,27 @@ including uncertain commit or failed compensation, in the owning integration.
 Current inventory: 188 routes, 2,745 raw matches, 2,687 unique coordinates,
 578 writer-mapped coordinates, 42 reviewed declarations, 2,067 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+## Generated zones, relics and reset disposition
+
+All current lexical world/random.zone.c coordinates are mapped. Generated signs
+and entrances need an explicit nontransferable-feature policy; takeable no-rent
+sigils remain transferable assets. Loot construction includes nested chest
+contents, key payload, guardian custody and epic stones. Moving a populated chest
+from room to guardian does not issue its contents again. The chest level-potion
+branch is explicitly disabled; the relic activation reward branch is active.
+
+Quest turn-in consumes a sigil before group epic awards and random item rewards.
+Retain the recipient set, rolled payloads and reward-loop children under the
+original turn-in. Labyrinth generation probes existing artifact tracking before
+creating a guardian relic; probe cleanup and rejected candidates are not sinks for
+the tracked relic. Reset destroys selected objects but transfers surviving corpse
+or artifact roots when the entrance exists.
+
+Semantic follow-up includes object value-array assignments (notably template 3
+value[3]) and data-backed transferable status. Lexical completeness for this file
+does not resolve these questions or supply durable authority for transient NPCs.
+
+Current inventory: 197 routes, 2,745 raw matches, 2,687 unique coordinates,
+624 writer-mapped coordinates, 42 reviewed declarations, 2,021 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.
