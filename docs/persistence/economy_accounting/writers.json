@@ -11,8 +11,8 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Fresh reset admission versus staged allocation and recovery; durable reset-generation identity unresolved.",
-      "authority_boundary": "Successful live placement after reset checks",
+      "classification": "B/C/A/O/P/G/E reset branches allocate provisional items, reject loads via extract_obj, and publish accepted items to containers, rooms or NPCs. E additionally moves existing equipment to inventory. Rejected candidates are not proven destruction of admitted items; replaced equipment is not fresh issuance.",
+      "authority_boundary": "Successful placement after artifact ownership/respawn, limits, load and destination checks; bind reset-generation source identity and distinguish first admission from existing-item movement. Allocation/cleanup alone is not the authority boundary.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -31,7 +31,203 @@
       "test_candidates": [
         "tests/async/test_world_recovery_npc_items.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/db.c",
+          3323,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3333,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3343,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3350,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3358,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3361,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3391,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3401,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3410,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3417,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3422,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3445,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3455,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3465,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3473,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3479,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3489,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3570,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3589,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3598,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3604,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3608,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3636,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3654,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3667,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3673,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3677,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3704,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3722,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3730,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3739,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3745,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3756,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3787,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3805,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3813,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3820,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3828,
+          "item_publication"
+        ],
+        [
+          "src/world/db.c",
+          3831,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -42,7 +238,7 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Prototype NPC coin allocation; fresh admission must be distinguished from hydration.",
+      "classification": "Prototype denomination parsing and legacy ADD_MONEY paths on an allocated NPC before convertMob; helper also serves probes and restoration. No independent fresh-issuance evidence.",
       "authority_boundary": "Live NPC lifetime currently lacks a generic durable identity",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -60,7 +256,63 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/db.c",
+          2265,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2266,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2267,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2268,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2279,
+          "money_helper"
+        ],
+        [
+          "src/world/db.c",
+          2288,
+          "money_helper"
+        ],
+        [
+          "src/world/db.c",
+          2656,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2657,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2658,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2659,
+          "coin_assignment"
+        ],
+        [
+          "src/world/db.c",
+          2668,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -380,8 +632,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Wallet-to-pile transfer; not issuance.",
-      "authority_boundary": "PC compound command; NPC immediate wallet clear/publication",
+      "classification": "Wallet-to-pile transfer, not issuance: NPC path zeroes wallet and publishes directly; player path builds one wallet/custody command and publishes via completion. Failed staging and offline projection cleanup use extract_obj without implying a new sink.",
+      "authority_boundary": "Player wallet/custody commit precedes completion publication; NPC direct path needs holding lifetime/admission authority. Existing transport alone is not accounting qualification.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -400,7 +652,53 @@
       "test_candidates": [
         "tests/async/test_coin_custody_lifecycle.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          2076,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          2099,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          2105,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2128,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          2133,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/handler.c",
+          2134,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2171,
+          "economic_submit"
+        ],
+        [
+          "src/world/handler.c",
+          2174,
+          "economic_submit"
+        ],
+        [
+          "src/world/handler.c",
+          2179,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -411,7 +709,7 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Provisional pile construction shared by transfers and recovery.",
+      "classification": "Provisional pile construction: read VOBJ_COINS, zero prototype denominations, then add requested amounts. Used by transfers and recovery as well as creation; zeroing template values is not a debit from an admitted holding.",
       "authority_boundary": "Callers determine economic origin",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -431,7 +729,28 @@
       "test_candidates": [
         "tests/async/test_coin_custody_lifecycle.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          6382,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          6386,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          6395,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/handler.c",
+          6396,
+          "coin_bulk_mutation"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -442,7 +761,7 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Direct pile-value mutation; classification requires caller.",
+      "classification": "Checked per-denomination addition to ITEM_MONEY pile values followed by description refresh. Helper checks negative/overflow inputs but has no source holding, operation identity or accounting commit; caller must establish transfer versus issuance.",
       "authority_boundary": "Checked memory update without independent commit",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -462,7 +781,13 @@
       "test_candidates": [
         "tests/async/test_coin_custody_lifecycle.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          6236,
+          "coin_bulk_mutation"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -473,7 +798,7 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Transfer pile contents to surviving UID and remove incoming pile.",
+      "classification": "Both head and interior-list branches add incoming denominations to a surviving pile and extract the incoming object. This is pile transfer plus incoming UID retirement, not issuance or destruction of the transferred value.",
       "authority_boundary": "Room publication/merge; overflow behavior requires review",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -493,7 +818,28 @@
       "test_candidates": [
         "tests/async/test_coin_custody_lifecycle.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          2805,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/handler.c",
+          2809,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          2828,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/handler.c",
+          2833,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -649,8 +995,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Mixed real destruction, unload, failed staging and rollback.",
-      "authority_boundary": "No universal sink hook; existing function deliberately does not rewrite custody",
+      "classification": "Recursive in-memory custody unlink, recovery/floor tracking removal and freeing; gone_for_good also removes owned artifact metadata. Shared by real destruction, unload, rejected staging and projection cleanup; the flag alone does not prove a monetary sink or item destruction event.",
+      "authority_boundary": "Caller must retain committed before-custody and classify every child. Do not append accounting destruction merely because this helper runs.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -667,7 +1013,38 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          3322,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          3340,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3342,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3356,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3360,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3365,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3715,6 +4092,138 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.object_template",
+      "path": "src/world/db.c",
+      "symbol": "instantiate_object_template",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Object pool initialization, template field copies and provisional UID allocation with OBJ_RFLAG_CREATION_CANDIDATE; read_object delegates here. These bulk operations are object construction, not denomination transfers. Callers determine first admission versus hydration or failed staging.",
+      "authority_boundary": "No destination owner is established here (LOC_NOWHERE); caller must establish persistent creation/admission or retained identity. UID allocation alone is not an accounting commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_newbie_object_template.py"
+      ],
+      "sites": [
+        [
+          "src/world/db.c",
+          3043,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3048,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/db.c",
+          3058,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/db.c",
+          3067,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/world/db.c",
+          3161,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/db.c",
+          3167,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.npc_zeroing",
+      "path": "src/core/utils.h",
+      "symbol": "CLEAR_MONEY",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "CLEAR_MONEY clears all wallet denominations. Current callers are new patrol setup, justice guard creation and zombie-game creation; the latter two call it after char_to_room. Treat as an explicit admission-time adjustment only if the enclosing creation boundary proves that classification; never silently erase an admitted balance.",
+      "authority_boundary": "Enclosing NPC creation/admission boundary must cover post-placement clearing, or refuse unsupported mutation. Macro has no durable NPC identity or source attribution.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/utils.h",
+          483,
+          "money_helper"
+        ],
+        [
+          "src/core/utils.h",
+          484,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utils.h",
+          485,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utils.h",
+          486,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utils.h",
+          487,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobpatrol.c",
+          90,
+          "money_helper"
+        ],
+        [
+          "src/combat/justice.c",
+          258,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.venthix.c",
+          918,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
@@ -4837,6 +5346,7 @@
     {"path": "src/combat/fight.c", "line": 7535, "family": "item_publication", "excerpt": "obj_to_char(weap, ch);"},
     {"path": "src/combat/fight.c", "line": 10803, "family": "item_publication", "excerpt": "obj = unequip_char(victim, pos);"},
     {"path": "src/combat/fight.c", "line": 10806, "family": "item_publication", "excerpt": "obj_to_char(obj, victim);"},
+    {"path": "src/combat/justice.c", "line": 258, "family": "money_helper", "excerpt": "CLEAR_MONEY(ch);"},
     {"path": "src/combat/justice.c", "line": 268, "family": "item_lifecycle", "excerpt": "obj = read_object(398, VIRTUAL);"},
     {"path": "src/combat/justice.c", "line": 385, "family": "item_lifecycle", "excerpt": "extract_obj(obj, TRUE); // If they've managed to pick up an arti."},
     {"path": "src/combat/justice.c", "line": 398, "family": "item_lifecycle", "excerpt": "extract_obj(obj, TRUE); // If they've managed to pick up an arti."},
@@ -4977,6 +5487,7 @@
     {"path": "src/core/utility.c", "line": 3285, "family": "coin_assignment", "excerpt": "GET_GOLD(ch) -= t;"},
     {"path": "src/core/utility.c", "line": 3295, "family": "coin_assignment", "excerpt": "GET_PLATINUM(ch) = 0;"},
     {"path": "src/core/utility.c", "line": 3300, "family": "coin_assignment", "excerpt": "GET_PLATINUM(ch) -= t;"},
+    {"path": "src/core/utils.h", "line": 483, "family": "money_helper", "excerpt": "#define CLEAR_MONEY(ch)       \\"},
     {"path": "src/core/utils.h", "line": 484, "family": "coin_assignment", "excerpt": "GET_PLATINUM(ch) = 0; \\"},
     {"path": "src/core/utils.h", "line": 485, "family": "coin_assignment", "excerpt": "GET_GOLD(ch) = 0;     \\"},
     {"path": "src/core/utils.h", "line": 486, "family": "coin_assignment", "excerpt": "GET_SILVER(ch) = 0;   \\"},
@@ -5844,6 +6355,7 @@
     {"path": "src/mob/mobconv.c", "line": 276, "family": "coin_assignment", "excerpt": "GET_PLATINUM(ch) = GET_GOLD(ch) = GET_SILVER(ch) = GET_COPPER(ch) = 0;"},
     {"path": "src/mob/mobconv.c", "line": 284, "family": "coin_assignment", "excerpt": "GET_COPPER(ch) = 1;"},
     {"path": "src/mob/mobconv.c", "line": 281, "family": "coin_bulk_mutation", "excerpt": "difficulty_scale_coins(&GET_COPPER(ch), &GET_SILVER(ch), &GET_GOLD(ch),"},
+    {"path": "src/mob/mobpatrol.c", "line": 90, "family": "money_helper", "excerpt": "CLEAR_MONEY(ch);"},
     {"path": "src/mob/specials.c", "line": 448, "family": "money_helper", "excerpt": "if (stolen_value > 0 && SUB_MONEY(vict, stolen_value, 0) == 0)"},
     {"path": "src/mob/specials.c", "line": 450, "family": "money_helper", "excerpt": "ADD_MONEY(ch, stolen_value);"},
     {"path": "src/mob/specials.c", "line": 358, "family": "item_publication", "excerpt": "obj = unequip_char(vict, loc);"},
@@ -6397,6 +6909,7 @@
     {"path": "src/specs/specs.vecna.c", "line": 1113, "family": "item_publication", "excerpt": "obj_to_room(tobj, obj->loc.room);"},
     {"path": "src/specs/specs.vecna.c", "line": 1120, "family": "item_publication", "excerpt": "obj_to_char(tobj, obj->loc.carrying);"},
     {"path": "src/specs/specs.vecna.c", "line": 1122, "family": "item_publication", "excerpt": "obj_to_char(tobj, obj->loc.wearing);"},
+    {"path": "src/specs/specs.venthix.c", "line": 918, "family": "money_helper", "excerpt": "CLEAR_MONEY(z);"},
     {"path": "src/specs/specs.venthix.c", "line": 668, "family": "item_lifecycle", "excerpt": "extract_obj(obj, TRUE); // Not an arti, but 'in game.'"},
     {"path": "src/specs/specs.verzanan.c", "line": 764, "family": "item_lifecycle", "excerpt": "extract_obj(i, TRUE); // Empty corpse, but 'in game.'"},
     {"path": "src/specs/specs.verzanan.c", "line": 841, "family": "item_lifecycle", "excerpt": "extract_obj(i, TRUE); // Empty corpse, but 'in game.'"},

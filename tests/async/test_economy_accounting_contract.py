@@ -265,6 +265,18 @@ class AccountingContractTest(unittest.TestCase):
             with self.assertRaisesRegex(contract.ContractError,'executable evidence'):
                 contract.validate_inventory(inventory,self.registry,root,release=True)
 
+    def test_census_tracks_clear_money_callers_and_macro_body(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                '#define CLEAR_MONEY(ch) GET_COPPER(ch) = 0;\n'
+                'void example() { CLEAR_MONEY(ch); }\n'
+                '// CLEAR_MONEY(ch);\n'
+                'const char *message = "CLEAR_MONEY(ch)";\n')
+            sites=contract.scan_sources(root)
+            self.assertEqual({(s['line'],s['family']) for s in sites},
+                {(1,'money_helper'),(1,'coin_assignment'),(2,'money_helper')})
+
     def test_census_detects_direct_cash_and_ignores_comments(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir()

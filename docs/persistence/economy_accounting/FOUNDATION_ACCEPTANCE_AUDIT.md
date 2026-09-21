@@ -61,3 +61,34 @@ line. There are 2,673 distinct path/line/family coordinates. Current classificat
 is 40 mapped writer coordinates, 41 reviewed declarations and 2,592 unclassified
 coordinates. No completeness or backend status was promoted. This remains a
 partial census, and the search's semantic blind spots still require review.
+
+## World allocation, reset and money-helper review
+
+The next review maps all 56 existing distinct census coordinates in world/db.c:
+prototype NPC coin parsing, provisional object construction, and reset branches
+B/C/A/O/P/G/E. Object allocation sets a candidate UID with no destination owner;
+failed artifact/load/destination checks can discard candidates. Successful reset
+placement is the proposed admission boundary, while replacing existing equipment
+also moves an already-existing item. Neither allocation nor cleanup by itself
+proves issuance/destruction. These are classifications for integration, not
+claims that accounting is already enforced.
+
+The scanner now also catches CLEAR_MONEY: its definition and all three current
+callers. Justice guards and zombie-game NPCs are placed in a room before their
+wallets are cleared, so an enclosing admission boundary must cover the clearing
+or refuse it. Patrol setup also clears the wallet. Header macro assignments are
+mapped as executable behavior, not excluded with prototypes.
+
+Reviewed handler routes now include player/NPC wallet-to-pile paths and completion
+cleanup, provisional pile construction, checked pile addition, both room-pile
+merge branches, and recursive extraction. Player and NPC authority differ;
+retiring a merged pile UID must not destroy its transferred value. Recursive
+extract_obj and gone_for_good do not prove a genuine accounting destruction.
+The helper review also observes pile->value mutation inside add_coins; broader
+object-value aliases remain a semantic-search coverage question before freezing
+the census. This review does not declare the lexical patterns exhaustive.
+
+Verification for this increment: 35 contract tests and the full draft validator
+pass. Current inventory: 117 routes, 2,735 raw hits, 2,677 distinct coordinates,
+128 mapped writer coordinates, 41 reviewed declarations, 2,508 unclassified.
+No census-complete flag, registry freeze or runtime coverage was promoted.
