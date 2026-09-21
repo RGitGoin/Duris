@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475Ã¢â‚¬â€œ#478 and current local work.
+Audited 2026-09-21 against original issues #475ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -441,3 +441,23 @@ Draft validator passed all 13 fixtures. Current inventory: 223 routes, 2,756 raw
 matches, 2,698 unique coordinates, 737 mapped, 43 reviewed declarations and 1,918
 unclassified. This is contract validity only; census and runtime qualification
 remain incomplete.
+
+
+## Currency and coin command construction
+
+The currency builder and coin builder/decode/revision-adjustment coordinates are
+classified as plan construction, not additional economic events. Coin endpoints
+derive deterministic child IDs from the parent and endpoint index. Validation
+checks distinct endpoint identities, conserved copper value, wallet deltas, pile
+UID/payload/topology and bounded encoding. Reconstruction during decoding does
+not replay a transfer. Shared bank or custody revision adjustment carries the
+source result into the destination command without publishing live balances.
+
+These are observed builder semantics, not proof of atomic backend execution,
+retained publication or save acknowledgement. The existing currency transaction
+contract test is source-level evidence; it cannot establish those runtime
+properties. No runtime code or test behavior changed in this batch.
+
+Draft validator passed 13 fixtures: 226 routes, 2,756 raw matches, 2,698 unique
+coordinates, 741 mapped, 43 reviewed declarations and 1,914 unclassified.
+Census completion, contract freeze and runtime qualification remain outstanding.

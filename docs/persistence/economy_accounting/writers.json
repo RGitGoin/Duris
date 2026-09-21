@@ -10539,6 +10539,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "currency.command_builder",
+      "path": "src/economy/currency_command.c",
+      "symbol": "currency_command_build",
+      "reason": "bank_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Encodes a currency payload and assigns player/account keys and expected revisions under the supplied operation ID. The constructed command has no admission timestamp and does not mutate balances.",
+      "authority_boundary": "Caller-owned operation and backend transaction determine commit; builder success is not economic delivery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_command.c",
+          255,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.command_builder",
+      "path": "src/economy/coin_transfer_command.c",
+      "symbol": "coin_transfer_command_build",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Validates distinct source/destination identities and conserved copper value; checks wallet deltas and pile UID, payload and topology. Derives endpoint command IDs from the parent operation and endpoint index. Decode reconstructs the canonical command for comparison without applying it.",
+      "authority_boundary": "One parent transfer owns both endpoints. Child encoding and decoder reconstruction are not separately admitted issuance or destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/coin_transfer_command.c",
+          178,
+          "economic_submit"
+        ],
+        [
+          "src/economy/coin_transfer_command.c",
+          241,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.destination_revision_plan",
+      "path": "src/economy/coin_transfer_command.c",
+      "symbol": "coin_transfer_command_destination_after_source",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Advances destination bank or custody revisions when shared with the executed source endpoint, rebuilding an item command while preserving its operation ID and admission timestamp. This adjusts a command plan rather than publishing a pile or wallet.",
+      "authority_boundary": "Source result advances only matching revision domains within the containing transfer; atomic backend execution and replay qualification remain separate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/coin_transfer_command.c",
+          338,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
