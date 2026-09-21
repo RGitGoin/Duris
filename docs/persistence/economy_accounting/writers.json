@@ -3641,8 +3641,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Listing fee sink and seller item to auction custody.",
-      "authority_boundary": "Typed SQL and flatfile routes",
+      "classification": "Both build branches collect existing root UIDs/revisions, serialize the first object once, and submit listing fee plus custody transfer. Blob memcpy is payload construction, not currency mutation. Quantity checks compare template number, not exact per-item payload.",
+      "authority_boundary": "Bind each listed UID and its exact frozen payload to the original listing. One shared blob does not establish preservation of distinct same-template objects; submission is not commit.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3663,7 +3663,28 @@
         "tests/async/test_auction_ownership_publication.py",
         "tests/async/test_flatfile_auction_coin_put_journey.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          550,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1829,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          548,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1819,
+          "coin_bulk_mutation"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3674,8 +3695,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Wallet to escrow; same bidder delta; displaced escrow to claim.",
-      "authority_boundary": "Typed auction repository",
+      "classification": "Actor wrappers submit auction bid payloads; repository owns escrow debit, same-bidder delta and displaced-bidder claim.",
+      "authority_boundary": "One bid operation; actor submission and callback messages are not separate money events.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3694,7 +3715,18 @@
       "test_candidates": [
         "tests/async/test_flatfile_auction_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          579,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2504,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3705,8 +3737,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Escrow to seller claim/closing fee, item to winner claim; no-bid return.",
-      "authority_boundary": "Starting price is not funded escrow",
+      "classification": "Expiry/background wrappers submit finalize with closing fee basis points. Flat scan holds a bounded in-memory set until completion.",
+      "authority_boundary": "Bind original auction/escrow to seller proceeds, fee and item eligibility; admission and notification acknowledgement do not prove native item delivery.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3725,7 +3757,18 @@
       "test_candidates": [
         "tests/async/run_auction_transaction_schema_mysql.sh"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          431,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3101,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3736,8 +3779,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Pending claim to wallet, clear claim and advance revision.",
-      "authority_boundary": "Typed auction commit",
+      "classification": "Pickup prioritizes a positive pending money claim and submits claim_money; balance publication occurs through the transaction adapter.",
+      "authority_boundary": "Claim-to-wallet transfer under one operation; projected availability and accepted submission are not proof claim consumption completed.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3756,7 +3799,18 @@
       "test_candidates": [
         "tests/async/test_flatfile_auction_coin_put_journey.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          777,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2820,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3767,9 +3821,9 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Held UID transferred to claimant.",
-      "authority_boundary": "Typed custody commit",
-      "current_support": "Existing legacy listing pickup and custody publication; frozen native claim hydration is not present on this source baseline. Accounting integration and full backend qualification remain unverified.",
+      "classification": "Builds claim_item from staged UIDs/revisions and one serialized blob. SQL copies the first returned slot blob; flat projection supplies the claim blob.",
+      "authority_boundary": "Preserve exact per-root payload and receipt identity; copying claim bytes is not item creation or durable recipient materialization.",
+      "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -3789,7 +3843,23 @@
         "tests/async/test_auction_ownership_publication.py",
         "tests/async/test_auction_finalize_claim.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          801,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2870,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2857,
+          "coin_bulk_mutation"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3800,8 +3870,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Trusted removal returns the seller item without bidder or seller money reimbursement on SQL and flatfile. Accepted escrow disposition must be recorded explicitly.",
-      "authority_boundary": "Preserve existing no-reimbursement behavior; qualify escrow disposal in the authority transaction rather than adding a refund.",
+      "classification": "Trusted removal submits one auction at a time. Existing removal economics return the seller item without bidder or seller money reimbursement; accepted escrow disposition remains explicit.",
+      "authority_boundary": "Do not infer a refund from remove command success; original economics and unresolved escrow disposition must be represented by the owning integration.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3818,7 +3888,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          605,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2412,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3829,8 +3910,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Direct SQL aggregate pending claim credit also used by non-auction rewards/refunds.",
-      "authority_boundary": "Outside operation receipt/revision protocol; flatfile stub refuses",
+      "classification": "SQL helper inserts/increments aggregate auction money pickups and is also used by non-auction rewards/refunds. The __NO_MYSQL__ definition refuses.",
+      "authority_boundary": "Caller must retain original source operation and determine whether this is escrow return, proceeds or reward issuance. Helper signature carries no operation ID.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3847,7 +3928,23 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          862,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3248,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3250,
+          "sql_economy"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3858,8 +3955,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Retained legacy direct mutation definitions; no active caller found.",
-      "authority_boundary": "Compatibility bypass surfaces, not supported frontends",
+      "classification": "Retained auction_offer_legacy deducts fee, detaches roots, saves and commits, then extracts them; failure attempts fee refund and inventory restoration. Repository-wide symbol search finds definition only.",
+      "authority_boundary": "Compiled retained legacy route, not active caller coverage. Current asynchronous money helper semantics must be reviewed before any reactivation; restore/extract are not extra creation/destruction.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3876,7 +3973,33 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          2050,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2069,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2062,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2071,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2076,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -11899,6 +12022,326 @@
           "src/economy/auction_transaction.c",
           173,
           "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.list_live_cleanup",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "auction_list_completed",
+      "reason": "auction_listing",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Both listing callbacks detach and extract listed live roots after committed custody transfer, then mark player components dirty. Missing or moved roots log an alert and continue.",
+      "authority_boundary": "Auction retains the item UID: live extraction is not economic destruction. Dirty marking and success message do not prove source save acknowledgement or complete publication.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          192,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1569,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          193,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1570,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.item_claim_live_publish",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "auction_item_claim_completed",
+      "reason": "auction_claim",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Both claim callbacks deserialize the shared blob for each result item, overwrite UID with committed identity, attach to player and mark dirty. Deserialize failures alert and skip that child.",
+      "authority_boundary": "Restoration of an existing claimed holding, not new issuance. Exact per-item payload, repeated publication and durable save acknowledgement remain qualification gaps.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          258,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1647,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.legacy_bid",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "auction_bid_legacy",
+      "reason": "auction_bid",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Retained bid definition uses money helper debits/refunds around SQL bid history and previous bidder pickup staging; buy-now invokes current finalize wrapper. Symbol search finds definition only.",
+      "authority_boundary": "Do not count as active bid integration or assume helper acceptance participates in the surrounding SQL transaction. Original debit/refund provenance required before reactivation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          2649,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2659,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2666,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2673,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2684,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2693,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2729,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2737,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2744,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2751,
+          "money_helper"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2761,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.legacy_pickup",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "auction_pickup_legacy",
+      "reason": "auction_claim",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Retained pickup decrements aggregate claim before separate wallet-credit submission; rejection callback or immediate failure attempts restoration. Item pickup materializes quantity, marks legacy row retrieved and attaches objects; failed load/claim disposes provisional object. Symbol search finds definition only.",
+      "authority_boundary": "Legacy claim debit and credit are separate boundaries; compensating update and messages do not prove restored value. Temporary failed copies are not destroyed authoritative items; repeated quantity blobs need exact identity policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          2970,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          935,
+          "sql_economy"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2958,
+          "sql_economy"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2975,
+          "sql_economy"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3036,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3049,
+          "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3058,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.legacy_finalize",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "finalize_auction_legacy",
+      "reason": "auction_settle",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Retained finalize stages seller proceeds after closing fee and legacy item pickup rows, or seller return when no winner. Symbol search finds definition only.",
+      "authority_boundary": "Original escrow funds proceeds and fee; staging claim is not issuance. Retained definition is not proof of active settlement coverage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          3176,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.catalog_temporary_objects",
+      "path": "src/economy/auction_houses.c",
+      "symbol": "auction_info",
+      "reason": "auction_listing",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Backfill, resort and info deserialize temporary objects to compute metadata or display identification, then extract them. Backfill is retained tooling; resort/info are command paths.",
+      "authority_boundary": "Temporary catalog representations do not move listing custody or issue/destroy holdings. Allocation side effects and cleanup remain distinct from economic delivery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_houses.c",
+          1035,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1482,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2382,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
