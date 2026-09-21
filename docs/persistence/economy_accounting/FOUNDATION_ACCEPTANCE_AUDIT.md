@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475â€“#478 and current local work.
+Audited 2026-09-21 against original issues #475Ã¢â‚¬â€œ#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -420,3 +420,24 @@ children and actual transferable status when implementing the owning slice.
 Current inventory: 218 routes, 2,756 raw matches, 2,698 unique coordinates,
 717 writer-mapped coordinates, 43 reviewed declarations, 1,938 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+
+## Currency transaction adapters and publication
+
+All current lexical currency_transaction.c coordinates are mapped. Wallet
+publication installs a committed four-denomination snapshot with a revision guard;
+it is not another issuance. Bank payment denomination change belongs to the same
+payment. Endpoint and identify builders construct plans without committing them.
+Generic, wallet-value, reward and coin submission adapters need caller provenance
+and preserve the distinction between accepted submission and committed result.
+
+Prepared submission returns true for an already-pending operation ID before
+comparing the new payload at that shortcut. Record same-ID changed-intent
+qualification as an integration obligation; this inventory does not prove it.
+Native save acknowledgement and retained publication obligations also remain
+separate from snapshot installation. No gameplay behavior changed.
+
+Draft validator passed all 13 fixtures. Current inventory: 223 routes, 2,756 raw
+matches, 2,698 unique coordinates, 737 mapped, 43 reviewed declarations and 1,918
+unclassified. This is contract validity only; census and runtime qualification
+remain incomplete.

@@ -2292,7 +2292,7 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Wallet/bank payment with making change.",
+      "classification": "Bank debit with denomination change credited to wallet as part of the same payment; change is not independent issuance.",
       "authority_boundary": "Typed currency command on both backends",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -2312,7 +2312,18 @@
       "test_candidates": [
         "tests/async/run_account_bank_delta_mysql.sh"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          818,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          828,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2323,7 +2334,7 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Bank issuance or refund requires caller-specific provenance.",
+      "classification": "Positive bank value converted to canonical denominations and submitted with caller reason; issuance versus refund requires caller-specific provenance.",
       "authority_boundary": "Typed currency command",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -2343,7 +2354,18 @@
       "test_candidates": [
         "tests/async/test_flatfile_first_session_currency.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          732,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          741,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2453,7 +2475,7 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Prepared service debit associated with locker receipt.",
+      "classification": "Builds a prepared identify service debit from wallet or bank with wallet change. Building and normalization do not submit or commit the payment.",
       "authority_boundary": "Preserve existing receipt identity",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -2471,7 +2493,13 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          807,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -10283,6 +10311,231 @@
           "src/guild/guildhall_rooms.c",
           710,
           "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.wallet_projection",
+      "path": "src/economy/currency_transaction.c",
+      "symbol": "currency_transaction_publish_wallet",
+      "reason": "service_cost",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Publishes all four committed wallet denominations and revision, then GMCP; older revisions are ignored. This is a projection, not a second value event.",
+      "authority_boundary": "Committed result revision; native save acknowledgement and retained publication obligations remain separate integration requirements.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          349,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          350,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          351,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          352,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.coin_endpoint",
+      "path": "src/economy/currency_transaction.c",
+      "symbol": "currency_transaction_coin_wallet",
+      "reason": "service_cost",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Builds a wallet endpoint before/after vector with checked denomination bounds and current revisions. No currency is mutated or submitted here.",
+      "authority_boundary": "Endpoint plan belongs to the containing transfer operation; generated builder identity alone does not prove committed transfer.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          498,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.coin_submit",
+      "path": "src/economy/currency_transaction.c",
+      "symbol": "currency_transaction_submit_coin",
+      "reason": "service_cost",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Builds a coin transfer command, checks endpoint fences and wallet availability, retains callback context, and submits to the coordinator. Attached results attempt publication.",
+      "authority_boundary": "Submission acceptance is not commit or durable publication acknowledgement; preserve the containing transfer identity through recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          507,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          519,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.generic_submit",
+      "path": "src/economy/currency_transaction.c",
+      "symbol": "currency_transaction_submit_identified",
+      "reason": "service_cost",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Generic and identified wallet/bank submission construct typed deltas and revisions, then retain pending callback context and submit. Rebasable bank rewards use the designated revision sentinel. Prepared submission returns true for an already pending ID without comparing the incoming payload at that shortcut.",
+      "authority_boundary": "Caller determines the economic reason and counterpart; accepted queue admission is not completion. Same-ID changed intent and publication retention need integration qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          572,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          581,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          587,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          626,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          630,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          634,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.wallet_value_adapter",
+      "path": "src/economy/currency_transaction.c",
+      "symbol": "currency_transaction_submit_wallet_value",
+      "reason": "service_cost",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Converts a signed wallet value into denomination deltas and delegates to generic submission; no separate issuance or expense occurs in the adapter.",
+      "authority_boundary": "The caller operation owns provenance, source or sink and original identity; command construction is not commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/currency_transaction.c",
+          717,
+          "economic_submit"
+        ],
+        [
+          "src/economy/currency_transaction.c",
+          727,
+          "economic_submit"
         ]
       ],
       "evidence": []
