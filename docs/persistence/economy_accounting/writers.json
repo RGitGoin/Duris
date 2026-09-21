@@ -8291,6 +8291,406 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "locker.corpse_ejection",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "locker_handle_leave",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "On leaving, move corpse roots out of the locker to its exit room, preserving their contents.",
+      "authority_boundary": "Retain corpse lifetime and destination custody; room relocation is not corpse creation or restoration issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          417,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          418,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.display_chests",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "CreateChestObject",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Materialize zero-cost, weightless, non-wearable sorting/private-chest containers and publish them into the locker room. Private chest metadata and saved contents have separate retained sources.",
+      "authority_boundary": "Define explicit nontransferable representation policy for synthetic shells rather than minting new economic containers on each load. Preserve authoritative locker/chest identities for their contents.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          1463,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          1517,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          1641,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          2901,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.chest_teardown",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "~LockerChest",
+      "reason": "item_move",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Promote contents into the chest room or limbo, then unlink and extract the synthetic chest shell.",
+      "authority_boundary": "Retire only the representation shell; child holdings survive and retain identity. Limbo fallback needs explicit custody disposition rather than silent loss.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          1578,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          1579,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          1581,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          1582,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.snapshot_projection",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "LockerToPFile",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "After private-chest saves succeed, stage public contents and loose noncorpse items on a locker character. Reverse staging sorts items into chests or onto the floor, including money piles that bypass chest sorting.",
+      "authority_boundary": "Stable locker custody spans temporary character, room and sorting-container representations. Snapshot staging is not ownership issuance; failed private saves abort before public moves.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          710,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3467,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3468,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3480,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3481,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3500,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3507,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.access_probe_cleanup",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "locker_access_CanAdd",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Load a temporary character to check racewar access, then unequip/unlink and extract its loaded item copies before freeing the character.",
+      "authority_boundary": "Temporary access-check hydration and disposal must not admit or retire the durable player items.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          2706,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          2707,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          2713,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          2714,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.room_reuse_cleanup",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "create_new_locker",
+      "reason": "lifecycle_retirement",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Extract objects left in a selected room before assigning it to a new locker session.",
+      "authority_boundary": "Prove previous session persistence and disposition before treating leftovers as disposable copies; recycled room numbers are not durable locker identities.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          2937,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.artifact_return",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "check_for_artisInRoom",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Refuse artifact storage by moving artifact roots from the room back to the character inventory.",
+      "authority_boundary": "Preserve the same item UID and actual source/destination owner; refusal compensation is not a new grant.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          3529,
+          "item_publication"
+        ],
+        [
+          "src/item/storage_lockers.c",
+          3530,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.entry_fee",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "storage_locker_room_hook",
+      "reason": "service_cost",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Charge an item-count-based entry fee from wallet or bank after entering the room. Bank submission refusal ejects the player; wallet submission result is not checked.",
+      "authority_boundary": "Retain service access and original payment identity through asynchronous outcome. Accepted submission is not paid admission; do not repeat charges on recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          1989,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "locker.private_chest_purchase",
+      "path": "src/item/storage_lockers.c",
+      "symbol": "locker_chestcmd",
+      "reason": "service_cost",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Create durable private-chest metadata first, then submit wallet or bank payment. Bank submission refusal attempts chest deletion; wallet return is ignored and success is announced.",
+      "authority_boundary": "Link chest entitlement creation, payment and compensation using original identity. Failed debit or deletion and uncertain commit must not leave an untracked free chest or double charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/storage_lockers.c",
+          3922,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -286,3 +286,30 @@ that #474 accounting integration is qualified.
 Current inventory: 179 routes, 2,745 raw matches, 2,687 unique coordinates,
 552 writer-mapped coordinates, 42 reviewed declarations, 2,093 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+## Locker custody, projection and fees
+
+Live issue #475 was rechecked: it remains open and requires every identified writer
+to have an integration owner/classification, with unsupported paths visible; its
+scope explicitly excludes gameplay changes. This census remains required work.
+
+All current lexical item/storage_lockers.c coordinates are mapped. Sorting shells,
+private-chest materialization, child-preserving shell teardown, temporary access
+probes and save/load staging are distinct from authoritative asset creation.
+Stable locker/chest identity must span temporary character, room and container
+representations. Money piles stay visible on the floor when sorting into chests
+is inappropriate. Private saves must succeed before public-item staging proceeds.
+
+Room reuse currently extracts leftovers; prior-session save/disposition must prove
+they are disposable copies. Corpse ejection and artifact storage refusal transfer
+existing roots rather than create replacements. Synthetic nontransferable chest
+shells need explicit representation policy, not silent repeated issuance.
+
+Entry fees submit wallet/bank payments after entry. Private chest metadata is
+created before payment submission, with attempted deletion on bank submission
+refusal; wallet return is ignored. Link service/entitlement and payment outcomes,
+including uncertain commit or failed compensation, in the owning integration.
+
+Current inventory: 188 routes, 2,745 raw matches, 2,687 unique coordinates,
+578 writer-mapped coordinates, 42 reviewed declarations, 2,067 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.
