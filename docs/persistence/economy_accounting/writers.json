@@ -4399,8 +4399,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "New ore/gem admission into room; occasional parchment.",
-      "authority_boundary": "Mine generation/depletion and admission linkage unresolved",
+      "classification": "Creates rolled ore or gem with timestamp and cost payload, then admits it to the room. Mine charge was already consumed before the scheduled event; interruption or object-load failure can yield no harvest. Cost payload is not currency issuance. Occasional parchment uses the separate create_parchment route.",
+      "authority_boundary": "Bind mine generation, consumed charge, harvest attempt and rolled item UID/payload. Preserve existing interruption/loss behavior; tool DamageOneItem and parchment children need linked outcomes, not an invented all-or-nothing reward.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -4417,7 +4417,23 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/mining.c",
+          254,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/mining.c",
+          265,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/mining.c",
+          492,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -10646,6 +10662,461 @@
           "src/economy/coin_transfer_command.c",
           338,
           "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "mining.depletion",
+      "path": "src/economy/mining.c",
+      "symbol": "int mine(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic depletion or the last reserved charge extracts the mine object; last-charge extraction precedes completion of the harvest event.",
+      "authority_boundary": "Mine fixture/resource policy and lifetime required; extraction is not proof of a successful harvest or wallet sink.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/mining.c",
+          283,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/mining.c",
+          360,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "mining.pick_fumble",
+      "path": "src/economy/mining.c",
+      "symbol": "event_mine_check",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Mounted fumble unequips the existing pick into the same player inventory and aborts the attempt.",
+      "authority_boundary": "Preserve pick UID and equipment-to-inventory topology; no new item is issued.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/mining.c",
+          516,
+          "item_publication"
+        ],
+        [
+          "src/economy/mining.c",
+          517,
+          "item_publication"
+        ],
+        [
+          "src/economy/mining.c",
+          521,
+          "item_publication"
+        ],
+        [
+          "src/economy/mining.c",
+          522,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "mining.mine_placement",
+      "path": "src/economy/mining.c",
+      "symbol": "load_one_mine",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates a mine, rejects and disposes it if placement search fails, otherwise rolls capacity/quality and publishes it in a room.",
+      "authority_boundary": "Explicit fixture/resource representation and generation identity; rejected provisional mine is not destruction of an admitted holding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/mining.c",
+          629,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/mining.c",
+          656,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/mining.c",
+          702,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "mining.admin_purge",
+      "path": "src/economy/mining.c",
+      "symbol": "do_mine",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Trusted purge extracts matching room mines by type and configured region; reset invokes purge before replacement loading.",
+      "authority_boundary": "Retire identified mine lifetimes if tracked; retain operator provenance and distinguish reset replacement from player harvest.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/mining.c",
+          909,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.guardian_cash",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "load_guardian",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Zeros template cash on a newly allocated guardian before room placement.",
+      "authority_boundary": "Provisional NPC initialization; do not invent a durable wallet or post-admission sink from template cash.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1104,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1105,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1106,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1107,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.sage_cash",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "load_sage",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Zeros template cash on a newly allocated sage before room placement.",
+      "authority_boundary": "Provisional NPC initialization requires actual lifetime/admission policy; stone ID alone is not a durable NPC wallet.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1393,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1394,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1395,
+          "coin_assignment"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1396,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.guardian_mace",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "load_guardian",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Loads and equips a guardian mace before NPC room placement; guardian still loads if mace allocation fails.",
+      "authority_boundary": "Bind item UID to guardian lifetime and actual transferability. A failed optional mace load is not proof guardian admission failed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1119,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1129,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.stone_placement",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "load_nexus_stone",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Materializes a configured nexus stone, assigns logical stone ID/alignment/timers/descriptions and places it in a room.",
+      "authority_boundary": "Data-backed fixture representation policy required; logical stone ID and runtime object UID have different lifetimes.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1481,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/nexus_stones.c",
+          1510,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.reset",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "reset_nexus_stones",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Extracts all nexus stone objects after extracting guardians/sages, then reloads configured stones.",
+      "authority_boundary": "Track replacement lifetimes only under explicit fixture policy; NPC extraction and equipped items require linked lifecycle treatment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1754,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.reload",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "reload_nexus_stone",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Removes matching guardians/sages and the first matching stone before materializing its configured replacement.",
+      "authority_boundary": "Logical configuration recovery is not automatically fresh issuance; preserve previous object/NPC lifetime provenance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1794,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "nexus.expiration",
+      "path": "src/economy/nexus_stones.c",
+      "symbol": "expire_nexus_stone",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Removes guardians/sages and the expired stone, resets alignment and reloads. Flat-file state update precedes teardown; SQL update follows teardown and can fail before replacement.",
+      "authority_boundary": "Retain actual backend ordering and interrupted replacement outcome. Fixture removal is not proof of completed reset or economic settlement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/nexus_stones.c",
+          1908,
+          "item_lifecycle"
         ]
       ],
       "evidence": []

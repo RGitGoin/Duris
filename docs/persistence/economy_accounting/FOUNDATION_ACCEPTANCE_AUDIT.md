@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“#478 and current local work.
+Audited 2026-09-21 against original issues #475ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -461,3 +461,27 @@ properties. No runtime code or test behavior changed in this batch.
 Draft validator passed 13 fixtures: 226 routes, 2,756 raw matches, 2,698 unique
 coordinates, 741 mapped, 43 reviewed declarations and 1,914 unclassified.
 Census completion, contract freeze and runtime qualification remain outstanding.
+
+
+## Mining harvests and nexus object lifetimes
+
+All current lexical mining.c and nexus_stones.c coordinates are classified.
+Mining reserves a charge and can extract the exhausted mine before its scheduled
+harvest completes. Interrupted attempts and failed item loads therefore differ
+from admitted ore/gems. Rolled item cost is payload, not issued currency. Pick
+fumbles move the existing equipment to inventory. Parchment and DamageOneItem
+remain linked helper outcomes rather than evidence of an atomic harvest bundle.
+Mine placement failure disposes a provisional object; trusted purge/reset and
+resource depletion need explicit fixture/resource lifetime policy.
+
+Nexus guardians and sages zero template money before placement. Guardian mace
+allocation is optional and requires its own item/lifetime policy. Configured stone
+identity does not establish durable economic object identity or transferability.
+Reset/reload/expiration remove stone and NPC representations and rebuild them.
+Expiration has different ordering: flat-file authority update precedes teardown;
+SQL updates alignment after teardown and can fail before replacement. Preserve
+these observed outcomes when integrating; this census makes no gameplay changes.
+
+Draft validator passed 13 fixtures: 237 routes, 2,756 raw matches, 2,698 unique
+coordinates, 769 mapped, 43 reviewed declarations and 1,886 unclassified.
+Census completion and runtime qualification remain outstanding.
