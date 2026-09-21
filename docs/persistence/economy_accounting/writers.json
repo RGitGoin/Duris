@@ -3887,9 +3887,9 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Internal apply_wallet_delta/stage_money plus custody.",
+      "classification": "Auction SQL dispatcher links listing, bids, settlement and claims through helpers. Remove with an existing winner stages the seller item claim but does not stage a bidder refund in this branch; retain as an explicit integration/behavior question.",
       "authority_boundary": "Existing SQL critical transaction",
-      "current_support": "Frozen claims materialize exact recipient roots with custody and receipts in the existing SQL transaction; native publication and full accounting integration remain unqualified.",
+      "current_support": "Existing SQL wallet/custody/claim mutations only; exact frozen recipient materialization, native publication and full accounting integration are not established by this source.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11568,6 +11568,336 @@
         [
           "src/economy/shop_trade_transaction.c",
           152,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_wallet_delta",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "apply_wallet_delta",
+      "reason": "auction_bid",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Listing fees, bid debits and money-claim credits canonicalize the wallet and append legacy currency evidence. Bank revision advances with unchanged denominations. Existing winner pays only the bid increase; a new winner pays the full bid.",
+      "authority_boundary": "Link wallet leg to fee sink, escrow or consumed claim according to action; baseline/evidence writes are not additional issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          238,
+          "sql_economy"
+        ],
+        [
+          "src/economy/auction_repository.c",
+          244,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_item_transition",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "transition_items",
+      "reason": "auction_claim",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Revision-checked root item ownership moves between player and auction, with legacy ownership ledger evidence and both owner revisions advanced.",
+      "authority_boundary": "One custody transition per root under original operation; ledger append is evidence, not a second movement. Recipient materialization and native save remain separate obligations.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          396,
+          "sql_economy"
+        ],
+        [
+          "src/economy/auction_repository.c",
+          404,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_listing_custody",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "insert_listing",
+      "reason": "auction_listing",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Creates listing and per-slot custody rows containing existing item UIDs, next revisions and captured blob.",
+      "authority_boundary": "Existing item enters auction custody; inserting a listing/blob does not create another item.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          484,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_money_claim_stage",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "stage_money",
+      "reason": "auction_settle",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Adds pending money and advances claim revision for displaced bidder refund or seller proceeds after closing fee.",
+      "authority_boundary": "Retain parent auction/bid identity and distinguish escrow return from seller settlement; pending claim is a holding, not fresh issuance. Aggregate claim arithmetic and replay need qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          500,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_item_claim_stage",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "stage_items",
+      "reason": "auction_settle",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Sets claim recipient on unclaimed custody slots for winner or returning seller.",
+      "authority_boundary": "Claim eligibility is separate from custody transfer and live item delivery; preserve existing UID/payload.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          509,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_money_claim_consume",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "auction_repository_execute",
+      "reason": "auction_claim",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Locks positive pending money, applies wallet credit and then zeroes matching claim value while advancing claim revision.",
+      "authority_boundary": "Same SQL transaction must conserve claim-to-wallet value; clearing the claim is not an independent sink, and replay must not credit twice.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          773,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.sql_item_claim_consume",
+      "path": "src/economy/auction_repository.c",
+      "symbol": "auction_repository_execute",
+      "reason": "auction_claim",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "After matching claimant/revision checks and custody transition, marks each slot claimed with the original command ID and new item revision.",
+      "authority_boundary": "Receipt consumption proves which command claimed custody, not independently that the native recipient inventory was durably materialized.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_repository.c",
+          826,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.command_plan",
+      "path": "src/economy/auction_command.c",
+      "symbol": "auction_command_decode_payload",
+      "reason": "auction_listing",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Decoder copies a length-checked object blob into a command payload, then validates payload and reconstructed command fences. The coin_bulk_mutation match is a buffer copy, not a coin write. The builder constructs and sorts actor/account, auction and item keys without applying economic state.",
+      "authority_boundary": "Decode/plan construction only; captured item bytes and reconstructed fences are not issuance, custody movement or admitted work.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_command.c",
+          202,
+          "coin_bulk_mutation"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "auction.command_submission",
+      "path": "src/economy/auction_transaction.c",
+      "symbol": "auction_transaction_submit",
+      "reason": "auction_settle",
+      "integration_issue": 485,
+      "owner": "primary / #485",
+      "coverage": "legacy",
+      "classification": "Actor and background wrappers share bounded pending admission and generate an operation ID. Completion publishes committed balance/custody; offline actor results wait in the pending map. Publication failure can report false and erase pending after durable commit.",
+      "authority_boundary": "Accepted queue work is not settlement. Preserve original commit identity and restart-safe publication obligations; callback false does not prove transaction rollback.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/auction_transaction.c",
+          167,
+          "economic_submit"
+        ],
+        [
+          "src/economy/auction_transaction.c",
+          173,
           "economic_submit"
         ]
       ],

@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ#478 and current local work.
+Audited 2026-09-21 against original issues #475ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -535,3 +535,30 @@ classifications do not qualify native save acknowledgement or restart recovery.
 Draft validator passed 13 fixtures: 248 routes, 2,756 raw matches, 2,698 unique
 coordinates, 793 mapped, 43 reviewed declarations and 1,862 unclassified. No
 runtime code changed; census completion and runtime qualification remain open.
+
+
+## Auction SQL claims and command publication
+
+Auction repository coordinates distinguish wallet changes, custody transitions,
+listing snapshots, staged money/item claims and claim consumption. A rebid by the
+existing winner debits only the increase; a replacement bidder funds the full
+bid and stages the prior bidder refund. Seller proceeds subtract the closing fee.
+Claim-to-wallet credit and claim zeroing belong to one transfer, not issuance plus
+a separate sink. Custody ledger rows are evidence of the same item movement.
+
+The existing auction.sql_apply support text claimed frozen recipient materialization
+that this checkout's auction_repository_execute does not substantiate. It now
+marks that behavior unverified. The remove branch with an existing winner stages
+the seller item claim without staging a bidder refund; preserve this explicit
+behavior question for #485 rather than silently assume balanced cancellation.
+
+The auction command candidate is a length-checked object-blob memcpy in decoding,
+not a coin mutation. Builder reconstruction checks fences without economic side
+effects. Submission accepts queued work; publication can erase pending and report
+failure after commit. Offline actor completion remains pending in memory. Native
+save/restart qualification is not established by this mapping.
+
+Draft validator passed 13 fixtures after correcting a mistaken builder-coordinate
+assignment to the actual decoder match: 257 routes, 2,756 raw matches, 2,698 unique
+coordinates, 805 mapped, 43 reviewed declarations and 1,850 unclassified. No
+runtime behavior changed; auction_houses.c and other census gaps remain open.
