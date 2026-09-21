@@ -1409,8 +1409,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Stake admission, push return, win payout, loss/bust/fold and round reset. Push returns stake; a gross win separates returned stake from net issuance; a lost stake is a sink.",
-      "authority_boundary": "Live table stakes need durable table/round/outcome identity; interrupted-round disposition is not established.",
+      "classification": "Direct denomination cash writes pay twice the stake on wins/dealer bust or return the stake on a push. Loss, player bust and fold reset without payout; reset clears table stakes and heap card state. Gross payout includes returned stake, not just net winnings.",
+      "authority_boundary": "Durable table/round/participant and terminal outcome identity required. Player owner is attached when cards are dealt, after wager acceptance; interrupted-round disposition and same-player ownership are not established by this function.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -1427,7 +1427,23 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/cardgames.c",
+          398,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/economy/cardgames.c",
+          413,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/economy/cardgames.c",
+          448,
+          "direct_cash_assignment"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3933,8 +3949,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Separate bank reward after boon commit; claim fallback possible.",
-      "authority_boundary": "Root/source linkage across commits required",
+      "classification": "Rejected bank reward attempts auction claim fallback; successful callback only reports bank receipt. SQL-build helper inserts/increments auction_money_pickups; __NO_MYSQL__ helper refuses. Fallback has no original operation ID argument.",
+      "authority_boundary": "Bind fallback claim to the same completed boon reward and proven failed bank leg; callback or claim insertion is not a second issuance. Preserve build-specific refusal behavior.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3953,7 +3969,13 @@
       "test_candidates": [
         "tests/async/run_boon_reward_zone_schema_mysql.sh"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/boon.c",
+          131,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -11117,6 +11139,171 @@
           "src/economy/nexus_stones.c",
           1908,
           "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.card_game_stake",
+      "path": "src/economy/cardgames.c",
+      "symbol": "blackjack_table",
+      "reason": "gambling_stake",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Wager calls SUB_MONEY then stores amount and denomination in the live table. Persisted-player SUB_MONEY success means asynchronous submission accepted, but this caller has no stake-commit callback before continuing the round.",
+      "authority_boundary": "Bind wager debit, table custody and round identity. Submission success cannot prove a funded stake; later payout must not bypass the committed wallet revision. Preserve existing economic policy and document technical failures separately.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/cardgames.c",
+          583,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "boon.disabled_legacy_rewards",
+      "path": "src/economy/boon.c",
+      "symbol": "check_boon_completion_legacy",
+      "reason": "boon_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "These cash submission/fallback, item allocation/publication and CTF flag movement sites are inside #if 0. They are retained legacy reference, not active reward authority; the CTF branch additionally has its own compile guard.",
+      "authority_boundary": "Do not claim runtime reward coverage from disabled paths. Re-enabling requires review of original boon completion, payout and flag lifetime linkage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/boon.c",
+          3669,
+          "economic_submit"
+        ],
+        [
+          "src/economy/boon.c",
+          3677,
+          "money_helper"
+        ],
+        [
+          "src/economy/boon.c",
+          3921,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/boon.c",
+          3931,
+          "item_publication"
+        ],
+        [
+          "src/economy/boon.c",
+          3966,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "boon.cash_reward_publish",
+      "path": "src/economy/boon.c",
+      "symbol": "boon_publish_transaction_result",
+      "reason": "boon_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "For each completed cash entry, submits a separate bank reward using boon ID as reason ID. Immediate rejection reports an error; later rejection reaches the shared fallback callback.",
+      "authority_boundary": "Original completed-boon identity must bind a deterministic reward child. Boon publication returns before bank completion; acknowledgement of the parent is not proof of cash delivery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/boon.c",
+          4028,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "boon.item_reward_publish",
+      "path": "src/economy/boon.c",
+      "symbol": "boon_publish_transaction_result",
+      "reason": "boon_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "For each completed item entry, allocates configured vnum and directly publishes it to the player; failed allocation yields no item.",
+      "authority_boundary": "Bind item UID/payload and durable save acknowledgement to the completed boon and original reward child. Re-entering publication must not allocate duplicate reward objects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/boon.c",
+          4131,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/boon.c",
+          4134,
+          "item_publication"
         ]
       ],
       "evidence": []

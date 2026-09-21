@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ#478 and current local work.
+Audited 2026-09-21 against original issues #475ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -484,4 +484,28 @@ these observed outcomes when integrating; this census makes no gameplay changes.
 
 Draft validator passed 13 fixtures: 237 routes, 2,756 raw matches, 2,698 unique
 coordinates, 769 mapped, 43 reviewed declarations and 1,886 unclassified.
+Census completion and runtime qualification remain outstanding.
+
+
+## Blackjack and boon delivery boundaries
+
+All current lexical cardgames.c and boon.c candidates are mapped. Blackjack
+accepts SUB_MONEY submission before proceeding with table state; for persisted
+players this is asynchronous acceptance, not a committed wager. Win/push payouts
+write denominations directly. Fold/bust/loss reset without a payout. The player
+hand owner is attached on deal, after the wager, so durable wager/round/participant
+binding and interruption policy cannot be inferred from live table fields.
+
+Five boon candidates are inside #if 0 and are explicitly disabled legacy paths.
+Active completed-boon publication separately submits cash rewards or allocates
+items. Cash rejection may attempt auction pickup fallback: the SQL-build helper
+inserts/increments a claim without an operation-ID argument, while the
+__NO_MYSQL__ helper refuses. These branches require original reward identity and
+proof of which leg committed, not two issuances. Item allocation failure yields
+no item. The flat pending-reward caller acknowledges after publication returns,
+which does not prove an asynchronous cash child committed or an item was saved.
+These are recorded integration obligations; no runtime behavior changed.
+
+Draft validator passed 13 fixtures: 241 routes, 2,756 raw matches, 2,698 unique
+coordinates, 782 mapped, 43 reviewed declarations and 1,873 unclassified.
 Census completion and runtime qualification remain outstanding.
