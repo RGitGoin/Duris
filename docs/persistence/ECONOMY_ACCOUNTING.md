@@ -238,6 +238,18 @@ census deliberately includes allocation/publication/cleanup sites for review;
 it is neither a complete semantic census nor evidence that a hit mutates money.
 Direct fields, SQL, administrative and lifecycle paths also require review.
 
+Census completion can be checked independently with
+`python3 scripts/validate_economy_accounting.py --census`; `--release` additionally
+requires runtime qualification. The `nonwriters` inventory records individually
+reviewed declaration coordinates, rationale, end line and a SHA-256 of the full
+LF-normalized declaration (without a trailing newline). A changed continuation
+line invalidates that review even if the first-line census excerpt is unchanged.
+Declarations cannot also be mapped as writers. Macro bodies, inline definitions,
+projections and recovery mutations are not declaration exclusions. Definitions
+and callers still require independent review. Repeated lexical matches at the
+same path/line/family count as one review coordinate; raw hit count is reported
+separately. None of these classifications establishes runtime enforcement.
+
 Coverage states are legacy, observed, enforced, unsupported, and projection.
 Observed evidence does not gate the writer. Enforced evidence participates in
 its authoritative commit. Unsupported requires the actual refusal plus an

@@ -71,8 +71,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Direct denomination overwrite and elite/difficulty scaling before admission.",
-      "authority_boundary": "Caller must establish provisional versus admitted lifetime",
+      "classification": "NPC denomination overwrite, elite/race zeroing and difficulty scaling. Used by fresh read_mobile, summoned demon recalculation and restored pets; not uniformly fresh issuance.",
+      "authority_boundary": "Caller must bind provisional admission or retained pet/NPC lifetime before assigning accounting effects; convertMob alone does not establish issuance provenance.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -89,7 +89,53 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/mob/mobconv.c",
+          247,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          248,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          249,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          250,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          257,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          262,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          276,
+          "coin_assignment"
+        ],
+        [
+          "src/mob/mobconv.c",
+          281,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/mob/mobconv.c",
+          284,
+          "coin_assignment"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3469,16 +3515,6 @@
           "src/item/item_movement_transaction.c",
           1963,
           "economic_submit"
-        ],
-        [
-          "src/item/item_movement_transaction.h",
-          112,
-          "economic_submit"
-        ],
-        [
-          "src/item/item_movement_transaction.h",
-          120,
-          "economic_submit"
         ]
       ],
       "evidence": []
@@ -3679,6 +3715,459 @@
         ]
       ],
       "evidence": []
+    }
+  ],
+  "nonwriters": [
+    {
+      "site": [
+        "src/core/prototypes.h",
+        2443,
+        "money_helper"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 2443,
+      "source_sha256": "cafb83a74035bfd1c0a3d8b2539c80a64ca785fc2890923357663a0e3f83324b"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        3038,
+        "money_helper"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 3038,
+      "source_sha256": "6d6d1cee48ffcfe6d7aadff8167ba0b1112eca19f2f32d50d86deb6425143b2d"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        3067,
+        "money_helper"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 3067,
+      "source_sha256": "a65af9df51b7acc147d4e998bc6b8c2a30862a4d1c31a1f4327e27ff2785c4c0"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1327,
+        "coin_bulk_mutation"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1327,
+      "source_sha256": "63ef3570d84ebe541cd00a3c937352e30c109e52c5101a951cd42f21a380543f"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        828,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 828,
+      "source_sha256": "7fba82321ee3cda7a3a6b82f107eceb4c88fda313ef4a6907f632a106c37eecc"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        838,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 838,
+      "source_sha256": "39a20ee12076a046cd3aec8021067c5389f964cedd34a1944cf6ef4dc77be7fe"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1292,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1292,
+      "source_sha256": "a8f245b3b04b542f98cdd7e3facc58ebfe5a6f3f4889c0df626c1e175b8f6675"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1352,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1353,
+      "source_sha256": "b90e952b31fc1627d4ae14134b4f93c653fb8473aba49cfe71ed173a68c1cec6"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1301,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1301,
+      "source_sha256": "b8e6104556e50c6dd5f76ce4fb5cdbbc82494b8e83c62d5ec7c309aa13c2b1e7"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1347,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1347,
+      "source_sha256": "b5eca4035f7d97e165db11401070baf8a12fc72820d4155496d2ea9f99ccdf15"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1357,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1357,
+      "source_sha256": "570da990f48ce8e1852121837ef782cbf6b4916bb4f8df8b489aca308b90cbea"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1358,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1358,
+      "source_sha256": "74443609795d16106231c00c560652713bec167ccba96bc08a362bc43824847b"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1364,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1364,
+      "source_sha256": "1438f0f08be2b37cdefe76545efca40642663cac864af2513405df0dce069e93"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1365,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1365,
+      "source_sha256": "0a1ec8c221fd072526753bf6eb00dcbd729563337ea32b0be153e12b888e74ef"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1366,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1366,
+      "source_sha256": "1d5a94e3f9dfbad3872cf4639db43611daaa3112da308e9ae8894adcbb3c1480"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1367,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1367,
+      "source_sha256": "622d302e0bfb8bf72ff4def3eafec943521c6576c5eda19e8143a188407a2dd0"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1369,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 1369,
+      "source_sha256": "edb1ab34b600650bb118e724f9027f270c5c53c4f9790ebca40bed5a673729f3"
+    },
+    {
+      "site": [
+        "src/economy/auction_houses.h",
+        24,
+        "money_helper"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 24,
+      "source_sha256": "28e0293604fb475caefb0b8aa1cbe42e548accf53d3f07bc0a0198d1738442cd"
+    },
+    {
+      "site": [
+        "src/economy/auction_transaction.h",
+        19,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 21,
+      "source_sha256": "f96c8eb5c1fb5ee25d1c424909a93001832156d55deb1b5b4e0d6030a492d989"
+    },
+    {
+      "site": [
+        "src/economy/auction_transaction.h",
+        22,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 23,
+      "source_sha256": "f35143511f01bfdf0448ebfd774252e890d5ce9df692b1db5231d98b13826b49"
+    },
+    {
+      "site": [
+        "src/economy/coin_transfer_command.h",
+        37,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 42,
+      "source_sha256": "142d721311bbb0f921fcc5e0e7a02e432782cd05038e8f2a891366f848193281"
+    },
+    {
+      "site": [
+        "src/economy/collector_transaction.h",
+        21,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 24,
+      "source_sha256": "08f3875886dd04c134896abc6552910407245f0d9d6987278242605a78069b5d"
+    },
+    {
+      "site": [
+        "src/economy/currency_command.h",
+        117,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 121,
+      "source_sha256": "a2d7a7e881a33e6df5a47518cd114b5481c5255672fe6a622762a01ef0b6174d"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        54,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 56,
+      "source_sha256": "d657d9c2b7917dfd4348b20708f5ee762a7dbb49eb15a83f8b1bbf29c62c869e"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        63,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 68,
+      "source_sha256": "554fca2ade10467d59e29ec4a9ee85735f9b04fbe8433f07706a27d93e247b81"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        69,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 74,
+      "source_sha256": "bc6b185a3387a8223456f37eeea046504b35569f593353fe83029aa9a263e02c"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        79,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 81,
+      "source_sha256": "6dfb294f8d53ffa46e9f84f041ffd849a05bdc2675fbed6ff92c0641660f1cee"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        82,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 87,
+      "source_sha256": "1dd7feaac114a73364e772d727b53485bb12771666b947f9e1c0bdd7587cdc38"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        88,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 93,
+      "source_sha256": "ba9b7e6c1642079406aacb2532537b04b3043b994faaa5a4a669bc6da20a8df7"
+    },
+    {
+      "site": [
+        "src/economy/currency_transaction.h",
+        94,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 99,
+      "source_sha256": "c1b3ac1e0d9430a690c921e653f4df9aaf472d1de70bd499bc4aa5d3132a888f"
+    },
+    {
+      "site": [
+        "src/economy/shop_trade_transaction.h",
+        16,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 17,
+      "source_sha256": "ac3fd8a64f949db5c7c8205e6be58d8486ba869bdc5feface6d08bd024779940"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        89,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 96,
+      "source_sha256": "8a1285780e31392c6e42f11fc4bf7114806deddc2bffe75305c8c30ef22a3c44"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        100,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 105,
+      "source_sha256": "aff47fec8260b9cd66ccefd086caa1bad46b260697da06bb8aafa5dfb80a83e7"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        106,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 107,
+      "source_sha256": "0b193a1e9241df9f973528e4ab3712fd1b9ab4ff9cf48334f70844535ea073c3"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        112,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 116,
+      "source_sha256": "2e62c306aa2e4f1da49e7cb5760feedb23136fa04e79317055c72dde3f323e99"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        120,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 122,
+      "source_sha256": "e8d03b7f068c5d4c51276ce68b8971c23c091dd624bfaa3445aeaa40f0c24c8f"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        123,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 124,
+      "source_sha256": "4b026f16982098813b6a4aeab6f997630c306538516c3204bd46c360d3606add"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        127,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 128,
+      "source_sha256": "e2d352c9b763f2b60d196ca813cb469325a8840c117adfe35f9e73c61528044b"
+    },
+    {
+      "site": [
+        "src/item/item_movement_transaction.h",
+        129,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 129,
+      "source_sha256": "58ff53b49c50ca6acef252e8a38b8d37c184928ee3892a03613172bebbdf1203"
+    },
+    {
+      "site": [
+        "src/item/item_transfer_command.h",
+        213,
+        "economic_submit"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 216,
+      "source_sha256": "d60d094e2ace64e34d4fd7733344dcb430b82ad2f7e89a77824d6e191f8893e6"
+    },
+    {
+      "site": [
+        "src/world/object_template.h",
+        46,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
+      "end_line": 46,
+      "source_sha256": "3daa155ed99df97dc49975ead16aca131d3bf3c7ee7870a2072adeed89db4173"
     }
   ],
   "census": [

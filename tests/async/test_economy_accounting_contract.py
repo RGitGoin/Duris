@@ -198,6 +198,61 @@ class AccountingContractTest(unittest.TestCase):
                 with self.subTest(census=strict), self.assertRaisesRegex(contract.ContractError,'unclassified writer candidate'):
                     contract.validate_inventory(inventory,self.registry,root,census=strict)
 
+    def declaration_fixture(self, root):
+        inventory=self.census_fixture(root)
+        (root/'src/example.c').write_text('bool currency_transaction_submit(\n    int amount);\n')
+        inventory['census']=contract.scan_sources(root)
+        inventory['writers']=[]
+        fragment='bool currency_transaction_submit(\n    int amount);'
+        inventory['nonwriters']=[dict(site=['src/example.c',1,'economic_submit'],
+            classification='declaration',rationale='Prototype only',end_line=2,
+            source_sha256=contract.hashlib.sha256(fragment.encode()).hexdigest())]
+        return inventory
+
+    def test_reviewed_declarations_can_complete_census(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.declaration_fixture(root)
+            contract.validate_inventory(inventory,self.registry,root,census=True)
+
+    def test_declaration_review_detects_change_after_first_line(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.declaration_fixture(root)
+            (root/'src/example.c').write_text('bool currency_transaction_submit(\n    long amount);\n')
+            self.assertEqual(contract.scan_sources(root),inventory['census'])
+            with self.assertRaisesRegex(contract.ContractError,'declaration changed'):
+                contract.validate_inventory(inventory,self.registry,root)
+
+    def test_nonwriter_requires_unique_current_site_and_rationale(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.declaration_fixture(root)
+            cases=[('rationale',' ','rationale'),('classification','projection','classification'),
+                   ('site',['src/example.c',2,'economic_submit'],'source site')]
+            for key,value,error in cases:
+                changed=copy.deepcopy(inventory);changed['nonwriters'][0][key]=value
+                with self.subTest(key=key), self.assertRaisesRegex(contract.ContractError,error):
+                    contract.validate_inventory(changed,self.registry,root)
+            inventory['nonwriters']*=2
+            with self.assertRaisesRegex(contract.ContractError,'conflicting'):
+                contract.validate_inventory(inventory,self.registry,root)
+
+    def test_writer_cannot_also_be_excluded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            inventory['nonwriters']=[dict(site=inventory['writers'][0]['sites'][0])]
+            with self.assertRaisesRegex(contract.ContractError,'conflicting'):
+                contract.validate_inventory(inventory,self.registry,root)
+
+    def test_function_body_cannot_be_excluded_as_declaration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.declaration_fixture(root)
+            fragment='bool currency_transaction_submit() { return true; };'
+            (root/'src/example.c').write_text(fragment+'\n')
+            inventory['census']=contract.scan_sources(root)
+            inventory['nonwriters'][0].update(end_line=1,
+                source_sha256=contract.hashlib.sha256(fragment.encode()).hexdigest())
+            with self.assertRaisesRegex(contract.ContractError,'not a reviewed declaration'):
+                contract.validate_inventory(inventory,self.registry,root)
+
     def test_unproven_projection_cannot_bypass_release_gate(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir();(root/'src/example.c').write_text('void example() {}\n')

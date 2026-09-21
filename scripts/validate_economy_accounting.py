@@ -2,6 +2,7 @@
 """Validate economy accounting contracts and report incomplete writer coverage."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -233,12 +234,29 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
             expected={'unsupported':'refused','projection':'projection','enforced':'qualified'}.get(writer['coverage'])
             require(expected is not None,'writer not qualified')
             require(all(b['status']==expected and b.get('evidence') for b in writer['backends'].values()),'backend not qualified')
+    mapped={tuple(site) for writer in inventory['writers'] for site in writer.get('sites',[])}
+    excluded=set()
+    for review in inventory.get('nonwriters',[]):
+        site=tuple(review['site'])
+        require(site in census_sites,'nonwriter source site missing from census')
+        require(site not in excluded and site not in mapped,'duplicate or conflicting nonwriter classification')
+        require(review['classification']=='declaration','unknown nonwriter classification')
+        require(isinstance(review.get('rationale'),str) and review['rationale'].strip(),'missing nonwriter rationale')
+        lines=(root/site[0]).read_text(encoding='utf-8',errors='replace').splitlines()
+        end=integer(review['end_line'],'invalid declaration end',site[1],len(lines))
+        fragment='\n'.join(lines[site[1]-1:end])
+        require(hashlib.sha256(fragment.encode()).hexdigest()==review['source_sha256'],
+                'reviewed declaration changed; reclassify source')
+        code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),fragment).strip()
+        require(code.endswith(';') and not any(c in code for c in '{}#')
+                and re.match(r'^(?:bool|int|void|P_obj)\s+\w+\s*\(',code),
+                'nonwriter is not a reviewed declaration')
+        excluded.add(site)
     current=scan_sources(root)
     require(current==inventory['census'],'economic writer census drift; review new/changed sites')
     if census or release or inventory.get('census_complete',False):
         require(inventory.get('census_complete') is True,'writer census not complete')
-        mapped={tuple(site) for writer in inventory['writers'] for site in writer.get('sites',[])}
-        require(all((s['path'],s['line'],s['family']) in mapped for s in current),'unclassified writer candidate')
+        require(census_sites <= mapped | excluded,'unclassified writer candidate')
     if release:
         require(registry['status']=='frozen','registry contract not frozen')
 
@@ -262,6 +280,11 @@ def main():
     validate_inventory(inventory,registry,args.root,args.release,args.census)
     print(f"accounting contracts: {len(golden['fixtures'])} fixtures; {len(inventory['writers'])} writer routes; "
           f"{len(inventory['census'])} candidate sites; release_ready={args.release}")
+    sites={(s['path'],s['line'],s['family']) for s in inventory['census']}
+    mapped={tuple(s) for w in inventory['writers'] for s in w.get('sites',[])}
+    excluded={tuple(n['site']) for n in inventory.get('nonwriters',[])}
+    print(f'Census: {len(sites)} unique coordinates; {len(mapped)} mapped; '
+          f'{len(excluded)} reviewed nonwriters; {len(sites-mapped-excluded)} unclassified.')
     if not args.release:
         print('Contract validity only; no runtime coverage, storage integration or release qualification claimed.')
 

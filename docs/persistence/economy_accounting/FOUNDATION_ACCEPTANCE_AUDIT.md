@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475–#478 and current local work.
+Audited 2026-09-21 against original issues #475â€“#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -44,3 +44,20 @@ both builds passed. It remains unpublished and does not complete #479.
 
 No issue is closed by this audit. Distinguish local implementation, qualification,
 review readiness, merge and closure in subsequent reports.
+
+## First inventory review increment
+
+After the initial audit, 41 function declarations were individually reviewed and
+recorded as nonwriters with full declaration hashes. Two had previously been
+incorrectly counted as writer mappings and were moved to declaration reviews.
+Nine unique `mobconv.c` coordinates now map to `world.mobile_scaling`. Callers in
+`world/db.c:2755`, `combat/mobcombat.c:1196` and `core/files.c:4783` establish that
+this helper is used for both fresh NPCs and restored pets: it cannot establish
+fresh issuance by itself. The four CLEAR_MONEY macro assignments in core/utils.h
+remain writer candidates, not declaration exclusions.
+
+The earlier 2,731 figure counts lexical hits, including repeated matches on one
+line. There are 2,673 distinct path/line/family coordinates. Current classification
+is 40 mapped writer coordinates, 41 reviewed declarations and 2,592 unclassified
+coordinates. No completeness or backend status was promoted. This remains a
+partial census, and the search's semantic blind spots still require review.
