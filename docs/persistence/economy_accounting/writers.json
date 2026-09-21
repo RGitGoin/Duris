@@ -2867,8 +2867,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Shared durable item movement envelopes.",
-      "authority_boundary": "Existing coordinator and committed publication",
+      "classification": "Capture bounded item trees, owner revisions and snapshots, build an operation and submit with optional retained publication. Single-root compatibility adopts absent registry entries through a creation command before the requested transfer; mobile claims reject absence. Batch creation and existing-item transfer have distinct capture rules. Journal uncertainty retains the original pending identity.",
+      "authority_boundary": "Absence from the registry is not proof of fresh issuance: classify baseline/adoption provenance explicitly. Retain adoption-to-transfer linkage and original ID on uncertainty; opt-in live publication and generic completion have different retention obligations.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2887,7 +2887,33 @@
       "test_candidates": [
         "tests/async/test_flatfile_item_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/item/item_movement_transaction.c",
+          1434,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1501,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1611,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1678,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1823,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -4409,8 +4435,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Completion-bearing creation grants used by shop multi-buy and kingdom stores; restored items must not be classified as fresh issuance.",
-      "authority_boundary": "Existing creation grant command and callback; exchange-root links and atomic coin legs remain unqualified.",
+      "classification": "Publish committed single/batch grants into rooms, player inventories or containers and verify final location. Mark dirty player components. Failed uncommitted single grants discard nowhere candidates; committed publication failure retains the queue rather than discarding durable ownership.",
+      "authority_boundary": "Publication projects an existing committed creation; do not issue again. Dirty marking is not durable save acknowledgment. Keep the original operation until required live/native publication is acknowledged.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -4433,13 +4459,33 @@
       "sites": [
         [
           "src/item/item_movement_transaction.c",
-          1951,
-          "economic_submit"
+          740,
+          "item_publication"
         ],
         [
           "src/item/item_movement_transaction.c",
-          1963,
-          "economic_submit"
+          777,
+          "item_publication"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          783,
+          "item_publication"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          787,
+          "item_publication"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          828,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          932,
+          "item_publication"
         ]
       ],
       "evidence": []
@@ -8030,6 +8076,218 @@
           "src/core/utility.c",
           3193,
           "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.creation_reconstruction",
+      "path": "src/item/item_movement_transaction.c",
+      "symbol": "reconcile_creation_grant_batch",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Rebuild committed grant roots from retained payload/results. Temporarily displace conflicting live UIDs, restore them on failed materialization, or extract displaced copies and publish reconstructed roots on success.",
+      "authority_boundary": "Retained committed payload owns identity. Temporary graph cleanup and superseded live-copy removal must not retire durable items or mint replacements.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_multi_buy_sequence.py",
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/item_movement_transaction.c",
+          519,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          532,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          632,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.creation_queue_discard",
+      "path": "src/item/item_movement_transaction.c",
+      "symbol": "discard_creation_queue",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Dispose unadmitted nowhere objects on queue/preparation failure or cancellation. Before-entry cancellation retains active journaled roots and removes only the unsubmitted tail.",
+      "authority_boundary": "Classify each request by durable status before disposal; retain active original-operation completion and do not treat temporary cleanup as an economic sink.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_multi_buy_sequence.py",
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/item_movement_transaction.c",
+          683,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          2058,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          2181,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.creation_queue_submit",
+      "path": "src/item/item_movement_transaction.c",
+      "symbol": "start_creation_grant",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Queue player/room/before-entry creation requests and start single or batch movement. Existing runtime ownership selects operator_repair for a single grant; absent ownership selects creation. Admission failure leaves caller-owned roots, while accepted queues retain work.",
+      "authority_boundary": "Do not infer fresh value from the grant API name. Preserve existing owner identity, batch membership, output provenance and original operation through deferred admission and publication.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_multi_buy_sequence.py",
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/item_movement_transaction.c",
+          996,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1014,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1944,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          2080,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          2086,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          2133,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1951,
+          "economic_submit"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1963,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.corpse_batch_projection",
+      "path": "src/item/item_movement_transaction.c",
+      "symbol": "publish_corpse_batch",
+      "reason": "death_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Move root objects from character inventory into the corpse after committed batch handling; child relationships remain attached to their roots.",
+      "authority_boundary": "This is live projection of a committed corpse transfer, not new creation of the roots. Retain corpse lifetime and the original batch ownership evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_multi_buy_sequence.py",
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/item_movement_transaction.c",
+          1165,
+          "item_publication"
+        ],
+        [
+          "src/item/item_movement_transaction.c",
+          1166,
+          "item_publication"
         ]
       ],
       "evidence": []

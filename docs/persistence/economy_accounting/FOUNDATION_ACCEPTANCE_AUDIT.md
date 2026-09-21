@@ -261,3 +261,28 @@ ordering/lifetime evidence remains necessary.
 Current inventory: 175 routes, 2,745 raw matches, 2,687 unique coordinates,
 527 writer-mapped coordinates, 42 reviewed declarations, 2,118 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+## Item movement and creation publication review
+
+All current lexical item/item_movement_transaction.c coordinates are mapped.
+Separate routes cover bounded movement submission, creation queue adapters,
+unadmitted disposal, committed reconstruction, live grant publication and corpse
+batch projection. Reconstruction can temporarily displace conflicting live UIDs;
+failure restores them, while success removes superseded live copies. Neither is
+an independent economic destruction or creation.
+
+Single-root submission can adopt an absent registry item through a creation
+command before continuing its requested transfer. Absence is not proof of fresh
+issuance; baseline/adoption provenance and continuation linkage remain required.
+Mobile claims reject absent registry ownership. Single creation grants with
+existing registry ownership choose operator_repair instead of creation.
+
+Journal-uncertain submissions retain the original pending identity. Before-entry
+cancellation retains active journaled roots and disposes only unsubmitted tails.
+Committed publication failure retains its queue. Dirty component marking after
+publication is not durable save acknowledgment; existing helpers are not proof
+that #474 accounting integration is qualified.
+
+Current inventory: 179 routes, 2,745 raw matches, 2,687 unique coordinates,
+552 writer-mapped coordinates, 42 reviewed declarations, 2,093 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.
