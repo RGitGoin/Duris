@@ -213,3 +213,27 @@ Current inventory: 163 routes, 2,745 raw matches, 2,687 unique coordinates,
 451 writer-mapped coordinates, 42 reviewed declarations, 2,194 unclassified.
 Draft validation passes 13 fixtures. Census and runtime qualification remain
 incomplete; this batch changes inventory/documentation only.
+
+## Shop payment, stock and completion review
+
+All current lexical economy/shop.c coordinates are mapped. Produced-item
+allocation differs from transfer of existing stock. Flatfile linked trade
+submission differs from payment-then-grant sequencing; callback publication,
+unadmitted cleanup and committed stock retirement have separate classifications.
+
+Existing-stock purchase currently pays, detaches stock, then uses a creation-grant
+interface whose refusal extracts the item. Integration must retain prior ownership
+and recover the payment/stock together. Produced-purchase refunds credit the player
+before keeper lookup/debit, requiring retained reversal identity and reconciliation
+of partial failure. Callback failures after durable commit retain a publication
+obligation; they must not generate new economic effects.
+
+Invalid-stock removal can be triggered by buy, peruse or list. Keeper death moves
+artifacts to a valid room and destroys other stock. Repair probes a template and
+can mutate attack type before payment; its item change must remain linked to cost.
+Peruse has a separate inspection fee. The barter branch is dormant because transact
+sets merchandise to null; its lexical sites are not active runtime coverage.
+
+Current inventory: 172 routes, 2,745 raw matches, 2,687 unique coordinates,
+500 writer-mapped coordinates, 42 reviewed declarations, 2,145 unclassified.
+Census completion and runtime qualification remain false. No runtime code changed.

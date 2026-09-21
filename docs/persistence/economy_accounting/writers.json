@@ -2864,8 +2864,8 @@
       "integration_issue": 483,
       "owner": "primary / #483",
       "coverage": "legacy",
-      "classification": "Wallet debit plus existing stock custody transfer.",
-      "authority_boundary": "Flatfile typed compound command; SQL legacy transact/live stock path",
+      "classification": "After payment through transact, detach existing stock and submit it through the creation-grant interface; rejection extracts the detached item. This is transfer of prior stock ownership, not fresh production.",
+      "authority_boundary": "Link payment and retained existing item identity; preserve or restore stock on technical refusal rather than treating it as unowned provisional creation.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2884,7 +2884,28 @@
       "test_candidates": [
         "tests/async/test_shop_trade_runtime.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1304,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          1308,
+          "economic_submit"
+        ],
+        [
+          "src/economy/shop.c",
+          1310,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1281,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2895,8 +2916,8 @@
       "integration_issue": 483,
       "owner": "primary / #483",
       "coverage": "legacy",
-      "classification": "Wallet debit and produced-item issuance with serialized completion callbacks for multi-buy; failures refund and adjust keeper cash. Zero-price and container paths remain distinct.",
-      "authority_boundary": "Flatfile compound trade continuation; SQL wallet and creation grant callbacks remain separate operations requiring a common accounting exchange boundary.",
+      "classification": "Materialize a new item from produced stock and validate its destination. Flatfile submits a linked shop trade; the other path submits wallet payment then grants the provisional output, with keeper credit and separate refund on failure. Rejected allocations are unadmitted cleanup, not stock destruction.",
+      "authority_boundary": "Retain stock representative, new item UID, payment, destination and sequence member identity. Payment commit, grant commit and live publication are distinct; continuation or refund must not duplicate any prior member.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2919,23 +2940,18 @@
       "sites": [
         [
           "src/economy/shop.c",
-          168,
-          "money_helper"
-        ],
-        [
-          "src/economy/shop.c",
-          177,
-          "money_helper"
-        ],
-        [
-          "src/economy/shop.c",
-          573,
-          "money_helper"
-        ],
-        [
-          "src/economy/shop.c",
           195,
           "economic_submit"
+        ],
+        [
+          "src/economy/shop.c",
+          215,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          221,
+          "item_lifecycle"
         ],
         [
           "src/economy/shop.c",
@@ -2944,7 +2960,27 @@
         ],
         [
           "src/economy/shop.c",
+          242,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
           260,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          265,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          272,
+          "economic_submit"
+        ],
+        [
+          "src/economy/shop.c",
+          274,
           "item_lifecycle"
         ],
         [
@@ -2954,13 +2990,28 @@
         ],
         [
           "src/economy/shop.c",
+          573,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
           583,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1190,
           "item_lifecycle"
         ],
         [
           "src/economy/shop.c",
           1201,
           "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1211,
+          "economic_submit"
         ],
         [
           "src/economy/shop.c",
@@ -2978,7 +3029,7 @@
       "integration_issue": 483,
       "owner": "primary / #483",
       "coverage": "legacy",
-      "classification": "Player item becomes stock with wallet credit.",
+      "classification": "Flatfile submits a selected sell-store or sell-destroy transaction; legacy sale credits the player, debits keeper and either stores the item or takes the separate destruction branch.",
       "authority_boundary": "Flatfile compound command; SQL sql_shop_sell plus separate money/live paths",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -2998,7 +3049,33 @@
       "test_candidates": [
         "tests/async/test_flatfile_shop_trade_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1445,
+          "economic_submit"
+        ],
+        [
+          "src/economy/shop.c",
+          1478,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          1480,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          1494,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          1495,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3029,7 +3106,13 @@
       "test_candidates": [
         "tests/async/test_shop_trade_command.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1489,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3040,7 +3123,7 @@
       "integration_issue": 483,
       "owner": "primary / #483",
       "coverage": "legacy",
-      "classification": "Invalid stock destruction with zero price.",
+      "classification": "Buying, perusing and listing can remove invalid stock. Flatfile routes cleanup through a discard transaction; legacy branches extract immediately. These are stock retirement actions even when triggered by an inspection command.",
       "authority_boundary": "Typed flatfile cleanup invoked from read and trade paths",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -3060,7 +3143,38 @@
       "test_candidates": [
         "tests/async/test_shop_trade_runtime.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          289,
+          "economic_submit"
+        ],
+        [
+          "src/economy/shop.c",
+          893,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1027,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1057,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1646,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1752,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3102,8 +3216,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "Admitted payment then live repair.",
-      "authority_boundary": "No shared atomic trade envelope established",
+      "classification": "Probe the original weapon template and dispose it; repair can mutate attack type before payment checks, then pays through transact and changes condition. Probe allocation is not issuance.",
+      "authority_boundary": "Link payment and exact existing-item payload change, including pre-payment attack-type mutation and rolled condition. No ownership transfer is implied by descriptive messages.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3120,7 +3234,23 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1872,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1885,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          1905,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -7260,6 +7390,412 @@
           "src/economy/tradeskill.c",
           2542,
           "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.creation_refund",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_creation_refund",
+      "reason": "shop_buy",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Credit player before finding/debiting keeper and writing keeper state. Missing keeper or failed debit is logged; refund is separate from the failed output grant.",
+      "authority_boundary": "Retain original payment/refund identity and both holdings. Partial reversal or uncertain persistence must reconcile without repeating player credit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          168,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          177,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.trade_failure_cleanup",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_trade_completion",
+      "reason": "shop_cleanup",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Discard a matching nowhere produced candidate only when the callback has no durable-commit evidence. A committed trade with failed live publication emits an alert and preserves the obligation.",
+      "authority_boundary": "Do not reverse or re-issue a committed trade merely because its live projection is missing; only unadmitted allocation cleanup is disposable.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          360,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.trade_discard_completion",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_trade_completion",
+      "reason": "shop_cleanup",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Extract invalid stock after the discard transaction reports committed matching ownership.",
+      "authority_boundary": "Committed storage retirement owns the economic effect; live extraction must not append a second destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          375,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.trade_buy_completion",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_trade_completion",
+      "reason": "shop_buy",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "After matched committed buy, credit keeper live cash and publish produced output or move existing stock to player and optional container.",
+      "authority_boundary": "Distinguish native projection from a new debit/credit or issuance; retain commit-to-publication obligations and target container identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          388,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          391,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          393,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          396,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          397,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.trade_sell_completion",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_trade_completion",
+      "reason": "shop_sell",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "After matched committed sale, debit keeper live cash, unlink player item and either destroy the sold root or place it into keeper stock.",
+      "authority_boundary": "Committed sale owns value and custody changes; callback projection/cleanup cannot create a second payment or retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          440,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          445,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          447,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/shop.c",
+          450,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.keeper_death",
+      "path": "src/economy/shop.c",
+      "symbol": "shop_keeper",
+      "reason": "item_destroy",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "On keeper death, unlink inventory; artifacts go to a valid room and other stock is extracted. With no valid room artifacts are also extracted.",
+      "authority_boundary": "Death disposition must distinguish surviving transferred UIDs from destroyed stock, retaining keeper/shop lifetime and child disposition.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1970,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          1973,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          1977,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.payment_cash",
+      "path": "src/economy/shop.c",
+      "symbol": "transact",
+      "reason": "service_cost",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Within the same room, subtract payer wallet cash and add it to recipient. Called for purchases and repair; item or service outcome occurs separately.",
+      "authority_boundary": "Link both holdings to the enclosing purchase/service and retain original debit-credit intent; do not classify recipient credit as unrelated issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          2670,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          2671,
+          "money_helper"
+        ],
+        [
+          "src/economy/shop.c",
+          2623,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.payment_barter_dormant",
+      "path": "src/economy/shop.c",
+      "symbol": "transact",
+      "reason": "service_cost",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Source contains unequip/unlink, merchandise transfer and cash change, but merchandise is forcibly set to null before the branch. It is dormant in current execution.",
+      "authority_boundary": "Reactivation requires linked item consideration and change; dormant sites are not runtime coverage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_shop_trade_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          2639,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          2649,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          2650,
+          "item_publication"
+        ],
+        [
+          "src/economy/shop.c",
+          2654,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.peruse_fee",
+      "path": "src/economy/shop.c",
+      "symbol": "shopping_peruse",
+      "reason": "service_cost",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Charge a configured inspection fee through transact before identifying shop stock; trusted players bypass the fee. No item custody change occurs.",
+      "authority_boundary": "Link payer and keeper cash to the inspection service; this fee is separate from purchase and stock cleanup.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/shop.c",
+          1657,
+          "money_helper"
         ]
       ],
       "evidence": []
