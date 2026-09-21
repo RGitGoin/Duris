@@ -10036,6 +10036,256 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "guildhall.fixture_materialization",
+      "path": "src/guild/guildhall_rooms.c",
+      "symbol": "EntranceRoom::init",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Materialize and place doors, boards, heartstone, window, fountain, bank counter, town portal and library tome from hall configuration. Payload links hall identity or destinations; placement differs by racewar.",
+      "authority_boundary": "Define explicit nontransferable representation policy backed by object data; do not mint economic fixtures on every init. Any transferable object needs first-admission identity independent of recycled room/VNUM.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_rooms.c",
+          185,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          193,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          291,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          293,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          306,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          309,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          330,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          333,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          346,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          348,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          362,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          364,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          375,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          423,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          442,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          454,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          456,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          467,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          469,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "guildhall.golem_initial_cash",
+      "path": "src/guild/guildhall_rooms.c",
+      "symbol": "EntranceRoom::init",
+      "reason": "first_admission",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "After loading each configured golem, zero all denominations before room placement and set guild/racewar metadata.",
+      "authority_boundary": "Template cash is provisional until the documented admission boundary. Zeroing before publication is not retirement of already-admitted wallet value; do not invent durable mobile identity from pointer/runtime slot.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_rooms.c",
+          231,
+          "coin_assignment"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          232,
+          "coin_assignment"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          233,
+          "coin_assignment"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          234,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "guildhall.fixture_unlink",
+      "path": "src/guild/guildhall_rooms.c",
+      "symbol": "EntranceRoom::deinit",
+      "reason": "lifecycle_retirement",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Older room teardown unlinks fixture objects and clears member pointers without extracting those objects; entrance teardown separately extracts golems. Workshop matching-prop extraction is a different existing route.",
+      "authority_boundary": "Unlinking is neither proof of durable retirement nor proof the object was freed. Retain hall lifetime and explicit representation disposition; inspect children/transferable state before claiming a supply sink.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_rooms.c",
+          566,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          596,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          612,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          636,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          652,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          668,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          682,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          696,
+          "item_publication"
+        ],
+        [
+          "src/guild/guildhall_rooms.c",
+          710,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -398,3 +398,25 @@ is payload rather than issued wallet currency. No gameplay behavior changed.
 Current inventory: 215 routes, 2,756 raw matches, 2,698 unique coordinates,
 685 writer-mapped coordinates, 43 reviewed declarations, 1,970 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Guild-hall fixtures and provisional golem cash
+
+All current lexical guild/guildhall_rooms.c coordinates are mapped. The file
+materializes fixtures from hall configuration rather than executing purchases.
+Door/board/heartstone/window/fountain/counter/portal/tome objects require explicit
+data-backed representation policy; do not assume every load is economic issuance
+or every fixture is nontransferable merely from its name.
+
+Configured golems have template coins zeroed before room placement. Classify this
+at the admission boundary rather than as destruction of an established wallet.
+Guild and racewar metadata do not provide durable NPC holding identity by
+themselves.
+
+Older fixture teardown unlinks objects and clears pointers without extraction;
+workshop teardown separately extracts its matching prop. Unlinking is not proof of
+durable retirement or even object disposal. Preserve hall lifetime, possible
+children and actual transferable status when implementing the owning slice.
+
+Current inventory: 218 routes, 2,756 raw matches, 2,698 unique coordinates,
+717 writer-mapped coordinates, 43 reviewed declarations, 1,938 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.
