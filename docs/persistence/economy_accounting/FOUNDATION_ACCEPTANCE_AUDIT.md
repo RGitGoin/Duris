@@ -337,3 +337,26 @@ does not resolve these questions or supply durable authority for transient NPCs.
 Current inventory: 197 routes, 2,745 raw matches, 2,687 unique coordinates,
 624 writer-mapped coordinates, 42 reviewed declarations, 2,021 unclassified.
 Census and runtime qualification remain incomplete. Inventory/documentation only.
+
+## Enhancement transformations and probes
+
+All current lexical item/enhance.c coordinates are mapped. Replacement enhancement
+combines cash, old equipment, material and a newly selected output; modifier and
+superior enhancement mutate the same item UID instead. Submission of a debit does
+not establish atomic payment with either transformation. Chaos-pouch generated
+materials must remain distinct from physical inputs.
+
+Base-stat, name, plan and index-building probes allocate and dispose templates
+without player ownership. Death essence is placed on the dying NPC, not directly
+on the reported killer. Seasonal-mobile items and skipped-reset material fallback
+need original event provenance and explicit transient custody policy.
+
+Semantic gap confirmed: vnum_from_inv consumes inventory indirectly and is absent
+from the current item-lifecycle pattern. Its definition is in classes/drannak.c
+and callers include superior enhancement, drannak and ethermancer paths; the header
+declaration must also be handled when discovery is extended. Do not freeze census
+coverage before this helper and object payload mutations are reviewed.
+
+Current inventory: 205 routes, 2,745 raw matches, 2,687 unique coordinates,
+656 writer-mapped coordinates, 42 reviewed declarations, 1,989 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.

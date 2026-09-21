@@ -9191,6 +9191,406 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "enhance.replacement",
+      "path": "src/item/enhance.c",
+      "symbol": "enhance",
+      "reason": "crafting_cost",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Select and allocate replacement equipment, submit cash cost, publish output, then extract original equipment and physical material unless using pouch material.",
+      "authority_boundary": "Link original input UID, actual material or generated-material source, payment and exact rolled output. Submission success is not payment commit; technical delivery failure must not masquerade as intended transformation loss.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          234,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          274,
+          "money_helper"
+        ],
+        [
+          "src/item/enhance.c",
+          280,
+          "item_publication"
+        ],
+        [
+          "src/item/enhance.c",
+          281,
+          "item_publication"
+        ],
+        [
+          "src/item/enhance.c",
+          282,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          285,
+          "item_publication"
+        ],
+        [
+          "src/item/enhance.c",
+          286,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.prototype_inspection",
+      "path": "src/item/enhance.c",
+      "symbol": "enhance_base_modifier",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate/dispose templates for base modifiers, material names, superior-plan requirements and modified-item descriptions. These are probes, not player-owned enhancement inputs.",
+      "authority_boundary": "Keep template inspection separate from owned-item mutation; do not append issuance or consumption for each temporary object.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          344,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          356,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          363,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          368,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          513,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          517,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1035,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1045,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.superior",
+      "path": "src/item/enhance.c",
+      "symbol": "perform_superior_enhancement",
+      "reason": "crafting_cost",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Submit cost, consume physical materials via vnum_from_inv or record pouch-generated usage, then increment selected modifiers and mark the existing item superior.",
+      "authority_boundary": "One operation must retain existing UID, before/after payload, actual input identities and cost. Availability checks do not make asynchronous debit and item mutation atomic. The indirect consumption helper needs semantic census coverage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          610,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.modifier",
+      "path": "src/item/enhance.c",
+      "symbol": "modenhance",
+      "reason": "crafting_cost",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Mutate existing item affects and enhanced flag, submit cost, and extract the physical enhancement material; description probes are separate.",
+      "authority_boundary": "Preserve original item identity and exact payload delta, linking material retirement and payment. Do not classify in-place improvement as new equipment issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          1020,
+          "money_helper"
+        ],
+        [
+          "src/item/enhance.c",
+          1029,
+          "item_publication"
+        ],
+        [
+          "src/item/enhance.c",
+          1030,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.seasonal_mobile_item",
+      "path": "src/item/enhance.c",
+      "symbol": "thanksgiving_proc",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Create an item on a newly materialized seasonal mobile before room placement.",
+      "authority_boundary": "Retain event-specific admission and actual item identity; transient mobile placement alone is not a durable owner identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          1092,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1092,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.death_essence",
+      "path": "src/item/enhance.c",
+      "symbol": "enhance_load_essence_drop",
+      "reason": "npc_reward",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "After eligible NPC-death selection, allocate at most one chosen essence and place it on the dying NPC, with killer/pet-master attribution used for reporting.",
+      "authority_boundary": "Tie rolled reward to original death and subsequent corpse/item disposition. Reporting the killer is not proof the killer already owns the item.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          1217,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1225,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.index_probes",
+      "path": "src/item/enhance.c",
+      "symbol": "load_enhance_index",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate templates across the configured range, filter unsupported candidates, copy index metadata and discard each temporary object including failures.",
+      "authority_boundary": "Index construction is inspection, not economy issuance or retirement. Existing artifact/UID authority must not be inferred from these probes.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          1892,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1904,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1910,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1917,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1923,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1933,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          1973,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "enhance.reset_material_fallback",
+      "path": "src/item/enhance.c",
+      "symbol": "enhance_on_npc_item_reset_skipped",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "When configured and a NPC item reset is skipped, derive a high-quality material from the missing item and publish a newly allocated material to the mobile.",
+      "authority_boundary": "Retain the reset decision and replacement outcome; do not admit both skipped equipment and fallback material on retry. Preserve documented transient NPC custody.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/enhance.c",
+          2016,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/enhance.c",
+          2024,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
