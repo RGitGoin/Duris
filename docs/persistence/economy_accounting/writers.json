@@ -1206,8 +1206,8 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Projection of committed corpse lifecycle result.",
-      "authority_boundary": "Committed callback payload is authority",
+      "classification": "Sequentially submit existing target-item drops and publish committed drop results, then publish the corpse resurrection result and reconstruct the old-room money pile. The pile is a projection of committed wallet disposition, not fresh issuance.",
+      "authority_boundary": "Each item-drop transaction precedes its live move; final corpse/wallet transaction precedes its publication. Stale callbacks retain failure handling and cannot justify duplicate accounting.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -1224,7 +1224,38 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          4207,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4213,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4226,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4278,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4283,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4317,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -4224,6 +4255,745 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.prototype_weight_probe",
+      "path": "src/world/handler.c",
+      "symbol": "obj_prototype_weight",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Instantiate a prototype only to read weight, then extract it. Provisional allocation/cleanup, not admitted item creation or destruction; constructor callbacks and artifact cleanup still need explicit containment.",
+      "authority_boundary": "No owner publication in this helper; preserve probe classification across allocation and cleanup, rather than emitting accounting for each read_object/extract_obj call.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          131,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          137,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.entry_flower",
+      "path": "src/world/handler.c",
+      "symbol": "char_to_room",
+      "reason": "item_create",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "NPC social reaction creates flower vnum6107, places it in NPC inventory and then calls do_give. Fresh item admission followed by a possible transfer; failed transfer must not imply the flower never existed.",
+      "authority_boundary": "Bind a source event to the social reward and distinguish NPC admission from subsequent give; generic NPC ownership remains unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          1793,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          1796,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.live_publication",
+      "path": "src/world/handler.c",
+      "symbol": "obj_to_char",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Core inventory/equipment/container/room linking and unlinking, including order-preserving load helpers, inventory transfer and dummy-owner room redirection. obj_to_char can submit a creation grant, discard rejected candidates or destroy crumbleloot; money/corpse/synthetic-shell exceptions and at-end helpers use different authority paths.",
+      "authority_boundary": "Caller binds durable before/after topology and purpose: transfer, load projection, admission or destruction. Existing player ownership checks are not proof that every helper or caller is accounting-qualified; storage/corpse file side effects remain covered.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_creation_grant_reconciliation.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          1829,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          1859,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          1890,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          1917,
+          "economic_submit"
+        ],
+        [
+          "src/world/handler.c",
+          1932,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          2002,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2187,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2208,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2258,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2301,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2311,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2312,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2725,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2770,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          2871,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3011,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3022,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3114,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3125,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3157,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3182,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3218,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "death.corpse_release_publication",
+      "path": "src/world/handler.c",
+      "symbol": "publish_corpse_release",
+      "reason": "death_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Committed corpse release moves contents to room and removes the emptied corpse. Unmaking/wall/compaction share this callback; compaction allocates a provisional bones item and discards it on failure/stale topology. Released value is transfer; source corpse retirement and any new bones item need distinct linked effects.",
+      "authority_boundary": "Corpse lifecycle transaction result and validated live topology precede publication; staged bones cleanup is not a second committed destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_transaction.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          3818,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          3832,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          3904,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3943,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3952,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          3958,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4978,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4994,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5002,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "death.corpse_raise_recovery",
+      "path": "src/world/handler.c",
+      "symbol": "recover_committed_corpse_raise",
+      "reason": "corpse_restore",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After a committed raise, discard live money/transient copies, recover remaining items to caster when possible, remove stale corpse/follower and retain save fences when recovery is incomplete. Durable item ownership and consumed currency must not be applied again.",
+      "authority_boundary": "Original committed raise outcome remains authoritative; recovery must neither issue currency nor retire retained durable item rows.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_transaction.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          4008,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4010,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4014,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4038,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "death.corpse_nested_publication",
+      "path": "src/world/handler.c",
+      "symbol": "publish_corpse_nested_release",
+      "reason": "death_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Committed nested corpse release moves items to the parent container. Player-destination currency has already been credited to wallet, so its live money copies and nested transient copies are discarded; room destination retains money objects. Finally remove source corpse and request player save.",
+      "authority_boundary": "Use validated original corpse result and parent topology; distinguish wallet projection cleanup from money destruction and parent transfer from creation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_transaction.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          4380,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4381,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4447,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4454,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          4458,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4462,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          4464,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "death.corpse_destruction_publication",
+      "path": "src/world/handler.c",
+      "symbol": "publish_corpse_destruction",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Publish a previously committed corpse-and-contents destruction after result/topology validation; recursive extract_obj is physical cleanup for that same operation.",
+      "authority_boundary": "Single original lifecycle destruction owns accounting; callback must not append another sink or destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_transaction.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          4557,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.legacy_decay",
+      "path": "src/world/handler.c",
+      "symbol": "Decay",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Legacy decay first defers supported durable corpse release. Other branches move carried/worn items and contents to room/parent then destroy the root; invalid/no-destination branches extract the tree. Contents transferred out are not destroyed with the root.",
+      "authority_boundary": "Bind a decay source operation to exact root/child dispositions; preserve durable corpse deferral and distinguish transfer, genuine destruction and unsupported topology.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/handler.c",
+          5168,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5173,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5219,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5220,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5225,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5231,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5241,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5247,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5255,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5259,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "lifecycle.character_item_teardown",
+      "path": "src/world/handler.c",
+      "symbol": "extract_char",
+      "reason": "lifecycle_retirement",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Durable pet items are unloaded while retaining pet/player custody. Terminal-saved player items are also unloaded. Other character-removal branches either discard transient/shop/generated-NPC items or drop items into room. These are not one uniform retirement event.",
+      "authority_boundary": "Retain terminal-save and durable-pet ownership across live teardown; only genuine lifecycle retirement or room transfer receives corresponding accounting. Caller classification must cover nested items.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_terminal_extract_item_retention.py"
+      ],
+      "sites": [
+        [
+          "src/world/handler.c",
+          5366,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5371,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5581,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5587,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5591,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5606,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/handler.c",
+          5611,
+          "item_publication"
+        ],
+        [
+          "src/world/handler.c",
+          5612,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "reward.container_contents",
+      "path": "src/account/account_reward.c",
+      "symbol": "promote_reward_contents",
+      "reason": "item_move",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Preserve reward-container contents by promoting children to parent, owner or room. Room money can merge; failed placement relinks the child to its original container. These are existing-item transfers and rollback, not new reward issuance or destruction of the promoted value.",
+      "authority_boundary": "Enclosing reward removal operation must bind promoted children and rollback disposition before retiring the container; reject unreachable destinations or destructive crumbleloot promotion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_account_reward_container_contract.py"
+      ],
+      "sites": [
+        [
+          "src/account/account_reward.c",
+          198,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          200,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          202,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          204,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          214,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          216,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          218,
+          "item_publication"
+        ],
+        [
+          "src/account/account_reward.c",
+          219,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.legacy_item_publication",
+      "path": "src/core/files.c",
+      "symbol": "restoreObjects",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Legacy buffer restore publishes parsed objects in saved order into quiver/container, character inventory or room, with an _PFILE_ alternate path. Repeated stored instances may allocate additional objects. Hydration is not fresh issuance; missing retained identity requires explicit baseline/admission policy.",
+      "authority_boundary": "Restore owner, UID and authority before treating placement as projection. Recorded sites cover the final publication loop only; the rest of deserialization remains to be reviewed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/files.c",
+          3659,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          3669,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          3674,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          3679,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          3682,
+          "item_publication"
+        ],
+        [
+          "src/core/files.c",
+          3690,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
@@ -4677,6 +5447,17 @@
       "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
       "end_line": 46,
       "source_sha256": "3daa155ed99df97dc49975ead16aca131d3bf3c7ee7870a2072adeed89db4173"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1368,
+        "item_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed obj_to_obj_at_end function prototype only; implementation and callers remain independent census candidates.",
+      "end_line": 1368,
+      "source_sha256": "465315548b632ffb180ae64291a3c59b81dbda3ea44f2eb888d28bbba00ee0e6"
     }
   ],
   "census": [
@@ -4694,11 +5475,13 @@
     {"path": "src/account/account_reward.c", "line": 844, "family": "item_lifecycle", "excerpt": "extract_obj(instance);"},
     {"path": "src/account/account_reward.c", "line": 1261, "family": "item_lifecycle", "excerpt": "extract_obj(obj);"},
     {"path": "src/account/account_reward.c", "line": 198, "family": "item_publication", "excerpt": "obj_from_obj(child);"},
+    {"path": "src/account/account_reward.c", "line": 200, "family": "item_publication", "excerpt": "obj_to_obj_at_end(child, parent);"},
     {"path": "src/account/account_reward.c", "line": 202, "family": "item_publication", "excerpt": "obj_to_char(child, owner);"},
     {"path": "src/account/account_reward.c", "line": 204, "family": "item_publication", "excerpt": "obj_to_room(child, room);"},
     {"path": "src/account/account_reward.c", "line": 214, "family": "item_publication", "excerpt": "obj_from_obj(child);"},
     {"path": "src/account/account_reward.c", "line": 216, "family": "item_publication", "excerpt": "obj_from_char(child);"},
     {"path": "src/account/account_reward.c", "line": 218, "family": "item_publication", "excerpt": "obj_from_room(child);"},
+    {"path": "src/account/account_reward.c", "line": 219, "family": "item_publication", "excerpt": "obj_to_obj_at_end(child, container);"},
     {"path": "src/account/nanny.c", "line": 532, "family": "economic_submit", "excerpt": "!currency_transaction_submit_identified("},
     {"path": "src/account/nanny.c", "line": 734, "family": "economic_submit", "excerpt": "if (!item_creation_grant_submit_batch_to_player_before_entry(ch, kit.roots.data(),"},
     {"path": "src/account/nanny.c", "line": 4580, "family": "coin_assignment", "excerpt": "GET_PLATINUM(ch) = 0;"},
@@ -5429,6 +6212,8 @@
     {"path": "src/core/files.c", "line": 1904, "family": "item_publication", "excerpt": "save_equip[i] = unequip_char(ch, i, TRUE);"},
     {"path": "src/core/files.c", "line": 1974, "family": "item_publication", "excerpt": "equip_char(ch, save_equip[i], i, 9);"},
     {"path": "src/core/files.c", "line": 3659, "family": "item_publication", "excerpt": "obj_to_char(obj, ch);"},
+    {"path": "src/core/files.c", "line": 3669, "family": "item_publication", "excerpt": "obj_to_obj_at_end(obj, c_obj);"},
+    {"path": "src/core/files.c", "line": 3674, "family": "item_publication", "excerpt": "obj_to_obj_at_end(obj, c_obj);"},
     {"path": "src/core/files.c", "line": 3679, "family": "item_publication", "excerpt": "obj_to_char_at_end(obj, ch);"},
     {"path": "src/core/files.c", "line": 3682, "family": "item_publication", "excerpt": "obj_to_room(obj, corpse_room);"},
     {"path": "src/core/files.c", "line": 4072, "family": "item_publication", "excerpt": "obj_from_obj(obj);"},
@@ -5455,6 +6240,7 @@
     {"path": "src/core/prototypes.h", "line": 1365, "family": "item_publication", "excerpt": "void obj_to_char(P_obj obj, P_char ch);"},
     {"path": "src/core/prototypes.h", "line": 1366, "family": "item_publication", "excerpt": "void obj_to_char_at_end(P_obj obj, P_char ch);"},
     {"path": "src/core/prototypes.h", "line": 1367, "family": "item_publication", "excerpt": "void obj_to_obj(P_obj, P_obj);"},
+    {"path": "src/core/prototypes.h", "line": 1368, "family": "item_publication", "excerpt": "void obj_to_obj_at_end(P_obj, P_obj);"},
     {"path": "src/core/prototypes.h", "line": 1369, "family": "item_publication", "excerpt": "void obj_to_room(P_obj, int);"},
     {"path": "src/core/smoke.c", "line": 304, "family": "item_lifecycle", "excerpt": "extract_obj(herb, TRUE); // Artifact herbs.. mebbe."},
     {"path": "src/core/smoke.c", "line": 476, "family": "item_lifecycle", "excerpt": "extract_obj(pipe, TRUE);"},
@@ -7254,6 +8040,7 @@
     {"path": "src/world/handler.c", "line": 2871, "family": "item_publication", "excerpt": "void obj_from_room(P_obj object)"},
     {"path": "src/world/handler.c", "line": 3011, "family": "item_publication", "excerpt": "void obj_to_obj(P_obj obj, P_obj obj_to)"},
     {"path": "src/world/handler.c", "line": 3022, "family": "item_publication", "excerpt": "obj_to_room(obj, dummy_owner->in_room);"},
+    {"path": "src/world/handler.c", "line": 3114, "family": "item_publication", "excerpt": "void obj_to_obj_at_end(P_obj obj, P_obj obj_to)"},
     {"path": "src/world/handler.c", "line": 3125, "family": "item_publication", "excerpt": "obj_to_room(obj, dummy_owner->in_room);"},
     {"path": "src/world/handler.c", "line": 3157, "family": "item_publication", "excerpt": "void obj_to_char_at_end(P_obj object, P_char ch)"},
     {"path": "src/world/handler.c", "line": 3182, "family": "item_publication", "excerpt": "obj_to_room(object, ch->in_room);"},

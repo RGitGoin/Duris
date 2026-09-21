@@ -21,7 +21,7 @@ do not close or rewrite them as part of this status check.
 
 | Open PRs | Principal issue coverage | Closure status |
 | --- | --- | --- |
-| #599, #600 | #475 contracts/inventory; #476 plans/links | Partial; acceptance audit incomplete. Writer census remains incomplete. |
+| #599, #600 | #475 contracts/inventory; #476 plans/links | Partial; acceptance gaps audited. Writer census and closing-head qualification remain incomplete. |
 | #602, #603, #604 | #477 SQL evidence/transactions; parts of #480 bank transport | Partial; bank-focused evidence does not establish complete issue qualification. |
 | #605, #606, #607, #608 | #478 flat-file evidence/authority/transactions; parts of #479/#480 | Partial; common item/child bundle qualification and native backend golden/error parity remain. Lifecycle and backup registration exist. |
 | #609, #610, #612, #613 | #479 baseline preparation/storage/source capture | Partial; no real cutover owner or qualified activation journey. |

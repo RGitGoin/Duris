@@ -92,3 +92,41 @@ Verification for this increment: 35 contract tests and the full draft validator
 pass. Current inventory: 117 routes, 2,735 raw hits, 2,677 distinct coordinates,
 128 mapped writer coordinates, 41 reviewed declarations, 2,508 unclassified.
 No census-complete flag, registry freeze or runtime coverage was promoted.
+
+## Remaining handler publication and teardown review
+
+All current lexical coordinates in src/world/handler.c are now mapped (this is
+not a claim that lexical scanning proves complete semantic coverage). Separate
+routes cover prototype-weight probes, NPC social flower creation, general live
+inventory/equipment/container linking, corpse release/raise/resurrection and
+nested-release publication, committed corpse destruction, legacy decay, and
+character/pet teardown. Existing currency and extraction routes remain distinct.
+
+Specific integration constraints retained from source review:
+
+- obj_to_char can submit creation, refuse ownership, discard a provisional
+  candidate, or crumble an item; it is not uniformly a projection helper.
+- obj_to_char_at_end and obj_to_obj_at_end preserve load order but cannot be
+  assumed to have the same authority checks as normal player publication.
+- A committed corpse result owns its wallet/item effects. Callback cleanup of
+  stale money or corpse objects must not append a second accounting event.
+- Legacy decay can transfer child items out and destroy only the root; recursive
+  no-destination cleanup has a different disposition.
+- Durable-pet and terminal-save teardown retain durable ownership while freeing
+  live objects. Other character-removal branches can drop or destroy items.
+
+The scanner additionally includes obj_to_obj_at_end; all six hits were added,
+with its single prototype explicitly reviewed as a declaration. Other new call
+sites remain unclassified until their callers are reviewed. Current totals are
+126 routes, 2,741 raw matches, 2,683 unique coordinates, 199 writer-mapped
+coordinates, 42 reviewed declarations, and 2,442 unclassified coordinates.
+36 contract tests pass; census completion and runtime qualification remain false.
+
+Follow-up review covers all four newly discovered at-end caller sites: reward
+container promotion/rollback and the legacy restore publication loop. Reward
+children move out before container removal, with failed placements restored to
+the original container; they are not newly issued rewards. Legacy deserialization
+must retain identity or use explicit baseline policy before claiming projection.
+The unreviewed remainder of restoreObjects is explicitly left open.
+Final batch totals: 128 routes, 2,683 unique coordinates, 213 mapped writer
+coordinates, 42 declarations, 2,428 unclassified. The raw census remains 2,741.

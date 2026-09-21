@@ -265,6 +265,16 @@ class AccountingContractTest(unittest.TestCase):
             with self.assertRaisesRegex(contract.ContractError,'executable evidence'):
                 contract.validate_inventory(inventory,self.registry,root,release=True)
 
+    def test_census_tracks_order_preserving_container_publication(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                'void restore() { obj_to_obj_at_end(child, parent); }\n'
+                'void normal() { obj_to_obj(child, parent); }\n'
+                '// obj_to_obj_at_end(child, parent);\n')
+            self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
+                [(1,'item_publication'),(2,'item_publication')])
+
     def test_census_tracks_clear_money_callers_and_macro_body(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir()
