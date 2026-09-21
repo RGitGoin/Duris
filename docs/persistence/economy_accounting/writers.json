@@ -3687,7 +3687,7 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Physical ingredients consumed before durable output grant; chaos-pouch variant bypasses low/high material consumption; tools/flux and applicable essence remain consumed, and generated material usage is recorded after grant submission. Preview objects are excluded.",
+      "classification": "Allocate a provisional output and reject it on validation failure; consume actual low/high ingredients, essence and tools before submitting the output through grant_crafted_item. Chaos-pouch mode substitutes generated-material usage for low/high UIDs, recorded after grant submission. Player save follows submission; technical failure is not an intended material-loss outcome.",
       "authority_boundary": "Retain linked inputs, costs and rolled outcome; do not require nonexistent low/high material UIDs for chaos-pouch variants.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -3705,7 +3705,88 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          738,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          754,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          775,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          798,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          831,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          842,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          853,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          868,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          888,
+          "item_publication"
+        ],
+        [
+          "src/economy/crafting.c",
+          889,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          895,
+          "item_publication"
+        ],
+        [
+          "src/economy/crafting.c",
+          896,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          903,
+          "item_publication"
+        ],
+        [
+          "src/economy/crafting.c",
+          904,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          910,
+          "item_publication"
+        ],
+        [
+          "src/economy/crafting.c",
+          911,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3716,7 +3797,7 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Tool/input consumption and output grant; chaos-pouch variant bypasses low/high material consumption; tools/flux and applicable essence remain consumed, and generated material usage is recorded after grant submission.",
+      "classification": "Shared allocation supplies a preview or provisional forge output. Make validates requirements, consumes actual materials/essence/flux, and then submits output grant. Chaos-pouch mode skips physical low/high consumption and records generated usage after submission. Other command rejection disposes the provisional output; commented foundry code is not executable.",
       "authority_boundary": "Link actual transformation inputs and output; qualify technical-failure recovery separately from intended gameplay outcomes.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -3734,7 +3815,63 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          1260,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1367,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1388,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1438,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1447,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1460,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1474,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1480,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1486,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1491,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1538,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3746,7 +3883,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Coin cost, ore input and output item currently separate.",
-      "authority_boundary": "Compound economic recipe required",
+      "authority_boundary": "Link actual ore source ownership, cash cost and rolled output. Current loop reads ch inventory but rollback attaches ore to pl; preserve and verify original owner rather than assuming rollback is neutral. Costs and ore are consumed before output submission.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3763,7 +3900,43 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          843,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          855,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          866,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          873,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          887,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          895,
+          "money_helper"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          900,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3775,7 +3948,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Consumes two matching salvage items and all counted ore before the random outcome; charges 50,000 copper when ore count is not exactly one. Intended failure yields no output; success grants upgraded material.",
-      "authority_boundary": "Persist and replay the selected outcome without reroll; destruction-only failure remains a valid economic operation, distinct from technical failure.",
+      "authority_boundary": "Retain actual input identities, ore or cash costs and original random outcome; distinguish intended failed refinement from technical output failure. Current extraction loop reads ore vnum after extraction, so capture required input metadata before retirement in integration.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3792,7 +3965,38 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          2466,
+          "money_helper"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2486,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2487,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2496,
+          "item_publication"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2497,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2530,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3821,7 +4025,13 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          685,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3832,7 +4042,7 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "New parchment directly placed in room.",
+      "classification": "Allocate and roll a recipe parchment, then publish it to the room when rarity allows. The rarity rejection currently returns without disposing the provisional object; allocation alone is not an admitted grant.",
       "authority_boundary": "Durable admission required",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
@@ -3850,7 +4060,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          282,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          301,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -3862,7 +4083,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Item creation after separate epic debit; epics outside coin supply.",
-      "authority_boundary": "Existing committed callback needs linked item origin",
+      "authority_boundary": "Committed epic debit precedes output allocation/publication; allocation failure submits a separate refund and save failure is logged. Retain purchase-output-refund linkage and publication/save obligation; the callback alone is not exactly-once item admission.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -3879,7 +4100,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          91,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          104,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -6372,6 +6604,661 @@
         [
           "src/account/account_reward.c",
           1261,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.grant",
+      "path": "src/economy/crafting.c",
+      "symbol": "grant_crafted_item",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Submit a provisional crafted object to the player creation coordinator; refusal extracts the unadmitted output. Submission success alone does not prove durable output publication.",
+      "authority_boundary": "The enclosing craft or forge operation must retain input identities and output identity through commit, publication and save; provisional cleanup is not destruction of an admitted item.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          31,
+          "economic_submit"
+        ],
+        [
+          "src/economy/crafting.c",
+          34,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.recipe_description",
+      "path": "src/economy/crafting.c",
+      "symbol": "crafting_configure_recipe_scroll",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate low/high material prototypes to describe recipe requirements, then dispose them. The recipe description is changed, but the prototypes are never awarded.",
+      "authority_boundary": "Prototype probes must not mint value or append destruction. Any authoritative recipe payload update belongs to its enclosing operation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          286,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          287,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          291,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          293,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          324,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          325,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.recipe_lookup",
+      "path": "src/economy/crafting.c",
+      "symbol": "crafting_get_player_recipes",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validate saved recipe availability using temporary target prototypes, including legacy recipe import. Dispose target probes without player publication.",
+      "authority_boundary": "Recipe entitlement import is distinct from ownership of a physical target; these probes do not create player holdings.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          401,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          405,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          427,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          431,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          434,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.recipe_preview",
+      "path": "src/economy/crafting.c",
+      "symbol": "crafting_handle_craft_command",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "List/stat/info commands allocate and dispose item/material probes. Make also allocates material-name probes and disposes them on rejection or completion. These probes are not ingredients taken from inventory.",
+      "authority_boundary": "Separate temporary material probes from owned ingredients and provisional output. Probe cleanup cannot be counted as an economic input sink.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          549,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          566,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          612,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          617,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          629,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          645,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          657,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          666,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          667,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          678,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          724,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          726,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          727,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          786,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          787,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          832,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          833,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          843,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          844,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          854,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          855,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          869,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          870,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          935,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          936,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          959,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          960,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.forge_preview",
+      "path": "src/economy/crafting.c",
+      "symbol": "crafting_handle_forge_command",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "List, info and stat branches inspect temporary output/material prototypes and dispose them. The output allocated at the shared command entry is classified separately because make can admit it.",
+      "authority_boundary": "Display-only objects have no new player ownership. Shared allocation must inherit the selected command disposition.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/crafting.c",
+          1192,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1208,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1278,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1286,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1287,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1294,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1298,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1300,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1343,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1344,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1345,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/crafting.c",
+          1356,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.tradeskill_grant",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "grant_tradeskill_item",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Submit provisional tradeskill output through item creation; refusal disposes the unadmitted candidate.",
+      "authority_boundary": "Caller must retain transformation inputs and original outcome until durable output publication. Submission success does not prove save acknowledgment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          58,
+          "economic_submit"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          61,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.legacy_parchment_learning",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "parchment_forge",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Source contains parchment consumption after an unconditional return FALSE. This path is unreachable in the current function and is not claimed active gameplay.",
+      "authority_boundary": "Preserve dormant source classification; reactivation requires linking recipe entitlement and physical scroll consumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          274,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.legacy_forge_allocation",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "forge_create",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate a generic object and roll/configure forged payload before returning it to the caller; allocation does not publish ownership.",
+      "authority_boundary": "Retain exact rolled payload with the enclosing smith or forge inputs/costs; retries must not reroll.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          314,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.bandage",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "do_bandage",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consume the selected bandage after copying healing capacity, then schedule a healing event. Consumption precedes eventual healing outcome.",
+      "authority_boundary": "Retain consumed item identity and distinguish intended interrupted healing from technical persistence failure; healing capacity is not currency.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          1109,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.learn_recipe",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "learn_recipe",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocate a target prototype for validation. Record recipe entitlement before consuming the physical scroll; duplicate/error paths dispose the probe and retain the scroll. Final target cleanup is not destruction of a player target item.",
+      "authority_boundary": "Link durable entitlement grant and actual scroll retirement; temporary target probes are not issued items. Failed or uncertain entitlement writes need original-operation reconciliation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          1184,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          1206,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          1269,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          1279,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          1291,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          1309,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "crafting.refine_message_probe",
+      "path": "src/economy/tradeskill.c",
+      "symbol": "do_refine",
+      "reason": "item_create",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After successful output submission, allocate an old-material prototype solely for messages and dispose it.",
+      "authority_boundary": "Message-only prototype must not append another input consumption or issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/tradeskill.c",
+          2534,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/tradeskill.c",
+          2542,
           "item_lifecycle"
         ]
       ],

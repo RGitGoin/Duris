@@ -182,3 +182,34 @@ the acceptance criterion by itself. Runtime coverage remains legacy/unverified.
 Current inventory: 152 routes, 2,745 raw matches, 2,687 unique coordinates,
 341 writer-mapped coordinates, 42 reviewed declarations, and 2,304 unclassified.
 Census completion remains false. This batch changes inventory/documentation only.
+
+## Crafting and tradeskill ownership review
+
+All current lexical coordinates in economy/crafting.c and economy/tradeskill.c
+are mapped. Recipe descriptions, entitlement lookup, list/stat/info previews,
+material-name probes and post-refinement message probes are distinct from owned
+ingredients and provisional outputs. Commented legacy forging is absent from
+the executable census; parchment learning after unconditional return is explicitly
+classified as dormant source.
+
+Craft and forge consume ingredients before output grant submission. Chaos-pouch
+variants require generated usage rather than nonexistent material UIDs, while
+actual essence/tools/flux remain inputs. Smith links ore, cash and rolled output;
+fishing and parchment publication are separate issuance routes. Bandage use
+consumes an item before a delayed healing event. Recipe learning records an
+entitlement before retiring its physical scroll. Epic-store purchase commits its
+epic debit before item allocation/publication and uses a separate failure refund.
+
+Integration constraints discovered in source, not fixed in this census batch:
+
+- Smith searches ch inventory but rollback attaches selected ore to pl; preserve
+  actual source ownership rather than assume rollback is neutral.
+- Refinement reads the ore vnum after extract_obj; capture input metadata before
+  retirement and distinguish random gameplay loss from technical output failure.
+- Parchment rarity rejection returns with a provisional allocation outstanding.
+- Successful grant submission is not proof of durable publication/save.
+
+Current inventory: 163 routes, 2,745 raw matches, 2,687 unique coordinates,
+451 writer-mapped coordinates, 42 reviewed declarations, 2,194 unclassified.
+Draft validation passes 13 fixtures. Census and runtime qualification remain
+incomplete; this batch changes inventory/documentation only.
