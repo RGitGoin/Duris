@@ -237,3 +237,27 @@ sets merchandise to null; its lexical sites are not active runtime coverage.
 Current inventory: 172 routes, 2,745 raw matches, 2,687 unique coordinates,
 500 writer-mapped coordinates, 42 reviewed declarations, 2,145 unclassified.
 Census completion and runtime qualification remain false. No runtime code changed.
+
+## Currency helpers and shared-bank publication
+
+All current lexical core/utility.c coordinates are mapped. Persisted-player
+ADD_MONEY/SUB_MONEY paths submit asynchronous wallet changes; NPC and nonpersistent
+paths mutate native denominations. Returned change belongs to the same debit.
+Generic wallet reward/spend reasons do not establish caller-specific transfer,
+refund or issuance provenance. SUB_BALANCE likewise reports accepted submission,
+not completed payment.
+
+ADD_MONEY can fall back to an auction-house pickup claim after submission failure.
+The claim and wallet credit require one retained original identity; a log or staff
+message is not recovery evidence. The generic completion callback only reports
+rejection, so callers cannot assume their item/service outcome is reversible.
+
+Shared-bank publication copies one holding to matching online account/racewar
+characters. It is not a separate grant per character. Single-denomination updates
+have no revision fence. Full snapshots reject older explicit revisions, while the
+compatibility UINT64_MAX path bypasses the fence and revision update; caller
+ordering/lifetime evidence remains necessary.
+
+Current inventory: 175 routes, 2,745 raw matches, 2,687 unique coordinates,
+527 writer-mapped coordinates, 42 reviewed declarations, 2,118 unclassified.
+Census and runtime qualification remain incomplete. Inventory/documentation only.

@@ -2108,8 +2108,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "PC currency command versus immediate NPC/live credit; caller provenance required.",
-      "authority_boundary": "Command receipt or explicit untracked boundary",
+      "classification": "ADD_MONEY submits a wallet reward for a persisted player; NPCs and players without a persistent PID use direct denomination increments. The generic helper lacks the enclosing transfer, refund or issuance provenance.",
+      "authority_boundary": "Caller must provide original economic identity and reason, especially transfers/refunds. Direct native denomination updates represent one value credit, not independent minting per coin type. Submission success is not durable completion.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2128,7 +2128,38 @@
       "test_candidates": [
         "tests/async/test_flatfile_player_domain_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3067,
+          "money_helper"
+        ],
+        [
+          "src/core/utility.c",
+          3081,
+          "economic_submit"
+        ],
+        [
+          "src/core/utility.c",
+          3102,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3108,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3114,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3118,
+          "coin_assignment"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2139,8 +2170,8 @@
       "integration_issue": 485,
       "owner": "primary / #485",
       "coverage": "legacy",
-      "classification": "Rejected ADD_MONEY admission can create a separate SQL pending pickup; preserve original reward or compensation source-operation attribution. Collection is claim-to-wallet transfer.",
-      "authority_boundary": "Prevent duplicate claims after failed or ambiguous admission; existing aggregate claim storage is allowed, flatfile fallback remains unavailable.",
+      "classification": "When wallet submission fails, ADD_MONEY attempts an auction-house pickup claim, otherwise asks for staff review. The fallback retains value as a claim rather than immediately crediting wallet coins.",
+      "authority_boundary": "Wallet credit and fallback claim must share original credit identity and disposition; retries cannot create both or duplicate a claim. A logged rejection is not retained recovery evidence.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2157,7 +2188,13 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3088,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2168,8 +2205,8 @@
       "integration_issue": 481,
       "owner": "primary / #481",
       "coverage": "legacy",
-      "classification": "PC wallet spend versus direct NPC debit; success means admission, not completion.",
-      "authority_boundary": "Caller cost classification and committed outcome",
+      "classification": "SUB_MONEY validates available value and mode, then returns success on transaction submission for persisted players. Other characters spend denominations directly and make change through ADD_MONEY.",
+      "authority_boundary": "Do not deliver an irreversible item/service based solely on enqueue success. Direct denomination reduction and returned change belong to one debit; preserve caller provenance and original outcome.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2188,7 +2225,63 @@
       "test_candidates": [
         "tests/async/test_flatfile_player_domain_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3227,
+          "money_helper"
+        ],
+        [
+          "src/core/utility.c",
+          3238,
+          "economic_submit"
+        ],
+        [
+          "src/core/utility.c",
+          3248,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3252,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3265,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3270,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3280,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3285,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3295,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3300,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3305,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -7796,6 +7889,147 @@
           "src/economy/shop.c",
           1657,
           "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.bank_payment_helper",
+      "path": "src/core/utility.c",
+      "symbol": "SUB_BALANCE",
+      "reason": "service_cost",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Submit a bank-payment command with a generic rejection callback; return zero on accepted submission rather than durable debit.",
+      "authority_boundary": "Enclosing service must retain bank holding, cost and outcome until commit/publication acknowledgment; callback logging alone cannot recover delivered goods.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_player_domain_repository.py"
+      ],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3219,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.bank_single_projection",
+      "path": "src/core/utility.c",
+      "symbol": "publish_account_bank_balance",
+      "reason": "baseline",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Publish one denomination to every matching online account/racewar character. These are live copies of one shared bank holding, not independent player balances. This helper carries no revision fence.",
+      "authority_boundary": "Only an authoritative bank result may drive publication; do not append a new credit per online character. Single-denomination publication needs caller ordering/lifetime evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_player_domain_repository.py"
+      ],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3150,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3153,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3156,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3159,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.bank_revision_projection",
+      "path": "src/core/utility.c",
+      "symbol": "publish_account_bank_balances_revision",
+      "reason": "baseline",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Publish a complete shared bank snapshot to matching account/racewar characters, skipping older explicit revisions. UINT64_MAX bypasses revision comparison and revision update for the compatibility wrapper.",
+      "authority_boundary": "Retain shared holding lifetime and committed snapshot authority. Revisioned projection is not a new economic event; compatibility calls need an explicit stale-result policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_player_domain_repository.py"
+      ],
+      "sites": [
+        [
+          "src/core/utility.c",
+          3190,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3191,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3192,
+          "coin_assignment"
+        ],
+        [
+          "src/core/utility.c",
+          3193,
+          "coin_assignment"
         ]
       ],
       "evidence": []
