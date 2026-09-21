@@ -1,6 +1,6 @@
 # Foundation acceptance audit for #474
 
-Audited 2026-09-21 against original issues #475ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“#478 and current local work.
+Audited 2026-09-21 against original issues #475ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ#478 and current local work.
 This is an acceptance gap report, not closure or merge evidence. No new PR is
 needed for each remaining component. Finish an issue-sized batch first.
 
@@ -509,3 +509,29 @@ These are recorded integration obligations; no runtime behavior changed.
 Draft validator passed 13 fixtures: 241 routes, 2,756 raw matches, 2,698 unique
 coordinates, 782 mapped, 43 reviewed declarations and 1,873 unclassified.
 Census completion and runtime qualification remain outstanding.
+
+
+## Collector custody and trade submission
+
+Collector live detachment promotes contents to the original parent/room before
+extracting the selected representation, after committed custody publication.
+The selected UID remains in collector authority; extraction is not destruction
+of that holding. A failed relocation can leave partial live publication, which
+requires recovery rather than inventing a rolled-back durable transaction.
+
+Repository classifications separate revision-guarded custody state, its legacy
+ledger evidence and purchase debit. Purchase canonicalizes the wallet and advances
+bank revision without changing bank denominations. The scanner match on local
+bank[6] initialization is explicitly a SQL parsing buffer, not an economic write;
+it remains mapped because prototype-only exclusions cannot represent this case.
+Known player_data and legacy baseline writes are included in the route semantics
+even though this census pattern does not match those tables.
+
+Collector and shop submission wrappers only accept queued work. Collector callback
+can report durable success with a publication error; shop callback combines commit
+and publication success. Neither publication error proves rollback. These adapter
+classifications do not qualify native save acknowledgement or restart recovery.
+
+Draft validator passed 13 fixtures: 248 routes, 2,756 raw matches, 2,698 unique
+coordinates, 793 mapped, 43 reviewed declarations and 1,862 unclassified. No
+runtime code changed; census completion and runtime qualification remain open.

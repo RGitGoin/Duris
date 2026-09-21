@@ -11307,6 +11307,271 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "collector.live_detachment",
+      "path": "src/economy/collector_collection_preparation.c",
+      "symbol": "collector_collection_detach_live",
+      "reason": "collector_custody",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "After committed collection and runtime custody publication, promotes selected object contents to the original parent or room, then extracts only the selected live representation. Failed child relocation can stop partway through live publication.",
+      "authority_boundary": "Selected UID remains authoritative in collector custody; live extraction is not economic destruction. Preserve children, exact selected-only payload/own weight and original source topology; partial publication requires recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_collection_preparation.c",
+          334,
+          "item_publication"
+        ],
+        [
+          "src/economy/collector_collection_preparation.c",
+          338,
+          "item_publication"
+        ],
+        [
+          "src/economy/collector_collection_preparation.c",
+          340,
+          "item_publication"
+        ],
+        [
+          "src/economy/collector_collection_preparation.c",
+          345,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "collector.sql_custody_update",
+      "path": "src/economy/collector_repository.c",
+      "symbol": "update_authority_item",
+      "reason": "collector_custody",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "Revision-guarded update installs root, parent, owner and custody state and increments item revision; shared by collection child promotion and selected-item transitions.",
+      "authority_boundary": "Owning collector transaction determines commit; row update is the custody mutation, not independent creation or destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_repository.c",
+          870,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "collector.sql_custody_evidence",
+      "path": "src/economy/collector_repository.c",
+      "symbol": "insert_item_ledger",
+      "reason": "collector_custody",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "Appends legacy item ownership evidence under command operation ID and event index with listing provenance and before/after owner revisions.",
+      "authority_boundary": "Evidence for the same custody transition, not a second item event; common accounting append integration remains unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_repository.c",
+          902,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "collector.sql_bank_read_buffer",
+      "path": "src/economy/collector_repository.c",
+      "symbol": "lock_wallet",
+      "reason": "collector_purchase",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "Lexical false positive: bank[6] is a local zero-initialized SQL row parsing buffer. SELECT FOR UPDATE supplies bank ID, balances and revision; no durable or live bank balance is written at this coordinate.",
+      "authority_boundary": "Read/validation prerequisite only. Do not assign a monetary event to buffer initialization; retained as a reviewed route because declaration exclusions currently cover function prototypes only.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_repository.c",
+          1069,
+          "direct_cash_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "collector.sql_purchase_debit",
+      "path": "src/economy/collector_repository.c",
+      "symbol": "apply_wallet_purchase",
+      "reason": "collector_purchase",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "Canonicalizes wallet after purchase price, updates player_data and increments wallet and bank revisions, then inserts currency ledger deltas. Bank denominations are unchanged; its revision update is not a bank expense. Legacy opening baselines are inserted if absent.",
+      "authority_boundary": "Same purchase transaction must link wallet debit, collector listing and item custody. Baseline insertion is not fresh issuance, and legacy ledger evidence alone does not qualify common accounting integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_repository.c",
+          1142,
+          "sql_economy"
+        ],
+        [
+          "src/economy/collector_repository.c",
+          1148,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "collector.command_submission",
+      "path": "src/economy/collector_transaction.c",
+      "symbol": "collector_transaction_submit",
+      "reason": "collector_custody",
+      "integration_issue": 484,
+      "owner": "primary / #484",
+      "coverage": "legacy",
+      "classification": "Generates an operation ID and submits typed collector work after bounded pending/listing/player checks. Identified and background entry points share the same helper; accepted pending work is not a completed transfer.",
+      "authority_boundary": "Durable commit and live publication are distinct: callback can carry durable success plus publication error. Preserve original identity and recovery obligations for both actor and background operations.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/collector_transaction.c",
+          265,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.trade_submission",
+      "path": "src/economy/shop_trade_transaction.c",
+      "symbol": "shop_trade_transaction_submit",
+      "reason": "shop_buy",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Builds and queues a typed shop trade with bounded per-player pending state. Completion publishes wallet/bank, custody and shop revision before invoking callback; pending entry is then erased. Covers buy, sell and cleanup payload variants, not an additional purchase at the adapter.",
+      "authority_boundary": "Queue admission does not prove commit. Callback success combines commit and publication; publication failure must not be treated as proof the backend transaction rolled back.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/economy/shop_trade_transaction.c",
+          152,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
