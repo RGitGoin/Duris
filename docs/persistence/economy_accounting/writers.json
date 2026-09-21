@@ -2637,8 +2637,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Player wallet to player wallet.",
-      "authority_boundary": "One compound coin command",
+      "classification": "Builds sender debit and recipient credit wallet endpoints and submits one coin transfer for two PCs. Completion announces the result without issuing another credit.",
+      "authority_boundary": "One conserved wallet-to-wallet transfer; notifications and endpoint publication are not extra value events.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2658,7 +2658,13 @@
         "tests/async/run_currency_transaction_schema_mysql.sh",
         "tests/async/test_coin_command_transaction_contract.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3679,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2669,8 +2675,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Wallet to new or existing pile in supported custody.",
-      "authority_boundary": "One compound coin command",
+      "classification": "For supported custody, checks destination and amount bounds, reuses a pile or allocates a provisional UID, and submits wallet debit plus pile endpoint. Failed admission disposes only a newly allocated provisional pile.",
+      "authority_boundary": "One wallet-to-pile transfer; provisional allocation/disposal does not create or destroy admitted value. Preserve exact endpoint and publication identity through retry.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2689,7 +2695,23 @@
       "test_candidates": [
         "tests/async/test_flatfile_item_repository.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4066,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4091,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4083,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2731,8 +2753,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Wallet-to-pile transfer, including actual pile UID creation or merge; neither issuance nor expense. Current debit precedes live publication.",
-      "authority_boundary": "Bind committed debit to pile effects and recoverable publication; allocation/publication failure must not strand value.",
+      "classification": "After debit commit creates a new pile with the selected denominations and places it in the original room. Allocation failure requests separate refund.",
+      "authority_boundary": "Wallet-to-new-pile transfer, not issuance plus expense. Bind exact pile UID and original debit; destination disappearance, failed allocation and restart before publication remain distinct outcomes.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2749,7 +2771,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4482,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4529,
+          "item_publication"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2760,8 +2793,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "PC debit followed by live NPC credit; transfer only when the recipient holding has an admitted durable lifetime.",
-      "authority_boundary": "Transient NPC identity/admission remains unresolved; do not invent a treasury or relabel the credit as issuance.",
+      "classification": "Fallback credit helper submits a separate PC wallet reward or calls ADD_MONEY for an NPC. A prior committed debit may be compensated when credit fails; missing sender runtime lookup can prevent refund and only alert.",
+      "authority_boundary": "Bind source debit/credit and compensation to original transfer. Runtime recipient/sender IDs do not establish durable NPC holding lifetime or restart-safe recovery; no arbitrary issuance for a transfer.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2778,7 +2811,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3738,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3747,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2789,8 +2833,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Separate compensation when recipient or destination changes.",
-      "authority_boundary": "Must reference original debit",
+      "classification": "Compensates a committed debit via a separate rebasable wallet_reward submission for persisted PCs, or ADD_MONEY otherwise. Refused refund submission logs an alert; original debit operation ID is not an argument.",
+      "authority_boundary": "Correction/refund must link original committed debit and failed destination leg. Submission or restoration message is not proof refund committed, and retry must not issue twice.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2807,7 +2851,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3566,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3576,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -12341,6 +12396,211 @@
         [
           "src/economy/auction_houses.c",
           2382,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.debit_dispatch",
+      "path": "src/cmd/actobj.c",
+      "symbol": "submit_coin_debit",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Persisted PCs route put and PC give to compound coin commands. Remaining drop/give submits wallet_spend then callback publishes or compensates; nonpersisted/NPC actor uses SUB_MONEY and synchronous callback.",
+      "authority_boundary": "Dispatch semantics differ by actor and destination. Wallet debit acceptance alone is not completed transfer; retain original identity and actual transient holding policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4609,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4614,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.transient_put_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "publish_transient_coin_put",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Merges denominations into an existing transient pile via add_coins or creates a provisional pile, temporarily attaches to actor, and invokes put. Failed put extracts the provisional object. PC-corpse wrapper subsequently calls writeCorpse.",
+      "authority_boundary": "Post-debit publication is not independent issuance. Existing pile value mutation is semantic evidence even when this scanner misses that add_coins call; writeCorpse invocation alone does not prove durable acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4422,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4429,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4426,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.pile_endpoint_plan",
+      "path": "src/cmd/actobj.c",
+      "symbol": "prepare_coin_pile",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Builds before/after denomination and custody snapshot for pile creation, change or consumption. add_coins renders descriptions on a temporary object; item command construction does not mutate the live pile.",
+      "authority_boundary": "New/consumed pile shell lifetime and transferred money are distinct linked facts. Temporary rendering is not issuance or a live balance change.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3873,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3895,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.pile_committed_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "publish_coin_pile",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Revision-checked committed pile publication removes consumed piles, discards detached copies for offline owners, or restores exact UID and attaches it to its container. Newer revisions suppress stale publication; live denomination copy and description update project the committed result.",
+      "authority_boundary": "Consumption is linked to transferred value, while offline detached cleanup is not economic destruction. Hydration/materialization must not be counted again as issuance; save and restart qualification remain separate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3950,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3960,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4004,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.put_rejected_provisional",
+      "path": "src/cmd/actobj.c",
+      "symbol": "coin_put_custody_completion",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Rejected coin put completion extracts a newly created still-detached pile; successful result instead publishes the committed destination endpoint.",
+      "authority_boundary": "Cleanup of a never-admitted candidate, not value destruction. Failed committed publication remains unresolved rather than permission to refund or reissue blindly.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4024,
           "item_lifecycle"
         ]
       ],
