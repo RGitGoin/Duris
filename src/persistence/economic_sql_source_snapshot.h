@@ -62,4 +62,9 @@ unsigned int economic_sql_capture_sources(MYSQL *, const economic_sql_source_lim
 // A caller can manufacture matching hashes; this is NOT an authority capability.
 unsigned int economic_sql_validate_sources(const economic_sql_source_snapshot &,
 					   const economic_sql_source_limits & = {}) noexcept;
+// Borrow an existing reconnect-disabled transaction; lock and compare one exact
+// wallet/bank row against its ESR1 capture digest. No transaction ownership,
+// source writes, lifetime/eligibility inference or global-boundary proof.
+unsigned int economic_sql_verify_holding_source(MYSQL *, bool bank, uint64_t native_id,
+						const economic_sql_source_digest &) noexcept;
 #endif

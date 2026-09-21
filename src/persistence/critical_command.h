@@ -71,6 +71,8 @@ enum class critical_command_type : uint16_t
 	player_death_restitution,
 	// Accounting-only lifecycle command; never admitted to legacy executors.
 	economic_baseline,
+	// Metadata-only lifetime enrollment; never a legacy gameplay command.
+	economic_enrollment,
 };
 
 enum class critical_source_site : uint16_t

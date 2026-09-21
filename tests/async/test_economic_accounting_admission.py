@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCES = (
     "tests/async/economic_accounting_admission_test.cpp",
     "src/economy/economic_command_admission.c",
+    "src/economy/economic_enrollment_command.c",
     "src/economy/economic_currency_adapter.c",
     "src/economy/currency_command.c",
     "src/economy/economic_accounting_intent.c",

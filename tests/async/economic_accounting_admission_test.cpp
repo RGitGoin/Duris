@@ -1,4 +1,5 @@
 #include "economy/economic_command_admission.h"
+#include "economy/economic_enrollment_command.h"
 #include "economy/economic_currency_adapter.h"
 #include "persistence/critical_command_coordinator.h"
 
@@ -149,6 +150,23 @@ void exercise(const std::string &path, critical_command command, bool assign_acc
 	state.expected = command;
 	assert(critical_command_coordinator_init(path.c_str(), apply, &state, 1, nullptr, nullptr,
 						 economic_command_admission_supported));
+	economic_enrollment_request enrollment;
+	enrollment.lineage = id(1);
+	enrollment.epoch = id(2);
+	enrollment.epoch_operation = id(4);
+	enrollment.actor_id = 7;
+	enrollment.native_id = 7;
+	enrollment.source_digest[0] = 1;
+	enrollment.boundary_digest[0] = 2;
+	critical_command metadata;
+	assert(economic_enrollment_command_build(id(99), enrollment, 123, &metadata) ==
+	       economic_accounting_error::ok);
+	assert(critical_command_envelope_valid(metadata));
+	assert(!critical_command_legacy_execution_supported(metadata));
+	assert(!economic_command_admission_supported(metadata));
+	assert(critical_command_coordinator_submit(metadata) == critical_submit_result::invalid);
+	assert(state.calls == 0);
+
 	auto bad = command;
 	bad.accounting_intent[12] ^= 1;
 	assert(critical_command_coordinator_submit(bad) == critical_submit_result::invalid);

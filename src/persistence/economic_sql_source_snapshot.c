@@ -429,3 +429,76 @@ unsigned int economic_sql_validate_sources(const economic_sql_source_snapshot &i
 		return EIO;
 	}
 }
+
+unsigned int economic_sql_verify_holding_source(MYSQL *connection, bool bank, uint64_t native_id,
+						const economic_sql_source_digest &expected) noexcept
+{
+#ifdef __NO_MYSQL__
+	(void)connection;
+	(void)bank;
+	(void)native_id;
+	(void)expected;
+	return ENOTSUP;
+#else
+	try
+	{
+		require(connection && native_id, EINVAL);
+		require(connection->server_status & SERVER_STATUS_IN_TRANS, EPERM);
+		using flag = std::remove_pointer_t<decltype(MYSQL_BIND{}.is_null)>;
+		flag reconnect = false;
+		require(!mysql_get_option(connection, MYSQL_OPT_RECONNECT, &reconnect) &&
+				!reconnect,
+			EPERM);
+		const auto session = mysql_thread_id(connection);
+		active(connection, session);
+		const auto &spec = sources[bank ? 1 : 0];
+		const auto names = columns(spec.columns);
+		digest definition;
+		definition.text("ESD1");
+		definition.text(spec.table);
+		definition.text(spec.order);
+		definition.number(names.size());
+		std::string selection;
+		for (const auto &column : names)
+		{
+			definition.text(column);
+			if (!selection.empty())
+				selection += ',';
+			selection += "CAST((" + column + ") AS BINARY)";
+		}
+		execute(connection, "SELECT " + selection + " FROM `" + spec.table + "` WHERE " +
+					    spec.order + "=" + std::to_string(native_id) +
+					    " FOR UPDATE");
+		result_ptr result(mysql_store_result(connection), mysql_free_result);
+		require(bool(result), mysql_errno(connection) ? mysql_errno(connection) : EIO);
+		require(mysql_num_rows(result.get()) == 1, ENOENT);
+		require(mysql_num_fields(result.get()) == names.size());
+		auto row = mysql_fetch_row(result.get());
+		auto lengths = mysql_fetch_lengths(result.get());
+		require(row && lengths);
+		digest observed;
+		observed.text("ESR1");
+		observed.bytes(definition.finish());
+		for (size_t i = 0; i < names.size(); ++i)
+		{
+			require(lengths[i] <=
+					economic_sql_source_limits{}.maximum_single_cell_bytes,
+				E2BIG);
+			observed.number(row[i] ? 1 : 0);
+			if (row[i])
+				observed.text(std::string_view(row[i], lengths[i]));
+		}
+		require(observed.finish() == expected, ESTALE);
+		active(connection, session);
+		return 0;
+	}
+	catch (const failure &e)
+	{
+		return e.code;
+	}
+	catch (const std::bad_alloc &)
+	{
+		return ENOMEM;
+	}
+#endif
+}

@@ -5,7 +5,32 @@ Linked phase PRs supersede the previous one-final-PR instruction. The full featu
 contract and all 16 child issues remain in scope; no phase merge authorizes a live
 cutover or production deployment. Request **xander-l** review on each PR.
 
-## Current increment: read-only SQL source capture and normalization
+## Issue-level delivery gate
+
+The latest user direction is to deliver complete child issues. Hold further
+component PR publication until the existing work has an acceptance audit and an
+issue-sized review batch. Preserve the current enrollment WIP and finish running
+checks. See [ISSUE_CLOSURE_STATUS.md](ISSUE_CLOSURE_STATUS.md).
+
+## Current increment: initial SQL wallet/shared-bank enrollment
+
+Based on [PR #613](https://github.com/Community-Duris/Duris/pull/613) at `084bdc3ce`.
+Reuse the initial enrollment command, private transaction owner and borrowed
+source-row verifier from `be31d9534`, retaining the current 18-table capture.
+Exercise capture, normalization, enrollment and baseline storage together on
+synthetic holdings. See [SQL_ENROLLMENT.md](SQL_ENROLLMENT.md). No new migration,
+gameplay admission or activation is added. A real lifecycle owner, authenticated
+operator, retained maintenance boundary and publication acknowledgement still
+must connect these components before the first complete wallet/bank journey.
+
+Next deliver restart-safe bank publication and a restricted game-thread drain.
+Retain original operation IDs and entity fences until required native saves
+acknowledge publication; reconstruct pending obligations after restart without
+reapplying committed balance deltas. Reuse existing drain/save machinery before
+connecting the cutover owner. Flat-file lifecycle/source verification is still
+missing; private staging helpers are not an activation path.
+
+## Prior increment: read-only SQL source capture and normalization
 
 Based on [PR #612](https://github.com/Community-Duris/Duris/pull/612) at `dab03b0e6`.
 Reuse bounded native capture and typed normalization from `ecfee1218f` and

@@ -44,3 +44,4 @@ python3 tests/async/run_economic_sql_bank_transaction_mysql.py
 
 python3 tests/async/run_economic_sql_baseline_transaction_mysql.py
 python3 tests/async/run_economic_sql_source_snapshot_mysql.py
+python3 tests/async/run_economic_sql_enrollment_transaction_mysql.py
