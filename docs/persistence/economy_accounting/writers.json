@@ -1266,8 +1266,8 @@
       "integration_issue": 486,
       "owner": "primary / #486",
       "coverage": "legacy",
-      "classification": "Existing forest restoration, not creation.",
-      "authority_boundary": "Source epoch/root/digest receipt then acknowledgement and retirement",
+      "classification": "Restore saved world forests: materialize retained payloads, validate room ownership/topology/source rows and unique UIDs, publish live graph, then acknowledge a UID-keyed destination and retire the older source when keys differ. Failed graph/materialization is discarded while source remains. No new creation or currency grant.",
+      "authority_boundary": "Season-scoped handoff and acknowledged destination retain authority across restart; publication is distinct from destination acknowledgment and source retirement. Existing source cleanup must not become duplicate accounting.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -1287,7 +1287,53 @@
         "tests/async/run_saved_item_recovery_journey.py",
         "tests/async/test_saved_items_column_contract.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          10017,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10089,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10540,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10609,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10656,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10664,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10670,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10675,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          10678,
+          "item_lifecycle"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -5729,6 +5775,604 @@
           "src/sql/sql_player.c",
           11572,
           "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_locker_items",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_load_locker_items_filtered",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Reconstruct locker/private-chest item payloads, restore saved UIDs, validate ownership where provided, clear creation flags and rebuild containment. Reject mismatched temporary objects. Missing/legacy UID handling is not proof of valid first admission.",
+      "authority_boundary": "Retained locker plus chest context and item identity must authorize reconstruction; allocation and mismatch cleanup must not append new creation/destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_locker_ownership_cutover.py"
+      ],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          6200,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          6279,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7015,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7077,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7088,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_migration_cleanup",
+      "path": "src/sql/sql_player.c",
+      "symbol": "free_temp_char",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Unequip/unlink and free item trees on a temporary migration character. This disposes the in-memory migration source, not necessarily the migrated durable holdings.",
+      "authority_boundary": "Migration outcome and retained destination authority determine disposition; cleanup alone cannot authorize retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          7140,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7141,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7150,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          7151,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_corpses",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_load_all_corpses",
+      "reason": "corpse_restore",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Materialize saved corpse roots and contents, validate corpse/item identities, hydrate the lifecycle revision, and place complete corpses into rooms. Failure/mismatch cleanup removes temporary instances. Existing repeated/final-root publication branches are restoration, not new death issuance.",
+      "authority_boundary": "Saved corpse lifetime/revision and item ownership precede publication; allocation, rebuilding containment and refresh saves retain the same authority.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_transaction.py"
+      ],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          8264,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8268,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8279,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8283,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8322,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8384,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8464,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8555,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8559,
+          "item_publication"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8568,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          8572,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_shopkeeper_stage",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_restore_shopkeeper_catalog",
+      "reason": "baseline",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Stage a validated shopkeeper catalog and item graph, discard failed stages, restore affects, then equip and attach inventory. The memset candidate only resets item affects, not coins. Missing produced-stock representative materialization is a separate route.",
+      "authority_boundary": "Validate shop/room/catalog topology before publishing a stage. Staging cleanup does not destroy retained stock; existing saved payload and derived representatives require distinct identity policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          9291,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9297,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9307,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9509,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9521,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9587,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9597,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9606,
+          "item_lifecycle"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9656,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9829,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "shop.sql_derived_stock",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_restore_shopkeeper_catalog",
+      "reason": "first_admission",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Create a missing representative for each configured produced item during restore staging. This is derived catalog materialization, not restoration of a saved instance. Prove non-authoritative representative status or admit authoritative stock exactly once before assigning issuance.",
+      "authority_boundary": "Produced-stock/catalog policy must distinguish a representative from a sold or owned item; no blanket fresh-issuance or projection assumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          9791,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_saved_projection",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_save_saved_item",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Recursively replace a saved_items source tree in an owned or borrowed SQL transaction, including payload, affects and extra descriptions. DELETE then INSERT represents storage replacement, not by itself economic destruction followed by issuance.",
+      "authority_boundary": "Caller owns source authority and transaction durability; retain UID/holding identity across snapshot replacement and separate storage acknowledgment from live publication.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          9131,
+          "sql_economy"
+        ],
+        [
+          "src/sql/sql_player.c",
+          9211,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_saved_delete",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_delete_saved_item",
+      "reason": "lifecycle_retirement",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Delete saved_items rows by source key. This helper alone cannot distinguish retiring authoritative state from deleting a superseded recovery copy.",
+      "authority_boundary": "Caller must establish retained destination or genuine lifecycle retirement before source deletion; key deletion alone is not an accounting sink.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          9248,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.sql_saved_source_retirement",
+      "path": "src/sql/sql_player.c",
+      "symbol": "sql_retire_saved_item_source",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "After finding the saved-item handoff receipt/destination, verify locked source row set/count/digest, delete original root and mark receipt retired in one transaction. Replayed retirement is recognized. Retiring the recovery source is not retiring the item or its value.",
+      "authority_boundary": "Acknowledged destination plus matching retained source evidence precedes source removal; preserve original handoff across uncertain commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/run_saved_item_recovery_journey.py"
+      ],
+      "sites": [
+        [
+          "src/sql/sql_player.c",
+          10368,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "reward.summon",
+      "path": "src/account/account_reward.c",
+      "symbol": "summon_one",
+      "reason": "item_create",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Allocate a reward instance from its template, reserve summon state, and submit creation to the player. Template, reservation or submission failure discards the provisional object; an existing instance is reused. Successful submission alone is not durable creation or publication.",
+      "authority_boundary": "Retained grant entitlement and per-character summon reservation are distinct from committed item ownership. Preserve one creation identity through uncertain commit and compensate reservations without treating temporary cleanup as destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_account_reward_container_contract.py",
+        "tests/async/test_account_reward_exact_contract.py"
+      ],
+      "sites": [
+        [
+          "src/account/account_reward.c",
+          617,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/account_reward.c",
+          630,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/account_reward.c",
+          639,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/account_reward.c",
+          644,
+          "economic_submit"
+        ],
+        [
+          "src/account/account_reward.c",
+          649,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "reward.revocation_duplicates",
+      "path": "src/account/account_reward.c",
+      "symbol": "revoke_live_grant",
+      "reason": "item_destroy",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "After expired-grant SQL cleanup commits, remove matching live reward instances only after promoting contents; save affected owners. Duplicate-instance cleanup retains the first matching instance and preserves extras when promotion fails.",
+      "authority_boundary": "Grant markers alone do not prove duplicate durable UIDs. Preserve child ownership and distinguish revocation from duplicate projection cleanup; failed owner saves leave an unresolved persistence obligation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_account_reward_container_contract.py",
+        "tests/async/test_account_reward_exact_contract.py"
+      ],
+      "sites": [
+        [
+          "src/account/account_reward.c",
+          485,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/account_reward.c",
+          568,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "reward.dismiss",
+      "path": "src/account/account_reward.c",
+      "symbol": "dismiss_player_grant",
+      "reason": "item_destroy",
+      "integration_issue": 481,
+      "owner": "primary / #481",
+      "coverage": "legacy",
+      "classification": "Refuse dismissal of a nonempty reward container; otherwise extract the live instance and save the player. The grant entitlement remains available for a later summon subject to its cooldown.",
+      "authority_boundary": "Retire the active item instance without retiring the retained grant entitlement. Tie durable removal and save acknowledgment to the same ownership operation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_account_reward_container_contract.py",
+        "tests/async/test_account_reward_exact_contract.py"
+      ],
+      "sites": [
+        [
+          "src/account/account_reward.c",
+          844,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "reward.death_container",
+      "path": "src/account/account_reward.c",
+      "symbol": "dissolve_reward_containers",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Recursively promote contents of account-bound reward containers in a player corpse before extracting the container. Mark the summon recoverable; SQL update failure is logged but extraction currently continues.",
+      "authority_boundary": "Death and reward provenance must own root retirement and child transfers. Recovery eligibility is not issuance; failed eligibility persistence cannot be silently equated with an acknowledged handoff.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_account_reward_container_contract.py",
+        "tests/async/test_account_reward_exact_contract.py"
+      ],
+      "sites": [
+        [
+          "src/account/account_reward.c",
+          1261,
+          "item_lifecycle"
         ]
       ],
       "evidence": []

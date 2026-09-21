@@ -159,3 +159,26 @@ Other SQL loader/storage coordinates remain unclassified; this does not declare
 sql_player.c fully reviewed. Current inventory: 140 routes, 2,745 raw matches,
 2,687 unique coordinates, 288 writer-mapped coordinates, 42 declarations, and
 2,357 unclassified. All 37 contract tests pass. Census completion remains false.
+
+## Remaining SQL storage and reward lifecycle review
+
+All current lexical sql_player.c and account_reward.c coordinates are now mapped;
+this does not prove semantic completeness. SQL routes distinguish locker/corpse
+reconstruction, temporary migration cleanup, shop staging, produced-stock
+representatives, saved-item snapshot replacement, and acknowledged source
+retirement. A produced-stock representative requires an explicit authority policy;
+source-row deletion after handoff must not retire the destination item.
+
+Reward routes distinguish summon allocation/reservation/submission, expired-grant
+revocation and duplicate cleanup, dismissal with retained entitlement, and corpse
+container dissolution with child promotion. Existing eligibility-update failure
+can precede extraction; future integration must resolve this persistence gap.
+Grant markers are not proof of duplicate durable item identity.
+
+Semantic follow-up remains necessary: reward cleanup writes player_items through
+SQL outside the current table-pattern census. Lexical coverage is therefore not
+the acceptance criterion by itself. Runtime coverage remains legacy/unverified.
+
+Current inventory: 152 routes, 2,745 raw matches, 2,687 unique coordinates,
+341 writer-mapped coordinates, 42 reviewed declarations, and 2,304 unclassified.
+Census completion remains false. This batch changes inventory/documentation only.
