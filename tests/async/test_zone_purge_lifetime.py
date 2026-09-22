@@ -96,8 +96,11 @@ static void run_case(bool immediate, bool move) {
     follower = {pet, nullptr}; master->followers = &follower; pet->following = master;
     survivor->specials.fighting = pet;
     obj_data wall = {}, artifact = {}, ordinary = {}, empty_corpse = {};
+    obj_data full_corpse = {}, contents = {};
+    full_corpse.type = ITEM_CORPSE; full_corpse.contains = &contents;
     wall.R_num = 42; artifact.extra_flags = ITEM_ARTIFACT; empty_corpse.type = ITEM_CORPSE;
     wall.next_content = &artifact; artifact.next_content = &ordinary; ordinary.next_content = &empty_corpse;
+    empty_corpse.next_content = &full_corpse;
     world[0].contents = &wall; object_extractions = 0;
     zone_purge(0);
     assert(removed[1] == 1 && removed[2] == 1 && removed[4] == 1);
@@ -108,7 +111,10 @@ static void run_case(bool immediate, bool move) {
         assert(removed[6] == 0 && removed[7] == 0 && removed[8] == 0);
     } else assert(removed[6] == 1 && removed[7] == 1);
     assert(world[0].people == survivor && survivor->next_in_room == morph);
-    assert(object_extractions == 1 && artifact.next_content == &empty_corpse);
+    // Current branch retains empty corpses but extracts nonempty nonartifact corpses.
+    // The controlled extractor proves dispatch, not recursive asset retirement.
+    assert(object_extractions == 2 && artifact.next_content == &empty_corpse);
+    assert(empty_corpse.next_content == nullptr);
     printf("zone purge: immediate_free=%d moved_and_replaced=%d; recursive pet and tail removed once, PC/morph retained\n",
            immediate, move);
     for (auto ch = world[0].people, next = ch; ch; ch = next) {

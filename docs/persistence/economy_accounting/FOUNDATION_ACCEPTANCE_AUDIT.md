@@ -3500,3 +3500,7 @@ Linked identify preparation and wallet-value submission to inspected native adap
 ### Shop candidate audit
 
 Linked SQL shopkeeper staging and derived stock to the inspected population harness: five ASan/UBSan scenarios passed (reset, shared template, duplicate snapshot, cleanup, invalid identity). It extracts production restore/reset code with fake DB/world I/O, not native database accounting. Linked creation refund to the passing multi-buy source contract, which checks refund invocation before sequence removal but does not execute or qualify the non-atomic refund helper. Dirty-shopkeeper retry checks were not assigned to cash/barter payment routes because they test persistence retries instead of those mutations. Missing candidates decrease from 668 to 665; no support or completeness flags changed.
+
+### Retirement candidate audit
+
+Linked four account-deletion/owner-destruction and zone-purge routes to inspected candidates; 661 routes lack candidates. Extended the native purge fixture to cover nonempty nonartifact corpse extraction, matching the actual branch rather than its misleading comment. All four ASan/UBSan lifetime scenarios and account-deletion source contracts pass. Controlled extractors prove dispatch, not recursive durable retirement; source checks prove neither SQL execution nor retry identity. Ship-shell retirement was not linked to the account test because that test only checks the runtime deletion delegation. No gameplay or backend status changed.

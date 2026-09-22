@@ -1134,7 +1134,7 @@
       "coverage": "legacy",
       "classification": "Mass reset extraction; sink versus reconstruction classification unresolved.",
       "authority_boundary": "Reset lifecycle authority",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production purge/follower harness exercises recursive NPC removal and room item extraction dispatch under sanitizers; controlled extractors do not qualify durable sinks or reconstruction.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -1149,7 +1149,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_zone_purge_lifetime.py"
+      ],
       "sites": [],
       "evidence": [],
       "source": "Zone-reset live assets",
@@ -1652,7 +1654,7 @@
       "coverage": "legacy",
       "classification": "Account and character authorities removal.",
       "authority_boundary": "SQL transaction, nested transaction refused; full statement census pending",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Source-contract candidate checks deletion fence, drain, transaction and credential-removal ordering; it does not execute SQL deletion or qualify accounting retirement.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -1667,7 +1669,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_account_deletion_contract.py"
+      ],
       "sites": [],
       "evidence": [],
       "source": "Account and character authorities",
@@ -35562,7 +35566,7 @@
       "coverage": "legacy",
       "classification": "Builds multi-root destruction command from current owner items with generated operation ID and operator-repair source, executes repository and requires successful mutation. Caller transaction/retry boundary determines safety across repeated invocations.",
       "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
-      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified Source-contract candidate verifies account deletion delegates owner destruction through a built destruction command and repository execution; it does not qualify retry identity or atomic backend retirement.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35577,7 +35581,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_account_deletion_contract.py"
+      ],
       "sites": [
         [
           "src/item/item_transfer_repository.c",
@@ -37118,7 +37124,7 @@
       "coverage": "legacy",
       "classification": "Purges room objects except walls, artifacts and empty corpses under the actual branch conditions. Nonempty nonartifact corpses reach extraction despite the comment suggesting protection. Earlier NPC extraction has indirect asset effects; preserve observed behavior until separately authorized correction.",
       "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
-      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "current_support": "Existing helper behavior; accounting qualification unverified Extracted production branch verifies ordinary objects and nonempty nonartifact corpses reach extraction while walls, artifacts and empty corpses remain; controlled extraction does not prove recursive item retirement.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -37133,7 +37139,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_zone_purge_lifetime.py"
+      ],
       "sites": [
         [
           "src/world/new_events.c",
