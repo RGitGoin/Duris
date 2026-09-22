@@ -1393,3 +1393,13 @@ prototype defaults where branches do not override; allocation is not admission.
 Draft validator passed 13 fixtures: 409 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,387 mapped, 43 reviewed declarations and 1,268 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Corpse portal relocation
+
+Two coordinates classified. First prototype/name match is relocated to caster room;
+no new portal is allocated. Nonroom first match refuses rather than continuing.
+Preserve selected UID; name lookup does not prove newest corpse or durable owner.
+
+Draft validator passed 13 fixtures: 410 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,389 mapped, 43 reviewed declarations and 1,266 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

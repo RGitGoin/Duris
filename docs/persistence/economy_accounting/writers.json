@@ -19390,6 +19390,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.corpse_portal_relocation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_corpse_portal(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Finds first global object of prototype400220 with victim-name keyword; requires that selected object be in a room, then relocates it to caster room.",
+      "authority_boundary": "Despite portal materialization narration no object is allocated. Preserve selected UID and existing contents/linkage; first match/name lookup is not durable owner identity or proof of newest corpse. Nonroom first match refuses rather than searching later matches.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          22403,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          22404,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
