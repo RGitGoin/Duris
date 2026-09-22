@@ -771,3 +771,16 @@ semantic exhaustiveness: indirect helpers, direct payload/value[] changes, autho
 proof and executable integration evidence remain required. No runtime change.
 Draft validator passed 13 fixtures: 298 routes, 2,756 raw matches, 2,698 unique
 coordinates, 972 mapped, 43 reviewed declarations and 1,683 unclassified.
+
+## Sector forage creation
+
+Reviewed the full forage_sect table and publication body, classifying 90 scanner
+sites as one issuance route with sector-specific outcomes. Allocation is provisional;
+optional poison changes the item payload before inventory insertion. Attempt identity,
+chosen outcome and poison payload must survive retries without duplicate issuance.
+The helper does not demonstrate allocation-null handling or durable saving, and
+post-insertion messages are not receipts. Existing distributions remain unchanged.
+
+Draft validator passed 13 fixtures: 299 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,062 mapped, 43 reviewed declarations and 1,593 unclassified.
+Census and runtime qualification remain incomplete; no game behavior changed.
