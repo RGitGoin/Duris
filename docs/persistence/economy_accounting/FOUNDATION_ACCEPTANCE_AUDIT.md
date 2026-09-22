@@ -3556,3 +3556,7 @@ All three saved-item flat-file routing source contracts pass. Linked the two sto
 ### Corpse repository contract refresh
 
 Offline corpse contracts initially failed stale hardcoded table count (212 versus current 215) and migration head (0031 versus current 0032). Replaced those with consistency checks against the table list and highest registered migration, retaining explicit corpse authority registration/protection checks. All seven tests now pass. Linked compound corpse transfers to source savepoint/order evidence only, not native SQL execution; 641 candidate gaps remain. The older item-transfer SQL runner loads .env and was inspected but not executed. No migrations or production code changed.
+
+### Private native corpse qualification
+
+Added --suite corpse to the existing private local MariaDB runner and a guarded native harness launcher using the maintained disposable-container source list. The private instance verifies its datadir, never loads .env, and cleans up on exit. Fresh bootstrap/migration/runtime validation and native corpse lifecycle ASan/UBSan harness passed. This qualifies the existing corpse transaction harness on local MariaDB only, not MySQL or common accounting activation. Docker WSL integration was unavailable; Docker Desktop diagnosis continued separately.
