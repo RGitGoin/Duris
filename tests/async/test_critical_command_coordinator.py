@@ -46,6 +46,8 @@ struct apply_state
     bool hold_all = false;
     bool release_all = false;
     bool already_applied = false;
+    bool require_replay_observation = false;
+    bool replay_observed = false;
 };
 
 critical_command make_command(unsigned int tag, std::vector<critical_entity_key> keys)
@@ -68,6 +70,7 @@ critical_apply_result apply(const critical_command &command, void *raw)
     const unsigned int tag = command.payload[0];
     std::unique_lock<std::mutex> lock(state.mutex);
     const unsigned int attempt = ++state.attempts[tag];
+    assert(!state.require_replay_observation || state.replay_observed);
     if (state.hold_all)
         state.changed.wait(lock, [&] { return state.release_all; });
     if (tag == 1)
@@ -404,7 +407,17 @@ int main(int argc, char **argv)
     critical_command_journal_shutdown();
     apply_state recovery_state;
     recovery_state.hold_all = true;
-    assert(critical_command_coordinator_init(argv[3], apply, &recovery_state, 1));
+    recovery_state.require_replay_observation = true;
+    auto restore_replay = [](const critical_command &command, void *raw) {
+        auto &state = *static_cast<apply_state *>(raw);
+        std::lock_guard<std::mutex> lock(state.mutex);
+        assert(command.payload == std::vector<uint8_t>{10});
+        assert(state.attempts.empty());
+        state.replay_observed = true;
+        return true;
+    };
+    assert(critical_command_coordinator_init(argv[3], apply, &recovery_state, 1,
+                                            restore_replay, &recovery_state));
     // Initialization starts replay asynchronously. Callers must not interpret
     // successful init as permission to hydrate snapshots of fenced entities.
     wait_until([&] {
