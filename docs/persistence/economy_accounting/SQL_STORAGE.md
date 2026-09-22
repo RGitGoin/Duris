@@ -84,3 +84,29 @@ not upgrade evidence. Neither test flow may use an existing game database.
 
 Full server build results are recorded with the PR revision; native SQL results
 above qualify storage and identity locking only, not an accounting command commit.
+
+## Common compound adapter implementation boundary
+
+Source review on 2026-09-22 confirms this remains implementation work. The public
+economic_accounting_repository API only locks identity mappings; its snapshot is
+not append authority. economic_sql_bank_transaction::evidence requires exactly
+two account effects and postings and refuses children/items. Flat-file
+validate_record refuses children because no child reservation exists. Neither
+backend currently supplies a general compound accounting transaction owner.
+
+Implement the common #477 transaction path before its #478 counterpart: retain
+the existing root inbox owner and authority locks, verify the complete typed
+native effects, reserve child IDs, append child/item/source evidence, then
+finalize within the same commit. Check collisions in both directions: a new
+child against existing roots/children and a new root against reserved children.
+The SQL child table has a unique child ID but that constraint alone does not
+exclude a root using the same ID. Exact-ID retry must compare the retained root,
+child relationships and canonical request; it must not mint replacement IDs.
+
+Flat-file child reservations must share the authority journal with root evidence
+and native after-images. Multiple children in one bucket must be combined into
+one after-image, rather than staging duplicate filenames or rereading only the
+pre-transaction index. Missing/corrupt reservation state must not become an empty
+index. Include its format, bounds, compatibility and backup registration with
+the implementation. Keep the current child refusal until these invariants are
+implemented and qualified; structural codec acceptance is not an alternative.
