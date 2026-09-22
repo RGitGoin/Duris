@@ -2414,3 +2414,14 @@ compound debit and caller save/replay remain qualification work.
 Draft validation passed 13 fixtures: 652 routes, 2756 raw matches, 2698 unique
 coordinates, 2082 mapped, 43 reviewed nonwriters, 573 unclassified.
 No gameplay changes; release readiness remains false.
+
+## World quest item and mercenary rewards
+
+Five coordinates classified: provisional reward allocation/grant/refusal cleanup
+and mercenary currency credits. Other rewards and quest reset continue after
+failed item submission. Accepted submission is not publication acknowledgment;
+compound completion/replay qualification remains open.
+
+Draft validation passed 13 fixtures: 654 routes, 2756 raw matches, 2698 unique
+coordinates, 2087 mapped, 43 reviewed nonwriters, 568 unclassified.
+No gameplay changes; release readiness remains false.

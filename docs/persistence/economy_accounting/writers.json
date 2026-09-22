@@ -30190,6 +30190,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.world_quest_reward_grant",
+      "path": "src/world/world_quest.c",
+      "symbol": "grant_world_quest_reward",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Reward helper loads zone/quest-level item with random-equipment fallback. Grant helper submits creation to player, returns true on accepted submission, or extracts provisional reward FALSE on rejection. Callers continue other rewards and quest reset even when grant returns false.",
+      "authority_boundary": "Separate provisional allocation, accepted submission and actual durable publication. Qualify reward failure versus quest reset and duplicate completion across item/currency/epic rewards.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/world_quest.c",
+          202,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_quest.c",
+          228,
+          "economic_submit"
+        ],
+        [
+          "src/world/world_quest.c",
+          230,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.world_quest_mercenary_reward",
+      "path": "src/world/world_quest.c",
+      "symbol": "quest_full_reward",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Full reward and completed kill-quest paths credit mercenary above level24 with level*1256 plus random1..500. Payment follows item-grant attempt regardless of its result; subsequent epic reward/log/dirty marking and quest reset follow.",
+      "authority_boundary": "Bind currency credit to one quest completion across item grant and epic reward, preserving partial-failure behavior until explicitly integrated. Dirty marking/logging are not commit acknowledgments.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/world_quest.c",
+          261,
+          "money_helper"
+        ],
+        [
+          "src/world/world_quest.c",
+          369,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
