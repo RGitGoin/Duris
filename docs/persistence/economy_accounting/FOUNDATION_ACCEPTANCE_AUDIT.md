@@ -3596,3 +3596,7 @@ At ab6a7de77, test_flatfile_item_repository.py passed its warning-clean client-f
 ### Alchemy ingredient helper regression
 
 Added native ASan/UBSan test using production headers and both extracted ingredient-consumption helpers with controlled ID/extraction endpoints. Repeated requirements consume distinct objects in inventory order, surplus/unrelated inventory stays unselected, recipe arrays remain unchanged and empty inventory is safe. Insufficient requirements still consume available matches: callers own sufficiency checks, and no all-or-nothing craft behavior is claimed. Both routes now have candidates, leaving 629 gaps. Full recipe/vial/output lifecycle and durable accounting remain unqualified. No production changes.
+
+### Alchemy native identity and preflight verification
+
+Removed the ingredient-ID stub from the native helper regression. It now compiles the actual basic-ingredient table, get_id_for and both sufficiency checks. ASan/UBSan passes unrelated-object sentinel handling, recipe-ID versus prototype-ID distinction, duplicate ingredient sufficiency and insufficient-match refusal. Extraction and skill endpoints remain controlled; full crafting and durable accounting are still unqualified. Candidate count remains 629.
