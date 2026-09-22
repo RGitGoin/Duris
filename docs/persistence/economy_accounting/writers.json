@@ -24328,6 +24328,161 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.epic_skill_refund_delivery",
+      "path": "src/world/epic.c",
+      "symbol": "epic_skill_refund_committed",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After committed epic refund, clears eligible learned/taught skills, stages money pickup and falls back to wallet transaction if staging fails. Announces point refund then attempts silent save. Pickup staging, fallback acceptance and player save are distinct outcomes; recover coin delivery exactly once across retries without duplicate refund.",
+      "authority_boundary": "Preserve original eligibility and economic amounts. Distinguish authoritative commit, asynchronous staging, runtime effects and save acknowledgement; fault recovery and accounting integration remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/epic.c",
+          280,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          285,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.stat_shop_service",
+      "path": "src/world/epic.c",
+      "symbol": "stat_shops",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Nine stat purchase branches compute stat-cubed cost times modifier, check affordability and cap, debit wallet then invoke matching permanent-stat spell. The potion message does not represent allocated inventory. Fee and stat change require compound durability and replay without repeated increase.",
+      "authority_boundary": "Preserve original eligibility and economic amounts. Distinguish authoritative commit, asynchronous staging, runtime effects and save acknowledgement; fault recovery and accounting integration remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/epic.c",
+          1513,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1531,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1549,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1567,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1585,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1603,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1621,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1639,
+          "money_helper"
+        ],
+        [
+          "src/world/epic.c",
+          1657,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.epic_stone_absorption",
+      "path": "src/world/epic.c",
+      "symbol": "epic_stone_absorb",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Scans current room or carrier list, skips source stone and extracts other qualifying smaller/equal epic stones or APPLY_LEVEL objects. No local source-stone quantity increment occurs. Loop reads extracted object for second condition and next_content, leaving lifetime and possible double-extraction concerns for integration qualification.",
+      "authority_boundary": "Preserve original eligibility and economic amounts. Distinguish authoritative commit, asynchronous staging, runtime effects and save acknowledgement; fault recovery and accounting integration remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/epic.c",
+          887,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/epic.c",
+          893,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

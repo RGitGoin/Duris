@@ -1845,3 +1845,16 @@ unverified. All current transport.c lexical candidates mapped.
 Draft validation passed 13 fixtures: 512 routes, 2756 raw matches, 2698 unique
 coordinates, 1755 mapped, 43 reviewed declarations, 900 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Epic refunds, stat purchases and stone absorption
+
+Thirteen coordinates classified. Epic skill refund stages pickup credit with
+wallet-transaction fallback after skill reset; stages/commit/save remain distinct.
+Nine stat shop branches debit before permanent-stat spell effects and need compound
+recovery. Stone absorption retires matching objects without local source quantity
+increase; reads after extraction and loop advancement need lifetime qualification.
+All current epic.c lexical candidates mapped; integration remains unverified.
+
+Draft validation passed 13 fixtures: 515 routes, 2756 raw matches, 2698 unique
+coordinates, 1768 mapped, 43 reviewed declarations, 887 unclassified.
+No gameplay changes; release readiness remains false.
