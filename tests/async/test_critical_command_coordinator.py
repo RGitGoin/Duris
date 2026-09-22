@@ -403,7 +403,23 @@ int main(int argc, char **argv)
     assert(critical_command_journal_append(recovery) == critical_command_journal_result::ok);
     critical_command_journal_shutdown();
     apply_state recovery_state;
+    recovery_state.hold_all = true;
     assert(critical_command_coordinator_init(argv[3], apply, &recovery_state, 1));
+    // Initialization starts replay asynchronously. Callers must not interpret
+    // successful init as permission to hydrate snapshots of fenced entities.
+    wait_until([&] {
+        std::lock_guard<std::mutex> lock(recovery_state.mutex);
+        return recovery_state.attempts[10] == 1;
+    });
+    assert(critical_command_coordinator_health_copy().completed == 0);
+    assert(critical_command_coordinator_is_fenced(
+        {critical_entity_type::corpse, 10}, nullptr));
+    assert(critical_command_journal_health_copy().records == 1);
+    {
+        std::lock_guard<std::mutex> lock(recovery_state.mutex);
+        recovery_state.release_all = true;
+        recovery_state.changed.notify_all();
+    }
     wait_until([&] {
         critical_command_coordinator_pulse(completions, 16);
         return critical_command_coordinator_health_copy().completed == 1;
