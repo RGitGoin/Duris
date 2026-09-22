@@ -29620,6 +29620,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.imprison_shell_admission",
+      "path": "src/classes/sillusionist.c",
+      "symbol": "spell_imprison",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checks duplicate victim shell then allocates checked prototype 1300 before possible disbelieve return, which has no local cleanup. Accepted cast changes combat/imprison state, configures victim PID and shell HP, then places shell in caster room.",
+      "authority_boundary": "Successful room admission is distinct from provisional allocation; qualify refused-cast cleanup, victim effect coupling and failed placement without counting rejected shells as issued.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/sillusionist.c",
+          1661,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/sillusionist.c",
+          1711,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.imprison_shell_damage",
+      "path": "src/classes/sillusionist.c",
+      "symbol": "handle_imprison_damage",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Locates victim PID shell in victim room. Damage strictly exceeding shell HP clears imprison flag and extracts shell TRUE; otherwise subtracts damage from shell HP, including equality leaving zero HP.",
+      "authority_boundary": "Couple shell retirement or HP mutation to victim effect state; preserve strict comparison and qualify persistence/replay. Existing shell damage is not new issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/sillusionist.c",
+          1753,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

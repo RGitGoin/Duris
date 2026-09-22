@@ -2342,3 +2342,14 @@ qualification remain open; no behavior change introduced.
 Draft validation passed 13 fixtures: 637 routes, 2756 raw matches, 2698 unique
 coordinates, 2058 mapped, 43 reviewed nonwriters, 597 unclassified.
 Release readiness remains false.
+
+## Imprisonment shell lifecycle
+
+Three coordinates classified: shell allocation precedes possible disbelieve
+return without local cleanup; accepted cast changes victim state before room
+publication. Damage retires shell only when strictly greater than remaining HP,
+otherwise mutating HP. Failure/recovery/effect coupling remain unqualified.
+
+Draft validation passed 13 fixtures: 639 routes, 2756 raw matches, 2698 unique
+coordinates, 2061 mapped, 43 reviewed nonwriters, 594 unclassified.
+No gameplay changes; release readiness remains false.
