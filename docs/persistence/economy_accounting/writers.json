@@ -37052,7 +37052,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wizard-requested provisional object and optional UID",
+      "destination": "Direct room/player placement or pending identity establishment; rejected candidate cleanup"
     },
     {
       "id": "wizard.load_establish",
@@ -37087,7 +37089,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional UID object and captured destination identity",
+      "destination": "Pending same-owner creation establishment with publication context"
     },
     {
       "id": "wizard.load_completion",
@@ -37132,7 +37136,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed establishment result and provisional UID object",
+      "destination": "Captured room/player placement or refused nowhere-copy cleanup"
     },
     {
       "id": "wizard.purge_named",
@@ -37167,7 +37173,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Named eligible room object and contained graph",
+      "destination": "Extracted object with artifact registry intentionally retained; ships delegated"
     },
     {
       "id": "wizard.purge_room",
@@ -37202,7 +37210,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible room objects and extracted NPC holdings",
+      "destination": "Takeable/empty-corpse retirement while walls/artifacts excluded"
     },
     {
       "id": "wizard.storage_completion",
@@ -37257,7 +37267,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Root/child establishment or transfer result",
+      "destination": "Root publication, one child release, or root cleanup in sequential workflow"
     },
     {
       "id": "wizard.storage_destroy_submit",
@@ -37292,7 +37304,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated storage root and contents as selected by action",
+      "destination": "Pending destruction-owner command"
     },
     {
       "id": "wizard.storage_remove_submit",
@@ -37327,7 +37341,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First storage child or already empty root",
+      "destination": "Pending same-room child release or empty-root destruction"
     },
     {
       "id": "wizard.storage_establish_submit",
@@ -37362,7 +37378,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional storage UID and valid room",
+      "destination": "Pending same-room operator-repair establishment"
     },
     {
       "id": "wizard.storage_new",
@@ -37417,7 +37435,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Requested provisional container and configured flags",
+      "destination": "Established/persisted room storage or rejected candidate cleanup"
     },
     {
       "id": "wizard.storage_delete",
@@ -37452,7 +37472,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Storage root and contained holdings",
+      "destination": "Whole graph retirement through backend-specific path"
     },
     {
       "id": "wizard.storage_remove",
@@ -37497,7 +37519,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Storage root and children",
+      "destination": "Room children and retired empty shell; flat-file sequence not one bundle"
     },
     {
       "id": "inspection.wizard_do_deathobj",
@@ -37537,7 +37561,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Disabled prototype listing after unconditional return",
+      "destination": "No reachable inspection allocation or gameplay mutation"
     },
     {
       "id": "inspection.wizard_do_stat",
@@ -37597,7 +37623,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for do_stat inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_which_stat",
@@ -37657,7 +37685,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for which_stat inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_which_food",
@@ -37697,7 +37727,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for which_food inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_which_armor",
@@ -37737,7 +37769,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for which_armor inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_which_weapon",
@@ -37777,7 +37811,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for which_weapon inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_eqrate_show_vnum",
@@ -37817,7 +37853,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for eqrate_show_vnum inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.wizard_do_eqrate",
@@ -37857,7 +37895,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for do_eqrate inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "artifact.ground_restore",
@@ -38150,7 +38190,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for arti_generate_json inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.artifact_list",
@@ -38205,7 +38247,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for void list_artifacts_sql inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "inspection.artifact_player_list",
@@ -38270,7 +38314,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary prototypes selected for void arti_player_sql inspection",
+      "destination": "Report/description metadata and temporary-copy cleanup; no gameplay custody admission"
     },
     {
       "id": "artifact.swap_preview",
