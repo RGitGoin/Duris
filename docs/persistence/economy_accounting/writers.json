@@ -30315,6 +30315,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "infrastructure.allocator_link_copies",
+      "path": "src/core/mm.c",
+      "symbol": "mm_set_next",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Lexical bulk-mutation false positives: mm_next copies sizeof(char*) bytes into local next pointer; mm_set_next copies next pointer into allocator link at caller-supplied offset. These manipulate allocator free-list linkage, not wallet denominations or economic ownership.",
+      "authority_boundary": "No economic authority boundary at these generic allocator helpers. Retained as explicitly non-economic candidate classification in route inventory because reviewed-nonwriter schema currently accepts declarations only; do not count as required currency integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/mm.c",
+          21,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/core/mm.c",
+          27,
+          "coin_bulk_mutation"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
