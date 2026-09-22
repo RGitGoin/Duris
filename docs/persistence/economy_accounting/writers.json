@@ -31872,6 +31872,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.beholder_disintegration",
+      "path": "src/magic/beh_magic.c",
+      "symbol": "void spell_beholder_disintegrate",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Failed save, nontrusted victim and random gate select equipment; nonartifact condition loses 1..10 and below-one condition triggers removal, release of contained objects to caster room and shell extraction. Surviving condition change is also semantic mutation. Selection checks all slots for presence but rolls slots 1..MAX_WEAR-1; slot-zero-only termination requires qualification. Carried/inside branches under equipment selection have unproven normal reachability.",
+      "authority_boundary": "Preserve selected item and random condition delta; treat retained contents as existing custody and destroyed shell as sink. Bind spell operation to condition mutation, indirect unequip and partial release; qualify refusal, selection termination, save acknowledgement and replay without repeated damage or content loss.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/beh_magic.c",
+          408,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/beh_magic.c",
+          386,
+          "item_publication"
+        ],
+        [
+          "src/magic/beh_magic.c",
+          394,
+          "item_publication"
+        ],
+        [
+          "src/magic/beh_magic.c",
+          395,
+          "item_publication"
+        ],
+        [
+          "src/magic/beh_magic.c",
+          402,
+          "item_publication"
+        ],
+        [
+          "src/magic/beh_magic.c",
+          403,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

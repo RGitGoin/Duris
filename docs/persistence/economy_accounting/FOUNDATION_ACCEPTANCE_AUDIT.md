@@ -2645,3 +2645,14 @@ Fountain retry exhaustion and build reachability remain explicit concerns.
 Draft validation passed 13 fixtures: 691 routes, 2756 raw matches, 2698 unique
 coordinates, 2182 mapped, 43 reviewed nonwriters, 473 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Beholder disintegration assets
+
+Six coordinates classified as condition loss, retained-content release and
+equipment shell destruction. Artifact and save gates preserved. Presence scan
+includes slot zero while selection excludes it; termination and branch
+reachability are qualification concerns, not incidental fixes.
+
+Draft validation passed 13 fixtures: 692 routes, 2756 raw matches, 2698 unique
+coordinates, 2188 mapped, 43 reviewed nonwriters, 467 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
