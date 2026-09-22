@@ -1969,3 +1969,16 @@ remain unqualified. All current ethermancer.c lexical candidates mapped.
 Draft validation passed 13 fixtures: 546 routes, 2756 raw matches, 2698 unique
 coordinates, 1850 mapped, 43 reviewed declarations, 805 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Preview objects, recipe outputs and seasonal NPC item
+
+Ten drannak.c coordinates classified. Store display and random recipe templates
+are provisional objects, not admitted wealth. Recipe scroll creation is separate
+from template cleanup and targets supplied character (victim in random_recipe).
+Zone selection rejects potion then falls back to random equipment. Seasonal NPC
+receives unchecked item allocation before room placement. Replay/admission remains
+unqualified; all current lexical file candidates mapped.
+
+Draft validation passed 13 fixtures: 551 routes, 2756 raw matches, 2698 unique
+coordinates, 1860 mapped, 43 reviewed declarations, 795 unclassified.
+No gameplay changes; release readiness remains false.

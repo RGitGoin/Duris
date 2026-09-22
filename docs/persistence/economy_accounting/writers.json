@@ -25823,6 +25823,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.pvp_store_preview",
+      "path": "src/classes/drannak.c",
+      "symbol": "pvp_store",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "List command temporarily allocates orb for display text and extracts afterward; no custody publication. Preview allocation/cleanup is not first admission or economic retirement.",
+      "authority_boundary": "Distinguish provisional/preview allocation from admitted output and preserve exact selected payload and destination. Failure/retry behavior, NPC custody and durable save/publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          376,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          392,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.recipe_scroll_creation",
+      "path": "src/classes/drannak.c",
+      "symbol": "void create_recipe",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After target eligibility checks allocates recipe prototype400210 without local null check, sets recipe bit and description, configures target-specific scroll payload then publishes to supplied character. Exact target and configured payload must be retained for replay.",
+      "authority_boundary": "Distinguish provisional/preview allocation from admitted output and preserve exact selected payload and destination. Failure/retry behavior, NPC custody and durable save/publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          803,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          817,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_recipe_preview_cleanup",
+      "path": "src/classes/drannak.c",
+      "symbol": "void random_recipe",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Random recipe selection obtains provisional reward template, rejects generic random equipment prototypes or uses template to create scroll on victim, then extracts template. Template is not issued item; scroll is distinct output.",
+      "authority_boundary": "Distinguish provisional/preview allocation from admitted output and preserve exact selected payload and destination. Failure/retry behavior, NPC custody and durable save/publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          851,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          855,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_zone_item_selection",
+      "path": "src/classes/drannak.c",
+      "symbol": "P_obj random_zone_item",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates selected zone prototype; rejects potion by extraction, falls back to random equipment on missing/rejected object, and edits secret/invisible/norepair/nodrop flags before returning provisional output. Caller publication determines admission.",
+      "authority_boundary": "Distinguish provisional/preview allocation from admitted output and preserve exact selected payload and destination. Failure/retry behavior, NPC custody and durable save/publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          865,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          869,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.christmas_npc_output",
+      "path": "src/classes/drannak.c",
+      "symbol": "void christmas_proc",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After checked NPC allocation gives unchecked prototype400217 allocation to NPC then places NPC in caster room. Output identity and NPC lifetime/admission must be coordinated; item allocation alone does not prove publication.",
+      "authority_boundary": "Distinguish provisional/preview allocation from admitted output and preserve exact selected payload and destination. Failure/retry behavior, NPC custody and durable save/publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/drannak.c",
+          1632,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/drannak.c",
+          1632,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
