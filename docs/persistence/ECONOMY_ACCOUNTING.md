@@ -45,6 +45,23 @@ changed bytes fail. Policy version, intent digest, resolved-plan digest, lineage
 epoch, and source-event identity are retained. Old receipt dedupe survives
 checkpointing, retention, epoch changes, backup, and restore.
 
+### Replay and publication ownership
+
+The pure plan/codec slice (#476) owns immutable intent, canonical effects and
+operation relationships. It does not own reconstruction of live characters,
+objects or pending save callbacks. Domain integration slices own those obligations;
+#479 owns their quiescent cutover boundary and #480 owns wallet/bank publication.
+
+The coordinator's current publication hold is process-local: fresh
+submit_for_publication calls retain fences until acknowledgement, while replayed
+commands may checkpoint after durable reconciliation. This is an existing tested
+contract, not permission to discard unresolved domain obligations. A domain must
+prove authoritative reload ordered after replay, or reconstruct and acknowledge
+its durable publication/save obligation, before activation. Do not globally retain
+all replayed commands without defining who acknowledges each one. Do not reapply
+committed money deltas to replace a lost callback. A pre-replay snapshot remains
+stale after the fence clears and must be discarded or revision-validated.
+
 ## Coin identities and arithmetic
 
 Values are signed integer copper; denominations are copper/silver/gold/platinum

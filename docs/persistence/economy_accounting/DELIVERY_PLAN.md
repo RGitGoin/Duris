@@ -1,15 +1,17 @@
 # Economy accounting phased delivery
 
 Approved direction: 2026-09-21. Parent [#474](https://github.com/Community-Duris/Duris/issues/474).
-Linked phase PRs supersede the previous one-final-PR instruction. The full feature
-contract and all 16 child issues remain in scope; no phase merge authorizes a live
-cutover or production deployment. Request **xander-l** review on each PR.
+Current publication constraint: finish the full #474 contract and submit only one
+final PR for **xander-l** review. Do not open additional component PRs. Preserve
+existing phase PRs and their work; their existence does not establish child-issue
+completion. All 16 child issues remain in scope. No merge, live cutover or production
+deployment is authorized by this delivery plan.
 
 ## Issue-level delivery gate
 
 The latest user direction is to deliver complete child issues. Hold further
 component PR publication until the existing work has an acceptance audit and an
-issue-sized review batch. Preserve the current enrollment WIP and finish running
+issue-sized internal verification batch, consolidated into the final PR. Preserve the current enrollment WIP and finish running
 checks. See [ISSUE_CLOSURE_STATUS.md](ISSUE_CLOSURE_STATUS.md).
 
 ## Current increment: initial SQL wallet/shared-bank enrollment
