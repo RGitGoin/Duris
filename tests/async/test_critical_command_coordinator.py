@@ -405,6 +405,14 @@ int main(int argc, char **argv)
     assert(critical_command_normalize(&recovery));
     assert(critical_command_journal_append(recovery) == critical_command_journal_result::ok);
     critical_command_journal_shutdown();
+    // Failed recovery reconstruction must leave the journal retryable and
+    // must not start an apply worker against incomplete runtime state.
+    apply_state rejected_recovery;
+    auto reject_replay = [](const critical_command &, void *) { return false; };
+    assert(!critical_command_coordinator_init(argv[3], apply, &rejected_recovery, 1,
+                                             reject_replay, nullptr));
+    assert(rejected_recovery.attempts.empty());
+    critical_command_coordinator_shutdown();
     apply_state recovery_state;
     recovery_state.hold_all = true;
     recovery_state.require_replay_observation = true;
