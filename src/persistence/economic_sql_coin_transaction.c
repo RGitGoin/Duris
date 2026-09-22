@@ -1,5 +1,6 @@
 #include "persistence/economic_sql_coin_transaction.h"
 #include "persistence/economic_sql_wallet_internal.h"
+#include "persistence/critical_outbox.h"
 
 using namespace economic_sql_wallet_detail;
 
@@ -17,8 +18,48 @@ struct economic_sql_coin_transaction::implementation
 	coin_transfer_result result;
 	std::string checkpoint;
 	size_t next = 0;
-	bool failed = false, finalized = false;
+	bool failed = false, finalized = false, verified = false;
 #ifndef __NO_MYSQL__
+	coin_transfer_payload bind_command(const critical_command &source)
+	{
+		require(source.schema_version == CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION &&
+				critical_command_envelope_valid(source),
+			EPROTONOSUPPORT);
+		command = source;
+		economic_frozen_intent intent;
+		checked(economic_intent_decode(command.accounting_intent, &intent));
+		require(intent.admission.facts.size() == ECONOMIC_COIN_WALLET_FACT_BYTES, EINVAL);
+		coin_transfer_payload payload;
+		require(coin_transfer_command_decode_payload(command, &payload), EINVAL);
+		children = { payload.source.change, payload.destination.change };
+		std::array<economic_account_key, 2> wallets, banks;
+		const auto &meta = intent.admission.metadata;
+		for (size_t i = 0; i < 2; ++i)
+		{
+			wallets[i] = { meta.lineage, economic_account_kind::wallet,
+				       little_u64(intent.admission.facts, i * 24), 0 };
+			banks[i] = { meta.lineage, economic_account_kind::bank,
+				     little_u64(intent.admission.facts, i * 24 + 8),
+				     little_u64(intent.admission.facts, i * 24 + 16) };
+		}
+		auto admission = command;
+		admission.schema_version = CRITICAL_COMMAND_SCHEMA_VERSION;
+		admission.accounting_intent.clear();
+		std::vector<uint8_t> expected;
+		checked(economic_coin_wallets_intent(admission, meta.epoch, wallets, banks,
+						     &expected));
+		require(expected == command.accounting_intent, EACCES);
+		for (size_t i = 0; i < 2; ++i)
+		{
+			identities[i].intent = intent;
+			identities[i].wallet = wallets[i];
+			identities[i].bank = banks[i];
+			require(currency_command_decode_payload(children[i],
+								&identities[i].payload),
+				EINVAL);
+		}
+		return payload;
+	}
 	void marker()
 	{
 		active(connection, session);
@@ -39,7 +80,7 @@ struct economic_sql_coin_transaction::implementation
 			require(current.mappings[i].revision == authority.mappings[i].revision,
 				ESTALE);
 	}
-	void child_receipt(size_t i)
+	void child_receipt(size_t i, bool fresh = true)
 	{
 		const auto &child = children[i];
 		const auto &after = result.wallets[i];
@@ -57,19 +98,23 @@ struct economic_sql_coin_transaction::implementation
 		count(connection, "currency_ledger", "operation_id=" + id(child.operation_id), 1);
 		count(connection, "currency_ledger",
 		      predicate(ledger(child, identities[i], bank_ids[i], after)), 1);
-		count(connection, "critical_outbox", "operation_id=" + id(child.operation_id), 1);
-		count(connection, "critical_outbox",
-		      predicate({ { "operation_id", id(child.operation_id) },
-				  { "event_index", "0" },
-				  { "destination", "3" },
-				  { "event_type", "1" },
-				  { "payload_version", "1" },
-				  { "payload", hex(encoded) },
-				  { "status", "0" },
-				  { "attempt_count", "0" },
-				  { "last_error_code", "0" } }) +
-			      " AND delivered_at IS NULL AND dead_lettered_at IS NULL AND next_attempt_at<=CURRENT_TIMESTAMP(6)",
-		      1);
+		if (fresh)
+		{
+			count(connection, "critical_outbox",
+			      "operation_id=" + id(child.operation_id), 1);
+			count(connection, "critical_outbox",
+			      predicate({ { "operation_id", id(child.operation_id) },
+					  { "event_index", "0" },
+					  { "destination", "3" },
+					  { "event_type", "1" },
+					  { "payload_version", "1" },
+					  { "payload", hex(encoded) },
+					  { "status", "0" },
+					  { "attempt_count", "0" },
+					  { "last_error_code", "0" } }) +
+				      " AND delivered_at IS NULL AND dead_lettered_at IS NULL AND next_attempt_at<=CURRENT_TIMESTAMP(6)",
+			      1);
+		}
 		count(connection, "economic_accounting_operation",
 		      "operation_id=" + id(child.operation_id), 0);
 	}
@@ -122,6 +167,15 @@ unsigned int economic_sql_coin_transaction::finalize()
 {
 	return ENOTSUP;
 }
+unsigned int economic_sql_coin_transaction::verify_root_completion()
+{
+	return ENOTSUP;
+}
+unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *, const critical_command &,
+							    unsigned int, std::span<const uint8_t>)
+{
+	return ENOTSUP;
+}
 #else
 unsigned int
 economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command &command,
@@ -137,47 +191,22 @@ economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command
 		state->connection = connection;
 		state->session = mysql_thread_id(connection);
 		active(connection, state->session);
-		state->command = command;
-		economic_frozen_intent intent;
-		checked(economic_intent_decode(command.accounting_intent, &intent));
-		require(intent.admission.facts.size() == ECONOMIC_COIN_WALLET_FACT_BYTES, EINVAL);
-		coin_transfer_payload payload;
-		require(coin_transfer_command_decode_payload(command, &payload), EINVAL);
-		state->children = { payload.source.change, payload.destination.change };
-		std::array<economic_account_key, 2> wallets, banks;
+		const auto payload = state->bind_command(command);
+		const auto &intent = state->identities[0].intent;
 		const auto &meta = intent.admission.metadata;
-		for (size_t i = 0; i < 2; ++i)
-		{
-			wallets[i] = { meta.lineage, economic_account_kind::wallet,
-				       little_u64(intent.admission.facts, i * 24), 0 };
-			banks[i] = { meta.lineage, economic_account_kind::bank,
-				     little_u64(intent.admission.facts, i * 24 + 8),
-				     little_u64(intent.admission.facts, i * 24 + 16) };
-		}
-		auto admission = command;
-		admission.schema_version = CRITICAL_COMMAND_SCHEMA_VERSION;
-		admission.accounting_intent.clear();
-		std::vector<uint8_t> expected;
-		checked(economic_coin_wallets_intent(admission, meta.epoch, wallets, banks,
-						     &expected));
-		require(expected == command.accounting_intent, EACCES);
 		inbox(connection, command, true);
 		for (size_t i = 0; i < 2; ++i)
 		{
 			auto &identity = state->identities[i];
-			identity.intent = intent;
-			identity.wallet = wallets[i];
-			identity.bank = banks[i];
-			require(currency_command_decode_payload(state->children[i],
-								&identity.payload),
-				EINVAL);
-			state->bank_ids[i] = mapping_hint(connection, banks[i].authority_id);
+			state->bank_ids[i] =
+				mapping_hint(connection, state->identities[i].bank.authority_id);
 			require(state->bank_ids[i] && state->bank_ids[i] <= UINT32_MAX, EILSEQ);
-			state->requests.push_back(
-				{ wallets[i], PLAYER_LOCATOR, identity.payload.pid });
-			if (!i || !economic_account_key_equal(banks[0], banks[1]))
-				state->requests.push_back(
-					{ banks[i], BANK_LOCATOR, state->bank_ids[i] });
+			state->requests.push_back({ state->identities[i].wallet, PLAYER_LOCATOR,
+						    identity.payload.pid });
+			if (!i || !economic_account_key_equal(state->identities[0].bank,
+							      state->identities[1].bank))
+				state->requests.push_back({ state->identities[i].bank, BANK_LOCATOR,
+							    state->bank_ids[i] });
 		}
 		auto code = economic_sql_lock_authority(connection, meta.lineage, meta.epoch,
 							state->requests, &state->authority);
@@ -185,8 +214,8 @@ economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command
 		economic_coin_wallet_authority authority;
 		for (size_t i = 0; i < 2; ++i)
 			authority[i] = { meta.epoch,
-					 wallets[i],
-					 banks[i],
+					 state->identities[i].wallet,
+					 state->identities[i].bank,
 					 state->children[i].keys[0],
 					 state->children[i].keys[1],
 					 balances(connection, state->identities[i],
@@ -282,6 +311,183 @@ unsigned int economic_sql_coin_transaction::finalize()
 		inbox(state.connection, state.command, true);
 		active(state.connection, state.session);
 		state.finalized = true;
+		state.failed = false;
+		return 0;
+	}
+	catch (const failure &e)
+	{
+		return e.code;
+	}
+	catch (const std::bad_alloc &)
+	{
+		return ENOMEM;
+	}
+}
+unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
+							    const critical_command &command,
+							    unsigned int result_code,
+							    std::span<const uint8_t> result_payload)
+{
+	try
+	{
+		require(connection, EINVAL);
+		const auto session = mysql_thread_id(connection);
+		active(connection, session);
+		require(!result_code, EPROTONOSUPPORT);
+		implementation state;
+		state.connection = connection;
+		const auto payload = state.bind_command(command);
+		inbox(connection, command, false);
+		const auto root_where = "operation_id=" + id(command.operation_id);
+		const auto row =
+			read(connection,
+			     "SELECT canonical_plan FROM economic_accounting_operation WHERE " +
+				     root_where,
+			     1);
+		require(row[0].has_value());
+		economic_accounting_plan plan;
+		checked(economic_plan_decode(
+			std::span<const uint8_t>(reinterpret_cast<const uint8_t *>(row[0]->data()),
+						 row[0]->size()),
+			&plan));
+		economic_coin_wallet_authority authority;
+		for (size_t i = 0; i < 2; ++i)
+		{
+			const auto &identity = state.identities[i];
+			authority[i] = { identity.intent.admission.metadata.epoch,
+					 identity.wallet,
+					 identity.bank,
+					 state.children[i].keys[0],
+					 state.children[i].keys[1],
+					 {} };
+			bool wallet_found = false, bank_found = false;
+			for (const auto &effect : plan.accounts)
+			{
+				if (economic_account_key_equal(effect.key, identity.wallet))
+				{
+					require(!wallet_found);
+					wallet_found = true;
+					authority[i].state.wallet.amount = effect.before;
+					authority[i].state.wallet_revision = effect.before_revision;
+				}
+				if (economic_account_key_equal(effect.key, identity.bank))
+				{
+					require(!bank_found);
+					bank_found = true;
+					authority[i].state.bank.amount = effect.before;
+					authority[i].state.bank_revision = effect.before_revision;
+				}
+			}
+			require(wallet_found && bank_found);
+		}
+		checked(economic_coin_wallets_prepare(
+			command, state.identities[0].intent, authority,
+			currency_revision_policy::sql_legacy, &state.prepared));
+		checked(state.prepared->agrees_with(plan));
+		for (size_t i = 0; i < 2; ++i)
+			state.result.wallets[i] = state.prepared->mutations()[i].after();
+		require(coin_transfer_command_destination_after_source(payload, state.result,
+								       &state.children[1]));
+		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> encoded;
+		require(coin_transfer_command_encode_result(payload, state.result, &encoded));
+		require(result_payload.size() == encoded.size() &&
+			std::equal(encoded.begin(), encoded.end(), result_payload.begin()));
+		const auto revision = std::max({ state.result.wallets[0].wallet_revision,
+						 state.result.wallets[0].bank_revision,
+						 state.result.wallets[1].wallet_revision,
+						 state.result.wallets[1].bank_revision });
+		count(connection, "critical_operation_inbox",
+		      predicate({ { "operation_id", id(command.operation_id) },
+				  { "result_code", "0" },
+				  { "result_payload", hex(encoded) },
+				  { "durable_revision", std::to_string(revision) } }),
+		      1);
+		for (size_t i = 0; i < 2; ++i)
+		{
+			const auto &identity = state.identities[i];
+			state.bank_ids[i] = integer<uint64_t>(
+				read(connection,
+				     "SELECT bank_id FROM currency_ledger WHERE operation_id=" +
+					     id(state.children[i].operation_id),
+				     1)[0]);
+			require(state.bank_ids[i] && state.bank_ids[i] <= UINT32_MAX);
+			// Retired mappings retain native identity; active_native_id, current
+			// epoch and native balances intentionally play no role in replay.
+			for (bool bank : { false, true })
+			{
+				const auto &key = bank ? identity.bank : identity.wallet;
+				count(connection, "economic_account_mapping",
+				      predicate(
+					      { { "mapping_id", std::to_string(key.authority_id) },
+						{ "lineage", id(key.lineage) },
+						{ "account_kind", bank ? "2" : "1" },
+						{ "context_id", std::to_string(key.context_id) },
+						{ "backend_kind", "1" },
+						{ "locator_kind",
+						  std::to_string(bank ? BANK_LOCATOR :
+									PLAYER_LOCATOR) },
+						{ "native_id",
+						  std::to_string(bank ? state.bank_ids[i] :
+									identity.payload.pid) } }),
+				      1);
+			}
+			state.child_receipt(i, false);
+		}
+		count(connection, "currency_ledger", root_where, 0);
+		evidence(connection, command, state.identities[0], 0, &plan, false, true);
+		active(connection, session);
+		return 0;
+	}
+	catch (const failure &e)
+	{
+		return e.code;
+	}
+	catch (const std::bad_alloc &)
+	{
+		return ENOMEM;
+	}
+}
+
+unsigned int economic_sql_coin_transaction::verify_root_completion()
+{
+	auto &state = *state_;
+	if (state.failed || !state.finalized || state.verified)
+		return EPERM;
+	state.failed = true;
+	try
+	{
+		active(state.connection, state.session);
+		execute(state.connection, "RELEASE SAVEPOINT " + state.checkpoint);
+		coin_transfer_payload payload;
+		require(coin_transfer_command_decode_payload(state.command, &payload));
+		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> encoded;
+		require(coin_transfer_command_encode_result(payload, state.result, &encoded));
+		const auto code = verify_retained(state.connection, state.command, 0, encoded);
+		require(!code, code);
+		state.verify_effects();
+		std::array<uint8_t, CRITICAL_OUTBOX_COIN_RECEIPT_BYTES> receipt;
+		std::copy(state.children[0].operation_id.bytes.begin(),
+			  state.children[0].operation_id.bytes.end(), receipt.begin());
+		std::copy(state.children[1].operation_id.bytes.begin(),
+			  state.children[1].operation_id.bytes.end(), receipt.begin() + 16);
+		count(state.connection, "critical_outbox",
+		      "operation_id=" + id(state.command.operation_id), 1);
+		count(state.connection, "critical_outbox",
+		      predicate({ { "operation_id", id(state.command.operation_id) },
+				  { "event_index", "0" },
+				  { "destination",
+				    std::to_string(CRITICAL_OUTBOX_COIN_RECEIPT_DESTINATION) },
+				  { "event_type",
+				    std::to_string(CRITICAL_OUTBOX_COIN_RECEIPT_EVENT) },
+				  { "payload_version", "1" },
+				  { "payload", hex(receipt) },
+				  { "status", "0" },
+				  { "attempt_count", "0" },
+				  { "last_error_code", "0" } }) +
+			      " AND delivered_at IS NULL AND dead_lettered_at IS NULL AND next_attempt_at<=CURRENT_TIMESTAMP(6)",
+		      1);
+		active(state.connection, state.session);
+		state.verified = true;
 		state.failed = false;
 		return 0;
 	}

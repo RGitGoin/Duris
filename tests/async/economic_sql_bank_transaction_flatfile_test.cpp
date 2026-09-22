@@ -37,6 +37,8 @@ int main()
 	assert(economic_sql_coin_transaction::prepare(reinterpret_cast<MYSQL *>(1), command,
 						      &coin) == ENOTSUP &&
 	       !coin);
+	assert(economic_sql_coin_transaction::verify_retained(reinterpret_cast<MYSQL *>(1), command,
+							      0, {}) == ENOTSUP);
 	command.accounting_intent.back() ^= 1;
 	assert(!economic_sql_bank_command_supported(command));
 }

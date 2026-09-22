@@ -1,3 +1,4 @@
+#include "persistence/critical_outbox.h"
 #include "persistence/economic_sql_coin_transaction.h"
 #include "persistence/economic_sql_bank_transaction.h"
 #include "persistence/critical_command_repository.h"
@@ -293,7 +294,7 @@ int main()
 						    mysql_insert_id(connection), 0 };
 	// Typed compound component under a fixture root owner. These cases do not
 	// enable dispatcher admission or claim retained-root replay qualification.
-	for (unsigned int mode = 0; mode < 9; ++mode)
+	for (unsigned int mode = 0; mode < 12; ++mode)
 	{
 		const auto old_bank_revision =
 			scalar(connection, "SELECT bank_revision FROM account_banks WHERE id=" +
@@ -422,7 +423,7 @@ int main()
 				       coin_insert_error == connection);
 				coin_insert_error = nullptr;
 			}
-			if (mode && mode != 8)
+			if (mode && mode < 8)
 				assert(finalized != 0);
 			else
 			{
@@ -453,6 +454,162 @@ int main()
 				assert(scalar(observer,
 					      "SELECT copper FROM player_data WHERE pid=" +
 						      std::to_string(pid)) == 1000);
+				std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> root_result;
+				assert(coin_transfer_command_encode_result(
+					endpoints, component->result(), &root_result));
+				const auto &first_result = component->result().wallets[0];
+				const auto &last_result = component->result().wallets[1];
+				const auto root_revision = std::max(
+					{ first_result.wallet_revision, first_result.bank_revision,
+					  last_result.wallet_revision, last_result.bank_revision });
+				execute(connection,
+					"UPDATE critical_operation_inbox SET status=1,result_code=0,durable_revision=" +
+						std::to_string(root_revision) + ",result_payload=" +
+						binary(root_result) + " WHERE operation_id=" +
+						literal(root.operation_id));
+				std::array<uint8_t, CRITICAL_OUTBOX_COIN_RECEIPT_BYTES> receipt;
+				const auto first_id = component->child_command(0).operation_id;
+				const auto last_id = component->child_command(1).operation_id;
+				std::copy(first_id.bytes.begin(), first_id.bytes.end(),
+					  receipt.begin());
+				std::copy(last_id.bytes.begin(), last_id.bytes.end(),
+					  receipt.begin() + 16);
+				if (mode != 9)
+					assert(critical_command_repository_insert_outbox_event(
+						connection, root.operation_id, 0,
+						CRITICAL_OUTBOX_COIN_RECEIPT_DESTINATION,
+						CRITICAL_OUTBOX_COIN_RECEIPT_EVENT, 1,
+						receipt.data(), receipt.size()));
+				if (mode == 10)
+					execute(connection,
+						"UPDATE critical_operation_inbox SET result_payload='bad' WHERE operation_id=" +
+							literal(root.operation_id));
+				if (mode == 11)
+					execute(connection,
+						"UPDATE account_banks SET bank_revision=bank_revision+1 WHERE id=" +
+							std::to_string(bank_id));
+				const auto completion = component->verify_root_completion();
+				assert(mode >= 9 ? completion != 0 : completion == 0);
+				assert(component->verify_root_completion() == EPERM);
+				if (mode < 9)
+					assert(economic_sql_coin_transaction::verify_retained(
+						       connection, root, 0, root_result) == 0);
+				if (mode == 0)
+				{
+					execute(connection, "COMMIT");
+					// A fresh connection verifies a genuinely committed root.
+					execute(observer, "START TRANSACTION");
+					assert(economic_sql_coin_transaction::verify_retained(
+						       observer, root, 0, root_result) == 0);
+					execute(observer,
+						"UPDATE economic_lineage_state SET active_epoch=NULL,revision=revision+1 WHERE lineage=" +
+							literal(lineage));
+					execute(observer,
+						"UPDATE economic_account_mapping SET active_native_id=NULL,retiring_operation_id=" +
+							literal(bootstrap) +
+							",revision=revision+1 WHERE lineage=" +
+							literal(lineage));
+					execute(observer,
+						"UPDATE player_data SET copper=777,wallet_revision=wallet_revision+10 WHERE pid=" +
+							std::to_string(pid));
+					execute(observer,
+						"UPDATE account_banks SET bank_revision=bank_revision+10 WHERE id=" +
+							std::to_string(bank_id));
+					const auto ids = literal(root.operation_id) + "," +
+							 literal(first_id) + "," + literal(last_id);
+					execute(observer,
+						"DELETE FROM critical_outbox WHERE operation_id IN (" +
+							ids + ")");
+					assert(economic_sql_coin_transaction::verify_retained(
+						       observer, root, 0, root_result) == 0);
+					auto changed = root;
+					++changed.accepted_at_usec;
+					assert(economic_sql_coin_transaction::verify_retained(
+						       observer, changed, 0, root_result) != 0);
+					auto wrong_result = root_result;
+					wrong_result[0] ^= 1;
+					assert(economic_sql_coin_transaction::verify_retained(
+						       observer, root, 0, wrong_result) != 0);
+					assert(economic_sql_coin_transaction::verify_retained(
+						       observer, root, ENOSPC, root_result) != 0);
+					const std::vector<std::string> corruptions = {
+						"UPDATE economic_accounting_child SET receipt_operation_id=NULL WHERE operation_id=" +
+							literal(root.operation_id),
+						"UPDATE economic_accounting_operation SET child_count=child_count+1 WHERE operation_id=" +
+							literal(root.operation_id),
+						"UPDATE economic_accounting_account_effect SET before_copper=before_copper+1 WHERE operation_id=" +
+							literal(root.operation_id),
+						"UPDATE economic_accounting_coin_posting SET copper_value=copper_value+1 WHERE operation_id=" +
+							literal(root.operation_id),
+						"UPDATE critical_operation_inbox SET durable_revision=durable_revision+1 WHERE operation_id=" +
+							literal(root.operation_id),
+						"UPDATE critical_operation_inbox SET result_payload='bad' WHERE operation_id=" +
+							literal(first_id),
+						"UPDATE currency_ledger SET wallet_after_copper=wallet_after_copper+1 WHERE operation_id=" +
+							literal(last_id)
+					};
+					for (const auto &sql : corruptions)
+					{
+						execute(observer, "SAVEPOINT coin_retained_tamper");
+						execute(observer, sql);
+						assert(economic_sql_coin_transaction::verify_retained(
+							       observer, root, 0, root_result) !=
+						       0);
+						execute(observer,
+							"ROLLBACK TO SAVEPOINT coin_retained_tamper");
+					}
+					execute(observer, "ROLLBACK");
+					// Remove this isolated committed fixture and restore the native
+					// starting state before the maintained ATM regression matrix.
+					execute(connection, "START TRANSACTION");
+					for (const char *table :
+					     { "economic_accounting_child",
+					       "economic_accounting_coin_posting",
+					       "economic_accounting_account_effect",
+					       "economic_accounting_operation" })
+						execute(connection,
+							std::string("DELETE FROM ") + table +
+								" WHERE operation_id=" +
+								literal(root.operation_id));
+					for (const char *table :
+					     { "critical_outbox", "currency_ledger",
+					       "critical_operation_inbox" })
+						execute(connection,
+							std::string("DELETE FROM ") + table +
+								" WHERE operation_id IN (" + ids +
+								")");
+					for (size_t i = 0; i < 2; ++i)
+					{
+						const auto &end = *ends[i];
+						execute(connection,
+							"UPDATE player_data SET copper=" +
+								std::to_string(end.before[0]) +
+								",silver=" +
+								std::to_string(end.before[1]) +
+								",gold=" +
+								std::to_string(end.before[2]) +
+								",platinum=" +
+								std::to_string(end.before[3]) +
+								",wallet_revision=" +
+								std::to_string(
+									end.change
+										.expected_revisions[0]
+										.revision) +
+								" WHERE pid=" +
+								std::to_string(pids[i]));
+						execute(connection,
+							"DELETE FROM currency_wallet_baseline WHERE pid=" +
+								std::to_string(pids[i]));
+					}
+					execute(connection,
+						"UPDATE account_banks SET bank_revision=" +
+							std::to_string(old_bank_revision) +
+							" WHERE id=" + std::to_string(bank_id));
+					execute(connection,
+						"DELETE FROM currency_bank_baseline WHERE bank_id=" +
+							std::to_string(bank_id));
+					execute(connection, "COMMIT");
+				}
 			}
 		}
 		execute(connection, "ROLLBACK");

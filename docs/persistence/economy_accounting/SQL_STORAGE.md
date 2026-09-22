@@ -120,7 +120,7 @@ with a plain INSERT before its native effect, and finalizes each child receipt a
 outbox before the root commit. On endpoint failure it rolls back the compound
 scope. Reuse this owner and its shared inbox identity namespace for accounting
 integration. The wallet-to-wallet component now implements typed evidence
-validation/finalization; dispatcher completion and retained replay remain missing. The child-link table's unique key
+validation/finalization; dispatcher integration and durable rejection handling remain missing. The child-link table's unique key
 alone is still not an identity reservation mechanism. Flat-file reservations
 require their own equivalent durable implementation.
 
@@ -181,8 +181,8 @@ both identify the same bank. Divergent shared snapshots, mapping aliases, stale
 fences and altered intent are rejected without replacing the prepared output.
 
 This is a pure typed adapter, not a storage capability. Coin runtime admission
-remains refused until the SQL component below is connected to root completion
-and retained replay. Pile custody
+remains refused until the SQL component below is connected to the dispatcher
+with durable rejection handling. Pile custody
 adapters and flat-file compound reservations remain separate incomplete work.
 The adapter test runs both SQL and client-free compilation modes with ASan/UBSan;
 its arithmetic parity does not prove backend storage parity.
@@ -205,9 +205,8 @@ the caller must roll back the borrowed transaction. The component never commits,
 retries, inserts inbox rows, or publishes. SQL wallet helpers are internal shared
 implementation, not a public arbitrary-plan append API.
 
-Remaining before runtime admission: root completion and retained replay
-verification, durable business rejection handling, dispatcher integration and
-end-to-end fault qualification. The component alone does not close #477 or #474.
+Remaining before runtime admission: durable business rejection handling,
+dispatcher integration and end-to-end fault qualification. The component alone does not close #477 or #474.
 `--suite wallet` on the disposable local runner selects the maintained bank
 harness plus the new component cases; the default accounting suite includes it.
 
@@ -218,3 +217,31 @@ child-evidence failures) and the maintained bank native/replay/rejection/
 retirement/fault suite. Each coin case uses a fixture root owner and rolls back;
 it does not qualify runtime admission or committed coin replay. Client-free bank
 and coin refusal passed, including a non-null invalid connection sentinel.
+
+### Retained coin receipts and final root verification
+
+The coin component now provides `verify_root_completion`, required after the
+owner completes the root inbox and outbox and immediately before commit. It
+checks the retained proof, live authority/effects, the exact source/destination
+child-ID publication receipt, and the original transaction marker. A failed
+check poisons the component; a verified instance cannot be verified again.
+
+`verify_retained` verifies successful receipts in a caller-owned active SQL
+transaction with reconnect disabled. It reconstructs both native prepared
+mutations from the canonical plan's original witnesses, rechecks frozen intent,
+compares every canonical plan field and full result bytes, reproduces the
+shared-bank child revision adjustment, and verifies root/child inboxes, ledgers,
+retained native mappings, effects, postings, and child receipt links. It does
+not consult current balances, the active epoch, active mapping flags, or outbox
+rows that may already have been consumed. Nonzero business rejections remain
+unsupported. These component APIs do not yet enable runtime dispatcher admission.
+
+Verification on 2026-09-22: the expanded 12-case native component matrix passed
+on private MariaDB 10.11.14 with ASan/UBSan, along with the maintained bank suite.
+A fixture-owned successful root was committed and verified from another
+connection after retirement, changed balances/revisions and outbox removal.
+Seven retained-row corruptions, changed command/result inputs, and unsupported
+rejection codes were refused. Missing root outbox, corrupted root result and
+post-finalize balance drift failed final root verification. Client-free refusal
+and SQL syntax checks passed. This proves the component verifier, not production
+coin dispatcher replay or MySQL-engine qualification.
