@@ -1609,3 +1609,16 @@ All current quest.c lexical matches mapped, not semantic completeness.
 Draft validation passed13 fixtures:456 routes,2756 raw matches,2698 unique
 coordinates,1546 mapped,43 reviewed declarations,1109 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Encounter-generated loot
+
+Sixteen coordinates classified across randomized magical/equipment allocation and
+NPC publication. Magical output can be a money object, requiring exact generated
+coin payload preservation. Random descriptions/stats and conversion must not reroll
+on replay. Equipment extra_flags uses logical negation in its existing expression;
+recorded for integration review without changing behavior. World-generation owner
+is #486. Allocation and CheckEqWorthUsing are distinct from economic admission.
+
+Draft validation passed13 fixtures:459 routes,2756 raw matches,2698 unique
+coordinates,1562 mapped,43 reviewed declarations,1093 unclassified.
+No gameplay changes; release readiness remains false.

@@ -21595,6 +21595,176 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.encounter_loot_publication",
+      "path": "src/mob/encounters.c",
+      "symbol": "int randobjs_to_mob(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Publishes nonnull ran_obj output to NPC then invokes CheckEqWorthUsing.",
+      "authority_boundary": "Bind encounter/NPC lifetime and generated item UID once; equipment selection is downstream, not another admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/encounters.c",
+          298,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.encounter_magical_generation",
+      "path": "src/mob/encounters.c",
+      "symbol": "P_obj ran_magical(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates prototype1295 then randomizes type, descriptions and values into light, scroll, treasure, potion, container, drink, food, jewelry or money; returns provisional object.",
+      "authority_boundary": "Preserve generated payload through replay, including money value3/value2 plus inherited fields. Creation can issue currency indirectly via money object. random_gems/random_jewelry mutations and eventual publication need qualification; allocation alone is not admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/encounters.c",
+          355,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.encounter_equipment_generation",
+      "path": "src/mob/encounters.c",
+      "symbol": "P_obj ran_obj(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Checked prototype allocations by wear slot customize descriptions, random affects and weapon dice; HOLD delegates ran_magical. Final flags expression and convertObj run before returning object.",
+      "authority_boundary": "Bind generated payload to one admission rather than rerolling recovery. Existing extra_flags expression uses logical negation rather than bitwise complement; preserve observed result pending explicit review. Helper conversion and caller publication remain separate boundaries.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/encounters.c",
+          531,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          560,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          574,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          591,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          608,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          624,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          641,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          657,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          671,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          693,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          705,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          725,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          740,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/encounters.c",
+          768,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
