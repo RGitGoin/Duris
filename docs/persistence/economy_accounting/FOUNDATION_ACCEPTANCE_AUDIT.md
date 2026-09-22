@@ -2969,3 +2969,14 @@ and UID-bearing asynchronous admission differ. Committed stale publication is
 not successful native delivery; named artifact purge retains artifact registry.
 NPC teardown remains an indirect asset boundary. No runtime changes or tests.
 Draft validation passed 13 fixtures: 800 routes, 2756 raw matches, 2698 unique coordinates, 2437 mapped, 43 reviewed nonwriters, 218 unclassified. Release readiness remains false.
+
+
+## Administrative storage lifecycle
+
+Seventeen coordinates grouped across establishment, destruction, child removal
+and native completion. Flatfile removal advances through separately submitted
+children before root retirement; interrupted progress is not all-or-nothing.
+Other modes publish new storage before writeSavedItem or mutate directly.
+Backend parity and postcommit publication recovery remain qualification gaps.
+No runtime changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 807 routes, 2756 raw matches, 2698 unique coordinates, 2454 mapped, 43 reviewed nonwriters, 201 unclassified.

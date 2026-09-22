@@ -36419,6 +36419,301 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "wizard.storage_completion",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void flat_storage_completion",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "On refused establish discards provisional root; after commit publishes root, moves committed child into room then submits next child, or extracts root. Stale UID/topology returns without publication; partial child sequence may stop busy. Each child is separate, not one atomic removal bundle.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10401,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10468,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10419,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10447,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10448,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_destroy_submit",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "bool submit_flat_storage_destroy",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Validates room storage and action, submits root to destruction owner for full delete or empty-root removal.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10480,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_remove_submit",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "bool submit_flat_storage_remove_next",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Submits first contained child as same-room owner topology change, then empty root destruction when no children remain. Completion drives sequence.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10497,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_establish_submit",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "bool submit_flat_storage_establish",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Requires provisional storage UID and valid room; submits same-room owner operator-repair establishment before publication.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10512,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_new",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_storage",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates requested storage/container, clears take/artifact flags and changes container type. Flatfile mode submits establishment and cleans refusal; other modes publish then writeSavedItem. Invalid type and fallback cleanup are provisional destruction.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10536,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10546,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10565,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10585,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10572,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_delete",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_storage",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Non-flatfile branch extracts storage with contents; flatfile branch submits destruction earlier. Qualify backend parity and graph retirement.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10615,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.storage_remove",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_storage",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Non-flatfile branch releases every child into room then extracts empty storage with false flag; flatfile branch uses sequential transactions. Qualify same-owner graph transitions and interruption recovery.",
+      "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          10652,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10645,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          10646,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
