@@ -17950,6 +17950,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.good_evil_sword_poof",
+      "path": "src/specs/specs.object.c",
+      "symbol": "void good_evil_poofSword(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Sword rejection helper directly subtracts100 hit points then extracts the artifact sword.",
+      "authority_boundary": "Exact sword UID and artifact retirement must be retained; source code delegates custody cleanup to extraction. Direct hit-point subtraction is separate from proven death/save processing.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          3737,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.holy_weapon_alignment_jump",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int holy_weapon(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic alignment rejection removes sword from nontrusted player, rehomes it to first matching-racewar player in room or destroys it when none exists, then bolts former owner.",
+      "authority_boundary": "Rehome or retirement deliberately precedes potentially lethal bolt. Preserve selected recipient, artifact UID and no-recipient destruction outcome; do not regress to detached sword during death. NPC and trusted holders are exempt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          5196,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5205,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5224,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5235,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

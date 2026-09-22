@@ -1141,3 +1141,14 @@ Die roll moves the existing equipped die into the room without wager or payout.
 Draft validator passed 13 fixtures: 374 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,309 mapped, 43 reviewed declarations and 1,346 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Artifact sword rejection
+
+Five sites classified. Good/evil sword poof subtracts hit points before extraction.
+Holy weapon alignment rejection rehomes to the first matching player or retires
+with no recipient, before its potentially lethal bolt. Preserve this ordering,
+artifact identity and exemptions; detached-item death must not be reintroduced.
+
+Draft validator passed 13 fixtures: 376 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,314 mapped, 43 reviewed declarations and 1,341 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
