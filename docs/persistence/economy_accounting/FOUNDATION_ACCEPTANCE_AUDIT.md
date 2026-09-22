@@ -2892,3 +2892,14 @@ pair blocks retry. These are qualification findings, not additional bug fixes.
 Indirect building NPC extraction remains a semantic census consideration.
 No gameplay changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 752 routes, 2756 raw matches, 2698 unique coordinates, 2331 mapped, 43 reviewed nonwriters, 324 unclassified.
+
+
+## Remaining small scripted item routes
+
+Classified tree detachment, soul quest issuance, mallet and paired quest sinks,
+race-restoration unequip, corpse relocation, forced leggings equip and zombie
+generator error retirement. Tree detachment has no destination/extraction at
+the call; callbacks and partially published quest entities require qualification.
+Incidental failures are recorded, not expanded into unrelated implementation.
+No runtime changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 760 routes, 2756 raw matches, 2698 unique coordinates, 2345 mapped, 43 reviewed nonwriters, 310 unclassified.

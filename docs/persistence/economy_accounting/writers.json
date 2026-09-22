@@ -34449,6 +34449,316 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "script.eth2_tree_obj_assets",
+      "path": "src/specs/specs.eth2.c",
+      "symbol": "eth2_tree_obj",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Detaches matching tree object from room after spawning and engaging replacement NPC. No extraction or new object destination at this call; detached-object custody must be resolved rather than assuming destruction.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.eth2.c",
+          289,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.akckx_assets",
+      "path": "src/specs/specs.hoa.c",
+      "symbol": "akckx",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death trigger creates quest item and soul NPC, publishes NPC then gives item. Item allocation precedes NPC failure check; missing NPC can leave provisional item, while missing item leaves published NPC.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.hoa.c",
+          281,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.hoa.c",
+          297,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.ravenloft_bell_assets",
+      "path": "src/specs/specs.ravenloft.c",
+      "symbol": "ravenloft_bell",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Consumes wielded mallet after finding target swordcase, then unlocks and changes description of existing case. Quest state change and item sink require coherent accounting.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.ravenloft.c",
+          123,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.event_shabo_racechange_assets",
+      "path": "src/specs/specs.shabo.c",
+      "symbol": "event_shabo_racechange",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Race restoration invokes each equipped object remove callback then moves equipment into same character inventory. Callback side effects and slot validity are part of qualification; no issuance.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.shabo.c",
+          851,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.shaboath_necromancy_tower_assets",
+      "path": "src/specs/specs.shabo.c",
+      "symbol": "shaboath_necromancy_tower",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Moves existing corpse roots from tower room to necromancer boss room while retaining next pointer. Contents and identity should remain attached; no new corpse creation.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.shabo.c",
+          976,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.shabo.c",
+          980,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.skull_leggings_assets",
+      "path": "src/specs/specs.snogres.c",
+      "symbol": "skull_leggings",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Periodic eligible-race effect removes existing leg equipment after callback and equips carried leggings. Both items stay with same character; qualify callback effects and partial slot changes.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.snogres.c",
+          444,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.snogres.c",
+          446,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.snogres.c",
+          447,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.zombies_game_assets",
+      "path": "src/specs/specs.venthix.c",
+      "symbol": "zombies_game",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Active periodic game error destroys room generator when zombie state lookup fails. Existing world object sink, not merely deletion of an auxiliary game-state record.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.venthix.c",
+          668,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "script.drowcrusher_assets",
+      "path": "src/specs/specs.zalrix.c",
+      "symbol": "drowcrusher",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Quest hit removes wielded hammer and extracts both hammer and selected room stone before later character movement. Qualify paired sink and quest transition as one behavior.",
+      "authority_boundary": "Qualify existing/new object identity, owner transitions, helper callbacks and normal/refusal/partial completion behavior. Native movement or extraction is not evidence of durable ledger commit or save acknowledgement.",
+      "current_support": "Existing scripted asset behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.zalrix.c",
+          99,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.zalrix.c",
+          100,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.zalrix.c",
+          101,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
