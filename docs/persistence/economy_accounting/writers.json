@@ -22975,6 +22975,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.thrown_potion_disposition",
+      "path": "src/cmd/actnew.c",
+      "symbol": "bool throw_potion(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Throw potion slip may detach/extract or move potion to room. Normal path unequips held potion before spell/no-magic/line-of-sight handling; actor disappearance extracts early. Final consumption is skipped on successful NPC remix, retaining same potion rather than allocating another.",
+      "authority_boundary": "Preserve potion UID and ordered spell payload/effects. Too-complex spell returns after unequip without local reattachment; no-magic or blocked sight can still reach consumption/remix. Successful remix has no local re-equip or new allocation. Qualify retained/detached custody, actor death and exactly-once spell/consumption recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          3812,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3813,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3819,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3846,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3847,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3848,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3881,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3944,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3981,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3985,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -1729,3 +1729,15 @@ partial effects and save recovery remain qualification work.
 Draft validation passed13 fixtures:485 routes,2756 raw matches,2698 unique
 coordinates,1648 mapped,43 reviewed declarations,1007 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Thrown potion disposition
+
+Ten coordinates classified. Slips may retire or drop potion; normal throw unequips
+before effect/refusal checks. Actor disappearance consumes early; successful NPC
+remix retains same object without allocation. Too-complex spell can return after
+unequip; no-magic/blocked sight still reaches final consumption/remix. Retained
+custody and ordered effects/save/replay remain unqualified.
+
+Draft validation passed13 fixtures:486 routes,2756 raw matches,2698 unique
+coordinates,1658 mapped,43 reviewed declarations,997 unclassified.
+No gameplay changes; release readiness remains false.
