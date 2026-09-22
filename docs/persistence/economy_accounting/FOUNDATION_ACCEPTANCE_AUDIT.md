@@ -1543,3 +1543,16 @@ which does not establish semantic or runtime completeness.
 Draft validation passed13 fixtures:440 routes,2756 raw matches,2698 unique
 coordinates,1492 mapped,43 reviewed declarations,1163 unclassified.
 No runtime changes; release readiness remains false.
+
+## Ranged gathering, throwing and reloading
+
+Fifteen coordinates classified. Gather transfers PID-tagged projectiles into a
+quiver with capacity checked after insertion; temporary unequip/reequip is not
+issuance. Non-returning throws transfer existing weapon to selected room. Reload
+converts stack quantity to weapon payload, retiring exhausted ammo; partial-stack
+payload mutation is documented despite lacking its own lexical extraction site.
+Exact quantities, UID custody, combat ordering and durable save remain unqualified.
+
+Draft validation passed13 fixtures:443 routes,2756 raw matches,2698 unique
+coordinates,1507 mapped,43 reviewed declarations,1148 unclassified.
+No gameplay changes; release readiness remains false.

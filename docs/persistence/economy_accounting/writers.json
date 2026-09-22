@@ -20845,6 +20845,171 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.gather_projectiles",
+      "path": "src/combat/range.c",
+      "symbol": "void do_gather(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "PC-only gather temporarily unequips first worn quiver, reequips on invalid corpse or completion, moves matching PID-tagged missiles from room or corpse into quiver and increments value3. Capacity check occurs after insertion.",
+      "authority_boundary": "Preserve projectile UID, source corpse/room and quiver count/weight. Full quiver does not receive a pre-insertion capacity test here; retain observed semantics pending explicit fix. Unequip/reequip refusals are not economic issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/range.c",
+          83,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          115,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          121,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          138,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          140,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          142,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          156,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.thrown_weapon_drop",
+      "path": "src/combat/range.c",
+      "symbol": "void do_throw(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-returning thrown weapon moves from one of four weapon slots through inventory, then into target_room or current room if target_room is -1. Returning weapon bypasses these mutations.",
+      "authority_boundary": "Retain weapon UID and selected destination; combat effects precede this transfer. Qualify actor/object lifetime, recovery and save independently from narration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/range.c",
+          1438,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          1440,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          1442,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          1444,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          1446,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          1447,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.reload_ammunition",
+      "path": "src/combat/range.c",
+      "symbol": "void do_load_weapon(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After held-fireweapon and ammunition-type compatibility checks, empty ammo is extracted; ammo quantity at most required capacity is added to weapon then ammo object extracted. Larger stacks transfer required quantity and retain reduced ammo object.",
+      "authority_boundary": "Preserve value2 ammunition conservation and weapon capacity value1, including payload-only partial-stack branch outside lexical sites. Consumption is not unrelated destruction; atomic payload/save and invalid signed quantities require qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/range.c",
+          1523,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/range.c",
+          1529,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
