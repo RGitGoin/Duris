@@ -2679,3 +2679,14 @@ remain unqualified. No incidental price or exemption changes.
 Draft validation passed 13 fixtures: 700 routes, 2756 raw matches, 2698 unique
 coordinates, 2200 mapped, 43 reviewed nonwriters, 455 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Outpost rubble and evacuation
+
+Five coordinates classified as repair rubble retirement and death rubble
+admission with existing gate-room item evacuation. Preserve building identity
+and lifecycle ordering. Repeated gate_room loop does not prove all-interior
+coverage; ownership-before-refusal and partial effects need qualification.
+
+Draft validation passed 13 fixtures: 702 routes, 2756 raw matches, 2698 unique
+coordinates, 2205 mapped, 43 reviewed nonwriters, 450 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

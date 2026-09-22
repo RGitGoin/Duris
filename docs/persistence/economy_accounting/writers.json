@@ -32232,6 +32232,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.outpost_repair_rubble",
+      "path": "src/world/outposts.c",
+      "symbol": "void do_outpost",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Repair updates guild ownership before scheduled-repair refusal check, places building mob then destroys rubble and schedules repair. Rubble retirement is coupled to building lifecycle, not generic provisional cleanup.",
+      "authority_boundary": "Couple rubble admission/retirement to building identity and retained contents custody. Preserve native ownership and repair ordering; qualify allocation refusal, partial evacuation, helper persistence, save acknowledgement and replay. Do not mistake moved existing objects for issuance or claim all interior rooms are covered.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/outposts.c",
+          692,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.outpost_death_assets",
+      "path": "src/world/outposts.c",
+      "symbol": "void outpost_death",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death allocates rubble without local null check, stamps building ID and publishes before resetting outpost HP/ownership. Existing gate-room objects move to exterior; loop repeats gate_room rather than indexing distinct rooms. Character evacuation, outpost removal and boon completion are adjacent indirect effects.",
+      "authority_boundary": "Couple rubble admission/retirement to building identity and retained contents custody. Preserve native ownership and repair ordering; qualify allocation refusal, partial evacuation, helper persistence, save acknowledgement and replay. Do not mistake moved existing objects for issuance or claim all interior rooms are covered.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/outposts.c",
+          1037,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/outposts.c",
+          1039,
+          "item_publication"
+        ],
+        [
+          "src/world/outposts.c",
+          1066,
+          "item_publication"
+        ],
+        [
+          "src/world/outposts.c",
+          1067,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
