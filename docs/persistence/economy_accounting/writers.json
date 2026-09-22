@@ -31722,6 +31722,156 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.random_fountains",
+      "path": "src/item/randomeq.c",
+      "symbol": "void create_randoms",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Compile-conditional boot path allocates fountain prototype 70 and publishes to selected map room. Search breaks after retry threshold without a local successful-room assertion; build reachability and destination refusal require qualification.",
+      "authority_boundary": "Allocation is provisional until accepted native placement. Bind caller operation and chosen random outcome to admission once, preserve existing random distributions and semantic fields, and qualify rejection cleanup, partial publication, save acknowledgement and replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randomeq.c",
+          503,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/randomeq.c",
+          511,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_material_factory",
+      "path": "src/item/randomeq.c",
+      "symbol": "P_obj create_material(int index)",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Returns a provisional material chosen by clamped quality tier and random family. Caller owns admission. Character overload also changes alchemist spell-bind state before factory call; do not count returned allocation as issuance.",
+      "authority_boundary": "Allocation is provisional until accepted native placement. Bind caller operation and chosen random outcome to admission once, preserve existing random distributions and semantic fields, and qualify rejection cleanup, partial publication, save acknowledgement and replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randomeq.c",
+          582,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_stone_factory",
+      "path": "src/item/randomeq.c",
+      "symbol": "P_obj create_stones",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Returns a provisional stone selected across encrust vnum range; no local publication. Caller decides admission or disposal.",
+      "authority_boundary": "Allocation is provisional until accepted native placement. Bind caller operation and chosen random outcome to admission once, preserve existing random distributions and semantic fields, and qualify rejection cleanup, partial publication, save acknowledgement and replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randomeq.c",
+          604,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_equipment_factory",
+      "path": "src/item/randomeq.c",
+      "symbol": "P_obj create_random_eq_new",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Selects weapon or armor blank from slot choice, rejects failed allocation, customizes randomized equipment and returns it without local placement. Stable selected semantics must survive accounting retry; caller publication is the admission boundary.",
+      "authority_boundary": "Allocation is provisional until accepted native placement. Bind caller operation and chosen random outcome to admission once, preserve existing random distributions and semantic fields, and qualify rejection cleanup, partial publication, save acknowledgement and replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randomeq.c",
+          839,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/randomeq.c",
+          843,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

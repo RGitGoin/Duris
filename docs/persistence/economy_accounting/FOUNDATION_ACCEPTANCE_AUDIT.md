@@ -2634,3 +2634,14 @@ No incidental fix; compound saves and replay still need qualification.
 Draft validation passed 13 fixtures: 687 routes, 2756 raw matches, 2698 unique
 coordinates, 2176 mapped, 43 reviewed nonwriters, 479 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Random equipment factories and fountains
+
+Six coordinates classified into conditional fountain publication and material,
+stone and equipment factories. Factory returns are provisional allocations,
+not admission; caller placement and chosen random semantics need qualification.
+Fountain retry exhaustion and build reachability remain explicit concerns.
+
+Draft validation passed 13 fixtures: 691 routes, 2756 raw matches, 2698 unique
+coordinates, 2182 mapped, 43 reviewed nonwriters, 473 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
