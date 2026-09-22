@@ -18985,6 +18985,51 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.moonstone_replacement",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_moonstone(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Player moonstone cast retires first prototype419 in prior affect room when found, updates or creates room-binding affect, then allocates new PID-bound stone with level-scaled decay in current room.",
+      "authority_boundary": "Prior lookup is prototype-based without explicit owner-PID check here. Retirement and affect update precede allocation failure; preserve exact old/new identities and distinguish replacement issuance from movement. Existing affect duration is not refreshed in this branch.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          21431,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          21446,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          21468,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

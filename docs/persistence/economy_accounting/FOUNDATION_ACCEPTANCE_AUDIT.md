@@ -1312,3 +1312,13 @@ semantics, recording fresh admission separately from narration and placement.
 Draft validator passed 13 fixtures: 399 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,366 mapped, 43 reviewed declarations and 1,289 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Moonstone replacement
+
+Three coordinates classified. Prototype lookup retires prior stone without local
+PID check, then affect binding changes before new allocation. Allocation failure
+can leave prior retirement/binding changes; existing affect duration is unchanged.
+
+Draft validator passed 13 fixtures: 400 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,369 mapped, 43 reviewed declarations and 1,286 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
