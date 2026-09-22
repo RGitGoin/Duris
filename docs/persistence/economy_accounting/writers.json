@@ -31107,6 +31107,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.slime_lake_death_admission",
+      "path": "src/specs/specs.juiblex.c",
+      "symbol": "int slime_lake",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death allocates cleansed-lake and slime-sheen objects before publishing both in the death room. Second allocation failure returns without local cleanup of the first provisional object. Sequential room placements are not an atomic admission; returns false after success.",
+      "authority_boundary": "Bind death-event identity to admitted objects; qualify allocation failure, partial publication, caller/default death continuation and indirect custody effects. Native publication must be distinguished from durable commit/save acknowledgement and restart replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.juiblex.c",
+          51,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.juiblex.c",
+          59,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.juiblex.c",
+          71,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.juiblex.c",
+          72,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.juiblex_wormhole_admission",
+      "path": "src/specs/specs.juiblex.c",
+      "symbol": "int juiblex_one",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death allocates and publishes a wormhole in the death room, then relocates NPCs from the configured source room to destination room. Returns false after success. Wormhole admission is distinct from existing NPC and carried-asset relocation.",
+      "authority_boundary": "Bind death-event identity to admitted objects; qualify allocation failure, partial publication, caller/default death continuation and indirect custody effects. Native publication must be distinguished from durable commit/save acknowledgement and restart replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.juiblex.c",
+          83,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.juiblex.c",
+          91,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

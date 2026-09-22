@@ -2563,3 +2563,15 @@ remain qualification work. No gameplay changes or runtime tests.
 Draft validation passed 13 fixtures: 673 routes, 2756 raw matches, 2698 unique
 coordinates, 2139 mapped, 43 reviewed nonwriters, 516 unclassified.
 Release readiness remains false.
+
+## Juiblex death-object admission
+
+Six coordinates classified as paired lake objects and wormhole admission.
+Second lake allocation failure leaves the first provisional object without
+local cleanup; wormhole publication precedes NPC relocation. Both handlers
+return false after success. Caller lifetime, partial admission and indirect
+custody/save/replay effects remain qualification work, not incidental fixes.
+
+Draft validation passed 13 fixtures: 675 routes, 2756 raw matches, 2698 unique
+coordinates, 2145 mapped, 43 reviewed nonwriters, 510 unclassified.
+No gameplay changes; release readiness remains false.
