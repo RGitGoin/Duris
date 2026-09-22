@@ -1177,7 +1177,9 @@
         "tests/async/test_death_wallet_retry.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Deceased character wallet",
+      "destination": "Preserved value represented by coin pile, not new issuance"
     },
     {
       "id": "death.corpse_creation",
@@ -1208,7 +1210,9 @@
         "tests/async/test_corpse_creation_batch.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Character wallet and carried/equipped items",
+      "destination": "Corpse holdings through staged handoff"
     },
     {
       "id": "death.resurrection_publication",
@@ -1268,7 +1272,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed resurrection item/wallet disposition",
+      "destination": "Live dropped target items and old-room pile projection"
     },
     {
       "id": "recovery.saved_sql",
@@ -1495,7 +1501,9 @@
         "tests/async/test_account_character_delete_runtime.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Player and dependent durable holdings under deletion policy",
+      "destination": "Transactional SQL retirement/cleanup or explicit flat-file refusal; uncertain acknowledgement remains unresolved"
     },
     {
       "id": "lifecycle.flat_character_delete",
@@ -1526,7 +1534,9 @@
         "tests/async/test_flatfile_character_delete.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Player and dependent flat-file authorities",
+      "destination": "Compound authority removal"
     },
     {
       "id": "lifecycle.sql_character_delete",
@@ -1555,7 +1565,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "SQL player row and dependent economic domains",
+      "destination": "Player-row removal; cascaded holdings retirement still requires inspection"
     },
     {
       "id": "lifecycle.sql_soft_delete",
@@ -1586,7 +1598,9 @@
         "tests/async/test_soft_delete_statement_runtime.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Visible SQL character",
+      "destination": "Tombstoned visibility with holdings not proven retired"
     },
     {
       "id": "lifecycle.sql_account_delete",
@@ -1615,7 +1629,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Account and character authorities",
+      "destination": "Removed authorities under account deletion policy"
     },
     {
       "id": "lifecycle.flat_account_delete",
@@ -1646,7 +1662,9 @@
         "tests/async/test_flatfile_character_delete.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Account and character flat-file authorities",
+      "destination": "Incremental character removal followed by atomic remaining account removal"
     },
     {
       "id": "lifecycle.reset_entry",
@@ -1677,7 +1695,9 @@
         "tests/async/test_pwipe_quiescence.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Authorized administrative reset request",
+      "destination": "Reset workflow entry, not an independent asset mutation"
     },
     {
       "id": "lifecycle.quiescence",
@@ -1708,7 +1728,9 @@
         "tests/async/test_pwipe_quiescence.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Pending economy/persistence work",
+      "destination": "Drained or fenced boundary without supply change"
     },
     {
       "id": "lifecycle.sql_reset",
@@ -1739,7 +1761,9 @@
         "tests/async/test_sql_pwipe_completion.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior season holdings and epoch",
+      "destination": "Season retirement/new epoch; flat-file parity unresolved"
     },
     {
       "id": "staff.load",
@@ -2072,7 +2096,9 @@
         "tests/async/test_lifecycle_archive_execution.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Archive policy request and retained state",
+      "destination": "Disabled destructive canonical archive scaffold"
     },
     {
       "id": "lifecycle.export",
@@ -2103,7 +2129,9 @@
         "tests/async/test_personal_data_export.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Retained authoritative state",
+      "destination": "Read/export projection under disabled canonical disclosure policy"
     },
     {
       "id": "lifecycle.erasure",
@@ -2134,7 +2162,9 @@
         "tests/async/test_account_erasure.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Erasure policy request and retained state",
+      "destination": "Disabled canonical destructive erasure scaffold"
     },
     {
       "id": "currency.wallet_credit",
@@ -5516,7 +5546,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed corpse contents and root",
+      "destination": "Room contents and retired empty corpse; provisional bones separately admitted or discarded"
     },
     {
       "id": "death.corpse_raise_recovery",
@@ -5568,7 +5600,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed raise disposition and remaining live corpse copies",
+      "destination": "Caster recovered items, discarded consumed currency/transient copies, retained incomplete-save fences"
     },
     {
       "id": "death.corpse_nested_publication",
@@ -5635,7 +5669,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed nested corpse holdings",
+      "destination": "Parent contents or already-credited player wallet; duplicate live currency copies removed"
     },
     {
       "id": "death.corpse_destruction_publication",
@@ -5672,7 +5708,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed corpse-and-contents destruction result",
+      "destination": "Validated recursive removal of corresponding live representations"
     },
     {
       "id": "item.legacy_decay",
@@ -5826,7 +5864,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character live items with caller-specific persistence status",
+      "destination": "Retained-custody unload, temporary cleanup or room drop according to branch"
     },
     {
       "id": "reward.container_contents",
@@ -6134,7 +6174,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Live character items and acknowledged saved balances",
+      "destination": "Snapshot and live balance hydration; terminal unload or ordinary re-equip"
     },
     {
       "id": "recovery.legacy_player_status",
@@ -6348,7 +6390,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Pet equipment and status",
+      "destination": "Serialized snapshot with same-owner re-equipping; disabled extraction not executed"
     },
     {
       "id": "recovery.legacy_pet_status",

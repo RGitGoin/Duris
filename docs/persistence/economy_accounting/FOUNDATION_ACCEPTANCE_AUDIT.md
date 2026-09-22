@@ -3195,3 +3195,7 @@ Re-read live #475: executable test links are required, but one bespoke test per 
 ## Currency integration ownership correction (2026-09-21)
 
 Live #481 scope explicitly owns quest/NPC rewards, starter grants, services, locker identification, ship/cargo/insurance/guild costs and refunds. Corrected 45 `coin.*` routes incorrectly inherited from item-history #482: 39 to #481, three existing-value transfers (ship coffer and guild deposit/withdraw) to #480, two NPC initialization/reset routes to #486, and fresh-character zero baseline to #479. Each entry retains one matching owner label. This fixes responsibility metadata without changing gameplay or declaring those integrations complete. Draft validation and diff checks pass; endpoint/test gaps remain 627/710.
+
+## Death and lifecycle endpoints (2026-09-21)
+
+Added explicit endpoints for all seven death and 15 lifecycle routes, preserving committed-result projection, retained-custody unloading, tombstone-only visibility, uncertain deletion acknowledgement, and disabled destructive policy distinctions. No production action or gameplay change. Explicit endpoints: 246; missing endpoints: 605; test-link gaps remain 710. Draft contract validation and diff checks pass; this does not qualify lifecycle backend behavior.
