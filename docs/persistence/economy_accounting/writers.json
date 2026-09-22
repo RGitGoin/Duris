@@ -3597,7 +3597,9 @@
         "tests/async/run_collector_repository_schema_mysql.sh"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected item in original custody and surrounding child topology",
+      "destination": "Collector listing custody; children retained through topology repair"
     },
     {
       "id": "collector.purchase",
@@ -3628,7 +3630,9 @@
         "tests/async/test_collector_service.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer wallet and held collector item",
+      "destination": "Purchase expense and buyer item custody; no seller payout"
     },
     {
       "id": "collector.expire",
@@ -3659,7 +3663,9 @@
         "tests/async/test_flatfile_collector_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired held collector item",
+      "destination": "Item destruction without currency movement"
     },
     {
       "id": "collector.cancel",
@@ -3687,10 +3693,12 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_collector_transaction.py"
+        "tests/async/run_collector_repository_schema_mysql.sh"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Collector candidate or held item under cancellation policy",
+      "destination": "Cancelled listing; custody unchanged or quarantined as applicable"
     },
     {
       "id": "collector.boundary_children",
@@ -3721,7 +3729,9 @@
         "tests/async/run_collector_repository_schema_mysql.sh"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Parent item/death boundary and affected child listings/custody",
+      "destination": "Grouped child transitions within the parent operation"
     },
     {
       "id": "collector.flat_apply",
@@ -3752,7 +3762,9 @@
         "tests/async/test_flatfile_collector_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Flat-file collector catalog, wallet and item custody",
+      "destination": "Committed collector state, coin/item after-images and receipts"
     },
     {
       "id": "auction.list",
@@ -11630,7 +11642,7 @@
       "coverage": "legacy",
       "classification": "After committed collection and runtime custody publication, promotes selected object contents to the original parent or room, then extracts only the selected live representation. Failed child relocation can stop partway through live publication.",
       "authority_boundary": "Selected UID remains authoritative in collector custody; live extraction is not economic destruction. Preserve children, exact selected-only payload/own weight and original source topology; partial publication requires recovery.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; fixture exercises successful child promotion/detachment, not all partial publication failures",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11645,7 +11657,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_collector_collection_preparation.py"
+      ],
       "sites": [
         [
           "src/economy/collector_collection_preparation.c",
@@ -11668,7 +11682,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed selected live item with contained children",
+      "destination": "Children promoted to original parent/room; selected live representation extracted"
     },
     {
       "id": "collector.sql_custody_update",
@@ -11695,7 +11711,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_collector_repository_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/collector_repository.c",
@@ -11703,7 +11721,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expected item revision and prior custody",
+      "destination": "Updated root/parent/owner/state and incremented item revision"
     },
     {
       "id": "collector.sql_custody_evidence",
@@ -11730,7 +11750,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_collector_repository_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/collector_repository.c",
@@ -11738,7 +11760,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Before/after custody and owner revisions for command event",
+      "destination": "Legacy item ownership ledger row with listing provenance"
     },
     {
       "id": "collector.sql_bank_read_buffer",
@@ -11773,7 +11797,9 @@
           "direct_cash_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locked shared-bank SQL row",
+      "destination": "Local parsing buffer only; no balance mutation"
     },
     {
       "id": "collector.sql_purchase_debit",
@@ -11800,7 +11826,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_collector_repository_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/collector_repository.c",
@@ -11813,7 +11841,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer wallet and purchase price",
+      "destination": "Canonical wallet debit and currency evidence; bank denominations unchanged"
     },
     {
       "id": "collector.command_submission",
@@ -11840,7 +11870,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_collector_transaction.py"
+      ],
       "sites": [
         [
           "src/economy/collector_transaction.c",
@@ -11848,7 +11880,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Typed collector intent and bounded pending/listing/player state",
+      "destination": "Queued operation with identity; completion owns actual economic transition"
     },
     {
       "id": "shop.trade_submission",
