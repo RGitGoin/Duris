@@ -37212,7 +37212,7 @@
       "coverage": "legacy",
       "classification": "Consumes matched carried ingredient instances by prototype; each requirement selects a distinct object. Caller owns craft result and vial lifecycle.",
       "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
-      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified Native extracted production helper test passes ASan/UBSan: repeated requirements select distinct objects in inventory order, surplus/unrelated objects remain unselected, empty inventory extracts nothing and caller recipe is unchanged. Insufficient inventory still consumes available matches; caller must preflight sufficiency. Controlled ingredient-ID/extraction endpoints, not full craft or durable accounting qualification.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -37227,7 +37227,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_alchemy_ingredient_consumption.py"
+      ],
       "sites": [
         [
           "src/classes/salchemist.c",
@@ -37249,7 +37251,7 @@
       "coverage": "legacy",
       "classification": "Consumes carried components matched by get_id_for, distinct per requirement. Caller controls when ingredients are spent across repeated mix attempts.",
       "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
-      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified Native extracted production helper test passes ASan/UBSan: repeated requirements select distinct objects in inventory order, surplus/unrelated objects remain unselected, empty inventory extracts nothing and caller recipe is unchanged. Insufficient inventory still consumes available matches; caller must preflight sufficiency. Controlled ingredient-ID/extraction endpoints, not full craft or durable accounting qualification.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -37264,7 +37266,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_alchemy_ingredient_consumption.py"
+      ],
       "sites": [
         [
           "src/classes/salchemist.c",

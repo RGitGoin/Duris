@@ -3592,3 +3592,7 @@ The validator now requires test_candidates to be a list of nonblank strings and 
 ### Current flat-file item transaction qualification
 
 At ab6a7de77, test_flatfile_item_repository.py passed its warning-clean client-free native harness with authority fault injection. Both standard and area coin prototypes pass conversion, interrupted commit, replay/refusal, merge and retirement. The harness also passes its item, room, locker, corpse and shop custody/recovery assertions. Updated existing coin.flat_apply support evidence, without treating generic custody checks as complete domain economic integration. No sanitizer run, cross-backend parity, native game publication or #478 completion is claimed. Candidate gaps remain 631; no production changes.
+
+### Alchemy ingredient helper regression
+
+Added native ASan/UBSan test using production headers and both extracted ingredient-consumption helpers with controlled ID/extraction endpoints. Repeated requirements consume distinct objects in inventory order, surplus/unrelated inventory stays unselected, recipe arrays remain unchanged and empty inventory is safe. Insufficient requirements still consume available matches: callers own sufficiency checks, and no all-or-nothing craft behavior is claimed. Both routes now have candidates, leaving 629 gaps. Full recipe/vial/output lifecycle and durable accounting remain unqualified. No production changes.
