@@ -3123,3 +3123,19 @@ Remaining bounded #475 work:
 
 Do not gate #475 on later runtime integration. No gameplay changes, new PRs
 or issue-closure claims follow from this reconciliation.
+
+
+## Current-master source drift check
+
+On 2026-09-21 canonical Community-Duris/Duris master was
+65d9d2ceb4688d7db4b702c7c86861d41ff870cd, fetched by explicit repository URL.
+Reviewed branch head was ada1a1e361203e37a7129a499339fa746ef2812a; last source
+change was b6805ca78738ff80968689c4589b6c1219372798. Shared merge base was
+48c0aedd8e094eee37285111e46e735e4cf12320.
+
+`git diff HEAD...FETCH_HEAD -- src` and its --stat variant were empty.
+Upstream-only commits through this master concern world data; no upstream
+source mutation changes need additional mapping at this checked head. A direct
+HEAD-to-master diff also includes this branch unfinished accounting work and
+must not be mistaken for upstream drift. This check does not merge upstream,
+prove world-data economic equivalence, or resolve semantic scanner blind spots.
