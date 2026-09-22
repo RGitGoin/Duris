@@ -3081,3 +3081,14 @@ gem factory allocates but returns zero, so intended gift delivery is not proven.
 Input contents, worn topology and partial publication require qualification.
 No runtime fixes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 845 routes, 2756 raw matches, 2698 unique coordinates, 2640 mapped, 43 reviewed nonwriters, 15 unclassified.
+
+
+## Winterhaven janitor and consumable transformations
+
+Fourteen coordinates grouped as pickup, well creation, residual disposal and
+three random item transformations. Consumables are destroyed before replacement
+allocation; janitor donation/unequip helpers remain semantic coverage concerns.
+All Winterhaven raw candidates mapped. Remaining raw candidate is an extern
+ship money-helper declaration unsupported by current exclusion syntax.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 851 routes, 2756 raw matches, 2698 unique coordinates, 2654 mapped, 43 reviewed nonwriters, 1 unclassified.

@@ -38784,6 +38784,256 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "winterhaven.janitor_pickup",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int wh_janitor",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Awake nonfighting janitor picks first eligible room object except switch/key/trash; moves it to NPC inventory.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          1646,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          1647,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.janitor_well",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int wh_janitor",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates missing donation well in fixed room before inventory disposal; allocation placement precedes null check.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          1676,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          1677,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.janitor_disposal",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int wh_janitor",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After unequip_all and do_donate all, extracts remaining nonartifact inventory. Donation and residual sink form separate outcomes; indirect helper mutations require coverage.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          1699,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.attribute_scroll",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int attribute_scroll",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Recite scroll outside combat consumes original then allocates random prototype55352..55360 into inventory.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          3761,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          3762,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          3762,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.lorekeeper_scroll",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int lorekeeper_scroll",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Alive nonfighting recite legend consumes original then allocates random prototype55364..55365 into inventory.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          3955,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          3956,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          3956,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.elemental_wand",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int elemental_wand",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Alive nonfighting wearer rubbing wand consumes original then allocates random prototype97924..97929 into inventory; result is carried, not worn.",
+      "authority_boundary": "Qualify original/result identity and owner, input consumption before allocation, random result replay and indirect helpers. Native placement does not prove durable accounting publication.",
+      "current_support": "Existing scripted lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4104,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4105,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4105,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
