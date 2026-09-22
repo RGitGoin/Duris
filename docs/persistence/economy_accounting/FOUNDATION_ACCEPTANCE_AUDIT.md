@@ -784,3 +784,16 @@ post-insertion messages are not receipts. Existing distributions remain unchange
 Draft validator passed 13 fixtures: 299 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,062 mapped, 43 reviewed declarations and 1,593 unclassified.
 Census and runtime qualification remain incomplete; no game behavior changed.
+
+## Forage display/tree branches and legacy quit
+
+Ten sites classified. Forage while memorizing/scribing creates and removes a display
+prototype without admission; successful giant fallback instead issues a tree to the
+room. Neither should be conflated with normal inventory forage. Legacy quit's
+lower-level branch drops nontransients and destroys transients before terminal save;
+a save failure does not reverse those mutations. Source comments/restrictions limit
+ordinary reachability but do not justify declaring compiled branches absent.
+
+Draft validator passed 13 fixtures: 302 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,072 mapped, 43 reviewed declarations and 1,583 unclassified.
+No runtime changes; census and qualification remain incomplete.

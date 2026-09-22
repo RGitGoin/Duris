@@ -14462,6 +14462,146 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.forage_display_probe",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_forage(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Scribing/memorizing forage creates a temporary prototype solely for a doodle message, then extracts it without placement.",
+      "authority_boundary": "Display allocation and cleanup are not economic admission and destruction. Keep separate from successful forage issuance; helper side effects and allocation failure remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          1371,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1375,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.forage_tree_creation",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_forage(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After regular forage fails, a successful giant-specific terrain roll creates prototype 20 and places it in the room; ordinary successful forage instead calls forage_sect.",
+      "authority_boundary": "New tree is issued to room rather than player inventory. Preserve source attempt and selected outcome for retry; live placement/messages and wait state are not durable admission receipts.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          1579,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1580,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.quit_disposition",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_quit(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy quit lower-level branch unequips and destroys transient items or drops other items before terminal character save. Nodrop tests are commented out. Higher-level branch retains items.",
+      "authority_boundary": "Source says normal quit routes to camp and mortal quit is restricted; these sites are compiled behavior, not proven ordinary gameplay reachability. Terminal save failure leaves prior live mutations applied. No compound custody/retirement/save boundary is established.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          1673,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1676,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1680,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1692,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1697,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          1698,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
