@@ -8,6 +8,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <new>
+#include <map>
 #include <openssl/sha.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -18,6 +19,7 @@ using status = flatfile_accounting_status;
 constexpr size_t header_bytes = 48;
 constexpr size_t index_max_bytes = header_bytes + 32 + FLATFILE_ACCOUNTING_BUCKET_RECORDS * 64;
 constexpr std::array<uint8_t, 8> record_magic = { 'D', 'U', 'R', 'E', 'C', 'R', '2', 0 };
+constexpr std::array<uint8_t, 8> child_magic = { 'D', 'U', 'R', 'E', 'C', 'C', '1', 0 };
 constexpr std::array<uint8_t, 8> index_magic = { 'D', 'U', 'R', 'E', 'C', 'I', '1', 0 };
 constexpr std::array<uint8_t, 8> segment_magic = { 'D', 'U', 'R', 'E', 'C', 'S', '1', 0 };
 struct failure
@@ -120,8 +122,6 @@ std::vector<uint8_t> validate_record(const flatfile_accounting_record &record)
 	{
 		economic_accounting_plan plan;
 		checked(economic_plan_decode(record.plan, &plan));
-		// Child IDs need reservations that this bounded storage phase does not own.
-		require(plan.children.empty());
 		plan.metadata = metadata;
 		std::vector<uint8_t> canonical;
 		checked(economic_plan_encode(plan, &canonical));
@@ -146,6 +146,28 @@ std::vector<uint8_t> encode_record(const flatfile_accounting_record &record)
 	raw(payload, record.plan);
 	raw(payload, record.result);
 	return envelope(record_magic, payload);
+}
+std::vector<uint8_t> encode_child(const critical_operation_id &root,
+				  const economic_digest &root_digest,
+				  const economic_child_link &child)
+{
+	std::vector<uint8_t> payload;
+	raw(payload, child.operation_id.bytes);
+	raw(payload, root.bytes);
+	raw(payload, root_digest);
+	number(payload, child.domain, 4);
+	number(payload, child.discriminator, 8);
+	number(payload, child.parent_index, 2);
+	number(payload, child.relationship, 2);
+	return envelope(child_magic, payload);
+}
+std::vector<economic_child_link> children(const flatfile_accounting_record &record)
+{
+	if (record.plan.empty())
+		return {};
+	economic_accounting_plan plan;
+	checked(economic_plan_decode(record.plan, &plan));
+	return plan.children;
 }
 flatfile_accounting_record decode_record(std::span<const uint8_t> bytes)
 {
@@ -383,14 +405,13 @@ context load_context(const std::string &root, size_t bucket, std::string *error)
 		     &extra, error) == flatfile_read_result::not_found);
 	return value;
 }
-flatfile_accounting_record lookup_in(const std::string &root, const context &value,
-				     const critical_command &command, std::string *error)
+std::vector<uint8_t> lookup_bytes(const std::string &root, const context &value,
+				  const critical_operation_id &id, std::string *error)
 {
 	auto found = std::lower_bound(value.index.entries.begin(), value.index.entries.end(),
-				      command.operation_id.bytes,
-				      [](const entry &item, const auto &id)
-				      { return item.id.bytes < id; });
-	require(found != value.index.entries.end() && found->id.bytes == command.operation_id.bytes,
+				      id.bytes, [](const entry &item, const auto &key)
+				      { return item.id.bytes < key; });
+	require(found != value.index.entries.end() && found->id.bytes == id.bytes,
 		status::not_found);
 	std::vector<uint8_t> older;
 	const auto *bytes = &value.active;
@@ -399,8 +420,19 @@ flatfile_accounting_record lookup_in(const std::string &root, const context &val
 		older = load_segment(root, value.index, found->segment, error);
 		bytes = &older;
 	}
-	auto record = decode_record(std::span<const uint8_t>(*bytes).subspan(
-		header_bytes + 32 + found->offset, found->bytes));
+	const auto selected = std::span<const uint8_t>(*bytes).subspan(
+		header_bytes + 32 + found->offset, found->bytes);
+	return { selected.begin(), selected.end() };
+}
+flatfile_accounting_record lookup_in(const std::string &root, const context &value,
+				     const critical_command &command, std::string *error)
+{
+	const auto bytes = lookup_bytes(root, value, command.operation_id, error);
+	// A reservation occupies the same ID namespace but is not an independent root.
+	require(bytes.size() < child_magic.size() ||
+			!std::equal(child_magic.begin(), child_magic.end(), bytes.begin()),
+		status::conflict);
+	auto record = decode_record(bytes);
 	economic_frozen_intent intent;
 	checked(economic_intent_decode(record.command.accounting_intent, &intent));
 	require(intent.admission.metadata.lineage.bytes == value.index.lineage.bytes &&
@@ -409,8 +441,29 @@ flatfile_accounting_record lookup_in(const std::string &root, const context &val
 	command_checked(critical_command_encode(command, &expected));
 	command_checked(critical_command_encode(record.command, &actual));
 	require(expected == actual, status::conflict);
+	const auto root_digest = digest(bytes);
+	for (const auto &child : children(record))
+	{
+		const auto bucket = bucket_for(child.operation_id);
+		const auto other = bucket == value.index.bucket ? context{} :
+								  load_context(root, bucket, error);
+		const auto &child_context = bucket == value.index.bucket ? value : other;
+		require(child_context.index.lineage.bytes == value.index.lineage.bytes);
+		try
+		{
+			require(lookup_bytes(root, child_context, child.operation_id, error) ==
+				encode_child(record.command.operation_id, root_digest, child));
+		}
+		catch (const failure &e)
+		{
+			if (e.code == status::not_found)
+				throw failure{ status::invalid };
+			throw;
+		}
+	}
 	return record;
 }
+
 void validate_append(const std::vector<flatfile_authority_operation> *operations, size_t count)
 {
 	require(operations && count <= flatfile_authority_transaction_maximum_operations &&
@@ -597,42 +650,86 @@ flatfile_accounting_storage::stage(const std::string &root, const flatfile_autho
 					throw;
 			}
 			auto bytes = encode_record(record);
-			auto &index = value.index;
 			economic_frozen_intent intent;
 			checked(economic_intent_decode(record.command.accounting_intent, &intent));
-			require(intent.admission.metadata.lineage.bytes == index.lineage.bytes);
-			require(index.entries.size() < FLATFILE_ACCOUNTING_BUCKET_RECORDS &&
-					bytes.size() <=
-						FLATFILE_ACCOUNTING_BUCKET_MAX_BYTES - index.bytes,
-				status::capacity);
-			uint32_t segment = last_segment(index);
-			std::vector<uint8_t> records;
-			if (!value.active.empty() && value.active.size() + bytes.size() <=
-							     FLATFILE_ACCOUNTING_SEGMENT_MAX_BYTES)
-				records.assign(value.active.begin() + header_bytes + 32,
-					       value.active.end());
-			else if (!value.active.empty())
-				++segment;
-			require(segment < FLATFILE_ACCOUNTING_BUCKET_SEGMENTS, status::capacity);
-			entry item{ record.command.operation_id, digest(bytes), segment,
-				    static_cast<uint32_t>(records.size()),
-				    static_cast<uint32_t>(bytes.size()) };
-			raw(records, bytes);
-			index.entries.push_back(item);
-			index.bytes += bytes.size();
-			std::sort(index.entries.begin(), index.entries.end(),
-				  [](const auto &a, const auto &b)
-				  { return a.id.bytes < b.id.bytes; });
-			auto encoded_index = encode_index(index);
-			auto encoded_segment = encode_segment(index, segment, records);
-			require_room(*operations, 16 + segment_name(index.bucket, segment).size() +
-							  index_name(index.bucket).size() +
-							  encoded_segment.size() +
-							  encoded_index.size());
+			std::map<size_t, context> contexts;
+			contexts.emplace(value.index.bucket, std::move(value));
 			auto result = *operations;
-			append(result, segment_name(index.bucket, segment),
-			       std::move(encoded_segment));
-			append(result, index_name(index.bucket), std::move(encoded_index));
+			auto save_image = [&](std::string name, std::vector<uint8_t> image)
+			{
+				auto found = std::find_if(
+					result.begin(), result.end(),
+					[&](const auto &op) {
+						return op.store == flatfile_authority_store::
+									   economic_evidence &&
+						       op.filename == name;
+					});
+				if (found == result.end())
+				{
+					require(result.size() <
+							flatfile_authority_transaction_maximum_operations,
+						status::capacity);
+					append(result, std::move(name), std::move(image));
+				}
+				else
+					found->bytes = std::move(image);
+				(void)journal_bytes(result);
+			};
+			auto add = [&](const critical_operation_id &id,
+				       const std::vector<uint8_t> &encoded)
+			{
+				const auto bucket = bucket_for(id);
+				auto found = contexts.find(bucket);
+				if (found == contexts.end())
+				{
+					// Each additional bucket needs at least a segment and an index.
+					require(contexts.size() <
+							flatfile_authority_transaction_maximum_operations /
+								2,
+						status::capacity);
+					found = contexts.emplace(bucket,
+								 load_context(root, bucket, error))
+							.first;
+				}
+				auto &current = found->second;
+				auto &index = current.index;
+				require(index.lineage.bytes ==
+					intent.admission.metadata.lineage.bytes);
+				for (const auto &item : index.entries)
+					require(item.id.bytes != id.bytes, status::conflict);
+				require(index.entries.size() < FLATFILE_ACCOUNTING_BUCKET_RECORDS &&
+						encoded.size() <=
+							FLATFILE_ACCOUNTING_BUCKET_MAX_BYTES -
+								index.bytes,
+					status::capacity);
+				uint32_t segment = last_segment(index);
+				std::vector<uint8_t> records;
+				if (!current.active.empty() &&
+				    current.active.size() + encoded.size() <=
+					    FLATFILE_ACCOUNTING_SEGMENT_MAX_BYTES)
+					records.assign(current.active.begin() + header_bytes + 32,
+						       current.active.end());
+				else if (!current.active.empty())
+					++segment;
+				require(segment < FLATFILE_ACCOUNTING_BUCKET_SEGMENTS,
+					status::capacity);
+				index.entries.push_back({ id, digest(encoded), segment,
+							  static_cast<uint32_t>(records.size()),
+							  static_cast<uint32_t>(encoded.size()) });
+				index.bytes += encoded.size();
+				std::sort(index.entries.begin(), index.entries.end(),
+					  [](const auto &a, const auto &b)
+					  { return a.id.bytes < b.id.bytes; });
+				raw(records, encoded);
+				current.active = encode_segment(index, segment, records);
+				save_image(segment_name(bucket, segment), current.active);
+				save_image(index_name(bucket), encode_index(index));
+			};
+			const auto root_digest = digest(bytes);
+			add(record.command.operation_id, bytes);
+			for (const auto &child : children(record))
+				add(child.operation_id,
+				    encode_child(record.command.operation_id, root_digest, child));
 			*operations = std::move(result);
 		},
 		error);

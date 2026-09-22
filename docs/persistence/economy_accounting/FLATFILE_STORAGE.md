@@ -24,9 +24,7 @@ before reading; they do not establish domain-write authorization or replace the
 owner's initial recovery/revalidation. Missing/corrupt state is unresolved, not
 permission to acknowledge or apply another operation ID.
 
-Each append adds exactly two journal operations: the active/new segment and its
-bucket index. Thirty domain after-images therefore still fit the 32-operation
-limit. Preflight includes the actual 256 MiB journal limit, 50-byte framing and
+A root without children adds two journal operations: its active/new segment and bucket index. Compound roots add each affected segment and bucket index once, including any segment rotated during the batch. All domain and evidence after-images must fit the existing 32-operation limit. Preflight includes the actual 256 MiB journal limit, 50-byte framing and
 8+filename-length bytes per operation. Future typed adapters must also bound
 their combined maximum domain after-images; a 256 MiB world catalog leaves no
 room for accounting. The storage bridge does not silently split one root commit.
@@ -45,7 +43,8 @@ on error.
   intent and admission timestamp), canonical plan and original result. Success
   requires a structurally valid plan whose complete metadata matches the frozen
   intent; rejection requires a nonzero result code and no realized plan.
-  Failure stage must be a defined value and must be none for success. Child-bearing plans are refused until child-ID reservation is implemented. Domain-specific result/actual-effect verification remains the typed owner's job.
+  Failure stage must be a defined value and must be none for success. Child-bearing plans require atomic reservations for every derived child ID; retained root lookup verifies those reservations. Domain-specific result/actual-effect verification remains the typed owner's job.
+- Child reservation magic `DURECC1\0`, using the same checksummed envelope and existing segments. Payload: child ID[16], root ID[16], SHA-256 of the complete canonical root record[32], u32 domain, u64 discriminator, u16 parent index and u16 relationship (128 bytes including the envelope). Reservations share the root-ID namespace and consume the same bucket capacity; they cannot be replayed as independent roots. A missing or changed reservation blocks parent replay. Older readers refuse these records and compound root plans.
 - Index `bucket-XX.eai`, magic `DURECI1\0`. Payload: lineage[16], u32 bucket,
   u32 entry count, u64 total record bytes, then sorted 64-byte entries containing
   operation ID[16], record SHA-256[32], u32 segment/offset/size and u32 reserved.
@@ -57,9 +56,8 @@ on error.
   digest must match. Segment numbers are dense and start at zero.
 
 The active segment grows by retaining its entire old record prefix and appending
-one record. It rotates before exceeding 8 MiB; sealed segments are never rewritten
-or pruned. The corresponding index retains every prior entry. Both after-images
-are published by the authority journal together with domain state and receipt.
+root and child records. It rotates before exceeding 8 MiB; sealed segments are never rewritten
+or pruned. The corresponding index retains every prior entry. All affected bucket segments and indexes are published by one authority journal together with domain state and the exact root receipt. Same-bucket records are combined before publication. Existing 32-operation and 256 MiB journal bounds still apply; a bundle that exceeds them fails before modifying caller staging or disk. No new durable file class or eviction policy is introduced.
 
 ## Bounds and stale-state refusal
 
@@ -126,13 +124,34 @@ fixes from `6631c4e9b`, `411d8102` and `0d8e6bb3`. A pending journal must
 block a second commit without recovering already-prepared after-images. Allocation
 failures preserve lock reuse and return I/O failure with ENOMEM; authority files
 with multiple hardlinks are refused. This does not import authority checkpoint v3,
-root descriptors, legacy indexing, compound reservations or baseline activation.
+root descriptors, legacy indexing or baseline activation. Compound reservations now use the existing bounded evidence segments and authority journal.
 The new receipt preserves the current 4096-byte completion limit and failure stage;
 legacy player-domain receipt limits remain independent.
 
 The expanded ASan/UBSan suite passes the 85 original commit/recovery fault cases
 plus pending-journal overwrite refusal, reusable allocation-failed locks, encoder
-ENOMEM classification, hardlinked index/segment/lock refusal, canonical child-plan
+ENOMEM classification, hardlinked index/segment/lock refusal, uninitialized child-bucket
 refusal, failure-stage roundtrip and full 4096-byte result retention. Existing
 authority/player-domain/account, lifecycle, backup and provisioning tests pass.
 Both full server builds (flatfile and MariaDB) pass. Hosted qualification and review remain pending.
+
+
+## Compound reservation verification
+
+The native store harness runs 173 additional commit/recovery fault cases with a
+root, three child reservations across three buckets, and a domain after-image.
+They cover process termination, short/interrupted/zero writes, ENOSPC, data sync,
+rename, directory sync and journal removal. Recovery yields the prior bundle or
+the complete bundle, including every reservation, before replay can succeed.
+
+Focused cases cover same-bucket coalescing, cross-bucket reservations, full-width
+64-bit discriminators, competing roots at reserved IDs, missing reservation
+indexes, checksum-preserving parent-digest tampering, and the exact 32-operation
+bundle boundary. Reservations consume the existing per-bucket entry/byte limits;
+no new retention pruning or durable file class is introduced. Root lookup checks
+at most 64 child links, one additional bucket/segment context at a time. Staging
+holds at most 16 affected bucket contexts plus the bounded authority bundle.
+
+This storage work does not enable flat-file coin gameplay admission. The typed
+coin owner still needs native effect staging, legacy root/child receipt fencing,
+post-commit readback and cross-backend outcome qualification.

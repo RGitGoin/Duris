@@ -2,6 +2,7 @@
 #include "flatfile/flatfile_store.h"
 #include "economy/economic_currency_adapter.h"
 #include <cassert>
+#include <algorithm>
 #include <cerrno>
 #include <cstring>
 #include <filesystem>
@@ -204,6 +205,26 @@ flatfile_accounting_record record(uint32_t sequence, bool rejected = false)
 	}
 	return value;
 }
+flatfile_accounting_record compound_record(uint32_t sequence)
+{
+	auto value = record(sequence);
+	economic_accounting_plan plan;
+	assert(economic_plan_decode(value.plan, &plan) == economic_accounting_error::ok);
+	for (uint64_t n = (uint64_t{ 1 } << 40) + 1; plan.children.size() < 3; ++n)
+	{
+		critical_operation_id child;
+		assert(critical_operation_id_derive(value.command.operation_id, 88, n, &child));
+		const bool same = child.bytes[0] == value.command.operation_id.bytes[0];
+		if (same != plan.children.empty())
+			continue;
+		if (plan.children.size() == 2 &&
+		    child.bytes[0] == plan.children[1].operation_id.bytes[0])
+			continue;
+		plan.children.push_back({ child, 88, n, 0, 1 });
+	}
+	assert(economic_plan_encode(plan, &value.plan) == economic_accounting_error::ok);
+	return value;
+}
 flatfile_accounting_record large_record(uint32_t sequence)
 {
 	auto value = record(sequence, true);
@@ -264,14 +285,17 @@ void provision(const fs::path &root)
 		fs::permissions(path, fs::perms::owner_all);
 	}
 }
-void qualify_io_faults(const fs::path &parent)
+void qualify_io_faults(const fs::path &parent, bool compound = false)
 {
-	const auto value = record(777);
-	const std::vector<std::pair<io_call, size_t>> boundaries = { { io_call::write, 4 },
-								     { io_call::data_sync, 4 },
-								     { io_call::rename, 4 },
-								     { io_call::directory_sync, 5 },
-								     { io_call::remove, 1 } };
+	const auto value = compound ? compound_record(777) : record(777);
+	const size_t publications = compound ? 8 : 4;
+	const std::vector<std::pair<io_call, size_t>> boundaries = {
+		{ io_call::write, publications },
+		{ io_call::data_sync, publications },
+		{ io_call::rename, publications },
+		{ io_call::directory_sync, publications + 1 },
+		{ io_call::remove, 1 }
+	};
 	size_t cases = 0;
 	for (bool recovery : { false, true })
 		for (const auto &[call, count] : boundaries)
@@ -293,13 +317,37 @@ void qualify_io_faults(const fs::path &parent)
 					{
 						flatfile_authority_lock lock;
 						assert(lock.acquire(root.string(), &error));
-						assert(flatfile_accounting_test_access::initialize(
-							       root.string(), lock, id(1), 1,
-							       &operations, &error) == status::ok);
-						assert(flatfile_accounting_test_access::commit(
-							       root.string(), lock, operations,
-							       &error) ==
-						       flatfile_authority_transaction_result::ok);
+						std::vector<size_t> buckets{ 1 };
+						if (compound)
+						{
+							economic_accounting_plan plan;
+							assert(economic_plan_decode(value.plan,
+										    &plan) ==
+							       economic_accounting_error::ok);
+							for (const auto &child : plan.children)
+								buckets.push_back(
+									child.operation_id.bytes[0]);
+							std::sort(buckets.begin(), buckets.end());
+							buckets.erase(std::unique(buckets.begin(),
+										  buckets.end()),
+								      buckets.end());
+						}
+						for (auto bucket : buckets)
+						{
+							operations.clear();
+							assert(flatfile_accounting_test_access::
+								       initialize(root.string(),
+										  lock, id(1),
+										  bucket,
+										  &operations,
+										  &error) ==
+							       status::ok);
+							assert(flatfile_accounting_test_access::
+								       commit(root.string(), lock,
+									      operations, &error) ==
+							       flatfile_authority_transaction_result::
+								       ok);
+						}
 						write(root / "domains/value", { 0, 0 });
 						operations = {
 							{ flatfile_authority_store::domains,
@@ -443,7 +491,7 @@ void qualify_io_faults(const fs::path &parent)
 						       root /
 						       "domains/.critical-authority-transaction"));
 				}
-	assert(cases == 85);
+	assert(cases == (compound ? 173 : 85));
 	printf("flatfile accounting: %zu commit/recovery write/sync/rename/remove failure and process-exit cases passed\n",
 	       cases);
 }
@@ -544,8 +592,7 @@ void qualify_storage_guards(const fs::path &root)
 		plan.children.push_back({ child, 1, 1, 0, 1 });
 		assert(economic_plan_encode(plan, &compound.plan) == economic_accounting_error::ok);
 		std::vector<uint8_t> output = { 42 };
-		assert(flatfile_accounting_record_encode(compound, &output) == status::invalid &&
-		       output == std::vector<uint8_t>{ 42 });
+		assert(flatfile_accounting_record_encode(compound, &output) == status::ok);
 		operations = replacement;
 		const auto saved_index = read(index), saved_segment = read(segment);
 		assert(flatfile_accounting_test_access::stage(
@@ -565,6 +612,112 @@ void qualify_storage_guards(const fs::path &root)
 	puts("flatfile accounting: pending journal, allocation recovery, hardlink and child-plan guards passed");
 }
 
+void qualify_children(const fs::path &root)
+{
+	provision(root);
+	auto value = compound_record(65000);
+	economic_accounting_plan plan;
+	assert(economic_plan_decode(value.plan, &plan) == economic_accounting_error::ok);
+	flatfile_authority_lock lock;
+	std::string error;
+	assert(lock.acquire(root.string(), &error));
+	std::vector<flatfile_authority_operation> ops;
+	for (size_t bucket : { size_t(value.command.operation_id.bytes[0]),
+			       size_t(plan.children[1].operation_id.bytes[0]),
+			       size_t(plan.children[2].operation_id.bytes[0]) })
+	{
+		ops.clear();
+		assert(flatfile_accounting_test_access::initialize(
+			       root.string(), lock, id(1), bucket, &ops, &error) == status::ok);
+		assert(flatfile_accounting_test_access::commit(root.string(), lock, ops, &error) ==
+		       flatfile_authority_transaction_result::ok);
+	}
+	for (size_t domains : { 26u, 27u })
+	{
+		ops.clear();
+		for (size_t i = 0; i < domains; ++i)
+			ops.push_back({ flatfile_authority_store::domains,
+					flatfile_authority_operation_kind::write,
+					"budget-" + std::to_string(i),
+					{ 1 } });
+		const auto result = flatfile_accounting_test_access::stage(root.string(), lock,
+									   value, &ops, &error);
+		assert(result == (domains == 26 ? status::ok : status::capacity));
+		assert(ops.size() == (domains == 26 ? 32 : 27));
+	}
+	ops.clear();
+	assert(flatfile_accounting_test_access::stage(root.string(), lock, value, &ops, &error) ==
+	       status::ok);
+	assert(ops.size() == 6); // Three buckets, with root and first child sharing one.
+	flatfile_accounting_record retained;
+	assert(flatfile_accounting_lookup(root.string(), lock, value.command, &retained, &error) ==
+	       status::not_found);
+	assert(flatfile_accounting_test_access::commit(root.string(), lock, ops, &error) ==
+	       flatfile_authority_transaction_result::ok);
+	assert(flatfile_accounting_lookup(root.string(), lock, value.command, &retained, &error) ==
+		       status::ok &&
+	       retained.plan == value.plan);
+	ops.clear();
+	assert(flatfile_accounting_test_access::stage(root.string(), lock, value, &ops, &error) ==
+		       status::already_exists &&
+	       ops.empty());
+	for (const auto &child : plan.children)
+	{
+		auto collision = record(65001);
+		economic_frozen_intent intent;
+		assert(economic_intent_decode(collision.command.accounting_intent, &intent) ==
+		       economic_accounting_error::ok);
+		collision.command.schema_version = 1;
+		collision.command.accounting_intent.clear();
+		collision.command.operation_id = child.operation_id;
+		intent.admission.metadata.operation_id = child.operation_id;
+		assert(economic_intent_freeze(collision.command, intent.admission,
+					      &collision.command.accounting_intent) ==
+		       economic_accounting_error::ok);
+		collision.command.schema_version = 2;
+		// Lookup must identify the reservation before inspecting a competing root.
+		assert(flatfile_accounting_lookup(root.string(), lock, collision.command, &retained,
+						  &error) == status::conflict);
+		assert(flatfile_accounting_test_access::stage(root.string(), lock, collision, &ops,
+							      &error) == status::conflict &&
+		       ops.empty());
+	}
+	// A missing reservation bucket cannot turn a committed parent into success.
+	char name[64];
+	snprintf(name, sizeof(name), "bucket-%02x.eai", plan.children[1].operation_id.bytes[0]);
+	const auto path = root / "economic-evidence" / name;
+	const auto original = read(path);
+	snprintf(name, sizeof(name), "bucket-%02x-0.eas", plan.children[1].operation_id.bytes[0]);
+	const auto segment_path = root / "economic-evidence" / name;
+	const auto original_segment = read(segment_path);
+	auto forged_segment = original_segment, forged_index = original;
+	// Recompute all framing checksums: semantic root binding must still reject.
+	assert(forged_segment.size() == 80 + 128 && forged_index.size() == 80 + 64);
+	forged_segment[80 + 48 + 32] ^= 1;
+	auto checksum = hash(std::span<const uint8_t>(forged_segment).subspan(80 + 48));
+	std::copy(checksum.begin(), checksum.end(), forged_segment.begin() + 80 + 16);
+	checksum = hash(std::span<const uint8_t>(forged_segment).subspan(80));
+	std::copy(checksum.begin(), checksum.end(), forged_index.begin() + 80 + 16);
+	checksum = hash(std::span<const uint8_t>(forged_segment).subspan(48));
+	std::copy(checksum.begin(), checksum.end(), forged_segment.begin() + 16);
+	checksum = hash(std::span<const uint8_t>(forged_index).subspan(48));
+	std::copy(checksum.begin(), checksum.end(), forged_index.begin() + 16);
+	write(segment_path, forged_segment);
+	write(path, forged_index);
+	assert(flatfile_accounting_lookup(root.string(), lock, value.command, &retained, &error) ==
+	       status::invalid);
+	write(segment_path, original_segment);
+	write(path, original);
+
+	fs::remove(path);
+	assert(flatfile_accounting_lookup(root.string(), lock, value.command, &retained, &error) ==
+	       status::invalid);
+	write(path, original);
+	assert(flatfile_accounting_lookup(root.string(), lock, value.command, &retained, &error) ==
+	       status::ok);
+	puts("flatfile accounting: durable same/cross-bucket child reservations, root collisions and missing reservation refusal passed");
+}
+
 int main(int argc, char **argv)
 {
 	assert(argc == 2);
@@ -581,10 +734,11 @@ int main(int argc, char **argv)
 		for (size_t index = 0; index < ECONOMIC_ACCOUNTING_MAX_ITEM_WITNESSES; ++index)
 		{
 			const uint64_t uid = index + 1;
-			economic_item_position before = {
-				{ item_owner_type::player, 1, 0 }, uid, 0, 1,
-				item_custody_state::active
-			};
+			economic_item_position before = { { item_owner_type::player, 1, 0 },
+							  uid,
+							  0,
+							  1,
+							  item_custody_state::active };
 			auto after = before;
 			if (index < ECONOMIC_ACCOUNTING_MAX_ITEM_EVENTS)
 			{
@@ -600,32 +754,38 @@ int main(int argc, char **argv)
 		const auto maximum_plan = value.plan;
 		auto over = plan;
 		over.items_before.push_back(plan.items_before.front());
-		assert(economic_plan_encode(over, &value.plan) == economic_accounting_error::capacity);
+		assert(economic_plan_encode(over, &value.plan) ==
+		       economic_accounting_error::capacity);
 		assert(value.plan == maximum_plan);
 		over = plan;
 		over.item_events.push_back(plan.item_events.front());
-		assert(economic_plan_encode(over, &value.plan) == economic_accounting_error::capacity);
+		assert(economic_plan_encode(over, &value.plan) ==
+		       economic_accounting_error::capacity);
 		assert(value.plan == maximum_plan);
 		std::string item_error;
 		{
 			flatfile_authority_lock lock;
 			assert(lock.acquire(item_root.string(), &item_error));
 			std::vector<flatfile_authority_operation> operations;
-			assert(flatfile_accounting_test_access::initialize(item_root.string(), lock,
-				id(1), 1, &operations, &item_error) == status::ok);
+			assert(flatfile_accounting_test_access::initialize(
+				       item_root.string(), lock, id(1), 1, &operations,
+				       &item_error) == status::ok);
 			assert(flatfile_accounting_test_access::commit(item_root.string(), lock,
-				operations, &item_error) == flatfile_authority_transaction_result::ok);
+								       operations, &item_error) ==
+			       flatfile_authority_transaction_result::ok);
 			operations.clear();
-			assert(flatfile_accounting_test_access::stage(item_root.string(), lock, value,
-				&operations, &item_error) == status::ok);
+			assert(flatfile_accounting_test_access::stage(item_root.string(), lock,
+								      value, &operations,
+								      &item_error) == status::ok);
 			assert(flatfile_accounting_test_access::commit(item_root.string(), lock,
-				operations, &item_error) == flatfile_authority_transaction_result::ok);
+								       operations, &item_error) ==
+			       flatfile_authority_transaction_result::ok);
 		}
 		flatfile_authority_lock reopened;
 		assert(reopened.acquire(item_root.string(), &item_error));
 		flatfile_accounting_record retained;
 		assert(flatfile_accounting_lookup(item_root.string(), reopened, value.command,
-			&retained, &item_error) == status::ok);
+						  &retained, &item_error) == status::ok);
 		assert(retained.plan == maximum_plan && retained.result == value.result);
 		puts("flatfile accounting: maximum item evidence retained after reopen; oversized plans refuse");
 	}
@@ -982,5 +1142,7 @@ int main(int argc, char **argv)
 						  &error) == status::ok);
 	}
 	qualify_io_faults(root / "io-faults");
+	qualify_io_faults(root / "compound-io-faults", true);
+	qualify_children(root / "compound-reservations");
 	puts("flatfile accounting: canonical records, private append, retained replay, bounded bundle and crash recovery passed");
 }
