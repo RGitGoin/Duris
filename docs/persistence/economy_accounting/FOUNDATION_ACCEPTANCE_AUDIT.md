@@ -3191,3 +3191,7 @@ Added 25 endpoints for pickup/drop/give, bulk/container movement, wear/remove, c
 ## Original requirement and ID validator recheck (2026-09-21)
 
 Re-read live #475: executable test links are required, but one bespoke test per route is not. Shared tests are valid only with demonstrated relevance; inventory counts are not implementation-task counts. Fixed the explicit missing-ID validation requirement: named writer/fixture/account/reason IDs now reject absent, blank and non-string values before duplicate detection. Regression coverage includes malformed IDs and registry integration. All 43 contract tests, 13 fixtures and diff checks pass. Endpoint/test gaps remain 627/710; no runtime or closure claim.
+
+## Currency integration ownership correction (2026-09-21)
+
+Live #481 scope explicitly owns quest/NPC rewards, starter grants, services, locker identification, ship/cargo/insurance/guild costs and refunds. Corrected 45 `coin.*` routes incorrectly inherited from item-history #482: 39 to #481, three existing-value transfers (ship coffer and guild deposit/withdraw) to #480, two NPC initialization/reset routes to #486, and fresh-character zero baseline to #479. Each entry retains one matching owner label. This fixes responsibility metadata without changing gameplay or declaring those integrations complete. Draft validation and diff checks pass; endpoint/test gaps remain 627/710.
