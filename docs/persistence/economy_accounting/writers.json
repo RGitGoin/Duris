@@ -29469,6 +29469,112 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.training_dummy_cleanup",
+      "path": "src/combat/training_dummy.c",
+      "symbol": "training_dummy_apply_profile",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Profile initialization unequips/extracts all equipment and detaches/extracts carried objects before dummy room placement. Caller invokes profile before char_to_room, preventing prototype loot exposure.",
+      "authority_boundary": "Distinguish pre-admission prototype cleanup from retirement of already admitted items; qualify helper side effects and malformed/reused state without generating artificial loot sinks.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_training_dummy_contract.py",
+        "tests/async/run_training_dummy_player_journey.py"
+      ],
+      "sites": [
+        [
+          "src/combat/training_dummy.c",
+          159,
+          "item_publication"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          161,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          167,
+          "item_publication"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          168,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.training_dummy_zero_wallet",
+      "path": "src/combat/training_dummy.c",
+      "symbol": "training_dummy_apply_profile",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Profile initialization zeros all four wallet denominations after clearing equipment and before dummy room placement.",
+      "authority_boundary": "Zero pre-admission prototype balance is initialization, not player coin expenditure. Qualify caller lifecycle and avoid treating prototype cash as issued then destroyed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_training_dummy_contract.py",
+        "tests/async/run_training_dummy_player_journey.py"
+      ],
+      "sites": [
+        [
+          "src/combat/training_dummy.c",
+          171,
+          "coin_assignment"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          172,
+          "coin_assignment"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          173,
+          "coin_assignment"
+        ],
+        [
+          "src/combat/training_dummy.c",
+          174,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

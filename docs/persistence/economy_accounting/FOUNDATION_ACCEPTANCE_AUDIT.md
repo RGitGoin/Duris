@@ -2320,3 +2320,14 @@ remain unqualified.
 Draft validation passed 13 fixtures: 634 routes, 2756 raw matches, 2698 unique
 coordinates, 2047 mapped, 43 reviewed nonwriters, 608 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Training dummy economic-state cleanup
+
+Eight coordinates classified: profile removes prototype equipment/inventory and
+zeros wallet before caller places dummy in room. Distinguish pre-admission
+cleanup from destruction of admitted assets. Tests listed as candidates only;
+helper side effects and lifecycle qualification remain open.
+
+Draft validation passed 13 fixtures: 636 routes, 2756 raw matches, 2698 unique
+coordinates, 2055 mapped, 43 reviewed nonwriters, 600 unclassified.
+No gameplay changes; release readiness remains false.
