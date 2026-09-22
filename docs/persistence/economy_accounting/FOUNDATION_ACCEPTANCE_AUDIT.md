@@ -2221,3 +2221,14 @@ qualification work. No behavior changes were made.
 Draft validation passed 13 fixtures: 617 routes, 2756 raw matches, 2698 unique
 coordinates, 2008 mapped, 43 reviewed nonwriters, 647 unclassified.
 Release readiness remains false.
+
+## Disguise kit consumption
+
+Four coordinates classified for probabilistic failed-roll kit retirement and
+successful disguise kit retirement. Held kits are unequipped before extraction;
+size refusal skips consumption. Kit requirement and consumption exemption use
+different boolean conditions; preserve existing behavior during integration.
+
+Draft validation passed 13 fixtures: 619 routes, 2756 raw matches, 2698 unique
+coordinates, 2012 mapped, 43 reviewed nonwriters, 643 unclassified.
+No gameplay changes; release readiness remains false.

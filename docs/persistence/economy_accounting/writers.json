@@ -28761,6 +28761,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.disguise_failed_kit",
+      "path": "src/classes/disguise.c",
+      "symbol": "do_disguise",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Failed skill roll notches and applies wait, then nontrusted actor without ACH_DECEPTICON has 50-percent chance to ruin kit. Held kit is unequipped before TRUE extraction; otherwise kit remains.",
+      "authority_boundary": "Existing kit retirement, not new item creation. Qualify carried versus held kit, random failure consumption, success ordering and trusted/achievement exemptions without altering economics.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/disguise.c",
+          284,
+          "item_publication"
+        ],
+        [
+          "src/classes/disguise.c",
+          286,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.disguise_success_kit",
+      "path": "src/classes/disguise.c",
+      "symbol": "do_disguise",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After successful roll and size acceptance, disguise/achievement state is changed before nontrusted actor without ACH_DECEPTICON consumes kit. Held kit is unequipped before TRUE extraction; size refusal skips consumption. Kit requirement uses OR while consumption exemption uses AND, which must be preserved.",
+      "authority_boundary": "Existing kit retirement, not new item creation. Qualify carried versus held kit, random failure consumption, success ordering and trusted/achievement exemptions without altering economics.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/disguise.c",
+          369,
+          "item_publication"
+        ],
+        [
+          "src/classes/disguise.c",
+          371,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
