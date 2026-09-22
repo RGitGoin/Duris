@@ -2139,3 +2139,15 @@ skip stock transfer. Listed singleton test is a candidate, not executed evidence
 Draft validation passed 13 fixtures: 599 routes, 2756 raw matches, 2698 unique
 coordinates, 1967 mapped, 43 reviewed nonwriters, 688 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Forced weapon drop
+
+Seven coordinates classified as same-owner inventory staging, durable submission
+and floor publication, or direct legacy/NPC movement. Refused durable submission
+retains an unequipped weapon in inventory. Publication retry accepts existing
+floor placement before dirty/hint side effects; restart/save behavior remains
+unqualified. Existing forced-drop test listed as candidate, not executed evidence.
+
+Draft validation passed 13 fixtures: 602 routes, 2756 raw matches, 2698 unique
+coordinates, 1974 mapped, 43 reviewed nonwriters, 681 unclassified.
+No gameplay changes; release readiness remains false.

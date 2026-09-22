@@ -28002,6 +28002,137 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.forced_drop_staging",
+      "path": "src/item/forced_weapon_drop.c",
+      "symbol": "stage_in_inventory",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Durable weapon is unequipped and placed in same actor inventory before destination resolution or transaction submission. Destination refusal or rejected submission retains it in inventory rather than restoring equipped slot.",
+      "authority_boundary": "Same-owner staging is not issuance or floor transfer; qualify retained state and snapshots on refusal.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_forced_weapon_drop.py"
+      ],
+      "sites": [
+        [
+          "src/item/forced_weapon_drop.c",
+          86,
+          "item_publication"
+        ],
+        [
+          "src/item/forced_weapon_drop.c",
+          95,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.forced_drop_commit_publication",
+      "path": "src/item/forced_weapon_drop.c",
+      "symbol": "forced_weapon_drop_publication",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Durable path checks active player root custody and crumbleloot policy, submits movement, then committed callback finds UID and moves carried weapon to recorded room. Callback accepts any existing floor placement as already published; noncommit retains inventory. Successful initial placement marks player dirty and may log floor hint.",
+      "authority_boundary": "Keep transaction commit, idempotent floor publication and save acknowledgment distinct. Retry accepting floor placement skips subsequent dirty/hint work; qualify environmental relocation and restart behavior without new issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_forced_weapon_drop.py"
+      ],
+      "sites": [
+        [
+          "src/item/forced_weapon_drop.c",
+          239,
+          "economic_submit"
+        ],
+        [
+          "src/item/forced_weapon_drop.c",
+          148,
+          "item_publication"
+        ],
+        [
+          "src/item/forced_weapon_drop.c",
+          149,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.forced_drop_legacy",
+      "path": "src/item/forced_weapon_drop.c",
+      "symbol": "forced_weapon_drop",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "NPC or non-durable player weapon is directly unequipped and placed in current room, then lighting/announcements run and dropped is returned without checking resulting room placement.",
+      "authority_boundary": "Existing-item move outside durable submit path; qualify environmental placement/refusal and transient/NPC policy separately.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_forced_weapon_drop.py"
+      ],
+      "sites": [
+        [
+          "src/item/forced_weapon_drop.c",
+          184,
+          "item_publication"
+        ],
+        [
+          "src/item/forced_weapon_drop.c",
+          190,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
