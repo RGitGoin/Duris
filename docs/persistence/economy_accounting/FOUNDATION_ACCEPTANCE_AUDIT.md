@@ -3275,3 +3275,7 @@ Added 25 item endpoints including CTF carrier state, breakage, potions, combat d
 ### 2026-09-22: condition, summon and spell endpoints
 
 Specified source/destination metadata for 25 existing routes after checking their source sites: condition/scrap conversion, scripted web/fire and gems, spell drops, summoned replacements, consumed materials, previews and recipe grants. Temporary previews and provisional allocations remain distinct from admission; detached smoke is not claimed retired, and wallet projection is not claimed a debit. No gameplay, ownership, test links or backend qualification changed. Explicit endpoints now cover 747 of 851 routes, leaving 104; 710 routes still lack test candidates. Draft contract validation and whitespace validation passed; these checks do not establish runtime acceptance.
+
+### 2026-09-22: starter, ship and material endpoints
+
+Added verified source/destination descriptions for 30 existing starter-kit, ship, reward, forced-drop, material-report and disabled breath routes. Provisional cleanup and report allocations are not admission; ship restoration intent remains caller-dependent; disabled blocks remain dormant. Explicit endpoints now cover 777/851 routes, leaving 74. The 710 test-candidate gaps and all backend qualification statuses are unchanged. Draft validation passed with 13 fixtures and the unchanged census; whitespace validation passed. No gameplay changes.

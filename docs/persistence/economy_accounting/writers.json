@@ -27104,7 +27104,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional random reward template",
+      "destination": "Recipe scroll via separate creation route and released template"
     },
     {
       "id": "item.random_zone_item_selection",
@@ -27144,7 +27146,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected zone prototype or random equipment fallback",
+      "destination": "Configured provisional reward returned to caller; rejected potion released"
     },
     {
       "id": "item.christmas_npc_output",
@@ -27184,7 +27188,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "New NPC and item prototype",
+      "destination": "Item carried by newly placed NPC"
     },
     {
       "id": "world.npc_ship_treasure",
@@ -27432,7 +27438,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Builder-owned unpublished roots and children",
+      "destination": "Released provisional forest unless ownership transferred after submission"
     },
     {
       "id": "item.chaos_kit_item_builder",
@@ -27497,7 +27505,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible starter prototype and selected equipment/support slot",
+      "destination": "Configured provisional root or bag child; rejected allocations released"
     },
     {
       "id": "item.chaos_kit_batch_builder",
@@ -27542,7 +27552,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Starter bag and prepared profile/support roots",
+      "destination": "Forest handed to before-entry batch coordinator on acceptance; otherwise builder cleanup"
     },
     {
       "id": "item.legacy_newbie_materialization",
@@ -27577,7 +27589,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Cached starter prototype and prepared plan",
+      "destination": "Configured provisional starter item with spellbook/newbie payload"
     },
     {
       "id": "item.npc_newbie_direct_grant",
@@ -27612,7 +27626,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Materialized NPC starter plan items",
+      "destination": "NPC inventory followed by equipment evaluation"
     },
     {
       "id": "item.login_equipment_wipe",
@@ -27657,7 +27673,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character equipped/carried roots and locker files",
+      "destination": "Extracted roots and erased locker/backup files"
     },
     {
       "id": "coin.ship_insurance_rejected_delivery",
@@ -27734,7 +27752,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship construction inputs and representation/panel prototypes",
+      "destination": "Runtime ship structure and provisional representation/panel; partial construction possible"
     },
     {
       "id": "item.ship_shell_retirement",
@@ -27784,7 +27804,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ship panel and representation",
+      "destination": "Detached and extracted shell objects after ship cleanup"
     },
     {
       "id": "item.ship_shutdown_evacuation",
@@ -27824,7 +27846,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ship-room objects",
+      "destination": "Same roots in anchor room before ship write"
     },
     {
       "id": "item.ship_load_publication",
@@ -27864,7 +27888,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing loaded ship panel and representation",
+      "destination": "Bridge panel and destination-room ship representation; partial placement possible"
     },
     {
       "id": "item.ship_reset_panel",
@@ -27904,7 +27930,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing bridge panel and ship layout",
+      "destination": "Same panel in rebuilt bridge"
     },
     {
       "id": "item.ship_navigation_representation",
@@ -27944,7 +27972,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ship representation and location",
+      "destination": "Same representation in navigation destination with location update"
     },
     {
       "id": "item.ship_dock_anchor_fallback",
@@ -27984,7 +28014,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship representation with void docking destination",
+      "destination": "Representation at anchor; subsequent location assignment requires agreement qualification"
     },
     {
       "id": "coin.ship_sink_insurance",
@@ -28066,7 +28098,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player ship representation after content/reset helpers",
+      "destination": "Same representation in holding room with dock and queued save"
     },
     {
       "id": "item.ship_summon_arrival",
@@ -28106,7 +28140,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible existing ship representation",
+      "destination": "Requested port placement followed by docking and cargo effects"
     },
     {
       "id": "coin.ship_hull_callback_cash",
@@ -28810,7 +28846,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried two fragments and one core",
+      "destination": "Consumed parts and new moonstone if later lookup/allocation succeeds"
     },
     {
       "id": "world.moonstone_fragments",
@@ -28964,7 +29002,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried intact moonstone",
+      "destination": "Consumed moonstone and reward ring if later lookup/allocation succeeds"
     },
     {
       "id": "ship.legacy_hull_debit",
@@ -29267,7 +29307,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped durable weapon",
+      "destination": "Same actor inventory before transaction; refusal retains inventory placement"
     },
     {
       "id": "item.forced_drop_commit_publication",
@@ -29314,7 +29356,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Durable weapon staged in player inventory and recorded destination",
+      "destination": "Committed callback room placement; noncommit retains inventory"
     },
     {
       "id": "item.forced_drop_legacy",
@@ -29356,7 +29400,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped NPC or nondurable player weapon",
+      "destination": "Direct current-room placement attempt"
     },
     {
       "id": "item.chaos_material_prefetch",
@@ -29398,7 +29444,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary salvage/encrust prototype allocations",
+      "destination": "Released prefetch objects without custody publication"
     },
     {
       "id": "item.chaos_pouch_collection",
@@ -29438,7 +29486,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player material roots and scoreboard state",
+      "destination": "Committed material destruction and collection score, or attempted score rollback"
     },
     {
       "id": "item.material_report_exists",
@@ -29480,7 +29530,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary material prototype",
+      "destination": "Existence result and released temporary object"
     },
     {
       "id": "item.material_report_name",
@@ -29522,7 +29574,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary material prototype",
+      "destination": "Display name and released temporary object"
     },
     {
       "id": "item.material_report_templates",
@@ -29579,7 +29633,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary item templates",
+      "destination": "Composition report and released templates without admission"
     },
     {
       "id": "item.disabled_fire_breath_drop",
@@ -29619,7 +29675,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dormant selected carried item in disabled block",
+      "destination": "Dormant room transfer; no active runtime endpoint"
     },
     {
       "id": "item.disabled_frost_breath_drop",
@@ -29659,7 +29717,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dormant selected carried item in disabled block",
+      "destination": "Dormant room transfer; no active runtime endpoint"
     },
     {
       "id": "item.disabled_crimson_breath_drop",
