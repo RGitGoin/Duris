@@ -3372,3 +3372,9 @@ Added test_tradeskill_grant_runtime.py, compiling the extracted production helpe
 ### 2026-09-22: tradeskill caller failure boundaries
 
 Traced all three grant_tradeskill_item callers. Smith debits money and extracts ore before submission; refusal only cleans the new output. Refinement consumes inputs before its random result, so later output refusal is distinct from intended random failure. Fishing mutates its affect and grants experience before calling the helper and ignores its result. Updated these route authority boundaries to state the missing compound-operation acceptance cases. The helper test is deliberately not assigned as proof of caller rollback. This identifies integration work under the existing objective; no gameplay changes or new standalone issue/PR were made. Empty test lists remain 686. Draft validation and whitespace checks passed.
+
+### 2026-09-22: canonical master drift recheck
+
+Fetched canonical Community-Duris/Duris master without merging. Local head e57c728e51c9ae253845c803a9df8baa003e2e40 compared with master feed2939125c3e9a955b92adbf627a2ad568586e, merge base 48c0aedd8e094eee37285111e46e735e4cf12320. `git diff --stat HEAD...FETCH_HEAD -- src` was empty. Upstream-only changes are .gitignore, Earth-plane world files and their sector test; none introduces new source callsites for this inventory. This is a source-drift check, not world-data or final merge qualification. The worktree was clean before the audit.
+
+The explicit `validate_economy_accounting.py --census` gate still fails with `writer census not complete`, as expected while test mapping and other acceptance work remain. No census/release flags were changed to bypass it. The 686 empty test lists remain unresolved.
