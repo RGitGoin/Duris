@@ -18839,7 +18839,7 @@
       "coverage": "legacy",
       "classification": "Sword rejection helper directly subtracts100 hit points then extracts the artifact sword.",
       "authority_boundary": "Exact sword UID and artifact retirement must be retained; source code delegates custody cleanup to extraction. Direct hit-point subtraction is separate from proven death/save processing.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native sword callbacks assert one extraction and unequipping on incompatible racewar in both action modes; controlled extraction does not qualify durable item retirement.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -18854,7 +18854,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_sword_actions_runtime.py"
+      ],
       "sites": [
         [
           "src/specs/specs.object.c",
@@ -26077,7 +26079,7 @@
       "coverage": "legacy",
       "classification": "Gem outcome repeatedly checks a freshly randomized loop bound, selects random gem prototype and publishes successful allocations to room. Clears ITEM_SECRET on source wand, not gem. Damage uses iteration count including failed allocations. Replay must preserve actual output set and effects.",
       "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native wand callback harness checks all twenty choices in both action modes, including twelve gems and interruption lifetime; controlled creation/placement does not qualify durable issuance or custody.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -26092,7 +26094,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_wonder_actions_runtime.py"
+      ],
       "sites": [
         [
           "src/specs/specs.highway.c",
