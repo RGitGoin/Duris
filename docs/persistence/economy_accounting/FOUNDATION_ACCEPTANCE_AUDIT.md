@@ -2488,3 +2488,15 @@ qualification remains open.
 Draft validation passed 13 fixtures: 660 routes, 2756 raw matches, 2698 unique
 coordinates, 2095 mapped, 43 reviewed nonwriters, 560 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Wand-of-wonder gem admission
+
+Three coordinates classified: preselected gem allocation, invalid-action
+provisional cleanup, and room publication. Local commit consumes a wand charge;
+it does not prove durable accounting. Preserve repeated-bound random selection,
+partial publication and selected-count damage on allocation failure. Replay,
+publication/save acknowledgement and cancellation qualification remain open.
+
+Draft validation passed 13 fixtures: 661 routes, 2756 raw matches, 2698 unique
+coordinates, 2098 mapped, 43 reviewed nonwriters, 557 unclassified.
+No gameplay changes; release readiness remains false.

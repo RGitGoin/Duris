@@ -30495,6 +30495,53 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.wonder_gem_admission",
+      "path": "src/item/wonder_actions.c",
+      "symbol": "class wonder_adapter",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Choice 12 allocates preselected gem prototypes, discards a provisional gem if action identity becomes invalid after allocation, and publishes accepted gems to the origin room. Selection preserves the legacy repeated random loop bound; local commit consumes one wand charge before resolution. Earlier published gems remain if a later iteration aborts. Damage uses selected gem count even when allocation fails.",
+      "authority_boundary": "Successful room publication is gem first admission; provisional cleanup is not destruction of an admitted asset. Preserve preselected outcomes and distinguish wand charge mutation from durable accounting commit. Qualify partial publication, allocation failure, cancellation, save acknowledgement and replay without issuing gems twice.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_wonder_actions_runtime.py"
+      ],
+      "sites": [
+        [
+          "src/item/wonder_actions.c",
+          226,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/wonder_actions.c",
+          230,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/wonder_actions.c",
+          239,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
