@@ -24688,6 +24688,181 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.kingdom_node_room_reap",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "kingdom_node_reap_room",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Room scan saves next pointer and retires recognized nodes outside allowed regions, expired nodes or nodes on owned land. Identity and reason must distinguish retirement from restore cleanup.",
+      "authority_boundary": "Bind node identity and lifecycle/charge transition to the appropriate accounting policy. Current source review establishes behavior only; transient eligibility, retry conservation and durable publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          822,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_node_sweep_reap",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "kingdom_nodes_reap",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "World sweep collects valid-room recognized nodes satisfying reap predicate before extraction. Preserve retirement identities and avoid rerolling replacement generation on replay.",
+      "authority_boundary": "Bind node identity and lifecycle/charge transition to the appropriate accounting policy. Current source review establishes behavior only; transient eligibility, retry conservation and durable publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          855,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_node_periodic_exhaustion",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "kingdom_node_proc",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Periodic callback extracts node when charge value is nonpositive. This is exhausted node retirement, separate from generated material issuance.",
+      "authority_boundary": "Bind node identity and lifecycle/charge transition to the appropriate accounting policy. Current source review establishes behavior only; transient eligibility, retry conservation and durable publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          1364,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_node_shutdown_cleanup",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "kingdom_harvest_shutdown",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Shutdown collects recognized room nodes, extracts them, clears terrain cache and invalidates reload generation. Determine transient lifecycle policy before treating shutdown memory cleanup as durable economic retirement.",
+      "authority_boundary": "Bind node identity and lifecycle/charge transition to the appropriate accounting policy. Current source review establishes behavior only; transient eligibility, retry conservation and durable publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          1726,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_realm_harvest",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "static void kingdom_harvest_tick",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Rechecks realm/dormancy, deposits capped abstract resource units when eligible, spends node charge even with zero deposit, then retires exhausted node or marks worked. Resource deposit mutates realm counters and dirty flag, not wallet or material inventory; persistence occurs separately. Preserve this distinction without silently adding a new currency category.",
+      "authority_boundary": "Bind node identity and lifecycle/charge transition to the appropriate accounting policy. Current source review establishes behavior only; transient eligibility, retry conservation and durable publication remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          1923,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

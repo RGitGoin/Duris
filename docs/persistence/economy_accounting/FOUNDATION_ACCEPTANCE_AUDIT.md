@@ -1883,3 +1883,16 @@ surviving node records worked time. Compound charge/output recovery unqualified.
 Draft validation passed 13 fixtures: 519 routes, 2756 raw matches, 2698 unique
 coordinates, 1785 mapped, 43 reviewed declarations, 870 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Kingdom node cleanup and realm harvesting
+
+Five remaining kingdom_harvest.c coordinates classified: room/world reaping,
+periodic exhaustion, shutdown cleanup and realm harvest exhaustion. Reaping covers
+expired/out-of-region/owned-land nodes. Shutdown requires transient-policy review.
+Realm harvest updates capped abstract resource counters via dirty marking, not
+wallet or material inventory, and spends node charge even when nothing is banked.
+This documents the semantic boundary without adding a currency category.
+
+Draft validation passed 13 fixtures: 524 routes, 2756 raw matches, 2698 unique
+coordinates, 1790 mapped, 43 reviewed declarations, 865 unclassified.
+No gameplay changes; release readiness remains false.
