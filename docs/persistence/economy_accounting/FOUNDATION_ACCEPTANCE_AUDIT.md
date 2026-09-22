@@ -2551,3 +2551,15 @@ remain open. No incidental fixes or runtime evidence added.
 Draft validation passed 13 fixtures: 671 routes, 2756 raw matches, 2698 unique
 coordinates, 2132 mapped, 43 reviewed nonwriters, 523 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ailvio map grants and stock replacement
+
+Seven coordinates classified into repeatable map admission and existing pickup
+with secret room-stock replenishment. Preserve separate command grants while
+deduplicating replay of the same operation; replacement allocation refusal
+leaves original stock unchanged. Partial placement and save/restart behavior
+remain qualification work. No gameplay changes or runtime tests.
+
+Draft validation passed 13 fixtures: 673 routes, 2756 raw matches, 2698 unique
+coordinates, 2139 mapped, 43 reviewed nonwriters, 516 unclassified.
+Release readiness remains false.

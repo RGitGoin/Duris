@@ -31012,6 +31012,101 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.burbul_map_grant",
+      "path": "src/specs/specs.ailvio.c",
+      "symbol": "int burbul_map_obj",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Matching ask/tell allocates prototype 29201 and gives it to the actor. No local once-only, capacity or player-only check. Allocation failure still consumes the command; each accepted invocation is a separate grant, not a replay permission.",
+      "authority_boundary": "Bind command identity to first admission and any existing custody transfer. Preserve native repeatability and refusal behavior; qualify partial placement, stable IDs, save acknowledgement and replay without duplicate grants or stock replacement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.ailvio.c",
+          44,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.ailvio.c",
+          50,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.chyron_stock_replacement",
+      "path": "src/specs/specs.ailvio.c",
+      "symbol": "int chyron_search_obj",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Get/take finds an existing visible room object, allocates replacement 29220 or 29221 based on argument aliases, transfers the existing object to actor and publishes secret replacement in room. Allocation failure leaves existing stock unchanged; all branch reports refusal without moving objects. Existing pickup and newly admitted replenishment are distinct assets in one operation.",
+      "authority_boundary": "Bind command identity to first admission and any existing custody transfer. Preserve native repeatability and refusal behavior; qualify partial placement, stable IDs, save acknowledgement and replay without duplicate grants or stock replacement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.ailvio.c",
+          81,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.ailvio.c",
+          91,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.ailvio.c",
+          109,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ailvio.c",
+          110,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ailvio.c",
+          113,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
