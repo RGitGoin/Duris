@@ -25513,6 +25513,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.summoned_book_payload",
+      "path": "src/classes/new_skills.c",
+      "symbol": "event_summon_book",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checked prototype31 allocation personalizes book keywords/description, marks NORENT, clears bitvector and delegates replacement submission. Existing logical-OR str_mask expression must not be mistaken for intended bitwise mask. Allocation is provisional until grant publication.",
+      "authority_boundary": "Bind exact output identity/payload and source state to recoverable publication. Preserve refusal and allocation-failure behavior without rerolling or restoring consumed source attributes incorrectly. Runtime accounting and save acknowledgement remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          2025,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.summoned_totem_payload",
+      "path": "src/classes/new_skills.c",
+      "symbol": "event_summon_totem",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checked prototype417 allocation personalizes totem, marks NORENT, resets base bitvector and adds level-dependent wisdom/hit/soulshield/sense-life/farsee before replacement submission. Capture exact configured payload once; allocation is not completed admission.",
+      "authority_boundary": "Bind exact output identity/payload and source state to recoverable publication. Preserve refusal and allocation-failure behavior without rerolling or restoring consumed source attributes incorrectly. Runtime accounting and save acknowledgement remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          2055,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.corpse_carved_part",
+      "path": "src/classes/new_skills.c",
+      "symbol": "void do_carve",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Carving marks requested part missing before skill or allocation failure; catastrophic failure marks all parts missing. Successful allocation configures descriptions and part payload, subtracts derived weight from corpse, then may override limb output weight before inserting output into corpse. Corpse state mutation and new item admission are compound; original weight semantics must be preserved.",
+      "authority_boundary": "Bind exact output identity/payload and source state to recoverable publication. Preserve refusal and allocation-failure behavior without rerolling or restoring consumed source attributes incorrectly. Runtime accounting and save acknowledgement remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          2877,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/new_skills.c",
+          2961,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -1945,3 +1945,15 @@ retirement and save acknowledgement remain unqualified.
 Draft validation passed 13 fixtures: 538 routes, 2756 raw matches, 2698 unique
 coordinates, 1836 mapped, 43 reviewed declarations, 819 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Summoned payloads and corpse carving
+
+Four remaining new_skills.c coordinates classified. Book/totem allocation precedes
+payload configuration and replacement grant. Carving consumes part availability
+before failure checks; successful output changes corpse weight before limb weight
+overrides and insertion. Preserve exact payload and original failure semantics.
+All current lexical candidates in this file mapped; runtime qualification remains.
+
+Draft validation passed 13 fixtures: 541 routes, 2756 raw matches, 2698 unique
+coordinates, 1840 mapped, 43 reviewed declarations, 815 unclassified.
+No gameplay changes; release readiness remains false.
