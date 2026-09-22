@@ -2456,3 +2456,13 @@ and zero-spell error returns after page progress. Replay/save qualification open
 Draft validation passed 13 fixtures: 657 routes, 2756 raw matches, 2698 unique
 coordinates, 2092 mapped, 43 reviewed nonwriters, 563 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Guild creation confirmation payment
+
+One coordinate classified: confirmation rechecks affordability/founder, calls
+association creation, then charges only on helper success and clears confirmation.
+Creation/payment atomicity and restart qualification remain open.
+
+Draft validation passed 13 fixtures: 658 routes, 2756 raw matches, 2698 unique
+coordinates, 2093 mapped, 43 reviewed nonwriters, 562 unclassified.
+No gameplay changes; release readiness remains false.

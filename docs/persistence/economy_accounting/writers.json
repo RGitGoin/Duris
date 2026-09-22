@@ -30390,6 +30390,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.guild_creation_confirmation",
+      "path": "src/cmd/interp.c",
+      "symbol": "do_confirm",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Confirmed pending found_asc command rechecks wallet and founder NPC presence, invokes found_asc, and debits GUILD_COST only if helper returns true. Confirmation state/client string are cleared afterward. Guild creation precedes wallet debit.",
+      "authority_boundary": "Couple successful association creation with one founder charge and durable confirmation outcome. Qualify found_asc persistence, debit failure and restart/retry; affordability check alone is not atomic payment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/interp.c",
+          1725,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
