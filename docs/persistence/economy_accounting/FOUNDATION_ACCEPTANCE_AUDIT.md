@@ -1634,3 +1634,15 @@ UID custody and partial-failure/replay behavior remain unqualified.
 Draft validation passed13 fixtures:462 routes,2756 raw matches,2698 unique
 coordinates,1576 mapped,43 reviewed declarations,1079 unclassified.
 No gameplay changes; release readiness remains false.
+
+## NPC hunt weapon swaps
+
+Sixteen coordinates classified in MobHuntCheck. Hunt backstab selection detaches
+only within viable free/replacement slot branches, unlike MobThief early detach;
+blocked cursed slots leave selected weapon carried. Existing UID custody changes,
+subsequent movement/combat and save acknowledgement require separate qualification.
+All current mobact.c lexical matches mapped; semantic/runtime work remains.
+
+Draft validation passed13 fixtures:463 routes,2756 raw matches,2698 unique
+coordinates,1592 mapped,43 reviewed declarations,1063 unclassified.
+No gameplay changes; release readiness remains false.

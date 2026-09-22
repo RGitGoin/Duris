@@ -21925,6 +21925,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.npc_hunt_backstab_equipment",
+      "path": "src/mob/mobact.c",
+      "symbol": "void MobHuntCheck(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Adjacent-target hunt thief branch selects carried backstab weapon when none wielded, equips free slot or swaps uncursed primary/secondary to inventory. Detaches selected weapon only inside viable slot branch; cursed blocked slots leave it carried.",
+      "authority_boundary": "Preserve existing item UIDs and same-owner equipment state; differs from MobThief early-detach behavior. Movement, sneak and subsequent combat follow separately. Qualify exact conditional paths and save/recovery, not a new item admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/mobact.c",
+          8545,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8546,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8554,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8555,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8571,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8573,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8574,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8578,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8588,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8589,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8590,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8594,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8602,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8603,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8604,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          8607,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
