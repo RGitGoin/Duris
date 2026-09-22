@@ -17317,7 +17317,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Random already-blessed offering award",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "item.llyms_bonus_reward",
@@ -18432,7 +18434,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Slot payout minus wager, signed net settlement",
+      "destination": "Player wallet credit/debit; zero net produces no command"
     },
     {
       "id": "item.xmas_cap_owner_rejection",
@@ -20617,7 +20621,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Charmed mob wallet with PET_NOCASH",
+      "destination": "Zero live wallet; restore/PC exclusions not established at this block"
     },
     {
       "id": "item.exhume_cadaver",
@@ -24680,7 +24686,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed epic skill refund entitlement",
+      "destination": "Pending money pickup, falling back to wallet command"
     },
     {
       "id": "coin.stat_shop_service",
@@ -24755,7 +24763,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Permanent stat increase and associated expense; preserve existing ordering"
     },
     {
       "id": "item.epic_stone_absorption",
@@ -25545,7 +25555,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fresh summoned beast prototype wallet",
+      "destination": "Zero wallet after room publication; admission ordering remains unresolved"
     },
     {
       "id": "item.racial_droppings",
@@ -26490,7 +26502,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "One-time identified CHAOS starter entitlement",
+      "destination": "Shared bank platinum credit with retained operation identity"
     },
     {
       "id": "coin.new_character_zero_baseline",
@@ -26540,7 +26554,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fresh character initialization state",
+      "destination": "Zero wallet and bank spare/revision baseline; not existing-balance destruction"
     },
     {
       "id": "item.chaos_kit_provisional_cleanup",
@@ -26835,7 +26851,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected insurance bank-payment entitlement",
+      "destination": "Auction money pickup fallback using captured beneficiary"
     },
     {
       "id": "item.ship_shell_allocation",
@@ -27165,7 +27183,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship insurance entitlement under ship-type policy",
+      "destination": "Online bank or pending auction claim, falling back to ship coffer"
     },
     {
       "id": "item.ship_sink_holding_move",
@@ -27285,7 +27305,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Hull transaction signed coin delta after epic commit",
+      "destination": "Wallet debit/credit and hull/build-time change; independent durability boundaries"
     },
     {
       "id": "coin.ship_summon_fee",
@@ -27320,7 +27342,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Delayed ship summon and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_cargo_sale_credit",
@@ -27355,7 +27379,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Sold cargo quantities and market state",
+      "destination": "Player sale proceeds after nexus bonus; ship/market saves separate"
     },
     {
       "id": "coin.ship_contraband_sale_credit",
@@ -27390,7 +27416,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Sold contraband quantities and market state",
+      "destination": "Player proceeds after nexus bonus; ship/market saves separate"
     },
     {
       "id": "coin.ship_slot_sale_credit",
@@ -27435,7 +27463,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected weapon/diplomat/equipment ship slot",
+      "destination": "Player proceeds at slot-specific price and cleared slot"
     },
     {
       "id": "coin.disabled_whole_ship_sale",
@@ -27470,7 +27500,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable legacy ship-sale branch after unconditional refusal",
+      "destination": "No reachable payout or ship deletion; preserve refusal"
     },
     {
       "id": "coin.ship_repair_all",
@@ -27505,7 +27537,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Combined ship component repair and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_repair_sail",
@@ -27540,7 +27574,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Sail repair and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_repair_armor",
@@ -27580,7 +27616,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected armor repair and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_repair_internal",
@@ -27620,7 +27658,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected internal repair and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_weapon_repair",
@@ -27655,7 +27695,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected weapon repair and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_ammunition_reload",
@@ -27690,7 +27732,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected ammunition refill and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_rename_payment",
@@ -27725,7 +27769,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Ship rename and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_cargo_purchase",
@@ -27760,7 +27806,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Cargo slot quantity and market adjustment and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_contraband_purchase",
@@ -27795,7 +27843,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Contraband slot and market adjustment and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_weapon_purchase",
@@ -27830,7 +27880,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected ship weapon installation and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.ship_equipment_purchase",
@@ -27865,7 +27917,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Selected ship equipment installation and associated expense; preserve existing ordering"
     },
     {
       "id": "item.moonstone_assembly",
@@ -29466,7 +29520,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated generated-NPC saved denomination state",
+      "destination": "Restored NPC wallet; excluded currency capture serializes zeros"
     },
     {
       "id": "world.random_mob_wallet",
@@ -29621,7 +29677,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Level-twenty ship-owner reward",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "coin.chaos_tattoo_ship_reward",
@@ -29656,7 +29714,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Chaos tattoo ship-owner reward; local progress is not entry fence",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "world.disabled_wagon_initialization",
@@ -29887,7 +29947,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Training dummy profile initialization",
+      "destination": "Zero provisional wallet before room placement"
     },
     {
       "id": "item.thought_beacon_replacement",
@@ -30042,7 +30104,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Skill taught/learned update after epic commit and associated expense; preserve existing ordering"
     },
     {
       "id": "item.magical_device_infusion",
@@ -30157,7 +30221,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Mail composition entry, before completed message and associated expense; preserve existing ordering"
     },
     {
       "id": "item.mail_receipt",
@@ -30317,7 +30383,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Captain-owned ship coffer",
+      "destination": "Player wallet credit then zero coffer; no local durable ship save"
     },
     {
       "id": "coin.guild_deposit",
@@ -30352,7 +30420,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet denominations",
+      "destination": "Guild denominations and debt/ledger updates; separate saves"
     },
     {
       "id": "coin.guild_withdraw",
@@ -30387,7 +30457,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Guild denominations under withdrawal policy",
+      "destination": "Player wallet and guild ledger/decrement; separate saves"
     },
     {
       "id": "item.guild_motd_paper",
@@ -30467,7 +30539,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wallet value plus shared-bank shortfall",
+      "destination": "Training expense; bank check and unchecked wallet return remain explicit"
     },
     {
       "id": "coin.practice_skill_payment",
@@ -30502,7 +30576,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Learned skill increase and associated expense; preserve existing ordering"
     },
     {
       "id": "item.world_quest_reward_grant",
@@ -30587,7 +30663,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed mercenary quest reward including randomized amount",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "item.quest_reward_profile_probe",
@@ -30737,7 +30815,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet service/purchase charge",
+      "destination": "Confirmed guild creation before wallet charge and associated expense; preserve existing ordering"
     },
     {
       "id": "coin.locker_identification_receipt",
@@ -30772,7 +30852,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prepared identify payment with retained receipt operation identity",
+      "destination": "Recorded payment outcome then receipt display/delivered marker"
     },
     {
       "id": "item.device_scroll_deferred_cleanup",
@@ -32334,7 +32416,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim PC randomized denomination value",
+      "destination": "Thief credit after debit acceptance; credit result unchecked"
     },
     {
       "id": "coin.guildhall_overmax_payment",
@@ -32369,7 +32453,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall overmax effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "coin.guildhall_guildhall_payment",
@@ -32404,7 +32490,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall guildhall effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "coin.guildhall_room_payment",
@@ -32439,7 +32527,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall room effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "coin.guildhall_golem_payment",
@@ -32474,7 +32564,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall golem effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "coin.guildhall_upgrade_payment",
@@ -32509,7 +32601,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall upgrade effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "coin.guildhall_rename_payment",
@@ -32544,7 +32638,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and construction points, subject to trusted-actor bypass",
+      "destination": "Guildhall rename effect and expense; preserve route-specific ordering and bypass"
     },
     {
       "id": "item.outpost_repair_rubble",
@@ -32794,7 +32890,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Authorized chaos/test room reward",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "coin.chaos_admin_funds",
@@ -32829,7 +32927,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Trusted chaos-server explicit repeatable grant",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "world.spell_pond_admission",
@@ -33554,7 +33654,9 @@
           "direct_cash_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest cash reward with cash/1000 platinum truncation",
+      "destination": "Player wallet via reward helper or transaction"
     },
     {
       "id": "item.nq_reward",
@@ -33904,7 +34006,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated saved wallet/shared-bank snapshot and revisions",
+      "destination": "Live player domain balance/revision projection; not issuance"
     },
     {
       "id": "item.recovery_npc_reset_replenishment",

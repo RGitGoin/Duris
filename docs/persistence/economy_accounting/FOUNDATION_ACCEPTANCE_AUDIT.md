@@ -3175,3 +3175,7 @@ All 31 currency routes now have explicit endpoints (29 completed here, two retai
 ## Coin transfer endpoint metadata (2026-09-21)
 
 Added explicit endpoints for 14 remaining core coin-transfer routes; the two previously reviewed publication/NPC-pickup routes retain their endpoints. Linked five relevant source-structure checks for debit dispatch, floor drop, fallback give, pile planning and rejected provisional cleanup. `test_coin_command_transaction_contract.py` and draft accounting validation pass. These checks establish routing/order structure, not end-to-end native settlement or restart safety. Missing test candidates: 712. Game-specific reward/payment coin routes remain separate pending metadata work.
+
+## Gameplay coin endpoints (2026-09-21)
+
+Added explicit endpoints for the remaining 52 `coin.*` reward, service, ship, guild, theft and recovery routes from their reviewed classifications. Existing ordering/refund/replay limitations remain intact; disabled whole-ship sale remains unreachable. Across the inventory, 179/851 routes now have explicit source/destination fields and 672 lack them; 712 lack test candidates. Draft validator (13 fixtures) and diff checks pass. This metadata completion is not runtime integration, payment atomicity, or test qualification.
