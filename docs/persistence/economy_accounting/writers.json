@@ -23940,6 +23940,214 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "restore.flatfile_staged_cleanup",
+      "path": "src/flatfile/flatfile_corpse_restore.c",
+      "symbol": "void discard_staged",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Failed staging forgets hydrated ownership/lifecycle entries, clears child UIDs and extracts temporary corpse, roots and money. This is rollback of materialized runtime copies, not retirement of authoritative saved assets.",
+      "authority_boundary": "Restore existing authoritative identities, quantities and revisions without first-admission or retirement events. Runtime allocation/publication is not a new economic commit. Verify restart repeatability, partial-publication rollback and final money placement under accounting integration; current test candidate is not release evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_corpse_restore.py"
+      ],
+      "sites": [
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          100,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          118,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          123,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "restore.flatfile_corpse_materialization",
+      "path": "src/flatfile/flatfile_corpse_restore.c",
+      "symbol": "materialize_corpse",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Validates record/room/prototype and loads ownership, materializes detached graph, then allocates/configures corpse shell and saved-money projection. attach_root directly links saved roots and money. Allocation or lifecycle hydration failure forgets runtime entries and releases provisional copies.",
+      "authority_boundary": "Restore existing authoritative identities, quantities and revisions without first-admission or retirement events. Runtime allocation/publication is not a new economic commit. Verify restart repeatability, partial-publication rollback and final money placement under accounting integration; current test candidate is not release evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_corpse_restore.py"
+      ],
+      "sites": [
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          212,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          219,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          234,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          240,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          250,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "restore.flatfile_room_materialization",
+      "path": "src/flatfile/flatfile_corpse_restore.c",
+      "symbol": "materialize_room",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Validates room record, hydrates saved ownership and detached item graph, then creates money projection from saved denomination values. Failed money allocation forgets runtime ownership and destroys only staged copies.",
+      "authority_boundary": "Restore existing authoritative identities, quantities and revisions without first-admission or retirement events. Runtime allocation/publication is not a new economic commit. Verify restart repeatability, partial-publication rollback and final money placement under accounting integration; current test candidate is not release evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_corpse_restore.py"
+      ],
+      "sites": [
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          294,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          302,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "restore.flatfile_catalog_publication",
+      "path": "src/flatfile/flatfile_corpse_restore.c",
+      "symbol": "flatfile_corpse_restore_catalog",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Stages all corpse/room records with corpse-save/artifact side effects suppressed. Allocation failures unwind staged objects. Hydrates destruction owner then publishes corpses and room roots with placement checks; failed placement rolls back staged objects. Money publication runs last without the same local placement check, then staged pointers are released.",
+      "authority_boundary": "Restore existing authoritative identities, quantities and revisions without first-admission or retirement events. Runtime allocation/publication is not a new economic commit. Verify restart repeatability, partial-publication rollback and final money placement under accounting integration; current test candidate is not release evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_flatfile_corpse_restore.py"
+      ],
+      "sites": [
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          365,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          400,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          403,
+          "item_lifecycle"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          430,
+          "item_publication"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          446,
+          "item_publication"
+        ],
+        [
+          "src/flatfile/flatfile_corpse_restore.c",
+          460,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

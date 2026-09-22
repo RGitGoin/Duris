@@ -1817,3 +1817,17 @@ Recovery and compound save/publication qualification remain outstanding.
 Draft validation passed 13 fixtures: 504 routes, 2756 raw matches, 2698 unique
 coordinates, 1727 mapped, 43 reviewed declarations, 928 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Flat-file corpse and room restoration
+
+Sixteen coordinates classified across staged cleanup, corpse materialization,
+room materialization and catalog publication. These reconstruct saved identities
+and denomination quantities, not new issuance; failed staging releases runtime
+copies rather than retiring saved assets. Direct attach_root pointer linkage is
+also documented. Corpse and item placement are checked; final money placement
+lacks equivalent local verification. Restore test linked as a candidate only,
+not executed runtime or accounting release evidence.
+
+Draft validation passed 13 fixtures: 508 routes, 2756 raw matches, 2698 unique
+coordinates, 1743 mapped, 43 reviewed declarations, 912 unclassified.
+No gameplay changes; release readiness remains false.
