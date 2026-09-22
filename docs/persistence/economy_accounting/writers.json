@@ -1912,7 +1912,7 @@
       "coverage": "legacy",
       "classification": "Explicit storage repair with separate establish/change/remove semantics.",
       "authority_boundary": "Committed custody callback; stale publication remains distinct",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Source-contract candidate checks committed/refused completion ordering before storage publication, child removal and root extraction. It does not execute the sequential child-removal flow or qualify interruption recovery/backend parity.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -1927,7 +1927,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_saved_item_flatfile_routing.py"
+      ],
       "sites": [],
       "evidence": [],
       "source": "Storage repair request and existing/provisional state",
@@ -38246,7 +38248,7 @@
       "coverage": "legacy",
       "classification": "On refused establish discards provisional root; after commit publishes root, moves committed child into room then submits next child, or extracts root. Stale UID/topology returns without publication; partial child sequence may stop busy. Each child is separate, not one atomic removal bundle.",
       "authority_boundary": "Qualify storage root and nested item identity, backend parity, partial child progress and durable publication/save recovery. Enqueued or committed child operations do not prove complete administrative command completion.",
-      "current_support": "Existing administrative storage paths; accounting qualification unverified",
+      "current_support": "Existing administrative storage paths; accounting qualification unverified Source-contract candidate checks committed/refused completion ordering before storage publication, child removal and root extraction. It does not execute the sequential child-removal flow or qualify interruption recovery/backend parity.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -38261,7 +38263,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_saved_item_flatfile_routing.py"
+      ],
       "sites": [
         [
           "src/cmd/actwiz.c",
