@@ -35154,6 +35154,256 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "helper.remaining_world_listing",
+      "path": "src/cmd/actinf.c",
+      "symbol": "void do_world",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Creates temporary prototype object only to display its description and count, then extracts without in-game flag. No inventory/room admission; exclude temporary inspection from gameplay issuance and destruction.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actinf.c",
+          5046,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actinf.c",
+          5054,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_transfer_builder",
+      "path": "src/item/item_transfer_command.c",
+      "symbol": "bool item_transfer_command_build",
+      "reason": "baseline",
+      "integration_issue": 476,
+      "owner": "primary / #476",
+      "coverage": "legacy",
+      "classification": "Validates nonzero operation ID, encodes transfer payload and populates command entities/revisions. Pure command construction: no submission, storage mutation or native object movement.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_command.c",
+          1068,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_synthetic_transfer",
+      "path": "src/item/item_transfer_synthetic.c",
+      "symbol": "bool item_transfer_synthetic_submit",
+      "reason": "item_move",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Generates operation ID, builds operator-repair background transfer, submits to coordinator and exposes ID only if coordinator keeps operation. Submission retention is not committed ownership; completion decoding is separate.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_synthetic.c",
+          13,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_random_exit",
+      "path": "src/item/objmisc.c",
+      "symbol": "void event_random_exit",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Consumes generator object after conditional exit/zone changes, including when the random generation condition fails. World routing metadata is not currency; generator object retirement remains a lifecycle sink.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/objmisc.c",
+          150,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_rename_charge",
+      "path": "src/net/modify.c",
+      "symbol": "int mob_do_rename_hook",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Charges configured rename price after character rename and ship-owner rename succeed. Debit result is ignored; ship update failure can follow successful character rename before charge. Qualify paid service and wallet commit ordering.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/net/modify.c",
+          1501,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_web_auction_remove",
+      "path": "src/net/ws_handlers.c",
+      "symbol": "void ws_cmd_durisweb_auction_remove",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Verified web descriptor submits auction removal after request/auction ID validation. Sends success on background submission, not committed removal; request ID is response correlation and not passed as operation identity here.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/net/ws_handlers.c",
+          482,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "helper.remaining_zone_purge",
+      "path": "src/world/new_events.c",
+      "symbol": "void zone_purge",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Purges room objects except walls, artifacts and empty corpses under the actual branch conditions. Nonempty nonartifact corpses reach extraction despite the comment suggesting protection. Earlier NPC extraction has indirect asset effects; preserve observed behavior until separately authorized correction.",
+      "authority_boundary": "Distinguish temporary construction, accepted submission and economic mutation. Qualify relevant owner/identity, refusal, retry and publication/save boundaries; no runtime accounting evidence inferred from this source classification.",
+      "current_support": "Existing helper behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/new_events.c",
+          2113,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2925,3 +2925,15 @@ is not issuance; quarantine is not destruction; reset is a lifecycle boundary.
 Transaction, restart and publication qualification remain unverified.
 No runtime changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 771 routes, 2756 raw matches, 2698 unique coordinates, 2358 mapped, 43 reviewed nonwriters, 297 unclassified.
+
+
+## Remaining small command and item helpers
+
+Eight coordinates classified as temporary world-list inspection, transfer
+construction/submission, random-exit retirement, rename payment, web auction
+removal submission and zone purge. Zone purge actually skips empty corpses;
+nonempty nonartifact corpses reach extraction, contrary to nearby comment.
+Rename service precedes unchecked debit; web success acknowledges submission.
+These are qualification observations, not incidental gameplay fixes.
+No runtime changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 778 routes, 2756 raw matches, 2698 unique coordinates, 2366 mapped, 43 reviewed nonwriters, 289 unclassified.
