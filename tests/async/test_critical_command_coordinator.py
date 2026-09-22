@@ -415,6 +415,12 @@ int main(int argc, char **argv)
     assert(critical_command_coordinator_is_fenced(
         {critical_entity_type::corpse, 10}, nullptr));
     assert(critical_command_journal_health_copy().records == 1);
+    // A bounded startup drain must refuse progress without discarding recovery
+    // evidence or releasing the entity while the replay worker is held.
+    assert(!critical_command_coordinator_drain(0));
+    assert(critical_command_coordinator_is_fenced(
+        {critical_entity_type::corpse, 10}, nullptr));
+    assert(critical_command_journal_health_copy().records == 1);
     {
         std::lock_guard<std::mutex> lock(recovery_state.mutex);
         recovery_state.release_all = true;
