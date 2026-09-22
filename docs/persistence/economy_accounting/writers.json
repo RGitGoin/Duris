@@ -27413,6 +27413,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.ship_cargo_purchase",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int buy_cargo",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates port, positive count, capacity and same-port cargo or empty slot. Applies epic discount to count times market unit cost. Updates slot quantity/paid-cost before wallet debit, then adjusts market and queues ship save.",
+      "authority_boundary": "Bind purchased slot quantities, recorded basis, exact charged amount and market delta to one recoverable operation. Slots are abstract cargo, not separately allocated item UIDs. Preserve current limits/pricing; wallet/ship/market durable atomicity and replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          2125,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_contraband_purchase",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int buy_contra",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates port/alignment/reputation/capacity/count and selects empty slot. Stores crate count and full market cost before debit, then adjusts contraband market and queues ship save. Unlike cargo, current search does not reuse matching occupied slot or apply cargo epic discount.",
+      "authority_boundary": "Bind purchased slot quantities, recorded basis, exact charged amount and market delta to one recoverable operation. Slots are abstract cargo, not separately allocated item UIDs. Preserve current limits/pricing; wallet/ship/market durable atomicity and replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          2310,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2078,3 +2078,15 @@ debit, so cross-state durable ordering still requires qualification.
 Draft validation passed 13 fixtures: 585 routes, 2756 raw matches, 2698 unique
 coordinates, 1934 mapped, 43 reviewed declarations, 721 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Cargo and contraband purchases
+
+Two payment coordinates classified with coupled semantic slot/market writers.
+Cargo reuses same-port slot and applies epic discount; contraband selects empty
+slot and uses full price. Both mutate slot quantity/basis before wallet debit,
+then market adjustment and queued ship save. These abstract slots are not item
+allocations. Atomic durability/replay remain unqualified.
+
+Draft validation passed 13 fixtures: 587 routes, 2756 raw matches, 2698 unique
+coordinates, 1936 mapped, 43 reviewed declarations, 719 unclassified.
+No gameplay changes; release readiness remains false.
