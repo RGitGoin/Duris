@@ -3211,3 +3211,7 @@ Added 30 endpoint classifications spanning import/openings, backup/restore, util
 ## Crafting, enhancement and mining endpoints (2026-09-22)
 
 Added 37 endpoint classifications preserving real inputs versus probes, provisional grants, pouch substitutions, intended random loss, separate output submissions, same-item enhancement and delayed harvest. Explicit endpoints: 342; missing endpoints: 509; test-link gaps remain 710. Draft validation and diff checks pass. No prices, distributions, input-loss behavior or backend qualification changed.
+
+## Alchemy endpoints (2026-09-22)
+
+Added 17 alchemy endpoints distinguishing preview copies, physical/generated materials, intended craft failure, replacement identities and paid delayed enchantment. Existing loop consumption and partial-allocation limits remain visible. Explicit endpoints: 359; missing endpoints: 492; test-link gaps remain 710. Draft validation and diff checks pass; gameplay economics and runtime qualification are unchanged.

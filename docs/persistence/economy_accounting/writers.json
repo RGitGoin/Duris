@@ -36188,7 +36188,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Distinct carried ingredient instances matched by prototype",
+      "destination": "Consumed ingredients; caller owns vial/output lifecycle"
     },
     {
       "id": "alchemy.potion_components",
@@ -36223,7 +36225,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Distinct carried components matched by get_id_for",
+      "destination": "Consumed inputs at caller-controlled loop boundary"
     },
     {
       "id": "alchemy.ingredient_preview",
@@ -36263,7 +36267,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary ingredient prototypes",
+      "destination": "Description output and discarded probes"
     },
     {
       "id": "alchemy.poison_preview",
@@ -36303,7 +36309,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary poison prototype",
+      "destination": "Recipe listing and discarded probe"
     },
     {
       "id": "alchemy.poison_craft",
@@ -36348,7 +36356,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Vial and matched ingredients plus crafted poison candidate",
+      "destination": "Published poison then consumed vial/ingredients per completed iteration"
     },
     {
       "id": "alchemy.potion_craft",
@@ -36403,7 +36413,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Bottle, recipe components and random attempt",
+      "destination": "Potion on success and destroyed/replacement bottle; ingredients consumed by later loop condition"
     },
     {
       "id": "alchemy.repair_preview",
@@ -36448,7 +36460,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary material prototype",
+      "destination": "Missing-material description and probe cleanup"
     },
     {
       "id": "alchemy.repair_material",
@@ -36488,7 +36502,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Damaged item and all matching carried repair materials",
+      "destination": "Changed condition then extracted matching materials"
     },
     {
       "id": "alchemy.smelt_single",
@@ -36533,7 +36549,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Single nonartifact furnace input",
+      "destination": "Destroyed input then ash candidate/output, subject to allocation failure"
     },
     {
       "id": "alchemy.smelt_pair",
@@ -36673,7 +36691,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two nonartifact furnace inputs and skill outcome",
+      "destination": "Destroyed pair then metal/alloy/ash output; overwritten provisional pointer remains unresolved"
     },
     {
       "id": "alchemy.npc_potions",
@@ -36713,7 +36733,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Requested potion count and level configuration",
+      "destination": "New NPC inventory potions with partial-allocation possibility"
     },
     {
       "id": "alchemy.encrust_virtual",
@@ -36768,7 +36790,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Chaos-pouch material entitlement and bounded jewel template",
+      "destination": "Provisional jewel plus recorded generated usage, or rejected temporary cleanup"
     },
     {
       "id": "alchemy.encrust_failure",
@@ -36808,7 +36832,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original item and physical/generated jewel",
+      "destination": "Destroyed input pair after failed skill roll"
     },
     {
       "id": "alchemy.encrust_success",
@@ -36863,7 +36889,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original properties, physical/generated jewel and replacement candidate",
+      "destination": "New enhanced item after input retirement; allocation failure retains physical inputs"
     },
     {
       "id": "alchemy.thrust_retirement",
@@ -36898,7 +36926,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Timed room object whose recorded owner is absent",
+      "destination": "Expired object retirement; contents behavior needs qualification"
     },
     {
       "id": "alchemy.enchant_charge",
@@ -36933,7 +36963,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player circle-scaled coin payment",
+      "destination": "Delayed enchant event after accepted debit; interrupted event has no local refund"
     },
     {
       "id": "alchemy.enchant_destruction",
@@ -36968,7 +37000,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Paid delayed enchant target and random result",
+      "destination": "Modified condition/flags or item destruction below condition one"
     },
     {
       "id": "wizard.load_prepare",
