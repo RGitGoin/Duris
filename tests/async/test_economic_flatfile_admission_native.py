@@ -15,6 +15,9 @@ with tempfile.TemporaryDirectory(prefix="duris-flat-admission-") as temporary:
     (work / "phase8_bank_fixture.h").write_text(fixture.split(marker)[0])
     sources = ["tests/async/economic_flatfile_admission_native_test.cpp",
                "src/flatfile/flatfile_accounting_dispatch.c",
+               "src/flatfile/flatfile_accounting_coin_transaction.c",
+               "src/flatfile/flatfile_item_repository.c", "src/player/player_snapshot_codec.c",
+               "src/economy/economic_coin_adapter.c", "src/economy/coin_transfer_command.c",
                "src/flatfile/flatfile_accounting_bank_transaction.c",
                "src/flatfile/flatfile_accounting_authority.c",
                "src/flatfile/flatfile_identity_repository.c",
@@ -26,9 +29,10 @@ with tempfile.TemporaryDirectory(prefix="duris-flat-admission-") as temporary:
     binary = work / "native"
     subprocess.run(["g++", "-std=c++20", "-Wall", "-Wextra", "-Wpedantic", "-Werror",
                     "-O1", "-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer",
-                    "-fno-pie", "-no-pie", "-D__NO_MYSQL__", "-DDURIS_FLATFILE_ACCOUNTING_TEST",
-                    "-DDURIS_FLATFILE_AUTHORITY_FAULT_TEST", "-Isrc", "-Isrc/no_mysql", "-I" + str(work),
-                    *sources, "-Wl,--wrap=_Znwm,--wrap=_Znam", "-lcrypto", "-lz", "-pthread", "-o", str(binary)],
+                    "-fno-pie", "-no-pie", "-ffunction-sections", "-fdata-sections", "-Wl,--gc-sections", "-D__NO_MYSQL__", "-DDURIS_FLATFILE_ACCOUNTING_TEST",
+                    "-DDURIS_FLATFILE_AUTHORITY_FAULT_TEST", "-Isrc", "-Isrc/no_mysql", "-Itests/async", "-I" + str(work),
+                    *sources, "-Wl,--wrap=_Znwm,--wrap=_Znam",
+                    "-Wl,--wrap=_Z51flatfile_critical_command_repository_apply_selectedRK16critical_commandPv", "-lcrypto", "-lz", "-pthread", "-o", str(binary)],
                    cwd=ROOT, check=True)
     subprocess.run([str(binary), str(work / "state")], check=True, timeout=90,
                    env=dict(os.environ, ASAN_OPTIONS="detect_leaks=1:halt_on_error=1",

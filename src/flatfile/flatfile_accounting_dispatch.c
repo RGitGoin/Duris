@@ -1,5 +1,6 @@
 #include "flatfile/flatfile_accounting_dispatch.h"
 #include "flatfile/flatfile_accounting_bank_transaction.h"
+#include "flatfile/flatfile_accounting_coin_transaction.h"
 #include "flatfile/flatfile_item_repository.h"
 #include "persistence/persistence_mode.h"
 
@@ -16,6 +17,8 @@ critical_apply_result flatfile_accounting_apply_selected(const critical_command 
 		return { critical_apply_outcome::retryable_failure, 0, ENOENT };
 	if (command.type == critical_command_type::account_bank)
 		return flatfile_accounting_bank_transaction::apply(root, command);
+	if (command.type == critical_command_type::coin_transfer)
+		return flatfile_accounting_coin_transaction::apply(root, command);
 	// Never checkpoint an unsupported durable accounting envelope.
 	return { critical_apply_outcome::retryable_failure, 0, ENOTSUP };
 }

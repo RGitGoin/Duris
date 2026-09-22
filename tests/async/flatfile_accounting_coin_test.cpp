@@ -3,7 +3,11 @@
 #include "flatfile/flatfile_item_repository.h"
 #include "economy/economic_coin_adapter.h"
 #include <set>
-using coin_owner = flatfile_accounting_coin_transaction;
+#include "flatfile_accounting_dispatch_native_fixture.h"
+critical_apply_result apply_coin(const std::string &root, const critical_command &command)
+{
+	return flatfile_accounting_apply_selected(command, const_cast<char *>(root.c_str()));
+}
 struct coin_fixture
 {
 	std::string root, second_account;
@@ -192,7 +196,7 @@ void legacy_fences(const fs::path &base)
 		old.operation_id = ids[slot];
 		assert(flatfile_player_domain_apply(f.root, old).outcome == outcome::applied);
 		const auto before = state(f.root);
-		const auto refused = coin_owner::apply(f.root, cmd);
+		const auto refused = apply_coin(f.root, cmd);
 		assert(refused.outcome == outcome::terminal_failure &&
 		       refused.error_code == EEXIST);
 		assert(state(f.root).domains.wallet == before.domains.wallet);
@@ -201,7 +205,7 @@ void legacy_fences(const fs::path &base)
 	const auto f = setup_coin(base / "missing-catalog", true);
 	const auto cmd = coin_command(f, 60);
 	assert(fs::remove(fs::path(f.root) / "domains" / "item_ownership"));
-	const auto refused = coin_owner::apply(f.root, cmd);
+	const auto refused = apply_coin(f.root, cmd);
 	assert(refused.outcome == outcome::retryable_failure && refused.error_code == ENOENT);
 	assert(state(f.root).domains.wallet[0] == 100 && second_state(f).domains.wallet[0] == 100);
 }
@@ -211,9 +215,9 @@ void forged_coin(const coin_fixture &seed, const critical_command &cmd, const fs
 	source.root = (base / "valid").string();
 	fs::create_directories(base);
 	fs::copy(seed.root, source.root, fs::copy_options::recursive);
-	assert(coin_owner::apply(source.root, cmd).outcome == outcome::applied);
+	assert(apply_coin(source.root, cmd).outcome == outcome::applied);
 	const auto rejection_command = coin_command(source, 3, 1);
-	const auto rejection = coin_owner::apply(source.root, rejection_command);
+	const auto rejection = apply_coin(source.root, rejection_command);
 	assert(rejection.outcome == outcome::terminal_failure && rejection.error_code == ESTALE);
 	flatfile_accounting_record original, rejected;
 	{
@@ -257,7 +261,7 @@ void forged_coin(const coin_fixture &seed, const critical_command &cmd, const fs
 			       flatfile_accounting_status::ok);
 			commit(f.root, lock, changes);
 		}
-		const auto refused = coin_owner::apply(f.root, record.command);
+		const auto refused = apply_coin(f.root, record.command);
 		assert(refused.outcome == outcome::retryable_failure &&
 		       refused.error_code == EILSEQ);
 		assert(state(f.root).domains.wallet[0] == 100 &&
@@ -277,7 +281,7 @@ int main(int argc, char **argv)
 			const auto cmd = coin_command(f, 1, mode);
 			const auto before = state(f.root), second_before = second_state(f);
 			parity(f, cmd);
-			const auto result = coin_owner::apply(f.root, cmd);
+			const auto result = apply_coin(f.root, cmd);
 			const unsigned int expected = mode == 1 ? ESTALE :
 						      mode == 2 ? ENOSPC :
 						      mode == 3 ? ERANGE :
@@ -293,7 +297,7 @@ int main(int argc, char **argv)
 			assert(result.failure_stage ==
 			       (mode == 1 ? critical_failure_stage::coin_source_wallet_revision :
 					    critical_failure_stage::none));
-			const auto replay = coin_owner::apply(f.root, cmd);
+			const auto replay = apply_coin(f.root, cmd);
 			assert(replay.outcome ==
 			       (mode ? outcome::terminal_failure : outcome::already_applied));
 			same_coin(result, replay);
@@ -318,7 +322,7 @@ int main(int argc, char **argv)
 					       id(93000), &changes, nullptr) == 0);
 				commit(f.root, lock, changes);
 			}
-			same_coin(result, coin_owner::apply(f.root, cmd));
+			same_coin(result, apply_coin(f.root, cmd));
 		}
 	legacy_fences(base / "legacy");
 	const auto seed = setup_coin(base / "seed", true);
@@ -345,16 +349,16 @@ int main(int argc, char **argv)
 			else
 				setenv("DURIS_FLATFILE_TEST_INTERRUPT_AFTER_AUTHORITY_OPERATION",
 				       std::to_string(boundary).c_str(), 1);
-			const auto result = coin_owner::apply(f.root, cmd);
+			const auto result = apply_coin(f.root, cmd);
 			assert(result.outcome == outcome::ambiguous_commit);
 			_exit(77);
 		}
 		int status;
 		assert(waitpid(child, &status, 0) == child && WIFEXITED(status) &&
 		       WEXITSTATUS(status) == 77);
-		const auto recovered = coin_owner::apply(f.root, cmd);
+		const auto recovered = apply_coin(f.root, cmd);
 		assert(recovered.outcome == outcome::already_applied);
-		same_coin(recovered, coin_owner::apply(f.root, cmd));
+		same_coin(recovered, apply_coin(f.root, cmd));
 		assert(state(f.root).domains.wallet[0] == 90 &&
 		       second_state(f).domains.wallet[0] == 110);
 		assert(state(f.root).domains.bank_revision ==

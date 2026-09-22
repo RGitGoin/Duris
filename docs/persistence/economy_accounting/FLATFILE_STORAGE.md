@@ -167,6 +167,10 @@ collisions, missing catalog refusal, forged retained result/stage/revision, and
 recovery after journal publication and every after-image boundary. These checks
 do not qualify a MySQL server or power-loss behavior.
 
-Runtime dispatch and gameplay admission remain closed for this owner. Full
+The schema-2 flatfile dispatcher now routes coin commands to this owner. The
+native coin harness exercises that route with both real typed owners linked;
+the unrelated legacy dispatcher is a link-time failure sentinel. The coordinator
+admission test continues to reject the closed coin family without checkpointing
+its journal entry. Gameplay admission remains closed. Full
 historical legacy fencing, remaining typed domains and activation/reconciliation
 qualification are still required; this increment does not complete #478 or #474.

@@ -10,6 +10,7 @@ from test_flatfile_accounting_store import ROOT, SOURCES
 def main():
     sources = ["tests/async/flatfile_accounting_coin_test.cpp",
                "src/flatfile/flatfile_accounting_coin_transaction.c",
+               "src/flatfile/flatfile_accounting_dispatch.c",
                "src/flatfile/flatfile_item_repository.c", "src/player/player_snapshot_codec.c",
                "src/economy/economic_coin_adapter.c", "src/economy/coin_transfer_command.c",
                "src/flatfile/flatfile_accounting_authority.c",
@@ -24,7 +25,8 @@ def main():
             "-O1", "-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer",
             "-fno-pie", "-no-pie", "-ffunction-sections", "-fdata-sections", "-Wl,--gc-sections", "-D__NO_MYSQL__", "-DDURIS_FLATFILE_ACCOUNTING_TEST",
             "-DDURIS_FLATFILE_AUTHORITY_FAULT_TEST", "-Isrc", "-Isrc/no_mysql", *sources,
-            "-Wl,--wrap=_Znwm,--wrap=_Znam", "-lcrypto", "-pthread", "-o", str(binary),
+            "-Wl,--wrap=_Znwm,--wrap=_Znam",
+            "-Wl,--wrap=_Z51flatfile_critical_command_repository_apply_selectedRK16critical_commandPv", "-lcrypto", "-pthread", "-o", str(binary),
         ], cwd=ROOT, check=True)
         subprocess.run([str(binary), str(Path(temporary) / "state")], cwd=ROOT, check=True,
                        timeout=660,

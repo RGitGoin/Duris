@@ -10,16 +10,7 @@
 #include <mutex>
 #include <thread>
 
-const char *persistence_mode_flatfile_root()
-{
-	return nullptr;
-}
-critical_apply_result flatfile_critical_command_repository_apply_selected(const critical_command &,
-									  void *)
-{
-	assert(false && "native accounting journey must never enter legacy dispatcher");
-	return { outcome::terminal_failure, 0, EINVAL };
-}
+#include "flatfile_accounting_dispatch_native_fixture.h"
 struct native_execution
 {
 	std::string root;
