@@ -706,3 +706,17 @@ or changing gameplay in the #475 inventory.
 Draft validator passed 13 fixtures: 286 routes, 2,756 raw matches, 2,698 unique
 coordinates, 928 mapped, 43 reviewed declarations and 1,727 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Equipment placement and broken-item wear
+
+Sixteen equipment sites are classified. Common wear plus wrist/belt branches move
+existing carried items into slots; removal returns items to the same actor and can
+also return three belt attachments. These are placement/effect changes, not fresh
+issuance. Initial carry checks do not make the multi-item removal one atomic saved
+group. Wear refuses detached pending grants, while nonpositive-condition carried
+items invoke MakeScrap instead of equipping. Existing insertion/crumble pointer
+risk remains explicitly deferred in source. No runtime behavior changed.
+
+Draft validator passed 13 fixtures: 289 routes, 2,756 raw matches, 2,698 unique
+coordinates, 944 mapped, 43 reviewed declarations and 1,711 unclassified.
+Census and runtime qualification remain incomplete.

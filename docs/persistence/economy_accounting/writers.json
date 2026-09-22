@@ -13402,6 +13402,176 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.equipment_wear",
+      "path": "src/cmd/actobj.c",
+      "symbol": "execute_wear",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Move an existing carried item to an equipment slot, using common wear helper or direct wrist/belt branches. Wrist slots depend on anatomy; belt attachments require an equipped belt and available attachment slot.",
+      "authority_boundary": "Same actor retains intended ownership; equipped placement and effects change. Wear controller refuses items not yet carried, including detached pending creation grants. Helper execution does not prove durable slot saving or eliminate equipment side effects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          7527,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          7528,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8259,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8267,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8277,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8287,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8297,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8640,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8644,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8648,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          8652,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.equipment_remove",
+      "path": "src/cmd/actobj.c",
+      "symbol": "int remove_item(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Move worn item back to the same character inventory. Removing waist item first returns up to three belt attachments; removes holy sword/permanent invisibility/enchantment effects as applicable.",
+      "authority_boundary": "Initial carry capacity check precedes all attachment removals. Each nested unequip/insert is a live step, not proof of atomic equipment group persistence. Source explicitly defers potential pointer use after insertion crumble; preserve as unqualified behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          7603,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          7607,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          7611,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          7624,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.wear_broken_scrap",
+      "path": "src/cmd/actobj.c",
+      "symbol": "int wear(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Wear of a carried item with nonpositive condition invokes MakeScrap and refuses ordinary equip.",
+      "authority_boundary": "This is item conversion/retirement via MakeScrap rather than successful wear; distinguish resulting scrap from original item identity and do not infer issuance from the wear attempt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          7752,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
