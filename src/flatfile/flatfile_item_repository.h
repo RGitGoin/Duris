@@ -13,6 +13,7 @@
 
 #include <cstdint>
 #include <string>
+#include <span>
 #include <vector>
 
 struct flatfile_item_ownership_record
@@ -88,6 +89,11 @@ struct flatfile_item_collector_mutation
 	uint64_t to_owner_revision = 0;
 	uint64_t item_revision = 0;
 };
+
+// Borrowed-lock receipt fence; missing catalog is distinct from proven absence.
+flatfile_item_repository_result flatfile_item_repository_operation_ids_present_locked(
+	const std::string &, const flatfile_authority_lock &,
+	std::span<const critical_operation_id>, bool *present, std::string *error);
 
 flatfile_item_repository_result flatfile_item_repository_load_owner(
 	const std::string &root, const item_owner_identity &owner, uint64_t *owner_revision,

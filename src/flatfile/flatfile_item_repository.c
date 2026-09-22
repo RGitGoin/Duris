@@ -849,6 +849,37 @@ unsigned int apply_transfer(ownership_catalog *catalog, const item_transfer_payl
 }
 } // namespace
 
+flatfile_item_repository_result flatfile_item_repository_operation_ids_present_locked(
+	const std::string &root, const flatfile_authority_lock &lock,
+	std::span<const critical_operation_id> ids, bool *present, std::string *error)
+{
+	if (!lock.matches(root) || !present || ids.empty() || ids.size() > 3 ||
+	    std::any_of(ids.begin(), ids.end(), critical_operation_id_is_zero))
+		return flatfile_item_repository_result::invalid;
+	try
+	{
+		const auto recovered = flatfile_authority_transaction_recover(root, lock, error);
+		if (recovered != flatfile_authority_transaction_result::ok)
+			return recovered == flatfile_authority_transaction_result::io_error ?
+				       flatfile_item_repository_result::io_error :
+				       flatfile_item_repository_result::invalid;
+		ownership_catalog catalog;
+		const auto loaded = load_catalog(root, &catalog, error);
+		if (loaded != flatfile_item_repository_result::ok)
+			return loaded;
+		bool found = false;
+		for (const auto &receipt : catalog.operations)
+			for (const auto &id : ids)
+				found |= critical_operation_id_equal(receipt.operation_id, id);
+		*present = found;
+		return flatfile_item_repository_result::ok;
+	}
+	catch (const std::bad_alloc &)
+	{
+		return flatfile_item_repository_result::io_error;
+	}
+}
+
 flatfile_item_repository_result flatfile_item_repository_load_owner(
 	const std::string &root, const item_owner_identity &owner, uint64_t *owner_revision,
 	std::vector<flatfile_item_ownership_record> *items, std::string *error)

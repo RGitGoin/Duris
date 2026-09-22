@@ -152,6 +152,21 @@ no new retention pruning or durable file class is introduced. Root lookup checks
 at most 64 child links, one additional bucket/segment context at a time. Staging
 holds at most 16 affected bucket contexts plus the bounded authority bundle.
 
-This storage work does not enable flat-file coin gameplay admission. The typed
-coin owner still needs native effect staging, legacy root/child receipt fencing,
-post-commit readback and cross-backend outcome qualification.
+The standalone typed wallet-to-wallet coin owner now stages native player/bank
+images with the accounting root and child reservations under one authority lock
+and journal. It checks retained ownership-catalog and both player-domain receipts
+for root/child collisions; an absent catalog remains unresolved. Success and
+business rejection retain exact results, and replay verifies the plan, failure
+stage and result against the original intent and historical lifetime/epoch data.
+Post-commit readback checks native images and balances, including a shared bank's
+final revision. Existing bounded legacy receipts are preserved, not extended.
+
+The native coin harness covers shared/separate banks, unchanged rejection states,
+SQL-policy canonical plan/error parity, paused-epoch replay, legacy root/child
+collisions, missing catalog refusal, forged retained result/stage/revision, and
+recovery after journal publication and every after-image boundary. These checks
+do not qualify a MySQL server or power-loss behavior.
+
+Runtime dispatch and gameplay admission remain closed for this owner. Full
+historical legacy fencing, remaining typed domains and activation/reconciliation
+qualification are still required; this increment does not complete #478 or #474.
