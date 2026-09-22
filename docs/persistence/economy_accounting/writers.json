@@ -37889,6 +37889,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.file_import",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_files_to_sql",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Imports legacy artifact authority and may remove conflicting live copies, create prototype replacement and attach missing artifact to offline dummy in super mode. Registry update precedes optional owner save. Cleanup flags differ for NPC versus other duplicate locations; failed save retains dummy. Not a pure metadata import.",
+      "authority_boundary": "Qualify migration/repair authority, exact retained/replaced identity, duplicate selection, offline save and partial failure. Registry write, live extraction and dummy teardown are separate durable boundaries; never infer atomic repair.",
+      "current_support": "Existing artifact migration/repair; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          2587,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2591,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2622,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2632,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2650,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2676,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2657,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.offline_hunt",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_hunt_sql",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Scans offline loaded equipment/inventory, establishes or corrects artifact registry and extracts found zone copy on selected missing/NPC/ground conflicts. Existing offline item is authoritative candidate, not newly issued reward; runtime copy removal and registry correction must agree.",
+      "authority_boundary": "Qualify migration/repair authority, exact retained/replaced identity, duplicate selection, offline save and partial failure. Registry write, live extraction and dummy teardown are separate durable boundaries; never infer atomic repair.",
+      "current_support": "Existing artifact migration/repair; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3523,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3556,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3570,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3606,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

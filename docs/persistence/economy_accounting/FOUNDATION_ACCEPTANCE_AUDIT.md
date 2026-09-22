@@ -3041,3 +3041,13 @@ corpse save can precede poof; wars timer failure does not prevent native drop.
 Compound custody/registry/publication qualification remains open.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 831 routes, 2756 raw matches, 2698 unique coordinates, 2545 mapped, 43 reviewed nonwriters, 110 unclassified.
+
+
+## Artifact legacy import and offline hunt
+
+Eleven coordinates grouped as legacy import and offline ownership repair.
+Import can remove live copies and create missing offline inventory, with registry
+update before optional save; hunt can retire zone copies while correcting
+registry ownership. These are not pure read-only scans or ordinary rewards.
+No runtime changes or tests; lifecycle qualification remains open.
+Draft validation passed 13 fixtures: 833 routes, 2756 raw matches, 2698 unique coordinates, 2556 mapped, 43 reviewed nonwriters, 99 unclassified. Release readiness remains false.
