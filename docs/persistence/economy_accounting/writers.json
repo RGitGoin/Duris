@@ -22021,7 +22021,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Noncursed quiver missile and possible blocking shield",
+      "destination": "Victim/room projectile or scrap; shield may also become scrap"
     },
     {
       "id": "economy.dump_reward",
@@ -22605,7 +22607,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional random encounter object",
+      "destination": "NPC inventory followed by equipment evaluation"
     },
     {
       "id": "item.encounter_magical_generation",
@@ -22640,7 +22644,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype1295 and randomized type/value payload",
+      "destination": "Provisional magical/consumable/money object returned to caller"
     },
     {
       "id": "item.encounter_equipment_generation",
@@ -22740,7 +22746,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Slot-specific prototype and random equipment fields",
+      "destination": "Configured provisional equipment returned to caller"
     },
     {
       "id": "item.npc_generated_cadaver",
@@ -22780,7 +22788,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible idle raiser NPC and randomized prototype2",
+      "destination": "New room cadaver with two-minute decay"
     },
     {
       "id": "item.npc_backstab_equipment",
@@ -22860,7 +22870,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried backstab weapon and current equipment",
+      "destination": "Selected equipped weapon and displaced inventory; cursed early-return detachment unresolved"
     },
     {
       "id": "item.npc_better_equipment",
@@ -22900,7 +22912,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Better carried item and uncursed equipment",
+      "destination": "New worn item and displaced inventory evaluated for other slots"
     },
     {
       "id": "item.npc_hunt_backstab_equipment",
@@ -23010,7 +23024,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried backstab weapon during adjacent hunt",
+      "destination": "Equipped weapon or unchanged carried state if slots blocked"
     },
     {
       "id": "item.sea_orb_slip",
@@ -23050,7 +23066,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped orb",
+      "destination": "Same-character inventory"
     },
     {
       "id": "item.gith_weapon_exhaustion",
@@ -23090,7 +23108,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "PC-used weapon over proc threshold",
+      "destination": "Unequipped/extracted weapon on chance"
     },
     {
       "id": "item.gith_weapon_return",
@@ -23135,7 +23155,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wielder primary weapon/proc object",
+      "destination": "Inventory intermediate then victim custody"
     },
     {
       "id": "item.tiamat_death_loot",
@@ -23190,7 +23212,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC inventory/equipment and heart template",
+      "destination": "Released room holdings plus new decaying heart"
     },
     {
       "id": "item.purple_worm_corpse_custody",
@@ -23250,7 +23274,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room victim corpse/objects or worm-held objects",
+      "destination": "Worm custody during swallow, room release during expiry/death with separate corpse save"
     },
     {
       "id": "item.flying_dagger_output",
@@ -23290,7 +23316,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death prototype92044",
+      "destination": "New room output without local allocation check"
     },
     {
       "id": "item.flying_dagger_corpse",
@@ -23335,7 +23363,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected room corpse after deferral fallback",
+      "destination": "Released children and retired corpse"
     },
     {
       "id": "item.ochre_jelly_corpse",
@@ -23380,7 +23410,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected room corpse after deferral fallback",
+      "destination": "Released children and retired corpse"
     },
     {
       "id": "item.animated_sword_output",
@@ -23420,7 +23452,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype92087 allocated before event check",
+      "destination": "Death-room output or uncleaned provisional object on other calls"
     },
     {
       "id": "item.helmed_horror_output",
@@ -23460,7 +23494,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype92091 allocated before event check",
+      "destination": "Death-room output or uncleaned provisional object on other calls"
     },
     {
       "id": "item.flindbar_disarm",
@@ -23495,7 +23531,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim primary/secondary weapon",
+      "destination": "Attacker-room dropped weapon and combat waits"
     },
     {
       "id": "item.lightning_sword_corpse",
@@ -23540,7 +23578,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First room corpse after kill and deferral fallback",
+      "destination": "Released children and retired corpse before optional chain lightning"
     },
     {
       "id": "item.drow_surface_decay",
@@ -23575,7 +23615,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Object held by character in sunlit nonunderworld room",
+      "destination": "Extracted object"
     },
     {
       "id": "item.ctf_initial_flags",
@@ -23615,7 +23657,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured flag template and selected room",
+      "destination": "Customized new room flag"
     },
     {
       "id": "item.ctf_missing_primary_flags",
@@ -23665,7 +23709,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing good/evil flag state",
+      "destination": "Recreated flag in home room"
     },
     {
       "id": "item.ctf_recreate_flag",
@@ -23705,7 +23751,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Deleted prior flag and replacement allocation",
+      "destination": "Customized replacement at indexed configured room"
     },
     {
       "id": "item.ctf_delete_flag",
@@ -23740,7 +23788,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Registered flag and located carrier affect",
+      "destination": "Retired flag, cleared CTF affect and runtime pointer"
     },
     {
       "id": "item.ctf_pickup_reclaim",

@@ -3263,3 +3263,7 @@ Added 25 endpoints for spell objects, soulbinding, portals, components and resur
 ## Corpse, disabled spell and ammunition endpoints (2026-09-22)
 
 Added 25 endpoints preserving disabled branches, existing-child transfers, saved-corpse copies, partial compaction and ammunition quantity conversion. Explicit endpoints: 672; missing endpoints: 179; test-link gaps remain 710. Draft validation and diff checks pass; no corpse/ammunition behavior or runtime qualification changed.
+
+## Combat, encounter and flag endpoints (2026-09-22)
+
+Added 25 item endpoints for projectiles, random encounter outputs, NPC equipment selection, corpse handling and CTF flags. Preserved provisional leaks, blocked-slot behavior, same-owner moves and separate corpse saves. Explicit endpoints: 697; missing endpoints: 154; test-link gaps remain 710. Draft validation and diff checks pass; no runtime qualification changed.
