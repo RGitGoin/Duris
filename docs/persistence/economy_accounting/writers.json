@@ -15195,6 +15195,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "service.world_quest_fee",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int world_quest(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Abandon, map and new-quest services submit wallet spend with action, fee and giver vnum context, then modify quest state only after committed callback and current-state checks.",
+      "authority_boundary": "Context lacks original quest instance/version. Rechecks detect selected stale states but do not prove same quest identity; quest effect and native saving are separate from wallet commit. Zero fee is permitted by new-quest quote calculation but rejected by callback context validation; preserve as unresolved boundary.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          11083,
+          "economic_submit"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11140,
+          "economic_submit"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11225,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "service.world_quest_refund",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "world_quest_refund_payment",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Stale quest state or failed quest creation after committed charge invokes ADD_MONEY refund and announces money returned.",
+      "authority_boundary": "Refund helper takes player and fee only, not original payment operation ID; credit outcome is unchecked and announcement precedes it. Compensation must be linked and replay-safe rather than categorized as fresh reward; missing player/context can prevent callback compensation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          10878,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

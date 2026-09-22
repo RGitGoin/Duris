@@ -893,3 +893,16 @@ not prove common settlement, effect delivery or native save acknowledgement.
 Draft validator passed 13 fixtures: 315 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,112 mapped, 43 reviewed declarations and 1,543 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## World quest fee and refund linkage
+
+Four sites classified. Fees commit before callback quest/map/abandon effects; context
+has action, fee and giver but no quest-instance version. Stale-state checks do not
+prove original quest identity. Refund helper accepts only player/fee and announces
+return before unchecked ADD_MONEY; original debit linkage and replay remain open.
+New-quest quote permits zero while callback rejects nonpositive fee, an unresolved
+boundary recorded without gameplay changes.
+
+Draft validator passed 13 fixtures: 317 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,116 mapped, 43 reviewed declarations and 1,539 unclassified.
+Census and runtime qualification remain incomplete.
