@@ -8829,7 +8829,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locker corpse roots with contents",
+      "destination": "Exit-room corpses retaining their contents"
     },
     {
       "id": "locker.display_chests",
@@ -8879,7 +8881,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Synthetic chest templates plus retained chest metadata/content",
+      "destination": "Weightless locker-room display shells with separately restored holdings"
     },
     {
       "id": "locker.chest_teardown",
@@ -8929,7 +8933,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Synthetic chest and contained holdings",
+      "destination": "Contents promoted to room/limbo; shell retired"
     },
     {
       "id": "locker.snapshot_projection",
@@ -8994,7 +9000,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locker public/loose contents after private saves",
+      "destination": "Temporary locker-character save staging, then restored sorted room/chest placement"
     },
     {
       "id": "locker.access_probe_cleanup",
@@ -9044,7 +9052,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary access-check character and loaded item copies",
+      "destination": "Discarded probe representations, without durable holdings retirement"
     },
     {
       "id": "locker.room_reuse_cleanup",
@@ -9079,7 +9089,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Objects in room selected for new session",
+      "destination": "Extracted live objects before session reassignment"
     },
     {
       "id": "locker.artifact_return",
@@ -9119,7 +9131,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact roots in locker room",
+      "destination": "Same player inventory, refusing storage"
     },
     {
       "id": "locker.entry_fee",
@@ -9154,7 +9168,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Entering player wallet/shared bank",
+      "destination": "Item-count entry expense; wallet result not checked"
     },
     {
       "id": "locker.private_chest_purchase",
@@ -9189,7 +9205,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player payment and newly created durable chest metadata",
+      "destination": "Private chest entitlement plus attempted expense; rollback limits retained"
     },
     {
       "id": "world.random_zone_features",
@@ -34343,7 +34361,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller creation transaction and supplied item identity",
+      "destination": "Initial current-owner row at revision zero"
     },
     {
       "id": "storage.item_owner_update",
@@ -34378,7 +34398,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Revision-guarded current item custody",
+      "destination": "Updated topology/owner/state at next revision"
     },
     {
       "id": "storage.item_ownership_ledger",
@@ -34413,7 +34435,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Operation event and resolved custody transition",
+      "destination": "Immutable ownership evidence under operation/event index"
     },
     {
       "id": "storage.item_coin_payload",
@@ -34448,7 +34472,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated money snapshot and expected UID/revision",
+      "destination": "Updated serialized coin payload or null payload for destruction"
     },
     {
       "id": "storage.item_owner_destruction",
@@ -34483,7 +34509,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Current owner roots selected by caller",
+      "destination": "Repository multi-root destruction under generated operation identity"
     },
     {
       "id": "storage.corpse_world_transfer",
@@ -34518,7 +34546,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Outer corpse operation and source nested custody",
+      "destination": "Nested destination transfer retaining outer identity and event offset"
     },
     {
       "id": "storage.corpse_bank_prepare",
@@ -34553,7 +34583,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Account/racewar identity and existing bank row",
+      "destination": "Ensured row and locked balance/revision read; no deposit"
     },
     {
       "id": "storage.corpse_wallet_apply",
@@ -34588,7 +34620,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Before/after corpse wallet disposition and expected revisions",
+      "destination": "Wallet delta and advanced wallet/bank revisions under outer identity"
     },
     {
       "id": "storage.corpse_room_materialization",
@@ -34623,7 +34657,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Retained corpse item rows and UIDs",
+      "destination": "Saved room graph with operation-derived key and parent mapping"
     },
     {
       "id": "storage.corpse_world_raise_retirement",
@@ -34658,7 +34694,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated saved root after world-corpse raise",
+      "destination": "Retired saved row within domain savepoint; outer commit still required"
     },
     {
       "id": "storage.corpse_compound_transfers",
@@ -34698,7 +34736,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Transient and physical item sets within corpse operation",
+      "destination": "Linked destruction/transfer events with shared identity and revision sequencing"
     },
     {
       "id": "recovery.copyover_file_wallet",
@@ -35426,7 +35466,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Derived combat child reward and prior wallet/bank revisions",
+      "destination": "Canonical wallet reward and currency evidence; bank value unchanged"
     },
     {
       "id": "storage.remaining_currency_state_write",
@@ -35466,7 +35508,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prepared wallet/bank state and expected revisions",
+      "destination": "Updated balances/revisions and currency evidence within outer transaction"
     },
     {
       "id": "storage.remaining_currency_bank_ensure",
@@ -35501,7 +35545,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Account/racewar identity",
+      "destination": "Ensured bank row before locked mutation preparation, not deposit"
     },
     {
       "id": "storage.remaining_restitution_owner",
@@ -35536,7 +35582,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Guarded prior restitution custody graph/state/revision",
+      "destination": "New owner/root/parent/state retaining item UID"
     },
     {
       "id": "storage.remaining_restitution_ledger",
@@ -35571,7 +35619,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Restitution transfer and death revision under outer operation",
+      "destination": "Linked ownership evidence requiring same commit as holdings"
     },
     {
       "id": "storage.remaining_bank_load",
@@ -35606,7 +35656,9 @@
           "direct_cash_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Stored shared-bank row",
+      "destination": "Load-result denomination/revision projection"
     },
     {
       "id": "storage.remaining_death_quarantine",
@@ -35641,7 +35693,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Disputed active player items matching death custody",
+      "destination": "Quarantined retained custody blocking ordinary restore"
     },
     {
       "id": "storage.remaining_pwipe_auction",
@@ -35676,7 +35730,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior-season auction histories/claims/custody rows",
+      "destination": "Reset-deleted rows under lifecycle/epoch policy, not claim settlement"
     },
     {
       "id": "storage.remaining_pwipe_saved_items",
@@ -35711,7 +35767,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior-season saved-item graphs and handoffs",
+      "destination": "Reset-retired recovery storage requiring lifecycle/accounting agreement"
     },
     {
       "id": "helper.remaining_world_listing",

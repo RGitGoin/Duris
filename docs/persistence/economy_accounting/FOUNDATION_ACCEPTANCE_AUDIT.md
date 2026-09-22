@@ -3199,3 +3199,7 @@ Live #481 scope explicitly owns quest/NPC rewards, starter grants, services, loc
 ## Death and lifecycle endpoints (2026-09-21)
 
 Added explicit endpoints for all seven death and 15 lifecycle routes, preserving committed-result projection, retained-custody unloading, tombstone-only visibility, uncertain deletion acknowledgement, and disabled destructive policy distinctions. No production action or gameplay change. Explicit endpoints: 246; missing endpoints: 605; test-link gaps remain 710. Draft contract validation and diff checks pass; this does not qualify lifecycle backend behavior.
+
+## Storage and locker endpoints (2026-09-21)
+
+Added endpoints for 20 storage helpers and nine locker routes. Retained distinctions include bank-row ensure versus deposit, recovery projection versus issuance, savepoint release versus commit, quarantine versus destruction, and synthetic chest teardown versus contained-asset retirement. Explicit endpoints: 275; missing endpoints: 576; test-link gaps remain 710. Draft contract validation and diff checks pass. No backend or payment behavior changed or qualified.
