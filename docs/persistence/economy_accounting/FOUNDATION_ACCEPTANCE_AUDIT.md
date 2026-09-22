@@ -1871,3 +1871,15 @@ qualification. Children retained in room are neither new issuance nor retirement
 Draft validation passed 13 fixtures: 517 routes, 2756 raw matches, 2698 unique
 coordinates, 1779 mapped, 43 reviewed declarations, 876 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Kingdom node generation and personal gathering
+
+Six coordinates classified under #486. Node generation preserves selected room,
+richness and charge payload. Personal gathering spends shared charge before output
+allocation/capacity checks, allowing partial or zero yield; rejected provisional
+material differs from admitted material retirement. Exhaustion retires node and
+surviving node records worked time. Compound charge/output recovery unqualified.
+
+Draft validation passed 13 fixtures: 519 routes, 2756 raw matches, 2698 unique
+coordinates, 1785 mapped, 43 reviewed declarations, 870 unclassified.
+No gameplay changes; release readiness remains false.

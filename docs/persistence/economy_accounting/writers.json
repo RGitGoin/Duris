@@ -24598,6 +24598,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.kingdom_node_spawn",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "kingdom_load_one_node",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After bounded room-selection checks, allocates resource/region prototype, rolls node richness and charges, captures log payload then publishes into room. Caller deliberately stops using node pointer after placement, which may consume object. New node admission must preserve selected room and randomized payload on replay.",
+      "authority_boundary": "Bind source node identity, charge state, selected output payloads and actual destination. Preserve partial-yield and charge-spend semantics through compound commit/publication/recovery without rerolling or duplicating material. Runtime accounting and save acknowledgement remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          1105,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_harvest.c",
+          1121,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_personal_gather",
+      "path": "src/kingdom/kingdom_harvest.c",
+      "symbol": "static void kingdom_gather_tick",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After valid material prototype, decrements shared node charge before generating requested yield. Allocates each material, discards provisional material when bag capacity fails, otherwise inserts into bag. Allocation or full bag can produce partial/zero output while charge remains spent. Exhausted node is retired; surviving node marked worked. Rejected provisional material is not admitted wealth destruction.",
+      "authority_boundary": "Bind source node identity, charge state, selected output payloads and actual destination. Preserve partial-yield and charge-spend semantics through compound commit/publication/recovery without rerolling or duplicating material. Runtime accounting and save acknowledgement remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/kingdom/kingdom_harvest.c",
+          2117,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_harvest.c",
+          2125,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_harvest.c",
+          2150,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_harvest.c",
+          2130,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
