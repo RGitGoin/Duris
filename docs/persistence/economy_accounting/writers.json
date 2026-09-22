@@ -32402,6 +32402,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.chaos_test_seed",
+      "path": "src/combat/chaos.c",
+      "symbol": "static void chaos_pouch_test_seed",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Trusted chaos test command allocates five selected fixture prototypes and submits each player grant independently. Rejected submissions destroy provisional objects; any accepted grant marks blocking. Preparation message does not prove every grant committed.",
+      "authority_boundary": "Classify test/admin issuance separately from ordinary rewards while retaining native access gates. Bind each admitted operation to selected asset or amount, qualify partial bundle acceptance, refusal, publication/save acknowledgement and replay. Do not expose configured account values in evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/chaos.c",
+          142,
+          "economic_submit"
+        ],
+        [
+          "src/combat/chaos.c",
+          139,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/chaos.c",
+          145,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.chaos_questroom_test",
+      "path": "src/combat/chaos.c",
+      "symbol": "static bool chaos_test_questroom",
+      "reason": "coin_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Chaos/test flags, configured account and loopback checks gate test room move before 100000 wallet reward submission. Callback reports commit/failure; move can succeed even when submission fails. Preserve authorization and distinguish queue admission from publication.",
+      "authority_boundary": "Classify test/admin issuance separately from ordinary rewards while retaining native access gates. Bind each admitted operation to selected asset or amount, qualify partial bundle acceptance, refusal, publication/save acknowledgement and replay. Do not expose configured account values in evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/chaos.c",
+          219,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.chaos_admin_funds",
+      "path": "src/combat/chaos.c",
+      "symbol": "void do_chaos",
+      "reason": "coin_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Trusted PC on chaos-enabled server receives 10000000 wallet value via unchecked ADD_MONEY for platinum/plats command. Repeat invocations are intentional distinct rewards; local message is not durable evidence.",
+      "authority_boundary": "Classify test/admin issuance separately from ordinary rewards while retaining native access gates. Bind each admitted operation to selected asset or amount, qualify partial bundle acceptance, refusal, publication/save acknowledgement and replay. Do not expose configured account values in evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/chaos.c",
+          264,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

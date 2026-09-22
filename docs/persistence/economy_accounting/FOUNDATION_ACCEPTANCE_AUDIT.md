@@ -2701,3 +2701,14 @@ Equip refusal, NPC wallet lifetime and save/replay qualification remain open.
 Draft validation passed 13 fixtures: 704 routes, 2756 raw matches, 2698 unique
 coordinates, 2210 mapped, 43 reviewed nonwriters, 445 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Chaos test and admin issuance
+
+Five coordinates classified as fixture-item grants, restricted quest-room
+wallet reward and trusted chaos funds. Preserve authorization and distinguish
+partial grant admission or committed callback from native publication/save
+completion. Room movement precedes wallet submission. No test account data read.
+
+Draft validation passed 13 fixtures: 707 routes, 2756 raw matches, 2698 unique
+coordinates, 2215 mapped, 43 reviewed nonwriters, 440 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
