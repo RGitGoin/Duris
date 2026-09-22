@@ -1789,3 +1789,16 @@ Scale/shard allocation failure and compound death publication remain unqualified
 Draft validation passed 13 fixtures: 495 routes, 2756 raw matches, 2698 unique
 coordinates, 1698 mapped, 43 reviewed declarations, 957 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Combat disarms, blood replacement and corpse portals
+
+Fourteen coordinates classified across five routes. Mangle, quickstep fumble and
+critical inventory disarm transfer existing weapons to the same owner's inventory;
+ground-drop helper branches remain distinct. Blood replacement retires room blood
+before checked replacement allocation, with provisional cleanup on no destination.
+Corpse portals allocate/configure then publish on eligible PC death. Transient
+policy and compound publication/save ordering remain unqualified.
+
+Draft validation passed 13 fixtures: 500 routes, 2756 raw matches, 2698 unique
+coordinates, 1712 mapped, 43 reviewed declarations, 943 unclassified.
+No gameplay changes; release readiness remains false.

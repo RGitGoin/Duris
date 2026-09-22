@@ -23525,6 +23525,226 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.combat_bloodstain",
+      "path": "src/combat/fight.c",
+      "symbol": "make_bloodstain",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Removes every existing room blood object, then allocates prototype 4 with randomized description/freshness and decay. Publishes in current room or prior room fallback; unavailable fallback extracts the provisional object. Current-room access precedes NOWHERE fallback.",
+      "authority_boundary": "Distinguish replacement retirement from rejected provisional cleanup and successful admission. Transient eligibility, exact payload, destination and durable replacement ordering remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          1948,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1949,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          1954,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          1973,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1976,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          1982,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.combat_mangle_disarm",
+      "path": "src/combat/fight.c",
+      "symbol": "mangleSucceed",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After surviving damage, eligible chance-based mangle disarm unequips the victim weapon and places the same object in victim inventory, then updates lighting.",
+      "authority_boundary": "Preserve same UID and owner across equipment-to-inventory transfer, with combat conditions and effects unchanged. Commit/publication/save ordering remains unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          4122,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          4123,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.combat_quickstep_disarm",
+      "path": "src/combat/fight.c",
+      "symbol": "bool hit(P_char",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Fumble case with quickstep miss, level and non-NODROP guards locates equipped weapon, unequips only a valid slot and puts returned object into same actor inventory. Other fumbles use forced_weapon_drop separately.",
+      "authority_boundary": "Preserve equipment slot, UID and same-owner inventory destination; distinguish this branch from ground-drop helper. Durable acknowledgement remains unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          7528,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          7535,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.combat_critical_inventory_disarm",
+      "path": "src/combat/fight.c",
+      "symbol": "critical_disarm",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Selects first weapon in four wield slots, rejects NODROP, and uses forced drop for eligible nonartifact chance. Remaining branch unequips and places same weapon into victim inventory.",
+      "authority_boundary": "Record same-UID slot-to-inventory movement without issuance; preserve artifact, chance and refusal behavior. Ground-drop branch and inventory branch require distinct destination qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          10803,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          10806,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.combat_corpse_portal",
+      "path": "src/combat/fight.c",
+      "symbol": "int raw_damage",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "On dead PC without PVP delay, checked allocation of prototype 400220 sets destination to victim room and personalizes descriptions, then places portal in room 400000.",
+      "authority_boundary": "Preserve generated portal identity, payload and admission exactly once; verify transient policy and death ordering. Allocation alone is not publication and no durable acknowledgement is established here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          6508,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          6519,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
