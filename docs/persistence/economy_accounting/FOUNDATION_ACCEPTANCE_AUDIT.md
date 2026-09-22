@@ -2656,3 +2656,14 @@ reachability are qualification concerns, not incidental fixes.
 Draft validation passed 13 fixtures: 692 routes, 2756 raw matches, 2698 unique
 coordinates, 2188 mapped, 43 reviewed nonwriters, 467 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## NPC special theft
+
+Six coordinates classified into item custody and wallet transfer. Caught item
+attempt handling may fall through into coin theft despite the choice comment.
+Successful debit precedes unchecked credit; two-owner conservation, NPC
+lifetime and save/replay qualification remain open. Preserve existing gates.
+
+Draft validation passed 13 fixtures: 694 routes, 2756 raw matches, 2698 unique
+coordinates, 2194 mapped, 43 reviewed nonwriters, 461 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

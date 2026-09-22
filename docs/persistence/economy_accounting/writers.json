@@ -31932,6 +31932,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.npc_special_theft",
+      "path": "src/mob/specials.c",
+      "symbol": "void npc_steal",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "NPC theft selects carried or worn player item; weight/artifact, capacity and combat/safe gates apply. Successful roll transfers existing item and contents to thief. Caught handling can continue into the coin attempt; do not assume the commented item-or-coin choice is strictly exclusive.",
+      "authority_boundary": "Existing player-to-thief asset transfer, not issuance. Preserve random selection and native fallthrough/refusal behavior; qualify two-owner conservation, NPC lifetime, partial debit/credit or item placement, save acknowledgement and replay without repeated theft.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/specials.c",
+          358,
+          "item_publication"
+        ],
+        [
+          "src/mob/specials.c",
+          369,
+          "item_publication"
+        ],
+        [
+          "src/mob/specials.c",
+          373,
+          "item_publication"
+        ],
+        [
+          "src/mob/specials.c",
+          374,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.npc_special_theft",
+      "path": "src/mob/specials.c",
+      "symbol": "void npc_steal",
+      "reason": "coin_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After awareness save, independently rolled denomination percentages form stolen copper value. Positive amount and successful SUB_MONEY precede ADD_MONEY to thief; credit result is unchecked locally. Victim is PC, pets/teachers/trusted/safe cases are excluded by entry gates.",
+      "authority_boundary": "Existing player-to-thief asset transfer, not issuance. Preserve random selection and native fallthrough/refusal behavior; qualify two-owner conservation, NPC lifetime, partial debit/credit or item placement, save acknowledgement and replay without repeated theft.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/specials.c",
+          448,
+          "money_helper"
+        ],
+        [
+          "src/mob/specials.c",
+          450,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
