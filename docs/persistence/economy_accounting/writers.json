@@ -27553,6 +27553,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.moonstone_assembly",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "moonstone_fragment",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic carried-item check requires exactly two fragments and one core, refuses multiple cores, then detaches and destroys all carried moonstone parts before prototype lookup and checked output allocation. Missing prototype or allocation failure leaves consumed inputs without output.",
+      "authority_boundary": "Bind consumed part identities and replacement admission as one exchange; qualify failure and retry without duplicate output or repeated retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3563,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3564,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3570,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3573,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.moonstone_fragments",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "load_moonstone_fragments",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates first fragment after prototype check without allocation check; randomly publishes to present Olhydra or room 31724. Only afterward requires automaton NPC and second prototype, allocates unchecked second fragment and publishes it. False return can follow first successful publication.",
+      "authority_boundary": "Bind each accepted quest fragment admission to its generation; qualify partial failure and caller recovery policy rather than treating every invocation or allocation as issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3643,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3647,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3651,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3669,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3671,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ship.automaton_crew_exchange",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "erzul_proc",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "ASK automaton requires intact moonstone, eligible owned ship and sufficient wallet. Debits hire cost, detaches and destroys moonstone, installs automaton crew, updates status and queues ship save. Broken parts cause refusal/attack before exchange.",
+      "authority_boundary": "Couple wallet charge, existing item retirement and semantic crew installation; queued ship save is not proof of atomic commit or restart-safe publication.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3750,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3751,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3752,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.moonstone_ring_exchange",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "erzul_proc",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "ASK reward detaches and destroys intact moonstone before prototype 9460 lookup. Missing prototype returns after consumption; ring allocation is unchecked before description access and publication to player.",
+      "authority_boundary": "Couple input retirement with reward admission; qualify missing prototype, allocation failure, refusal and retry without repeated consumption or duplicate reward.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3765,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3766,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3771,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          3774,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

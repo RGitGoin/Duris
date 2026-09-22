@@ -2102,3 +2102,16 @@ remain qualification work.
 Draft validation passed 13 fixtures: 589 routes, 2756 raw matches, 2698 unique
 coordinates, 1938 mapped, 43 reviewed declarations, 717 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Moonstone assembly, quest spawn and exchanges
+
+Sixteen coordinates classified across assembly, fragment generation, automaton
+crew purchase and ring reward. Assembly and reward consume inputs before output
+prototype/allocation succeeds; fragment generation can publish one item before
+returning failure. Crew purchase couples wallet debit, item retirement and
+semantic ship mutation before queued save. Atomicity and restart/retry behavior
+remain qualification work; no incidental gameplay fixes were introduced.
+
+Draft validation passed 13 fixtures: 593 routes, 2756 raw matches, 2698 unique
+coordinates, 1954 mapped, 43 reviewed nonwriters, 701 unclassified.
+No gameplay changes; release readiness remains false.
