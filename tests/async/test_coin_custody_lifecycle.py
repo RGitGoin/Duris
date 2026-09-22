@@ -269,6 +269,35 @@ int main() {
     shared.destination.change.expected_revisions[1].revision = 9;
     assert(!coin_transfer_command_destination_after_source(shared, applied, &destination));
     assert(!coin_transfer_command_destination_after_source(shared, applied, nullptr));
+    // Pile endpoints sharing an owner need the same revision handoff. Both
+    // references to a same-owner destination must advance together.
+    coin_transfer_payload piles = {pile({2,0,0,0}, {1,0,0,0}),
+                                   pile({1,0,0,0}, {2,0,0,0})};
+    piles.destination.change.accepted_at_usec = 23456;
+    const auto pile_id = piles.destination.change.operation_id;
+    applied.piles[0].from_owner_revision = 8;
+    applied.piles[0].to_owner_revision = 8;
+    assert(coin_transfer_command_destination_after_source(piles, applied, &destination));
+    item_transfer_payload advanced = {}, original = {};
+    assert(item_transfer_command_decode_payload(destination, &advanced));
+    assert(item_transfer_command_decode_payload(piles.destination.change, &original));
+    assert(advanced.expected_from_revision == 8 && advanced.expected_to_revision == 8);
+    assert(original.expected_from_revision == 7 && original.expected_to_revision == 7);
+    assert(destination.accepted_at_usec == 23456);
+    assert(critical_operation_id_equal(destination.operation_id, pile_id));
+    original.expected_from_revision = original.expected_to_revision = 9;
+    assert(item_transfer_command_build(&piles.destination.change, pile_id, original,
+        critical_source_site::command, critical_deadline_class::interactive));
+    assert(!coin_transfer_command_destination_after_source(piles, applied, &destination));
+    // Creation makes the shared player owner the source's to-owner instead.
+    piles.source = pile(zero, {1,0,0,0});
+    original.expected_from_revision = original.expected_to_revision = 7;
+    assert(item_transfer_command_build(&piles.destination.change, pile_id, original,
+        critical_source_site::command, critical_deadline_class::interactive));
+    applied.piles[0].to_owner_revision = 10;
+    assert(coin_transfer_command_destination_after_source(piles, applied, &destination));
+    assert(item_transfer_command_decode_payload(destination, &advanced));
+    assert(advanced.expected_from_revision == 10 && advanced.expected_to_revision == 10);
     // Area-authored money retains its prototype through every endpoint.
     roundtrip({pile({0,0,0,10}, zero, false, 402013), wallet(1, zero, {0,0,0,10})});
     roundtrip({pile({0,0,0,10}, {0,0,0,3}, false, 402013), wallet(1, zero, {0,0,0,7})});
