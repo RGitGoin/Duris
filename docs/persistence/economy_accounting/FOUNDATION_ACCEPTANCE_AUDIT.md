@@ -1152,3 +1152,14 @@ artifact identity and exemptions; detached-item death must not be reintroduced.
 Draft validator passed 13 fixtures: 376 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,314 mapped, 43 reviewed declarations and 1,341 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Slot settlement and bound cap rejection
+
+Six coordinates classified: slot jackpot coupon allocation precedes net wallet
+submission, with result narration and machine payload already changed. Net-zero
+results skip submission; no callback establishes save completion. Bound Xmas cap
+rejection damages wearer before retirement, requiring lifetime qualification.
+
+Draft validator passed 13 fixtures: 379 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,320 mapped, 43 reviewed declarations and 1,335 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

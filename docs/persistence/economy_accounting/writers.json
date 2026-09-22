@@ -18035,6 +18035,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.slot_jackpot_coupons",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int slot_machine(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Platinum ELF jackpot branch reduces coin payout to50000 times stake and creates prototypes44 and43 directly in player inventory.",
+      "authority_boundary": "Coupon issuance occurs before net wallet submission and allocations are unchecked. Bind selected jackpot, output UIDs and wallet result; failed wallet submission does not undo coupons.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2072,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2072,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2073,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2073,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.slot_net_submission",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int slot_machine(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Slot settlement submits nonzero payout-minus-stake as wallet_reward or wallet_spend with machine vnum; failure logs and informs player.",
+      "authority_boundary": "Result narration and machine value3 update occur before submission. Net-zero results skip submission and callback is null; enqueue acceptance does not prove durable settlement. Preserve gross wager/payout evidence and source attempt beyond prototype vnum.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2100,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.xmas_cap_owner_rejection",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int xmas_cap(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Triggered cap proc rejects PC whose PID differs from value6, casts ice missile on wearer then extracts cap.",
+      "authority_boundary": "Damage precedes extraction and may affect actor/object lifetime; qualify this ordering before integration. Persist bound PID and exact cap UID; commented seasonal expiry code is not an active destruction path.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2156,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
