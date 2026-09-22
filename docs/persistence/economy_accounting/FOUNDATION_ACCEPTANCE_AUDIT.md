@@ -1670,3 +1670,15 @@ unqualified. All current underworld lexical matches mapped, not runtime coverage
 Draft validation passed13 fixtures:468 routes,2756 raw matches,2698 unique
 coordinates,1610 mapped,43 reviewed declarations,1045 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Undermountain corpse release and death loot
+
+Twelve coordinates classified. Flying dagger and ochre jelly offer deferred corpse
+release before fallback child transfer and retirement. Dagger death creates loot;
+animated sword and helmed horror allocate before event checks, leaving non-death
+allocations without local cleanup. Provisional allocation is not economic admission;
+NPC death identity, failure and replay remain unqualified.
+
+Draft validation passed13 fixtures:473 routes,2756 raw matches,2698 unique
+coordinates,1622 mapped,43 reviewed declarations,1033 unclassified.
+No gameplay changes; release readiness remains false.

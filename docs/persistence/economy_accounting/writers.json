@@ -22275,6 +22275,216 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.flying_dagger_output",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int flying_dagger(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death event allocates prototype92044 and publishes to NPC room without local allocation check.",
+      "authority_boundary": "One output per NPC death identity; allocation and publication require failure/replay qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          1963,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          1965,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.flying_dagger_corpse",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int flying_dagger(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-death/non-registration processing selects first room corpse, offers deferred release, otherwise moves children to room and retires empty corpse.",
+      "authority_boundary": "Preserve corpse/child identities and deferred-versus-fallback routing; release and retirement require compound save/recovery qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          1977,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          1978,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          1988,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ochre_jelly_corpse",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int ochre_jelly(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic processing selects first room corpse, offers deferred release, otherwise moves children to room then retires corpse.",
+      "authority_boundary": "Existing children are transferred, not issued. Bind source graph and destination and qualify committed publication/save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          2014,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          2015,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          2023,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.animated_sword_output",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int animated_sword(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates prototype92087 before event-type checks; death publishes to room, other calls return without local extraction.",
+      "authority_boundary": "Do not count unpublished allocations as admitted loot. Non-death allocation lifetime and unchecked allocation on death require review; replay must not issue another output.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          2034,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          2044,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.helmed_horror_output",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int helmed_horror(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates prototype92091 before event-type checks; death publishes to room, other calls return without local extraction.",
+      "authority_boundary": "Do not count unpublished allocations as admitted loot. Preserve NPC death/output identity and qualify allocation failure, provisional lifetime and recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          2054,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          2065,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
