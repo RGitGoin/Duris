@@ -2948,3 +2948,14 @@ components are spent under loop conditions. Smelt failure can overwrite a
 provisional result pointer. These are qualification findings, not recipe changes.
 Encrust/enchant classifications remain pending. No runtime changes or tests.
 Draft validation passed 13 fixtures: 789 routes, 2756 raw matches, 2698 unique coordinates, 2412 mapped, 43 reviewed nonwriters, 243 unclassified. Release readiness remains false.
+
+
+## Alchemist encrust and enchant
+
+Remaining fifteen alchemist coordinates classified: virtual jewel preparation,
+paired failure sinks, replacement item conversion, owner-absence retirement,
+enchant payment and delayed destruction. Pouch usage precedes output allocation;
+enchant payment precedes delayed refusal/failure with no local refund. Preserve
+existing economics while qualifying identity, interruption and publication.
+No runtime changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 795 routes, 2756 raw matches, 2698 unique coordinates, 2427 mapped, 43 reviewed nonwriters, 228 unclassified.

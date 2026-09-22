@@ -35964,6 +35964,261 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "alchemy.encrust_virtual",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_encrust",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Chaos pouch creates provisional jewel from bounded VNUM; validation or generated-usage recording refusal extracts it. Successful usage recording precedes random craft result. Distinguish temporary cleanup from consumption of an admitted material.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1199,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1223,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1230,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1237,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1247,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.encrust_failure",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_encrust",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Failed skill roll destroys original item and physical or pouch-generated jewel. Qualify paired consumption and generated-material evidence.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1263,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1264,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.encrust_success",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_encrust",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates replacement prototype, copies original properties and jewel effects, destroys inputs then publishes new item. Allocation failure retains physical inputs but cleans virtual jewel after usage was recorded. Replacement identity and property transfer require qualification.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1275,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1280,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1343,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1344,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1345,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.thrust_retirement",
+      "path": "src/classes/salchemist.c",
+      "symbol": "int thrusted_eq_proc",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Periodic room object expires when its recorded owner PID is absent from room. Qualify timed destruction and contents behavior, not currency metadata.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1816,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.enchant_charge",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_enchant",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Debits circle-scaled cost before scheduling delayed enchant event, aborting on debit refusal. Subsequent death, lost item or artifact refusal returns without local refund; preserve existing cost policy while qualifying interrupted operation.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          2021,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.enchant_destruction",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void event_enchant",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Delayed enchant failure reduces item condition and extracts it below one; other failures retain item with condition/flag changes. Relate item result to earlier payment without assuming event execution is durable.",
+      "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          2093,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
