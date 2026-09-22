@@ -12974,6 +12974,11 @@
           "src/cmd/actobj.c",
           664,
           "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6153,
+          "economic_submit"
         ]
       ],
       "evidence": []
@@ -13019,6 +13024,11 @@
           "src/cmd/actobj.c",
           717,
           "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6126,
+          "economic_submit"
         ]
       ],
       "evidence": []
@@ -13209,6 +13219,186 @@
           "src/cmd/actobj.c",
           3378,
           "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.give_synchronous",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_give(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Give branches outside distinct-PC durable transfer and CMD_GIVE durable pet routing detach and attach synchronously, then log, mark PC components and invoke give hooks. Pet routing requires known matching source custody and controlled durable pet identity.",
+      "authority_boundary": "CMD_GIVE gating is material: do not infer all internal command variants or NPC transfers use durable custody. Insertion can crumble/extract an item; existing comment identifies subsequent pointer use as deferred risk. Dirty marking and hooks do not prove save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          6160,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6167,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.weight_relocation",
+      "path": "src/cmd/actobj.c",
+      "symbol": "weight_change_object",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Weight adjustment temporarily detaches and reinserts the same carried, worn or nested item to update aggregate effects; room items adjust weight directly. Intended owner is unchanged.",
+      "authority_boundary": "This is not fresh issuance or an intended owner transfer. Invalid wearer recovery can set LOC_NOWHERE; reinsertion and equipment helpers can have their own effects, so same-owner intent does not prove harmless publication or durable payload persistence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          6218,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6220,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6293,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6295,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6300,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6302,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.drink_container_consumption",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_drink(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After drinking effects and liquid decrement, an owned empty transient drink container is detached and extracted. Ordinary empty containers remain with cleared liquid/poison fields.",
+      "authority_boundary": "Liquid payload updates and final container retirement must be distinguished. Gameplay effects precede extraction; no compound commit or native save acknowledgement is established here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          6560,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6561,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.eat_consumption",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_eat(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-NPC eating consumes a carried item after eligibility/effect checks; privileged actors may eat non-food and optionally clear artifact registry. Level mushroom advances level and attempts silent save before extraction.",
+      "authority_boundary": "Mushroom consumption proceeds even when save reports failure. Other food effects and optional artifact clear precede extraction; neither path demonstrates atomic benefit-and-retirement or acknowledged item saving. Preserve existing privileged behavior rather than silently changing economics.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          6688,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          6798,
+          "item_lifecycle"
         ]
       ],
       "evidence": []

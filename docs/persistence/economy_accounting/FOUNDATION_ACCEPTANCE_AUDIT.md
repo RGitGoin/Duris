@@ -685,3 +685,24 @@ save acknowledgement. These are inventory findings, not changed gameplay.
 Draft validator passed 13 fixtures: 282 routes, 2,756 raw matches, 2,698 unique
 coordinates, 914 mapped, 43 reviewed declarations and 1,741 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Give fallback, weight relocation and consumable retirement
+
+Fourteen command sites are now classified. Durable pet routing is CMD_GIVE-gated
+and checks matching runtime custody; distinct-PC durable gifts use their own
+submission branch. Remaining give paths move synchronously and invoke hooks.
+Existing insertion/crumble pointer risk remains explicitly deferred in source.
+Weight adjustment relocates the same item to recompute carried/equipment/container
+effects, not to issue another item; invalid wearer recovery can orphan its live
+location and helper side effects still require treatment.
+
+Drinking can retire an owned empty transient container after liquid/effect changes.
+Eating applies effects before retirement; level mushroom attempts a silent save
+before extraction and consumes even if that save reports failure. Privileged
+non-food eating and optional artifact registry clearing are existing behavior.
+These paths need benefit/payload/retirement boundaries without claiming atomicity
+or changing gameplay in the #475 inventory.
+
+Draft validator passed 13 fixtures: 286 routes, 2,756 raw matches, 2,698 unique
+coordinates, 928 mapped, 43 reviewed declarations and 1,727 unclassified.
+Census and runtime qualification remain incomplete.
