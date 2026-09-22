@@ -2513,3 +2513,16 @@ No dedicated runtime test evidence added.
 Draft validation passed 13 fixtures: 665 routes, 2756 raw matches, 2698 unique
 coordinates, 2108 mapped, 43 reviewed nonwriters, 547 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Claw Caverns golem death bundle
+
+Nine unique coordinates (ten raw matches) classified as one compound NPC death
+route: new shard shell, existing inventory/equipment, and wallet-backed money
+pile. Invalid fallback destroys a container already holding existing assets;
+it is not solely provisional cleanup. This helper does not zero the wallet.
+Caller death/default-corpse handling, retirement, repeated invocation and save/
+replay conservation require qualification; no incidental fix or test claim.
+
+Draft validation passed 13 fixtures: 666 routes, 2756 raw matches, 2698 unique
+coordinates, 2117 mapped, 43 reviewed nonwriters, 538 unclassified.
+No gameplay changes; release readiness remains false.

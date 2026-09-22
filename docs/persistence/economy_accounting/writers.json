@@ -30712,6 +30712,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.claw_caverns_golem_shatter",
+      "path": "src/specs/specs.clwcvrn.c",
+      "symbol": "int clwcvrn_golem_shatter",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "NPC death allocates a crystal-shard container, transfers existing inventory and equipment into it, materializes positive wallet denominations as a money object, and publishes the pile in the current or fallback room. No wallet zeroing appears in this helper: caller death lifetime and default corpse handling must establish conservation. Invalid fallback destroys the pile after existing contents have moved, so this is not merely provisional cleanup. Wrong prototype type returns false without local cleanup.",
+      "authority_boundary": "Treat shell first admission, retained item custody, wallet-to-pile conversion and invalid-destination destruction as one death-lifecycle accounting boundary. Verify caller handling of true/false return, NPC wallet retirement, duplicate invocation, allocation failures and recursive destruction; retain stable item IDs and qualify save/replay without double issuing currency.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.clwcvrn.c",
+          67,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          96,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          110,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          80,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          81,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          89,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          98,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          106,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.clwcvrn.c",
+          119,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
