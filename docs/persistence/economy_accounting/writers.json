@@ -32317,6 +32317,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.justice_guard_light",
+      "path": "src/combat/justice.c",
+      "symbol": "P_char justice_make_guard",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After mobile creation/room placement and CLEAR_MONEY, guards without ultravision allocate torch prototype 398 and equip HOLD. Allocation checked; equip placement not verified or cleaned locally on refusal. Adjacent wallet clear is a semantic census blindspot requiring NPC initialization accounting.",
+      "authority_boundary": "Bind guard lifecycle identity to admitted torch and retired existing assets. Distinguish initial wallet normalization, accepted equipment publication and mission-end destruction. Qualify equip refusal, received items, recursive contents, save acknowledgement and replay without reissuance or omitted sinks.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/justice.c",
+          268,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/justice.c",
+          270,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.justice_guard_retirement",
+      "path": "src/combat/justice.c",
+      "symbol": "void justice_delete_guard",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Mission-complete justice NPC removes and extracts all equipment and carried objects with artifact handling before extract_char. Carried assets can have been received after spawn, so retirement is not merely disposal of generated equipment; nested contents and wallet lifetime require qualification.",
+      "authority_boundary": "Bind guard lifecycle identity to admitted torch and retired existing assets. Distinguish initial wallet normalization, accepted equipment publication and mission-end destruction. Qualify equip refusal, received items, recursive contents, save acknowledgement and replay without reissuance or omitted sinks.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/justice.c",
+          385,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/justice.c",
+          398,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/justice.c",
+          384,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

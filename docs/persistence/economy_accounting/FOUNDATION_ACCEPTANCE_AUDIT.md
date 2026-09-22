@@ -2690,3 +2690,14 @@ coverage; ownership-before-refusal and partial effects need qualification.
 Draft validation passed 13 fixtures: 702 routes, 2756 raw matches, 2698 unique
 coordinates, 2205 mapped, 43 reviewed nonwriters, 450 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Justice guard lifecycle assets
+
+Five coordinates classified as torch admission and mission-end inventory/
+equipment destruction. Retirement can destroy received assets, not just spawn
+equipment. Adjacent CLEAR_MONEY is recorded as an initialization blindspot.
+Equip refusal, NPC wallet lifetime and save/replay qualification remain open.
+
+Draft validation passed 13 fixtures: 704 routes, 2756 raw matches, 2698 unique
+coordinates, 2210 mapped, 43 reviewed nonwriters, 445 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
