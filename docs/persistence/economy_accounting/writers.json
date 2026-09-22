@@ -26933,6 +26933,196 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.ship_hull_callback_cash",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "ship_hull_purchase_committed",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After epic commit and ship creation/load checks, debits positive coin delta or credits negative delta, consumes free-hull affect and applies hull/build-time changes. Epic commit does not prove coin/hull compound durability; new ship load failure precedes cash mutation.",
+      "authority_boundary": "Capture exact monetary delta and coupled ship/cargo/service state. Local helper mutation, transaction acceptance and queued save are not proof of final durable atomic outcome; failure/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          199,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          201,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_summon_fee",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int summon_ship",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-time-only summon checks hull-weight-times50 fee then debits before calculating delay and subsequent summon setup. Bind paid service identity to delayed arrival; preserve time-only bypass.",
+      "authority_boundary": "Capture exact monetary delta and coupled ship/cargo/service state. Local helper mutation, transaction acceptance and queued save are not proof of final durable atomic outcome; failure/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          809,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_cargo_sale_credit",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int sell_cargo(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After sale helpers calculate and mutate cargo slots/market, applies nexus bonus then credits wallet, updates crew and ship, queues ship save and writes cargo market. Slot/market state and wallet need one recoverable outcome.",
+      "authority_boundary": "Capture exact monetary delta and coupled ship/cargo/service state. Local helper mutation, transaction acceptance and queued save are not proof of final durable atomic outcome; failure/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1045,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_contraband_sale_credit",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int sell_contra(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After contraband sale helpers, applies nexus bonus, credits wallet, updates crew/ship and queues ship plus cargo-market persistence. Preserve exact sold quantities, price and market effects through retry.",
+      "authority_boundary": "Capture exact monetary delta and coupled ship/cargo/service state. Local helper mutation, transaction acceptance and queued save are not proof of final durable atomic outcome; failure/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1167,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_slot_sale_credit",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int sell_slot",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Weapon sale credits before slot clear; diplomat/equipment clear before credit. Damaged weapons pay10percent otherwise90percent; diplomat requires no cargo/contraband, ram uses special price. Ship save queued separately; slot removal and wallet credit require compound durability.",
+      "authority_boundary": "Capture exact monetary delta and coupled ship/cargo/service state. Local helper mutation, transaction acceptance and queued save are not proof of final durable atomic outcome; failure/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1218,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          1254,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          1270,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2043,3 +2043,15 @@ with original destination; state agreement requires review.
 Draft validation passed 13 fixtures: 572 routes, 2756 raw matches, 2698 unique
 coordinates, 1916 mapped, 43 reviewed declarations, 739 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship shop hull cash, summon fees and sale credits
+
+Eight coordinates classified. Hull callback pairs epic outcome with later cash and
+hull effects; summon fee precedes delayed service. Cargo/contraband sale credit
+follows slot/market helpers and precedes separately queued ship/market persistence.
+Slot-sale ordering differs for weapons versus equipment/diplomat. Compound durable
+outcomes and replay remain unqualified.
+
+Draft validation passed 13 fixtures: 577 routes, 2756 raw matches, 2698 unique
+coordinates, 1924 mapped, 43 reviewed declarations, 731 unclassified.
+No gameplay changes; release readiness remains false.
