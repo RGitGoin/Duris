@@ -23745,6 +23745,201 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.corpse_transfer_completion",
+      "path": "src/combat/fight.c",
+      "symbol": "corpse_item_completion",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Committed single-root callback validates live corpse identity and carried item, updates corpse revision then detaches player item and inserts into corpse. Batch callback relies on prior batch publication. Chains remaining roots; final writeCorpse, cache refresh and enrollment end precede death retry wake.",
+      "authority_boundary": "Database commit does not prove live publication or save acknowledgement; stale topology returns after alert. Preserve UID and corpse save identity through recovery and distinguish single-root adoption from already registered batch movement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          1560,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1561,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.corpse_transfer_submission",
+      "path": "src/combat/fight.c",
+      "symbol": "submit_next_corpse_item",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates carried roots against player ownership and collector enrollment; unregistered root uses single transfer adoption, otherwise submits all roots in a batch to corpse owner. Empty roots writes corpse and ends enrollment; rejected submissions may mark custody dispute.",
+      "authority_boundary": "Submission acceptance is not completion. Verify root forest conservation, adoption without new issuance, durable corpse identity and refusal/retry semantics across all backends.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          1633,
+          "economic_submit"
+        ],
+        [
+          "src/combat/fight.c",
+          1638,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.corpse_shell_and_npc_contents",
+      "path": "src/combat/fight.c",
+      "symbol": "P_obj make_corpse",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates corpse shell, converts wallet via helper and unequips. NPC inventory is directly relinked into corpse with loc pointers changed; PC roots remain for transaction submission. Configures corpse metadata/decay and publishes to current room, prior room or storage fallback. NOCORPSE NPCs release children to room, or retire children if no room, then retire shell.",
+      "authority_boundary": "Only shell creation is new admission; NPC child relinking is an existing-asset custody transfer outside lexical helper detection. Preserve exact contents and retirement branch; player writes/enrollment and shell publication are not proven atomic or save-acknowledged.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          1662,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          1792,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1796,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1801,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1814,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1818,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1822,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          1899,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          1900,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.death_disputed_wallet_snapshot",
+      "path": "src/combat/fight.c",
+      "symbol": "save_disputed_death_disposition",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Builds temporary coin-pile snapshot of unconverted wallet for terminal death disposition without locally debiting wallet or publishing pile. Releases temporary pile after terminal save attempt; success accepts database acknowledgement or permitted durable journal handoff.",
+      "authority_boundary": "Snapshot allocation/cleanup is not independent coin issuance or destruction. Qualification must prove disposition retains exact wallet once and failed save preserves authority; journal durability and database acknowledgement remain distinct.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          2609,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          2623,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

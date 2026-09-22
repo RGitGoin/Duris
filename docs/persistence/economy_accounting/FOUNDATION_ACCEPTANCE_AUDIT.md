@@ -1802,3 +1802,18 @@ policy and compound publication/save ordering remain unqualified.
 Draft validation passed 13 fixtures: 500 routes, 2756 raw matches, 2698 unique
 coordinates, 1712 mapped, 43 reviewed declarations, 943 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Corpse construction, transfer callbacks and disputed wallet snapshot
+
+Fifteen coordinates classified. Corpse shell creation differs from existing NPC
+inventory directly relinked through contains/loc pointers, a semantic blind spot
+for helper-only scanning. NOCORPSE cleanup releases children or retires them when
+no room exists. Player transfers distinguish single-root adoption and registered
+batch submission, committed callback publication, and subsequent corpse save.
+Disputed death's temporary wallet pile is a save snapshot, not independent coin
+issuance; database acknowledgement and durable journal handoff remain distinct.
+Recovery and compound save/publication qualification remain outstanding.
+
+Draft validation passed 13 fixtures: 504 routes, 2756 raw matches, 2698 unique
+coordinates, 1727 mapped, 43 reviewed declarations, 928 unclassified.
+No gameplay changes; release readiness remains false.
