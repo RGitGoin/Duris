@@ -242,6 +242,8 @@ static void scroll_consumption() {
             advance(); assert(extracts==0); device_actions_pulse();
         }
         assert(extracts==1 && calls.size()==3);
+        device_actions_pulse(); advance(); device_actions_pulse();
+        assert(extracts==1 && calls.size()==3); // Completed consumption cannot replay.
         for(int i=0;i<3;++i) assert(calls[i].id==i+1 && calls[i].power==17 && calls[i].type==SPELL_TYPE_SPELL);
         assert(calls[0].target==s.target->runtime_id && calls[1].target==s.actor->runtime_id && calls[2].object==200);
         assert(calls[0].arguments=="original words" && calls[1].arguments=="original words");
@@ -256,6 +258,8 @@ static void scroll_consumption() {
         case 4: item_actions_source_leaving(s.target_object); break;
         }
         advance(); assert(calls.empty()); device_actions_pulse(); assert(extracts==1);
+        device_actions_pulse(); advance(); device_actions_pulse();
+        assert(calls.empty() && extracts==1); // Cancelled cleanup cannot repeat.
     }
     for(int change:{1,2,4,5}) {
         device_scene s(ITEM_SCROLL); mutation=change; s.recite(); advance();

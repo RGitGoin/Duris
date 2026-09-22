@@ -15468,7 +15468,7 @@
       "coverage": "legacy",
       "classification": "Only begin_device_action legacy result enters this branch. Held scroll is unequipped, spells are attempted and scroll extracted normally or when caster/target disappears; no-magic and rejected spell targets can still consume it.",
       "authority_boundary": "Do not count these legacy sites as evidence for the separate durable device action. Spell benefits, target checks and retirement are sequential; refusal before routing differs from successful routing with no applied spell. Save acknowledgement and replay safety remain unverified.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native command/device/scheduler harness exercises successful and failed legacy recitation with controlled extraction and spell endpoints; it does not qualify durable item retirement or backend replay.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -15483,7 +15483,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_device_actions_runtime.py"
+      ],
       "sites": [
         [
           "src/cmd/actoth.c",
