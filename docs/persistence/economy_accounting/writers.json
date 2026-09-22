@@ -30460,6 +30460,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.device_scroll_deferred_cleanup",
+      "path": "src/item/device_actions.c",
+      "symbol": "device_actions_pulse",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Action commit reserves source UID in bounded consumed_scrolls map then clears scroll spell slots before presentation. Finish marks entry ready regardless of completed outcome. Game-thread pulse removes ready entries, resolves live UID and extracts source; missing live item skips extraction. New action rejects reserved UID.",
+      "authority_boundary": "Separate semantic ink consumption from deferred physical retirement; local action commit is not proof of durable accounting commit. Qualify abort, missing UID, restart loss of pending map and save ordering without restoring spent spell slots.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/device_actions.c",
+          458,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

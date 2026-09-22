@@ -2477,3 +2477,14 @@ remain qualification work.
 Draft validation passed 13 fixtures: 659 routes, 2756 raw matches, 2698 unique
 coordinates, 2094 mapped, 43 reviewed nonwriters, 561 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Deferred device scroll cleanup
+
+One extraction coordinate classified with prior spell-slot consumption and
+in-memory UID reservation. Finish queues physical cleanup for game-thread pulse;
+local action commit does not establish durable accounting. Abort/restart/save
+qualification remains open.
+
+Draft validation passed 13 fixtures: 660 routes, 2756 raw matches, 2698 unique
+coordinates, 2095 mapped, 43 reviewed nonwriters, 560 unclassified.
+No gameplay changes; release readiness remains false.
