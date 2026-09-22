@@ -37309,6 +37309,176 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "inspection.artifact_cache",
+      "path": "src/guild/artifact.c",
+      "symbol": "arti_generate_json",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "SQL report cache builds JSON from artifact prototypes and frees copies on invalid artifact, JSON allocation failure and success. Dummy-owner equipment teardown is separately classified.",
+      "authority_boundary": "Exclude temporary report objects from gameplay first admission and destruction. Display metadata and dummy-load cleanup do not establish economic mutations or durable custody changes.",
+      "current_support": "Source-reviewed report exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          159,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          163,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          170,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          214,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.artifact_list",
+      "path": "src/guild/artifact.c",
+      "symbol": "void list_artifacts_sql",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Flatfile listing allocates description prototypes then frees them on validation/location rejection or completed display. No native owner placement.",
+      "authority_boundary": "Exclude temporary report objects from gameplay first admission and destruction. Display metadata and dummy-load cleanup do not establish economic mutations or durable custody changes.",
+      "current_support": "Source-reviewed report exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          654,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          658,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          706,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          724,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          759,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.artifact_player_list",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_player_sql",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "SQL and flatfile player artifact listings create temporary prototypes for descriptions/timers, then discard on failure or completed display; authoritative artifact is not the display copy.",
+      "authority_boundary": "Exclude temporary report objects from gameplay first admission and destruction. Display metadata and dummy-load cleanup do not establish economic mutations or durable custody changes.",
+      "current_support": "Source-reviewed report exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          5085,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5093,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5113,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5142,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5189,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5195,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5228,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

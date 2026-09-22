@@ -3001,3 +3001,12 @@ then extracts before owner/corpse saves. Teardown deliberately preserves
 artifact registry and must not be assumed to destroy durable assets.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 819 routes, 2756 raw matches, 2698 unique coordinates, 2501 mapped, 43 reviewed nonwriters, 154 unclassified.
+
+
+## Artifact report exclusions
+
+Sixteen coordinates grouped as JSON cache, flatfile artifact list and SQL/flat
+player artifact list temporary prototypes. Display copies have no owner
+publication and must not create gameplay issuance/destruction events.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 822 routes, 2756 raw matches, 2698 unique coordinates, 2517 mapped, 43 reviewed nonwriters, 138 unclassified.
