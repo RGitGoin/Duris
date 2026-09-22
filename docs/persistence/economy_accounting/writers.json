@@ -37954,7 +37954,7 @@
       "coverage": "legacy",
       "classification": "Periodic room object expires when its recorded owner PID is absent from room. Qualify timed destruction and contents behavior, not currency metadata.",
       "authority_boundary": "Qualify stable input/output identity, generated material usage and payment versus delayed publication. Allocation refusal, interrupted event and partial completion need evidence; no runtime accounting guarantee from helper calls.",
-      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified Native extracted callback and bounded arithmetic pass ASan/UBSan: setup/nonperiodic/non-room do not extract; recorded player present after other occupants retains item and heals to cap; absent owner and empty room request cascading extraction. Controlled extraction/world/message/random endpoints; contents destruction and durable retirement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -37969,7 +37969,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_alchemy_retirement.py"
+      ],
       "sites": [
         [
           "src/classes/salchemist.c",

@@ -3600,3 +3600,7 @@ Added native ASan/UBSan test using production headers and both extracted ingredi
 ### Alchemy native identity and preflight verification
 
 Removed the ingredient-ID stub from the native helper regression. It now compiles the actual basic-ingredient table, get_id_for and both sufficiency checks. ASan/UBSan passes unrelated-object sentinel handling, recipe-ID versus prototype-ID distinction, duplicate ingredient sufficiency and insufficient-match refusal. Extraction and skill endpoints remain controlled; full crafting and durable accounting are still unqualified. Candidate count remains 629.
+
+### Timed alchemy retirement regression
+
+Native extracted thrusted_eq_proc and BOUNDED pass ASan/UBSan with controlled world/extraction/message/random endpoints. Registration, nonperiodic commands and non-room placement do not extract; matching player found after unrelated occupants retains item and healing respects cap. Absent owner and empty room request extract_obj with cascading flag. This tests retirement selection, not actual contents destruction or durable accounting. One candidate linked; 628 gaps remain. No production change.
