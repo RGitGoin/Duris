@@ -1741,3 +1741,15 @@ custody and ordered effects/save/replay remain unqualified.
 Draft validation passed13 fixtures:486 routes,2756 raw matches,2698 unique
 coordinates,1658 mapped,43 reviewed declarations,997 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Disarm, morph prototype cash and home fee
+
+Seven coordinates classified. Disarm moves existing weapons into same-owner
+inventory. Morph zeroes newly allocated NPC prototype cash, not player wallet.
+Home changes save fields before fee debit; failed save restores fields, while
+successful save has no second local save after charge. Compound durability and
+replay remain unqualified. All current actnew.c lexical matches mapped.
+
+Draft validation passed13 fixtures:489 routes,2756 raw matches,2698 unique
+coordinates,1665 mapped,43 reviewed declarations,990 unclassified.
+No gameplay changes; release readiness remains false.

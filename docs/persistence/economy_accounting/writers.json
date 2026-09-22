@@ -23055,6 +23055,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "economy.disarm_inventory",
+      "path": "src/cmd/actnew.c",
+      "symbol": "void do_disarm(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful disarm unequips victim weapon to victim inventory; high-roll failure unequips own primary to own inventory, then strips holy sword and applies effects.",
+      "authority_boundary": "Existing UID stays with same character, not room drop or ownership transfer. Qualify effect/death/save ordering without duplicating items.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          1452,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          1469,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.morph_prototype_cash",
+      "path": "src/cmd/actnew.c",
+      "symbol": "P_char morph(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After checked read_mobile for non-NPC non-morphed player, clears all four newly allocated mob wallet denominations before further morph setup.",
+      "authority_boundary": "Prototype cash suppression is distinct from player-wallet debit. Bind provisional mob lifetime and inspect later morph/unmorph custody separately; initialization alone is not admitted-value retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          1649,
+          "coin_assignment"
+        ],
+        [
+          "src/cmd/actnew.c",
+          1650,
+          "coin_assignment"
+        ],
+        [
+          "src/cmd/actnew.c",
+          1651,
+          "coin_assignment"
+        ],
+        [
+          "src/cmd/actnew.c",
+          1652,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.home_change_fee",
+      "path": "src/cmd/actnew.c",
+      "symbol": "void do_home(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After town/race/affordability checks, sets hometown/birthplace/orig_birthplace and saves. Failed save restores old fields; successful save is followed by wallet debit.",
+      "authority_boundary": "New home persistence precedes fee debit with no second save shown. Qualify compound fee/service durability and replay while preserving exact price and refusal behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          4166,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
