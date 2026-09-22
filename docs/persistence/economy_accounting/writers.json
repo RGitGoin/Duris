@@ -17835,6 +17835,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ruby_monocle_reset_move",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int fw_ruby_monocle(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic ground monocle in rooms90124..90142 moves to a random room in that range while zone age is zero.",
+      "authority_boundary": "Despite load randomly comment this moves the same object, not new issuance. Zone-age condition is not an exactly-once reset token; preserve selected destination and object UID.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          6450,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6451,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.flying_citadel_disabled_move",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int flying_citadel(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy room-movement statements are unreachable behind unconditional return in their branch.",
+      "authority_boundary": "Retain explicit disabled-path classification; do not enable this movement as accounting integration. Separate character entrance behavior remains reachable and is not object issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          6487,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6488,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.die_roll_room_move",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int die_roller(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Named held or wielded die with positive side count rolls a random result and moves from equipment to player room.",
+      "authority_boundary": "Same die UID survives; no money wager or payout appears in this handler. Preserve selected roll for an accepted attempt and equipment-to-room publication without treating narration as persistence acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          5494,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

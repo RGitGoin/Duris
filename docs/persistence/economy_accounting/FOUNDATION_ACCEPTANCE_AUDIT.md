@@ -1130,3 +1130,14 @@ ownership and coupling holy-sword state cleanup.
 Draft validator passed 13 fixtures: 371 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,304 mapped, 43 reviewed declarations and 1,351 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Reset relocation and disabled citadel movement
+
+Five sites classified. Ruby monocle relocates the same object while zone age is
+zero; the reset condition is not a unique invocation identifier. Flying citadel
+movement is unreachable after an unconditional return and must remain disabled.
+Die roll moves the existing equipped die into the room without wager or payout.
+
+Draft validator passed 13 fixtures: 374 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,309 mapped, 43 reviewed declarations and 1,346 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
