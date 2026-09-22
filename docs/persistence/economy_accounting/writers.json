@@ -15555,6 +15555,106 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.shabo_butler_assistant_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int shabo_butler(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Assistant transformation allocates replacement NPC 32844 for matching NPC 32841, places replacement in original room and moves existing inventory/equipment to it slot by slot.",
+      "authority_boundary": "Existing item UIDs move across NPC lifetimes rather than becoming fresh loot. Prototype starting state, old NPC disposition and each partial handoff require separate authority accounting; sequential detach/attach does not establish atomic graph transfer or recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          12264,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12265,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12271,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12272,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.shabo_petre_assistant_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int shabo_petre(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Assistant transformation allocates replacement NPC 32844 for matching NPC 32841, places replacement in original room and moves existing inventory/equipment to it slot by slot.",
+      "authority_boundary": "Existing item UIDs move across NPC lifetimes rather than becoming fresh loot. Prototype starting state, old NPC disposition and each partial handoff require separate authority accounting; sequential detach/attach does not establish atomic graph transfer or recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          12533,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12534,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12541,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12542,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

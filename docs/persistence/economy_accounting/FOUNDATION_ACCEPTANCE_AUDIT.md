@@ -941,3 +941,14 @@ only current fees; helper return and narration do not qualify atomic settlement.
 Draft validator passed 13 fixtures: 323 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,136 mapped, 43 reviewed declarations and 1,519 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Assistant transformation item handoffs
+
+Eight sites classified across shabo_butler and shabo_petre. Replacement NPCs receive
+existing inventory and equipment from assistant NPCs; this is custody movement, not
+fresh loot. Prototype starting state, source lifetime and partial graph publication
+remain distinct from a qualified atomic transfer.
+
+Draft validator passed 13 fixtures: 325 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,144 mapped, 43 reviewed declarations and 1,511 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
