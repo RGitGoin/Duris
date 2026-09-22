@@ -835,3 +835,15 @@ serve as proof of durable device replay or compound save acknowledgement.
 Draft validator passed 13 fixtures: 305 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,087 mapped, 43 reviewed declarations and 1,568 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Theft fallback, donation and environmental retirement
+
+Ten sites classified: fallback item theft bypasses handled trusted-PC transfer;
+donation transfers to well or destroys excess duplicates after acceptance; hide
+removes track objects and vampire lick removes blood before healing. Environmental
+lifetime must be resolved without inventing durable holdings. Committed ascension
+returns equipment to the same actor; offering commit is not saved item placement.
+
+Draft validator passed 13 fixtures: 310 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,097 mapped, 43 reviewed declarations and 1,558 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

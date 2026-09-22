@@ -14770,6 +14770,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.hide_tracks_cleanup",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_hide(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Hide removes room objects matching tracks prototype before final hiding outcome.",
+      "authority_boundary": "Environmental representation cleanup is not automatically player asset destruction; classify track admission/lifetime and descendants explicitly. No accounting receipt demonstrated.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          2904,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.steal_fallback",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_steal(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful equipped or inventory theft moves existing item to thief when PC-victim trusted-steal helper does not handle it, including NPC victims. Equipped fallback removes artifact ownership record; inventory fallback may remove invisibility affect.",
+      "authority_boundary": "Helper handled return and victim type define bypass boundary. Live custody, artifact metadata and effects are not one demonstrated transaction; do not count these fallback sites as qualified trusted transfer.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          3888,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          3890,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          3953,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          3954,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.donation_well",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void try_to_donate(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Accepted donation detaches carried item, inserts into room well below duplicate limit or destroys excess duplicate. Random-object prototype is exempt from duplicate counting; forbidden types and nonempty containers are refused earlier.",
+      "authority_boundary": "Transfer versus destruction depends on observed well stock, not donation message alone. Preserve selected outcome and source/destination identity; logging is not durable custody or retirement evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          6680,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          6716,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          6720,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.blood_lick_consumption",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_lick(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Player-vampire blood lick extracts matching room blood object before cure-serious benefit and wait state.",
+      "authority_boundary": "Environmental blood retirement precedes benefit; no compound save receipt shown. Determine blood lifetime/admission rather than inventing durable NPC or system holding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          7213,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ascend_equipment_projection",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void ascend_committed(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Committed theurgist ascension resets character properties and returns all equipment to same-character inventory.",
+      "authority_boundary": "Epic offering commit is not item placement/save acknowledgement. Each unequip/insertion is sequential and helper effects require qualification; no new item issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          7313,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
