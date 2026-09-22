@@ -24854,7 +24854,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_corpse_creation_batch.py"
+      ],
       "sites": [
         [
           "src/combat/fight.c",
@@ -24938,7 +24940,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_corpse_handoff_inflight_contract.py"
+      ],
       "sites": [
         [
           "src/combat/fight.c",
