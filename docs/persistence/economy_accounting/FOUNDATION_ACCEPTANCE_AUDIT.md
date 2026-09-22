@@ -1920,3 +1920,16 @@ not player wallet. Current smagic.c lexical candidates mapped.
 Draft validation passed 13 fixtures: 532 routes, 2756 raw matches, 2698 unique
 coordinates, 1816 mapped, 43 reviewed declarations, 839 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Racial object generation and falling movement
+
+Twelve affects.c coordinates classified. Racial droppings allocate before goblin's
+second chance, leaving an unplaced allocation on that refusal path; valid outputs
+publish to current/prior room and invalid destinations discard provisional output.
+Falling transfers existing object across room boundary under recursion guard;
+height-only movement changes z_cord. No new issuance for existing falling items.
+Transient and durable event/publication handling remain unqualified.
+
+Draft validation passed 13 fixtures: 534 routes, 2756 raw matches, 2698 unique
+coordinates, 1828 mapped, 43 reviewed declarations, 827 unclassified.
+No gameplay changes; release readiness remains false.

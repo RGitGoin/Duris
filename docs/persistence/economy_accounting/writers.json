@@ -25233,6 +25233,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.racial_droppings",
+      "path": "src/magic/affects.c",
+      "symbol": "void poo",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eligible PC race/chance allocates prototype51, applies race descriptions and publishes current/prior room, or extracts provisional output when no destination. Goblin extra chance occurs after allocation; failing that chance leaves allocated object without local publication or cleanup. Transient policy and rejected provisional handling need qualification.",
+      "authority_boundary": "Distinguish provisional allocation from admission and existing-object movement from issuance. Exact payload, destination, transient eligibility and event/commit/publication/save ordering remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/affects.c",
+          3440,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/affects.c",
+          3457,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/affects.c",
+          3485,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/affects.c",
+          3512,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/affects.c",
+          3454,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3463,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3482,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3491,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3509,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3518,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.falling_room_transfer",
+      "path": "src/magic/affects.c",
+      "symbol": "bool falling_obj",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "When height reaches room boundary and downward exit is valid, detaches existing object then publishes to next room under already_falling guard. Positive height instead decrements z_cord without room transfer. Preserve same UID, contents and source/destination through event-driven successive falls.",
+      "authority_boundary": "Distinguish provisional allocation from admission and existing-object movement from issuance. Exact payload, destination, transient eligibility and event/commit/publication/save ordering remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/affects.c",
+          3798,
+          "item_publication"
+        ],
+        [
+          "src/magic/affects.c",
+          3800,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
