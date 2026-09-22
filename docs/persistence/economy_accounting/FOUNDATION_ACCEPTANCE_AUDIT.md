@@ -3564,3 +3564,7 @@ Added --suite corpse to the existing private local MariaDB runner and a guarded 
 ### Native corpse inventory evidence
 
 Mapped the successful private MariaDB ASan/UBSan run at 63746714f to five existing corpse routes after reading their assertions: world transfer, wallet application, nested room materialization, world-root retirement and compound rollback. Four previously empty candidate lists are now populated, leaving 637 gaps. Bank-row preparation remains without a candidate because the inspected assertions do not establish its row-creation semantics. Backend qualification statuses remain unverified: this is legacy repository evidence, not common accounting activation, MySQL parity or native save acknowledgement. Coinless raise records one currency ledger entry; it is not a no-ledger operation.
+
+### Corpse bank creation and preservation regression
+
+Extended the native corpse harness: coinless raise begins with no bank row and asserts exactly one zero-balance row at revision 1 after exact replay; resurrection begins with nonzero bank denominations and asserts they remain unchanged. Full private MariaDB bootstrap, migration replay, runtime/schema checks and native ASan/UBSan suite passed. Linked bank preparation to this executable candidate, leaving 636 missing candidates. No production behavior or backend qualification status changed.

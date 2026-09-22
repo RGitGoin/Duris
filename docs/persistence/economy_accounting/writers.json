@@ -35666,7 +35666,7 @@
       "coverage": "legacy",
       "classification": "Ensures account/racewar bank row with INSERT IGNORE then locks and reads bank denominations/revision. Row existence is not an economic deposit.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Private MariaDB ASan/UBSan corpse harness verifies missing bank row creation with zero denominations and revision 1 after coinless raise and exact replay; resurrection preserves preexisting nonzero bank denominations while advancing revision. Existing legacy repository only; common accounting integration, MySQL parity and native save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35681,7 +35681,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_corpse_lifecycle_local.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",

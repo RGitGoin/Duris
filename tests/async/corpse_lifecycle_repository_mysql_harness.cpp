@@ -466,6 +466,8 @@ void test_resurrection()
 	constexpr uint64_t LISTING = 9103, ROOT_UID = 830000001, CHILD_UID = 830000002;
 	const std::array<int32_t, 4> wallet = { 10, 20, 30, 40 };
 	seed_player(PLAYER, "ResurrectedHarness", "corpse_resurrect", wallet);
+	execute("UPDATE account_banks SET bank_copper=11,bank_silver=22,bank_gold=33,"
+		"bank_platinum=44 WHERE account_name='corpse_resurrect' AND racewar=1");
 	seed_owner({ item_owner_type::player, PLAYER, 0 }, 1);
 	seed_owner({ item_owner_type::room, OLD_ROOM, 0 }, 2);
 	const corpse_fixture fixture =
@@ -491,8 +493,9 @@ void test_resurrection()
 	assert(text("SELECT CONCAT(copper,':',silver,':',gold,':',platinum,':',wallet_revision) "
 		    "FROM player_data WHERE pid=" +
 		    std::to_string(PLAYER)) == "1:2:3:4:1");
-	assert(scalar("SELECT bank_revision FROM account_banks WHERE account_name='corpse_resurrect' "
-		      "AND racewar=1") == 1);
+	assert(text("SELECT CONCAT(bank_copper,':',bank_silver,':',bank_gold,':',"
+		    "bank_platinum,':',bank_revision) FROM account_banks "
+		    "WHERE account_name='corpse_resurrect' AND racewar=1") == "11:22:33:44:1");
 	assert(text("SELECT CONCAT(r.weight,':',c.container_id=r.id) FROM player_items r JOIN "
 		    "player_items c ON c.container_id=r.id WHERE r.pid=" +
 		    std::to_string(PLAYER) + " AND r.obj_uid=" + std::to_string(ROOT_UID) +
@@ -573,6 +576,9 @@ void test_coinless_raise_follower()
 	constexpr uint64_t ROOT_UID = 840000011, CHILD_UID = 840000012, TRANSIENT_UID = 840000013;
 	const std::array<int32_t, 4> wallet = {};
 	seed_player(PLAYER, "CoinlessRaisedHarness", "corpse_raise_coinless", wallet);
+	execute("DELETE FROM account_banks WHERE account_name='corpse_raise_coinless' AND racewar=1");
+	assert(scalar("SELECT COUNT(*) FROM account_banks "
+		      "WHERE account_name='corpse_raise_coinless' AND racewar=1") == 0);
 	seed_owner({ item_owner_type::player, PLAYER, 0 }, 1);
 	const corpse_fixture fixture =
 		seed_corpse(1008, 4108, 1871, ROOT_UID, CHILD_UID, 1, false, true);
@@ -601,6 +607,11 @@ void test_coinless_raise_follower()
 	assert(text("SELECT CONCAT(owner_type,':',state) FROM item_current_owner WHERE item_uid=" +
 		    std::to_string(TRANSIENT_UID)) == "8:2");
 	assert_exact_replay(command, applied);
+	assert(scalar("SELECT COUNT(*) FROM account_banks "
+		      "WHERE account_name='corpse_raise_coinless' AND racewar=1") == 1);
+	assert(text("SELECT CONCAT(bank_copper,':',bank_silver,':',bank_gold,':',"
+		    "bank_platinum,':',bank_revision) FROM account_banks "
+		    "WHERE account_name='corpse_raise_coinless' AND racewar=1") == "0:0:0:0:1");
 }
 
 void test_nested_room_release()
