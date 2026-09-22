@@ -3784,7 +3784,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Seller wallet and existing inventory root UIDs",
+      "destination": "Listing fee sink and auction custody"
     },
     {
       "id": "auction.bid",
@@ -3826,7 +3828,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Bidder wallet; prior bidder escrow when displaced",
+      "destination": "Auction escrow and displaced bidder pending claim"
     },
     {
       "id": "auction.settle",
@@ -3868,7 +3872,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Auction escrow and staged item custody",
+      "destination": "Seller proceeds claim, closing fee sink, winner item claim; seller return when unsold"
     },
     {
       "id": "auction.money_claim",
@@ -3910,7 +3916,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor pending auction money claim",
+      "destination": "Actor wallet"
     },
     {
       "id": "auction.item_claim",
@@ -3939,8 +3947,7 @@
       },
       "test_candidates": [
         "tests/async/test_flatfile_auction_repository.py",
-        "tests/async/test_auction_ownership_publication.py",
-        "tests/async/test_auction_finalize_claim.py"
+        "tests/async/test_auction_ownership_publication.py"
       ],
       "sites": [
         [
@@ -3959,7 +3966,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Staged auction item UIDs assigned to claimant",
+      "destination": "Claimant player custody"
     },
     {
       "id": "auction.remove",
@@ -3999,7 +4008,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Auction item custody and any existing winning escrow",
+      "destination": "Seller item return claim; escrow disposition requires explicit integration review"
     },
     {
       "id": "auction.pending_claim_writer",
@@ -4044,7 +4055,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-defined reward or refund obligation",
+      "destination": "Aggregated pending money claim; SQL-only helper"
     },
     {
       "id": "auction.legacy_definitions",
@@ -4099,7 +4112,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Seller inventory roots and listing fee wallet debit",
+      "destination": "Legacy listing storage; provisional refund/restoration on failure"
     },
     {
       "id": "auction.sql_apply",
@@ -4130,7 +4145,9 @@
         "tests/async/run_auction_transaction_schema_mysql.sh"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Action-specific wallet, escrow, item custody and pending claims",
+      "destination": "Action-specific custody, fees and claims through SQL helpers"
     },
     {
       "id": "auction.flat_apply",
@@ -4161,7 +4178,9 @@
         "tests/async/test_flatfile_auction_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Action-specific flat-file wallet, custody and claims",
+      "destination": "Updated flat-file auction/custody/wallet/claim receipts"
     },
     {
       "id": "boon.cash_completion",
@@ -11810,7 +11829,7 @@
       "coverage": "legacy",
       "classification": "Listing fees, bid debits and money-claim credits canonicalize the wallet and append legacy currency evidence. Bank revision advances with unchanged denominations. Existing winner pays only the bid increase; a new winner pays the full bid.",
       "authority_boundary": "Link wallet leg to fee sink, escrow or consumed claim according to action; baseline/evidence writes are not additional issuance.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11825,7 +11844,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -11838,7 +11859,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wallet debit or pending claim credit specified by action",
+      "destination": "Canonical wallet vector and legacy currency evidence; bank value unchanged"
     },
     {
       "id": "auction.sql_item_transition",
@@ -11850,7 +11873,7 @@
       "coverage": "legacy",
       "classification": "Revision-checked root item ownership moves between player and auction, with legacy ownership ledger evidence and both owner revisions advanced.",
       "authority_boundary": "One custody transition per root under original operation; ledger append is evidence, not a second movement. Recipient materialization and native save remain separate obligations.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11865,7 +11888,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -11878,7 +11903,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Revision-checked player or auction root custody",
+      "destination": "Auction or player root custody and ownership evidence"
     },
     {
       "id": "auction.sql_listing_custody",
@@ -11890,7 +11917,7 @@
       "coverage": "legacy",
       "classification": "Creates listing and per-slot custody rows containing existing item UIDs, next revisions and captured blob.",
       "authority_boundary": "Existing item enters auction custody; inserting a listing/blob does not create another item.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11905,7 +11932,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -11913,7 +11942,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing seller root UIDs, revisions and serialized payload",
+      "destination": "Listing and per-slot auction custody records"
     },
     {
       "id": "auction.sql_money_claim_stage",
@@ -11925,7 +11956,7 @@
       "coverage": "legacy",
       "classification": "Adds pending money and advances claim revision for displaced bidder refund or seller proceeds after closing fee.",
       "authority_boundary": "Retain parent auction/bid identity and distinguish escrow return from seller settlement; pending claim is a holding, not fresh issuance. Aggregate claim arithmetic and replay need qualification.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11940,7 +11971,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -11948,7 +11981,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Displaced bidder escrow or seller net proceeds",
+      "destination": "Recipient pending money claim with advanced revision"
     },
     {
       "id": "auction.sql_item_claim_stage",
@@ -11960,7 +11995,7 @@
       "coverage": "legacy",
       "classification": "Sets claim recipient on unclaimed custody slots for winner or returning seller.",
       "authority_boundary": "Claim eligibility is separate from custody transfer and live item delivery; preserve existing UID/payload.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11975,7 +12010,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -11983,7 +12020,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unclaimed auction custody slots",
+      "destination": "Winner or returning seller claim assignment; item remains staged"
     },
     {
       "id": "auction.sql_money_claim_consume",
@@ -11995,7 +12034,7 @@
       "coverage": "legacy",
       "classification": "Locks positive pending money, applies wallet credit and then zeroes matching claim value while advancing claim revision.",
       "authority_boundary": "Same SQL transaction must conserve claim-to-wallet value; clearing the claim is not an independent sink, and replay must not credit twice.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -12010,7 +12049,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -12018,7 +12059,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locked positive pending money claim",
+      "destination": "Actor wallet credit and zeroed claim with advanced revision"
     },
     {
       "id": "auction.sql_item_claim_consume",
@@ -12030,7 +12073,7 @@
       "coverage": "legacy",
       "classification": "After matching claimant/revision checks and custody transition, marks each slot claimed with the original command ID and new item revision.",
       "authority_boundary": "Receipt consumption proves which command claimed custody, not independently that the native recipient inventory was durably materialized.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; shared SQL harness candidate covers listing/bid/finalize/claim journey, not complete accounting qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -12045,7 +12088,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_auction_transaction_schema_mysql.sh"
+      ],
       "sites": [
         [
           "src/economy/auction_repository.c",
@@ -12053,7 +12098,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching claimant custody slots and revisions",
+      "destination": "Player custody and consumed claim slots stamped with command identity"
     },
     {
       "id": "auction.command_plan",
@@ -12080,7 +12127,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_auction_transactional_cutover.py"
+      ],
       "sites": [
         [
           "src/economy/auction_command.c",
@@ -12088,7 +12137,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Decoded request bytes and expected revision/key fences",
+      "destination": "Validated command payload; no authoritative holdings mutation"
     },
     {
       "id": "auction.command_submission",
@@ -12100,7 +12151,7 @@
       "coverage": "legacy",
       "classification": "Actor and background wrappers share bounded pending admission and generate an operation ID. Completion publishes committed balance/custody; offline actor results wait in the pending map. Publication failure can report false and erase pending after durable commit.",
       "authority_boundary": "Accepted queue work is not settlement. Preserve original commit identity and restart-safe publication obligations; callback false does not prove transaction rollback.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; test candidate covers extracted publication/revision behavior, not full pending lifecycle",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -12115,7 +12166,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_auction_ownership_publication.py"
+      ],
       "sites": [
         [
           "src/economy/auction_transaction.c",
@@ -12128,7 +12181,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor/background command intent and later committed result",
+      "destination": "Pending operation and live balance/custody projection; not independent issuance"
     },
     {
       "id": "auction.list_live_cleanup",
@@ -12178,7 +12233,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Live seller roots already transferred by durable commit",
+      "destination": "Runtime removal of those copies; auction custody retains economic ownership"
     },
     {
       "id": "auction.item_claim_live_publish",
@@ -12228,7 +12285,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed claimant UIDs and shared serialized payload",
+      "destination": "Live player inventory copies using committed identities"
     },
     {
       "id": "auction.legacy_bid",
@@ -12313,7 +12372,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Bidder wallet and prior bid obligation",
+      "destination": "Legacy bid history, pending refund claim, or failure refund"
     },
     {
       "id": "auction.legacy_pickup",
@@ -12388,7 +12449,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy aggregate money claim or serialized item pickup quantity",
+      "destination": "Wallet credit or live claimant inventory; failure restoration/cleanup"
     },
     {
       "id": "auction.legacy_finalize",
@@ -12415,7 +12478,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_auction_finalize_claim.py"
+      ],
       "sites": [
         [
           "src/economy/auction_houses.c",
@@ -12423,7 +12488,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy winning bid and listed item payload",
+      "destination": "Seller proceeds after fee and winner item pickup, or unsold seller return"
     },
     {
       "id": "auction.catalog_temporary_objects",
@@ -12483,7 +12550,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Serialized auction payload read for metadata/display",
+      "destination": "Temporary decoded object, then cleanup; no gameplay admission"
     },
     {
       "id": "coin.debit_dispatch",
