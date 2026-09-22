@@ -22485,6 +22485,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.flindbar_disarm",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int iron_flindbar(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Proc chance selects primary else secondary victim weapon, sits victim and unequips weapon to attacker room, then applies waits.",
+      "authority_boundary": "Preserve selected existing UID and same-room requirement; no local cursed-item exclusion in transfer branch. Combat state and save acknowledgement are distinct.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          207,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.lightning_sword_corpse",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int lightning_sword(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After killing victim expected to leave corpse, selects first corpse in room and offers deferred release; fallback transfers children to room, retires corpse, then may cast chain lightning.",
+      "authority_boundary": "First corpse selection is not explicit victim-identity binding. Preserve exact graph and deferred/fallback effects; death, transfer, retirement and follow-up damage require replay/save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          467,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          468,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.undermountain.c",
+          486,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.drow_surface_decay",
+      "path": "src/specs/specs.undermountain.c",
+      "symbol": "int generic_drow_eq(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "With character/object and non-registration call, extracts object when character room is sunlit and not underworld.",
+      "authority_boundary": "Retire existing UID and any subtree once; actual predicate is sunlight and region, not narration of surface air. Invocation cadence and persistence remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.undermountain.c",
+          1114,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

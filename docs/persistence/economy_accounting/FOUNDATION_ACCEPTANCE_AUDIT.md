@@ -1682,3 +1682,15 @@ NPC death identity, failure and replay remain unqualified.
 Draft validation passed13 fixtures:473 routes,2756 raw matches,2698 unique
 coordinates,1622 mapped,43 reviewed declarations,1033 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Remaining Undermountain disarm and decay
+
+Five coordinates classified: flindbar disarm preserves existing weapon identity;
+lightning sword selects first room corpse after death before deferred/fallback
+release, not an explicit victim-bound corpse; drow equipment retires on actual
+sunlit/non-underworld predicate. Compound death/effect/save behavior unqualified.
+All current Undermountain lexical matches mapped, not semantic/runtime completion.
+
+Draft validation passed13 fixtures:476 routes,2756 raw matches,2698 unique
+coordinates,1627 mapped,43 reviewed declarations,1028 unclassified.
+No gameplay changes; release readiness remains false.
