@@ -998,3 +998,14 @@ remain common-accounting obligations.
 Draft validator passed 13 fixtures: 333 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,170 mapped, 43 reviewed declarations and 1,485 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Ship ticket retirement before entry
+
+Four ticket-taker sites classified. Player-held ticket, or matching NPC-held ticket,
+is consumed before returning to ordinary entry processing. Retirement does not prove
+travel succeeded; NPC stock match lacks depositor identity in this handler. Preserve
+exact ticket/traveler linkage without changing existing admission policy.
+
+Draft validator passed 13 fixtures: 334 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,174 mapped, 43 reviewed declarations and 1,481 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

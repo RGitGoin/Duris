@@ -16025,6 +16025,56 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ship_ticket_consumption",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int ticket_taker(",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Enter hook matches room/ship ticket table, consumes matching ticket from player inventory or otherwise from ticket-taker inventory, then returns false to permit normal entry processing.",
+      "authority_boundary": "Ticket retirement precedes actual travel and is not proof entry succeeds. NPC-held ticket is matched by prototype without depositor identity in this handler; link exact consumed UID and intended traveler while preserving existing behavior. Refusal/continued command and retirement are separate outcomes.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          3096,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3097,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3112,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3113,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
