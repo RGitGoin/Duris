@@ -2446,3 +2446,13 @@ route counts include classified false positives as well as actual writers.
 Draft validation passed 13 fixtures: 656 routes, 2756 raw matches, 2698 unique
 coordinates, 2091 mapped, 43 reviewed nonwriters, 564 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Scribing scroll consumption
+
+One extraction coordinate classified with adjacent book-page and scroll-slot
+mutations. One-spell scroll retires, multi-spell scroll loses matching spell,
+and zero-spell error returns after page progress. Replay/save qualification open.
+
+Draft validation passed 13 fixtures: 657 routes, 2756 raw matches, 2698 unique
+coordinates, 2092 mapped, 43 reviewed nonwriters, 563 unclassified.
+No gameplay changes; release readiness remains false.

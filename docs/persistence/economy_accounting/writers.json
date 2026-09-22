@@ -30355,6 +30355,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.scribe_scroll_consumption",
+      "path": "src/classes/memorize.c",
+      "symbol": "event_scribe",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Scribing event validates posture/book/pen/source then increments page and book page count. On completion from scroll, counts positive spell slots: exactly one extracts scroll TRUE; zero reports error and returns; multiple clears matching spell slot instead. These are distinct whole-item retirement and semantic content mutation paths.",
+      "authority_boundary": "Couple scroll retirement or spell-slot removal with book progression and learned spell completion. Qualify interrupted events, malformed scrolls and replay/save ordering without new item issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/memorize.c",
+          2725,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
