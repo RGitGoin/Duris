@@ -26023,6 +26023,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.npc_ship_treasure",
+      "path": "src/ships/ship_npc.c",
+      "symbol": "P_obj load_treasure_chest",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Checked chest creation publishes bridge before key prototype/allocation checks; key failure returns null with already published chest retained. Key goes to captain; randomly selected platinum, material outputs and stones go into chest without local allocation checks. This is fresh reward issuance, not recovered cargo; preserve generated forest, denomination amounts and partial failure boundaries.",
+      "authority_boundary": "Capture one ship-generation reward manifest including room chest, captain key, nested items and coin denominations. Admission/recovery must not reroll or duplicate outputs; partial publication, save acknowledgement and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_npc.c",
+          1718,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1725,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1750,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1721,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1728,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1751,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1758,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          1765,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.cyrics_ship_bonus_treasure",
+      "path": "src/ships/ship_npc.c",
+      "symbol": "bool load_cyrics_revenge_crew",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Loads base treasure chest then checked prototype lookups but unchecked fragment/key allocations inserted into chest without local chest-null check. Later failure can follow prior reward publication. Bind unique ship generation and exact extra reward identities; repeated crew loading must not mint extras.",
+      "authority_boundary": "Capture one ship-generation reward manifest including room chest, captain key, nested items and coin denominations. Admission/recovery must not reroll or duplicate outputs; partial publication, save acknowledgement and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_npc.c",
+          2018,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          2024,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          2019,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_npc.c",
+          2025,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

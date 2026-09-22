@@ -1982,3 +1982,15 @@ unqualified; all current lexical file candidates mapped.
 Draft validation passed 13 fixtures: 551 routes, 2756 raw matches, 2698 unique
 coordinates, 1860 mapped, 43 reviewed declarations, 795 unclassified.
 No gameplay changes; release readiness remains false.
+
+## NPC ship treasure generation
+
+Twelve ship_npc.c coordinates classified under #486. Chest publication precedes
+key checks; later null return can leave published chest. Generated platinum,
+materials and stones form nested reward outputs, while key belongs to captain.
+Cyric crew adds fragment/key without local chest/allocation checks. One retained
+ship-generation manifest must prevent rerolled or duplicate rewards on recovery.
+
+Draft validation passed 13 fixtures: 553 routes, 2756 raw matches, 2698 unique
+coordinates, 1872 mapped, 43 reviewed declarations, 783 unclassified.
+No gameplay changes; release readiness remains false.
