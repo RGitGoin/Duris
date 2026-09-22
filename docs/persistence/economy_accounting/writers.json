@@ -25353,6 +25353,166 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.summoned_replacement_retirement",
+      "path": "src/classes/new_skills.c",
+      "symbol": "retire_other_summoned_items",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Scans global object list, saves next pointer and extracts matching actor book/totem objects except preserved replacement UID. Retirement can affect objects outside current inventory; exact matched UID set must be captured for repeat-safe replacement.",
+      "authority_boundary": "Preserve input identity, existing eligibility and ordered effects while qualifying compound commit, publication, retirement and save acknowledgement. Source review alone does not establish accounting integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          110,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.summoned_replacement_submission",
+      "path": "src/classes/new_skills.c",
+      "symbol": "submit_summoned_replacement",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "NPC path publishes directly then retires other matching items. PC path submits creation grant with completion context binding recipient, UID and kind; immediate refusal extracts provisional replacement while retaining existing items. Submission acceptance differs from durable publication and replacement retirement.",
+      "authority_boundary": "Preserve input identity, existing eligibility and ordered effects while qualifying compound commit, publication, retirement and save acknowledgement. Source review alone does not establish accounting integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          205,
+          "economic_submit"
+        ],
+        [
+          "src/classes/new_skills.c",
+          210,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/new_skills.c",
+          190,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bind_rope_consumption",
+      "path": "src/classes/new_skills.c",
+      "symbol": "void do_bind",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After held-rope and actor/target checks, applies bound effect and messages then unequips HOLD and extracts with artifact retirement enabled. Bind effect and same-UID rope consumption require coordinated recovery.",
+      "authority_boundary": "Preserve input identity, existing eligibility and ordered effects while qualifying compound commit, publication, retirement and save acknowledgement. Source review alone does not establish accounting integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          3065,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/new_skills.c",
+          3065,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.capture_rope_consumption",
+      "path": "src/classes/new_skills.c",
+      "symbol": "void capture",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful capture branch stops fighting, applies bound/prone effects and messages, then unequips held rope and extracts with artifact retirement enabled before skill progress. Preserve outcome and consume exact input once.",
+      "authority_boundary": "Preserve input identity, existing eligibility and ordered effects while qualifying compound commit, publication, retirement and save acknowledgement. Source review alone does not establish accounting integration.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/new_skills.c",
+          3417,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/new_skills.c",
+          3417,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

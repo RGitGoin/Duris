@@ -1933,3 +1933,15 @@ Transient and durable event/publication handling remain unqualified.
 Draft validation passed 13 fixtures: 534 routes, 2756 raw matches, 2698 unique
 coordinates, 1828 mapped, 43 reviewed declarations, 827 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Summoned replacement routing and rope consumption
+
+Eight coordinates classified. Replacement helper separates direct NPC publication
+from PC grant submission; immediate refusal discards provisional output. Global
+matching retirement must bind exact old UIDs. Bind/capture effects precede held
+rope extraction with artifact retirement enabled. Compound effects, replacement
+retirement and save acknowledgement remain unqualified.
+
+Draft validation passed 13 fixtures: 538 routes, 2756 raw matches, 2698 unique
+coordinates, 1836 mapped, 43 reviewed declarations, 819 unclassified.
+No gameplay changes; release readiness remains false.
