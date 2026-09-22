@@ -31657,6 +31657,71 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ioun_overuse_destruction",
+      "path": "src/specs/specs.ioun.c",
+      "symbol": "int ioun_testicle",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Weekly-gated level-50 rub increments use count, advances level and updates timer. Overuse iterates room PCs excluding trusted/NPC targets, skips artifacts, removes nonartifact equipment, releases contained assets to room and destroys shells, then sets victim HP and extracts source ioun. Source may also be visited during equipment iteration; lifetime qualification must not assume it survives to final extraction. Carried/inside branches occur under an equipment lookup and are not proven reachable normal states.",
+      "authority_boundary": "Compound multi-owner sink retains released contents but retires equipment and source. Preserve use/timer/progression gates, artifact exemptions and victim selection. Qualify source lifetime, indirect unequip, partial multi-owner effects, saves and replay; do not broaden gameplay behavior while adding accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.ioun.c",
+          160,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          172,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          138,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          146,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          147,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          154,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.ioun.c",
+          155,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

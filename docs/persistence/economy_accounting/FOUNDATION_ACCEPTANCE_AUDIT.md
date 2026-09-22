@@ -2622,3 +2622,15 @@ candidate, not executed coverage; lifetime/save/replay qualification remains.
 Draft validation passed 13 fixtures: 686 routes, 2756 raw matches, 2698 unique
 coordinates, 2169 mapped, 43 reviewed nonwriters, 486 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Ioun overuse destruction
+
+Seven coordinates classified as multi-owner equipment destruction with retained
+contents and source retirement. Preserve weekly/use-count/level gates and
+artifact/trusted/NPC exemptions. Source may be encountered before its final
+extraction; lifetime and carried/inside branch reachability remain unverified.
+No incidental fix; compound saves and replay still need qualification.
+
+Draft validation passed 13 fixtures: 687 routes, 2756 raw matches, 2698 unique
+coordinates, 2176 mapped, 43 reviewed nonwriters, 479 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
