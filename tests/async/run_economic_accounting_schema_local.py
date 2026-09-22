@@ -83,7 +83,9 @@ def run_local(suite="accounting"):
                 run("bash", "migrations/verify_runtime_compatibility.sh")
                 sql_file("migrations/immutable/0031_economy_accounting.sql")
                 run("bash", "migrations/immutable/0031_economy_accounting.sh")
-                if suite == "corpse":
+                if suite == "item":
+                    run("python3", "tests/async/run_item_transfer_local.py")
+                elif suite == "corpse":
                     run("python3", "tests/async/run_corpse_lifecycle_local.py")
                 elif suite == "currency":
                     run("python3", "tests/async/run_currency_transaction_local.py")
@@ -113,7 +115,7 @@ def run_local(suite="accounting"):
 def main():
     global ROOT
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--suite", choices=("accounting", "currency", "wallet", "corpse"), default="accounting")
+    parser.add_argument("--suite", choices=("accounting", "currency", "wallet", "corpse", "item"), default="accounting")
     args = parser.parse_args()
     # Some tracked helper scripts contain CRLF. Normalize an execution copy,
     # never the source checkout or sealed immutable migration bytes.

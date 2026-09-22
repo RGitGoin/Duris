@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <limits>
+#include <source_location>
 #include <mysql.h>
 #include <string>
 #include <vector>
@@ -48,14 +49,21 @@ std::string operation_hex(uint8_t value)
 	return output;
 }
 
-void execute(MYSQL *connection, const char *sql)
+void execute(MYSQL *connection, const char *sql,
+	     const std::source_location location = std::source_location::current())
 {
-	assert(mysql_real_query(connection, sql, strlen(sql)) == 0);
+	if (mysql_real_query(connection, sql, strlen(sql)) != 0)
+	{
+		fprintf(stderr, "Fixture SQL failed at line %u: database error %u\n",
+			location.line(), mysql_errno(connection));
+		std::abort();
+	}
 }
 
-void execute(MYSQL *connection, const std::string &sql)
+void execute(MYSQL *connection, const std::string &sql,
+	     const std::source_location location = std::source_location::current())
 {
-	execute(connection, sql.c_str());
+	execute(connection, sql.c_str(), location);
 }
 
 void ensure_collector_boundary_fixture(MYSQL *connection)
@@ -224,29 +232,7 @@ std::vector<uint8_t> read_blob(MYSQL *connection, const char *sql)
 void prepare_restitution_runtime_fixture(MYSQL *connection, uint64_t uid,
 					 const std::vector<uint8_t> &initial_payload)
 {
-	execute(connection, "CREATE TABLE IF NOT EXISTS player_death_restitution_receipt ("
-			    "restitution_id BINARY(16) NOT NULL PRIMARY KEY) ENGINE=InnoDB");
-	execute(connection,
-		"CREATE TABLE IF NOT EXISTS player_death_restitution_item ("
-		"restitution_id BINARY(16) NOT NULL,item_uid BIGINT UNSIGNED NOT NULL,"
-		"vnum INT NOT NULL,PRIMARY KEY(restitution_id,item_uid),"
-		"FOREIGN KEY(restitution_id) REFERENCES player_death_restitution_receipt(restitution_id))"
-		" ENGINE=InnoDB");
-	execute(connection,
-		"CREATE TABLE IF NOT EXISTS player_death_restitution_delivery ("
-		"item_uid BIGINT UNSIGNED NOT NULL PRIMARY KEY,restitution_id BINARY(16) NOT NULL,"
-		"source_pid INT NOT NULL,death_revision BIGINT UNSIGNED NOT NULL,recipient_pid INT NOT NULL,"
-		"source_item_revision BIGINT UNSIGNED NOT NULL,delivered_item_revision BIGINT UNSIGNED NOT NULL,"
-		"delivered_item_id INT UNSIGNED NOT NULL,metadata_digest BINARY(32) NOT NULL,"
-		"original_payload MEDIUMBLOB NOT NULL,"
-		"FOREIGN KEY(restitution_id,item_uid) REFERENCES player_death_restitution_item(restitution_id,item_uid))"
-		" ENGINE=InnoDB");
-	execute(connection,
-		"CREATE TABLE IF NOT EXISTS player_death_restitution_runtime ("
-		"item_uid BIGINT UNSIGNED NOT NULL PRIMARY KEY,recipient_pid INT NOT NULL,"
-		"state_payload MEDIUMBLOB NOT NULL,state_digest BINARY(32) NOT NULL,"
-		"FOREIGN KEY(item_uid) REFERENCES player_death_restitution_delivery(item_uid))"
-		" ENGINE=InnoDB");
+	// Use the registered restitution schema, not a reduced substitute.
 	const std::string payload_hex = [&]
 	{
 		static const char digits[] = "0123456789abcdef";
@@ -261,10 +247,14 @@ void prepare_restitution_runtime_fixture(MYSQL *connection, uint64_t uid,
 	}();
 	const std::string id = "UNHEX(REPEAT('a1',16))";
 	execute(connection,
-		"INSERT INTO player_death_restitution_receipt(restitution_id) VALUES (" + id + ")");
+		"INSERT INTO player_death_restitution_receipt(restitution_id,source_pid,death_revision,"
+		"recipient_pid,death_operation_id,evidence_digest,plan_digest,actor,reason) VALUES (" +
+			id + ",99,1,41," + id +
+			",REPEAT(0x11,32),REPEAT(0x22,32),'item-transfer-harness','synthetic fixture')");
 	execute(connection,
-		"INSERT INTO player_death_restitution_item(restitution_id,item_uid,vnum) VALUES (" +
-			id + "," + std::to_string(uid) + ",1901)");
+		"INSERT INTO player_death_restitution_item(restitution_id,item_uid,vnum,disposition,"
+		"classification) VALUES (" +
+			id + "," + std::to_string(uid) + ",1901,1,'synthetic fixture')");
 	execute(connection,
 		"INSERT INTO player_death_restitution_delivery(item_uid,restitution_id,source_pid,"
 		"death_revision,recipient_pid,source_item_revision,delivered_item_revision,"
