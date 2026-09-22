@@ -24148,6 +24148,186 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.transport_sign_reconcile",
+      "path": "src/world/transport.c",
+      "symbol": "initialize_transport",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Keeps first service sign, releases duplicate sign contents into origin room then extracts duplicate shell; allocates and publishes checked sign only if absent. Existing child moves and duplicate retirement differ from missing-sign admission.",
+      "authority_boundary": "Preserve existing transport eligibility, exact item identity and chosen route. Distinguish issuance, movement and consumption; save acknowledgement, failure preservation and idempotent replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/transport.c",
+          273,
+          "item_publication"
+        ],
+        [
+          "src/world/transport.c",
+          274,
+          "item_publication"
+        ],
+        [
+          "src/world/transport.c",
+          276,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/transport.c",
+          282,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/transport.c",
+          283,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.transport_duplicate_inventory",
+      "path": "src/world/transport.c",
+      "symbol": "initialize_transport",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consolidates duplicate transport NPC carried and equipped items into selected survivor inventory before extracting duplicate NPC. Existing UIDs must retain custody; this is not regenerated equipment or issuance.",
+      "authority_boundary": "Preserve existing transport eligibility, exact item identity and chosen route. Distinguish issuance, movement and consumption; save acknowledgement, failure preservation and idempotent replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/transport.c",
+          322,
+          "item_publication"
+        ],
+        [
+          "src/world/transport.c",
+          323,
+          "item_publication"
+        ],
+        [
+          "src/world/transport.c",
+          327,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.transport_ticket_purchase",
+      "path": "src/world/transport.c",
+      "symbol": "flying_transport_cmd_buy",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After valid route and affordability checks, checked ticket allocation precedes fare debit (route platinum cost times1000), route/service metadata assignment and player inventory publication. Failed allocation does not debit. Ticket and fare require one recoverable compound outcome.",
+      "authority_boundary": "Preserve existing transport eligibility, exact item identity and chosen route. Distinguish issuance, movement and consumption; save acknowledgement, failure preservation and idempotent replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/transport.c",
+          481,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/transport.c",
+          485,
+          "money_helper"
+        ],
+        [
+          "src/world/transport.c",
+          489,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.transport_ticket_redemption",
+      "path": "src/world/transport.c",
+      "symbol": "flying_transport_cmd_give",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Requires carried matching-prototype/service ticket, target match and no combat/riding. Extracts ticket before reading ticket value7 into transport route, resetting step, linking rider and starting flight. Route access after extraction is a lifetime qualification concern; ticket consumption and service start need coordinated recovery.",
+      "authority_boundary": "Preserve existing transport eligibility, exact item identity and chosen route. Distinguish issuance, movement and consumption; save acknowledgement, failure preservation and idempotent replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/transport.c",
+          538,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

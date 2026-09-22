@@ -1831,3 +1831,17 @@ not executed runtime or accounting release evidence.
 Draft validation passed 13 fixtures: 508 routes, 2756 raw matches, 2698 unique
 coordinates, 1743 mapped, 43 reviewed declarations, 912 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Transport signs, duplicate inventory and tickets
+
+Twelve unique coordinates classified. Sign reconciliation releases duplicate
+contents and retires duplicate shells, admitting a new sign only when missing.
+Duplicate transport NPC equipment/inventory moves to the selected survivor.
+Ticket purchase allocates before fare debit and publication; redemption consumes
+before route/rider setup. Its route read after extraction is a lifetime concern
+for qualification. Compound fee/ticket and consumption/service recovery remain
+unverified. All current transport.c lexical candidates mapped.
+
+Draft validation passed 13 fixtures: 512 routes, 2756 raw matches, 2698 unique
+coordinates, 1755 mapped, 43 reviewed declarations, 900 unclassified.
+No gameplay changes; release readiness remains false.
