@@ -3267,3 +3267,7 @@ Added 25 endpoints preserving disabled branches, existing-child transfers, saved
 ## Combat, encounter and flag endpoints (2026-09-22)
 
 Added 25 item endpoints for projectiles, random encounter outputs, NPC equipment selection, corpse handling and CTF flags. Preserved provisional leaks, blocked-slot behavior, same-owner moves and separate corpse saves. Explicit endpoints: 697; missing endpoints: 154; test-link gaps remain 710. Draft validation and diff checks pass; no runtime qualification changed.
+
+## Command, corpse and transport endpoints (2026-09-22)
+
+Added 25 item endpoints including CTF carrier state, breakage, potions, combat disarm, corpse transactions and transport tickets. Preserved compound-service and object-lifetime concerns rather than asserting completed behavior. Explicit endpoints: 722; missing endpoints: 129; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.

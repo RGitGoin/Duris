@@ -23835,7 +23835,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room flag and team relation",
+      "destination": "Home-room flag or detached carrier-affect state, not inventory"
     },
     {
       "id": "item.ctf_drop",
@@ -23870,7 +23872,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Flag referenced by carrier affect",
+      "destination": "Room flag then cleared carrier affect/capture check"
     },
     {
       "id": "item.ctf_capture_relocation",
@@ -23910,7 +23914,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Captured flag and bonus state",
+      "destination": "Configured/random room flag plus capture record and boon check"
     },
     {
       "id": "item.craft_template_removal",
@@ -23960,7 +23966,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Specified held/carried object",
+      "destination": "Unequipped/detached and extracted object; caller pointer not cleared"
     },
     {
       "id": "item.custom_key_pick_breakage",
@@ -24000,7 +24008,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held pick, blank key and object lock",
+      "destination": "Changed lock/key and chance-based pick retirement"
     },
     {
       "id": "item.thrown_potion_disposition",
@@ -24080,7 +24090,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Thrown/held potion",
+      "destination": "Room spill or consumed potion; successful NPC remix retains same instance"
     },
     {
       "id": "economy.disarm_inventory",
@@ -24261,7 +24273,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing ice and provisional allocation",
+      "destination": "Timed current/prior-room ice or invalid-destination cleanup"
     },
     {
       "id": "item.unlock_key_breakage",
@@ -24311,7 +24325,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Used key after unlock",
+      "destination": "Surviving key or chance-based retirement"
     },
     {
       "id": "item.drag_object_relocation",
@@ -24351,7 +24367,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing room object after actor movement",
+      "destination": "Same object in actor room unless locker/refusal gate"
     },
     {
       "id": "item.reward_container_open",
@@ -24436,7 +24454,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reward container and validated random candidate",
+      "destination": "Player reward then consumed source; rejected candidates discarded"
     },
     {
       "id": "item.lockpick_breakage",
@@ -24496,7 +24516,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Used pick and lock outcome",
+      "destination": "Wear-adjusted pick or retirement around lock effects"
     },
     {
       "id": "world.death_generated_loot",
@@ -24618,7 +24640,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior room blood objects and new blood template",
+      "destination": "Retired old blood and new timed current/prior-room blood or provisional cleanup"
     },
     {
       "id": "item.combat_mangle_disarm",
@@ -24658,7 +24682,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim equipped weapon",
+      "destination": "Same-victim inventory after damage"
     },
     {
       "id": "item.combat_quickstep_disarm",
@@ -24698,7 +24724,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible actor equipped weapon",
+      "destination": "Same-actor inventory on guarded fumble"
     },
     {
       "id": "item.combat_critical_inventory_disarm",
@@ -24738,7 +24766,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim droppable wielded weapon",
+      "destination": "Forced room drop or same-victim inventory by branch"
     },
     {
       "id": "item.combat_corpse_portal",
@@ -24778,7 +24808,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible PC death and portal400220 template",
+      "destination": "Personalized portal in room400000 pointing to death room"
     },
     {
       "id": "item.corpse_transfer_completion",
@@ -24818,7 +24850,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed carried-root transfer and live corpse identity",
+      "destination": "Corpse child placement/revision then remaining-root chain and final save"
     },
     {
       "id": "item.corpse_transfer_submission",
@@ -24858,7 +24892,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Owned or unregistered carried roots and enrollment state",
+      "destination": "Single adoption/transfer or batch corpse transfer; dispute on rejection"
     },
     {
       "id": "item.corpse_shell_and_npc_contents",
@@ -24933,7 +24969,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character wallet/items and new corpse shell",
+      "destination": "Published corpse holdings or NOCORPSE release/retirement fallback"
     },
     {
       "id": "item.death_disputed_wallet_snapshot",
@@ -24973,7 +25011,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unconverted wallet denomination snapshot",
+      "destination": "Temporary unplaced pile used for terminal save then released"
     },
     {
       "id": "restore.flatfile_staged_cleanup",
@@ -25244,7 +25284,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing/duplicate signs or missing-sign template",
+      "destination": "One retained/new sign and released duplicate contents"
     },
     {
       "id": "item.transport_duplicate_inventory",
@@ -25289,7 +25331,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Duplicate transport NPC inventory/equipment",
+      "destination": "Survivor NPC inventory then duplicate NPC extraction"
     },
     {
       "id": "item.transport_ticket_purchase",
@@ -25334,7 +25378,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Allocated ticket and route fare",
+      "destination": "Paid player ticket with service metadata; compound durability unresolved"
     },
     {
       "id": "item.transport_ticket_redemption",
@@ -25369,7 +25415,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching carried ticket and eligible rider",
+      "destination": "Consumed ticket and flight state; post-extraction payload access unresolved"
     },
     {
       "id": "coin.epic_skill_refund_delivery",
@@ -25528,7 +25576,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nearby qualifying stones/level objects",
+      "destination": "Extracted objects without local source-stone increment; lifetime concerns retained"
     },
     {
       "id": "item.condition_damage_retirement",
