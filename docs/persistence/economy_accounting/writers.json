@@ -29930,6 +29930,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "ship.maneuver_representation",
+      "path": "src/ships/ship_control.c",
+      "symbol": "order_maneuver",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "In near-shore/dock maneuver branch, stops speed and updates ship location before detaching and replacing existing representation. Sets maneuver timer, refreshes views, and docking may trigger contraband checks.",
+      "authority_boundary": "Existing ship identity movement coupled to semantic location/timers and dock side effects; qualify placement and persistence ordering without new issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_control.c",
+          338,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_control.c",
+          339,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_coffer_claim",
+      "path": "src/ships/ship_control.c",
+      "symbol": "claim_coffer",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Owner-name check refuses noncaptain; zero coffer returns. Otherwise credits player wallet from ship money, logs amount, then zeros ship money. No local save or queued ship save in helper.",
+      "authority_boundary": "Transfer existing ship balance to player, not fresh issuance. Couple wallet credit and coffer debit with caller persistence/replay; logging does not establish durability.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_control.c",
+          1800,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

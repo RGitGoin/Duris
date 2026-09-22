@@ -2384,3 +2384,13 @@ and failure/recovery qualification remain open.
 Draft validation passed 13 fixtures: 645 routes, 2756 raw matches, 2698 unique
 coordinates, 2072 mapped, 43 reviewed nonwriters, 583 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship maneuver and coffer withdrawal
+
+Three coordinates classified: maneuver updates semantic location before moving
+existing ship representation; owner coffer claim credits wallet before zeroing
+ship money without local save. Caller durability/replay remain unqualified.
+
+Draft validation passed 13 fixtures: 647 routes, 2756 raw matches, 2698 unique
+coordinates, 2075 mapped, 43 reviewed nonwriters, 580 unclassified.
+No gameplay changes; release readiness remains false.
