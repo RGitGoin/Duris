@@ -32602,6 +32602,166 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ship_evacuation",
+      "path": "src/ships/ship_utils.c",
+      "symbol": "void kick_everyone_off",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Moves room objects to hull location except control panel and player corpses; characters also evacuated. Existing custody only.",
+      "authority_boundary": "Bind ship operation to existing custody, native cargo values and item identities. Distinguish conversion loss from new economic issuance; qualify partial bundles, helper persistence, retained corpses, NPC lifetimes, native save acknowledgement and replay without repeated conversion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_utils.c",
+          413,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_utils.c",
+          414,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_clear_contents",
+      "path": "src/ships/ship_utils.c",
+      "symbol": "void clear_ship_content",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Ship destruction moves player corpses outside, retains panel for caller, and destroys other room objects recursively. NPCs extracted while PCs evacuated; indirect carried-asset fate needs qualification.",
+      "authority_boundary": "Bind ship operation to existing custody, native cargo values and item identities. Distinguish conversion loss from new economic issuance; qualify partial bundles, helper persistence, retained corpses, NPC lifetimes, native save acknowledgement and replay without repeated conversion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_utils.c",
+          467,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_utils.c",
+          463,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_utils.c",
+          464,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_jettison_crates",
+      "path": "src/ships/ship_utils.c",
+      "symbol": "int jettison_crates",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Water-gated cargo conversion independently discards half of attempts, allocates surviving crate objects, stamps commodity/type and publishes. Failure can follow partial publication. Observed cargo caller ignores helper result then reduces source slots and queues save; preserve economic loss distribution while qualifying conversion.",
+      "authority_boundary": "Bind ship operation to existing custody, native cargo values and item identities. Distinguish conversion loss from new economic issuance; qualify partial bundles, helper persistence, retained corpses, NPC lifetimes, native save acknowledgement and replay without repeated conversion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_utils.c",
+          2469,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_utils.c",
+          2475,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_salvage_crates",
+      "path": "src/ships/ship_utils.c",
+      "symbol": "int salvage_cargo",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Capacity-bounded salvage calls add_crate using world crate commodity/type before destroying each accepted crate. Failed add leaves current crate; earlier successes remain. Conversion into ship cargo is not pure economic destruction.",
+      "authority_boundary": "Bind ship operation to existing custody, native cargo values and item identities. Distinguish conversion loss from new economic issuance; qualify partial bundles, helper persistence, retained corpses, NPC lifetimes, native save acknowledgement and replay without repeated conversion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_utils.c",
+          2697,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

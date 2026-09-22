@@ -2723,3 +2723,15 @@ existing fields and gates; partial replacement/save/replay remain unqualified.
 Draft validation passed 13 fixtures: 709 routes, 2756 raw matches, 2698 unique
 coordinates, 2220 mapped, 43 reviewed nonwriters, 435 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Ship evacuation and cargo conversion
+
+Eight coordinates classified into evacuation, destructive clearing, jettison
+crate publication and salvage retirement. Preserve player-corpse/panel rules
+and cargo survival distribution. Cargo caller reduces slots despite helper
+failure; salvage adds cargo before crate destruction. Partial conversions,
+indirect NPC assets and save/replay qualification remain open.
+
+Draft validation passed 13 fixtures: 713 routes, 2756 raw matches, 2698 unique
+coordinates, 2228 mapped, 43 reviewed nonwriters, 427 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
