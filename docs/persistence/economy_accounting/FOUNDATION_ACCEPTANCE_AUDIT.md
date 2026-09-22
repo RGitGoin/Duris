@@ -2186,3 +2186,15 @@ would require custody/environmental-placement qualification.
 Draft validation passed 13 fixtures: 610 routes, 2756 raw matches, 2698 unique
 coordinates, 1993 mapped, 43 reviewed nonwriters, 662 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Smoking item consumption
+
+Four coordinates classified: environmental herb loss before effects, rolling
+paper/pipe retirement after effects, and herb consumption restricted to PCs or
+PC pets. Surviving pipe durability decrement is a semantic writer. FALSE herb
+extraction is actual consumption here, unlike temporary-object cleanup.
+Replay and durable ordering remain unqualified.
+
+Draft validation passed 13 fixtures: 613 routes, 2756 raw matches, 2698 unique
+coordinates, 1997 mapped, 43 reviewed nonwriters, 658 unclassified.
+No gameplay changes; release readiness remains false.

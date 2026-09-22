@@ -28476,6 +28476,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.smoking_heat_loss",
+      "path": "src/core/smoke.c",
+      "symbol": "do_smoke",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "In fireplane, lava or liquid mithril, 25-percent roll extracts selected herb with TRUE and returns before spell effects. Existing herb can be carried or equipped.",
+      "authority_boundary": "Bind existing item retirement or durability mutation to smoking outcome and preserve PC/pet/NPC distinctions. Effects precede normal consumption; replay, failure and persistent save ordering remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/smoke.c",
+          304,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.smoking_pipe_consumption",
+      "path": "src/core/smoke.c",
+      "symbol": "do_smoke",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After herb spell effects, rolling papers are extracted with TRUE; other pipes use random roll below value[2], decrement durability value[1], and extract when exhausted. Surviving durability decrement is an additional semantic writer.",
+      "authority_boundary": "Bind existing item retirement or durability mutation to smoking outcome and preserve PC/pet/NPC distinctions. Effects precede normal consumption; replay, failure and persistent save ordering remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/smoke.c",
+          476,
+          "item_lifecycle"
+        ],
+        [
+          "src/core/smoke.c",
+          498,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.smoking_herb_consumption",
+      "path": "src/core/smoke.c",
+      "symbol": "do_smoke",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After herb spell effects, pipe handling and smoking cooldown, only PCs and PC pets extract herb with FALSE. Uncontrolled NPCs retain it. FALSE here is consumption of existing herb, not provisional allocation cleanup.",
+      "authority_boundary": "Bind existing item retirement or durability mutation to smoking outcome and preserve PC/pet/NPC distinctions. Effects precede normal consumption; replay, failure and persistent save ordering remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/core/smoke.c",
+          527,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
