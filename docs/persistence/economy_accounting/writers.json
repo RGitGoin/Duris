@@ -29344,6 +29344,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.disabled_wagon_initialization",
+      "path": "src/classes/mount.c",
+      "symbol": "init_wagons",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Unconditional return at entry disables wagon initialization. Dormant body loads horse, places it, then checked wagon allocation is placed in horse room and linked to horse. No current execution reaches these item sites.",
+      "authority_boundary": "Retain dormant generation sites for traceability, not active issuance coverage. Reactivation requires horse/wagon partial failure, room admission and linked-object recovery qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/mount.c",
+          672,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/mount.c",
+          674,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

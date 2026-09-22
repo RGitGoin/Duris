@@ -2299,3 +2299,13 @@ control remains to qualify. No incidental behavior fixes introduced.
 Draft validation passed 13 fixtures: 631 routes, 2756 raw matches, 2698 unique
 coordinates, 2040 mapped, 43 reviewed nonwriters, 615 unclassified.
 Release readiness remains false.
+
+## Disabled wagon initialization
+
+Two coordinates classified behind unconditional init_wagons entry return.
+Dormant body allocates wagon after horse placement and links it after room
+publication. These are not active issuance sites; reactivation needs qualification.
+
+Draft validation passed 13 fixtures: 632 routes, 2756 raw matches, 2698 unique
+coordinates, 2042 mapped, 43 reviewed nonwriters, 613 unclassified.
+No gameplay changes; release readiness remains false.
