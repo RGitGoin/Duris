@@ -35812,7 +35812,7 @@
       "coverage": "legacy",
       "classification": "Transient destruction and physical transfer share outer operation ID; physical ledger event offset follows transient item count. Updates expected revisions between transfers and rolls domain back on business refusal.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Existing corpse repository; accounting qualification unverified Offline source-contract candidate checks savepoint ordering around item execution and corpse finalization plus lifecycle registration. It does not execute SQL rollback, compound transfers or receipt replay.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35827,7 +35827,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_corpse_lifecycle_repository.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",
