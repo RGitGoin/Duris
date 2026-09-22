@@ -2006,3 +2006,15 @@ kit materialization, ordinary newbie grant and wipe paths still require review.
 Draft validation passed 13 fixtures: 556 routes, 2756 raw matches, 2698 unique
 coordinates, 1878 mapped, 43 reviewed declarations, 777 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Starter kit forests and equipment wipe
+
+Fifteen remaining nanny.c coordinates classified. CHAOS builder filters/configures
+provisional roots and bag contents, handing forest ownership over only on accepted
+batch submission. Ordinary newbie materialization distinguishes direct NPC placement
+from deferred PC grants. Equipment wipe retires roots and deletes locker files;
+commented ship/wallet resets are not active behavior. Recovery remains unqualified.
+
+Draft validation passed 13 fixtures: 561 routes, 2756 raw matches, 2698 unique
+coordinates, 1893 mapped, 43 reviewed declarations, 762 unclassified.
+No gameplay changes; release readiness remains false.

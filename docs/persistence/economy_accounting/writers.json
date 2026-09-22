@@ -26263,6 +26263,231 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.chaos_kit_item_builder",
+      "path": "src/account/nanny.c",
+      "symbol": "append_chaos_kit_item",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Filters class/slot, allocates checked prototype then rejects incompatible items with provisional extraction. Configures accepted item; equipment entries append as roots, support entries nest in bag with placement check. Root-capacity/nesting failure cleans provisional output; no player admission yet.",
+      "authority_boundary": "Capture exact forest/payload and distinguish provisional cleanup, direct NPC admission, deferred PC grant and existing-asset erasure. Idempotent recovery and commit/publication/save parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          617,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          628,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          635,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          648,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          655,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          661,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          658,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.chaos_kit_batch_builder",
+      "path": "src/account/nanny.c",
+      "symbol": "load_chaos_new_character_kit",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates actor/class, allocates container bag and builds profile/optional/support/utility/material roots. Any preparation failure leaves builder cleanup; successful before-entry batch submission transfers root ownership to coordinator. Full forest admission/save remains distinct from accepted queue.",
+      "authority_boundary": "Capture exact forest/payload and distinguish provisional cleanup, direct NPC admission, deferred PC grant and existing-asset erasure. Idempotent recovery and commit/publication/save parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          734,
+          "economic_submit"
+        ],
+        [
+          "src/account/nanny.c",
+          674,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          678,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.legacy_newbie_materialization",
+      "path": "src/account/nanny.c",
+      "symbol": "materialize_legacy_newbie_item",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Instantiates cached prototype, applies regular-item cost/transient policy, populates prepared spellbook spells and counter, adds newbie keyword. Newly configured provisional payload must be captured rather than reconstructed with changed plans on replay.",
+      "authority_boundary": "Capture exact forest/payload and distinguish provisional cleanup, direct NPC admission, deferred PC grant and existing-asset erasure. Idempotent recovery and commit/publication/save parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          856,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.npc_newbie_direct_grant",
+      "path": "src/account/nanny.c",
+      "symbol": "void load_obj_to_newbies",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "NPC branch directly publishes materialized plan items and evaluates equipment. PC branch instead uses deferred bounded grant preparation, an indirect semantic admission path not represented by this obj_to_char call.",
+      "authority_boundary": "Capture exact forest/payload and distinguish provisional cleanup, direct NPC admission, deferred PC grant and existing-asset erasure. Idempotent recovery and commit/publication/save parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          888,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.login_equipment_wipe",
+      "path": "src/account/nanny.c",
+      "symbol": "void perform_eq_wipe",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unequips/extracts equipped roots and extracts carried roots with artifact retirement enabled, then unlinks locker and backup. Ship deletion and wallet reset blocks are commented out. Existing asset retirement and locker erasure require wipe/epoch qualification, not new-player initialization.",
+      "authority_boundary": "Capture exact forest/payload and distinguish provisional cleanup, direct NPC admission, deferred PC grant and existing-asset erasure. Idempotent recovery and commit/publication/save parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          1119,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          1125,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/nanny.c",
+          1119,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
