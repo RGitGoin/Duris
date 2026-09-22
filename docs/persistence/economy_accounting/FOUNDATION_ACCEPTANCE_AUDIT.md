@@ -1185,3 +1185,14 @@ accounting acknowledgement. Preserve slot conditions and holder exemptions.
 Draft validator passed 13 fixtures: 382 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,329 mapped, 43 reviewed declarations and 1,326 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Olympus linked portal relocation
+
+Two coordinates classified. Existing portal moves before updating matching origin
+portal destination and timer; missing counterpart does not prevent relocation.
+Retain selected destination and both identities, and preserve sector predicate.
+Linked payload publication is not established by the room-movement census alone.
+
+Draft validator passed 13 fixtures: 383 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,331 mapped, 43 reviewed declarations and 1,324 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

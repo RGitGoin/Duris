@@ -18290,6 +18290,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.olympus_portal_relocation",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int olympus_portal(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Every eligible30-second interval, supported Olympus portal selects a zone room, relocates the same room object, updates matching origin portal destination payload if found, then advances timer.",
+      "authority_boundary": "Retain both portal identities, selected destination and timer/link payload consistently. Missing origin portal does not prevent movement. Existing sector bit-test behavior must be preserved; room relocation is not fresh portal issuance or durable linked-pair publication.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2785,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2786,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
