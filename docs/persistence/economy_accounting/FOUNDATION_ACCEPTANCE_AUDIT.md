@@ -3251,3 +3251,7 @@ Added 25 item endpoints covering consumption, fallback theft, donations, same-ow
 ## Scripted item movement and consumption endpoints (2026-09-22)
 
 Added 25 item endpoints for transformations, offerings, charge exhaustion, ferry/pool relocation and random outputs. Preserved same-object transfers, parent-only digestion, sequential output creation and detached chest state. Explicit endpoints: 597; missing endpoints: 254; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.
+
+## Item effect and spell endpoints (2026-09-22)
+
+Added 25 endpoints for ward/charge/periodic retirement, alignment rejection, same-owner equipment changes, portals, components and spell creation. Explicit endpoints: 622; missing endpoints: 229; test-link gaps remain 710. Draft validation and diff checks pass; no effect policy, randomness or runtime qualification changed.

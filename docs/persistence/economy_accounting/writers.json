@@ -18393,7 +18393,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room imprisonment object and bound-player state",
+      "destination": "Retired object on absence/escape and cleared imprisonment flag where found"
     },
     {
       "id": "item.huntsman_ward_trigger",
@@ -18443,7 +18445,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Armed ward and eligible movement trigger",
+      "destination": "Applied ward effect and consumed ward"
     },
     {
       "id": "item.skill_beacon_decay",
@@ -18478,7 +18482,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Inactive periodic beacon",
+      "destination": "Random retirement; active path only changes skill payload"
     },
     {
       "id": "item.thought_beacon_dispel",
@@ -18513,7 +18519,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room thought beacon",
+      "destination": "Extracted representation on dispel"
     },
     {
       "id": "item.guild_badge_breakage",
@@ -18548,7 +18556,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Due worn badge and periodic roll",
+      "destination": "Retired badge on breakage or surviving bonus/timer update"
     },
     {
       "id": "item.dragonslayer_rejection",
@@ -18588,7 +18598,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected holder carried/worn sword",
+      "destination": "Same sword placed in holder room"
     },
     {
       "id": "item.disarm_gloves_inventory",
@@ -18628,7 +18640,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim droppable wielded weapon",
+      "destination": "Same-victim inventory and removed holy-sword effect"
     },
     {
       "id": "item.ruby_monocle_reset_move",
@@ -18668,7 +18682,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ground monocle during zero-age zone",
+      "destination": "Same object in random permitted room"
     },
     {
       "id": "item.flying_citadel_disabled_move",
@@ -18708,7 +18724,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable legacy movement branch",
+      "destination": "No active relocation"
     },
     {
       "id": "item.die_roll_room_move",
@@ -18743,7 +18761,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held/wielded die with positive sides",
+      "destination": "Random roll and same die in player room"
     },
     {
       "id": "item.good_evil_sword_poof",
@@ -18778,7 +18798,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected artifact sword and holder HP",
+      "destination": "Extracted sword and 100HP damage"
     },
     {
       "id": "item.holy_weapon_alignment_jump",
@@ -18828,7 +18850,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected player-held sword",
+      "destination": "Eligible room player custody or destruction, then former-owner damage"
     },
     {
       "id": "item.slot_jackpot_coupons",
@@ -18878,7 +18902,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "ELF platinum jackpot entitlement",
+      "destination": "Adjusted coin payout and two new player coupon items"
     },
     {
       "id": "coin.slot_net_submission",
@@ -18950,7 +18976,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Cap worn by wrong PID",
+      "destination": "Damage effect and cap retirement"
     },
     {
       "id": "item.revenant_reversion_equipment",
@@ -18985,7 +19013,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Race-reverting character equipment",
+      "destination": "Same-character inventory after remove callbacks"
     },
     {
       "id": "item.revenant_transformation_equipment",
@@ -19020,7 +19050,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Other equipment on eligible helm wearer",
+      "destination": "Same-wearer inventory after callbacks/alive checks"
     },
     {
       "id": "item.good_evil_forced_wield",
@@ -19085,7 +19117,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact sword and conflicting equipment slots",
+      "destination": "Sword in primary slot; displaced items in same-owner inventory"
     },
     {
       "id": "item.olympus_portal_relocation",
@@ -19125,7 +19159,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing portal and interval/room selection",
+      "destination": "Same portal at new room with linked origin destination updated"
     },
     {
       "id": "item.dragonlord_reversion_equipment",
@@ -19165,7 +19201,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Conflicting plate or reverting character equipment",
+      "destination": "Same-owner inventory after applicable callbacks/rescheduling"
     },
     {
       "id": "item.dragonlord_legacy_equipment",
@@ -19200,7 +19238,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Other worn equipment during legacy plate transformation",
+      "destination": "Same-owner inventory before race-change effects"
     },
     {
       "id": "item.necroplasm_custody",
@@ -19265,7 +19305,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ground/carried/worn necroplasm and conflicting equipment",
+      "destination": "Eligible player equipment with displaced items in inventory, or conflict retirement"
     },
     {
       "id": "item.vapor_forced_equip",
@@ -19310,7 +19352,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried vapor and occupied body/legs slot",
+      "destination": "Vapor equipped, former equipment in same-owner inventory"
     },
     {
       "id": "item.spell_component_consumption",
@@ -19345,7 +19389,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching top-level component instances up to maximum",
+      "destination": "Consumed instances and actual consumed count"
     },
     {
       "id": "item.spell_shield_creation",
@@ -19385,7 +19431,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shield template368 and cast",
+      "destination": "New timed shield in caster inventory"
     },
     {
       "id": "item.spell_food_creation",
@@ -19425,7 +19473,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Food template364 and cast",
+      "destination": "New no-sell food in caster room"
     },
     {
       "id": "item.spring_spell_creation",
