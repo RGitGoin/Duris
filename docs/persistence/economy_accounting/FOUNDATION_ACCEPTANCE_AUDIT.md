@@ -2735,3 +2735,14 @@ indirect NPC assets and save/replay qualification remain open.
 Draft validation passed 13 fixtures: 713 routes, 2756 raw matches, 2698 unique
 coordinates, 2228 mapped, 43 reviewed nonwriters, 427 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Githyanki first-level weapon
+
+Six coordinates classified as one class-selected level-50 reward. Caller
+checks highest level below 50, then advances that marker even after failed
+allocation or unsupported class. Preserve branch priority; admission and
+progression save/replay qualification remain open.
+
+Draft validation passed 13 fixtures: 714 routes, 2756 raw matches, 2698 unique
+coordinates, 2234 mapped, 43 reviewed nonwriters, 421 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

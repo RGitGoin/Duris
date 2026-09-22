@@ -32762,6 +32762,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.githyanki_level_weapon",
+      "path": "src/world/limits.c",
+      "symbol": "void githyanki_weapon",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "First level-50 PC githyanki advancement selects staff19 for caster classes, hammer418 for warrior/reaver, sword18 for antipaladin; priority follows branch order. Checked allocation customizes name then publishes to character. Caller highest_level marker advances afterward regardless of allocation success or unsupported class.",
+      "authority_boundary": "Couple first reward admission and highest-level progression marker while preserving class priority and native failure behavior. Qualify refusal, marker-before-save ordering, publication acknowledgement and replay without duplicate reward; helper alone has no once-only gate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/limits.c",
+          546,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/limits.c",
+          563,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/limits.c",
+          580,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/limits.c",
+          553,
+          "item_publication"
+        ],
+        [
+          "src/world/limits.c",
+          570,
+          "item_publication"
+        ],
+        [
+          "src/world/limits.c",
+          588,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
