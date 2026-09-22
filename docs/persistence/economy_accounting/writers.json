@@ -8458,7 +8458,7 @@
       "coverage": "legacy",
       "classification": "Within the same room, subtract payer wallet cash and add it to recipient. Called for purchases and repair; item or service outcome occurs separately.",
       "authority_boundary": "Link both holdings to the enclosing purchase/service and retain original debit-credit intent; do not classify recipient credit as unrelated issuance.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native extracted transact plus real money-helper bodies test room mismatch, debit refusal without recipient credit and forced cash payment despite a merchandise argument. Controlled submission shows recipient credit can precede persisted payer completion; it does not qualify atomic payment.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8473,7 +8473,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_money_helpers_runtime.py"
+      ],
       "sites": [
         [
           "src/economy/shop.c",
@@ -8505,7 +8507,7 @@
       "coverage": "legacy",
       "classification": "Source contains unequip/unlink, merchandise transfer and cash change, but merchandise is forcibly set to null before the branch. It is dormant in current execution.",
       "authority_boundary": "Reactivation requires linked item consideration and change; dormant sites are not runtime coverage.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native extracted transact plus real money-helper bodies test room mismatch, debit refusal without recipient credit and forced cash payment despite a merchandise argument. Controlled submission shows recipient credit can precede persisted payer completion; it does not qualify atomic payment.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8520,7 +8522,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_money_helpers_runtime.py"
+      ],
       "sites": [
         [
           "src/economy/shop.c",

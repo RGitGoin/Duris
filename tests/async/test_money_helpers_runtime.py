@@ -8,6 +8,7 @@ from _paths import ROOT, extract_function
 PRELUDE = r''' 
 #include "core/prototypes.h"
 #include "core/utils.h"
+#include "core/utility.h"
 #include "economy/currency_transaction.h"
 #include "economy/auction_houses.h"
 #include "persistence/persistence_checkpoint.h"
@@ -21,6 +22,8 @@ static std::string message;
 [[noreturn]] int panic_corruption_int(const char *,const char *,...) { std::abort(); }
 void logit(const char *,const char *,...) {}
 void gmcp_char_vitals(P_char) {}
+void act(const char *,int,P_char,P_obj,void *,int) {}
+char *coin_stringv(int,int) { static char text[]="coins"; return text; }
 void send_to_char(const char *text,P_char) { message=text; }
 void mark_player_dirty_components(int,player_component_mask_t) {}
 static void currency_adjustment_committed(P_char,bool,const currency_command_result &,
@@ -66,12 +69,24 @@ int main() {
         if(amount>1) assert(SUB_MONEY(&npc,amount-1,0)==0 && GET_MONEY(&npc)==0);
     }
     assert(submissions==before && claims==2);
+    char name[]="fixture"; npc.player.short_descr=name; actor.player.name=name;
+    actor.in_room=1; npc.in_room=2;
+    assert(!transact(&actor,nullptr,&npc,17) && submissions==before);
+    npc.in_room=1; accepted=false;
+    assert(!transact(&actor,nullptr,&npc,17) && GET_MONEY(&npc)==0);
+    accepted=true;
+    obj_data merchandise{}; merchandise.cost=1000;
+    assert(transact(&actor,&merchandise,&npc,17));
+    assert(delta==-17 && GET_MONEY(&npc)==17 && GET_MONEY(&actor)==100);
+    // Passing merchandise still charges cash: the production branch disables barter.
+    assert(merchandise.cost==1000 && claims==2);
 }
 '''
 with tempfile.TemporaryDirectory(prefix="money-helpers-") as directory:
     cpp=Path(directory)/"test.cpp"; binary=Path(directory)/"test"
     cpp.write_text(PRELUDE+extract_function("core/utility.c","void ADD_MONEY(")+
-                   extract_function("core/utility.c","int SUB_MONEY(")+DRIVER)
+                   extract_function("core/utility.c","int SUB_MONEY(")+
+                   extract_function("economy/shop.c","bool transact(")+DRIVER)
     subprocess.run(["g++","-std=c++20","-Wall","-Wextra","-Werror","-g","-O1",
                     "-fsanitize=address,undefined","-fno-omit-frame-pointer","-no-pie",
                     "-Isrc",str(cpp),"-o",str(binary)],cwd=ROOT,check=True)

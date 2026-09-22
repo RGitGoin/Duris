@@ -19,7 +19,7 @@ checks. See [ISSUE_CLOSURE_STATUS.md](ISSUE_CLOSURE_STATUS.md).
 Finish the inventory's indirect-write review and executable test candidates before
 claiming its contract frozen. The latest census refresh repairs seven moved anchors
 and adds the bank publication owner/hooks: 852 routes and 2,716 classified lexical
-coordinates, with 646 routes still lacking test candidates. Passing the draft
+coordinates, with 644 routes still lacking test candidates. Passing the draft
 validator does not satisfy this issue's completion gate. See the current-head
 section of FOUNDATION_ACCEPTANCE_AUDIT.md.
 
