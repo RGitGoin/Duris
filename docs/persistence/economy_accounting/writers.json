@@ -29101,6 +29101,59 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.generated_npc_restore",
+      "path": "src/world/generated_npc_runtime.c",
+      "symbol": "generated_npc_apply",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Validated nonempty generated-NPC state decodes and overwrites four wallet denominations after applying other NPC fields. Empty encoded state returns without wallet assignment. Capture optionally serializes current wallet or four zeros when include_currency is false.",
+      "authority_boundary": "Snapshot restoration/baseline assignment, not fresh coin issuance. Qualify caller currency-authority selection, zero-wallet capture, invalid/empty state and repeated recovery without double-counting or erasing authoritative balances.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_generated_npc_state.py",
+        "tests/async/run_generated_npc_journey.py"
+      ],
+      "sites": [
+        [
+          "src/world/generated_npc_runtime.c",
+          106,
+          "coin_assignment"
+        ],
+        [
+          "src/world/generated_npc_runtime.c",
+          107,
+          "coin_assignment"
+        ],
+        [
+          "src/world/generated_npc_runtime.c",
+          108,
+          "coin_assignment"
+        ],
+        [
+          "src/world/generated_npc_runtime.c",
+          109,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

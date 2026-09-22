@@ -2265,3 +2265,15 @@ Compound durability and repeated initialization remain unqualified.
 Draft validation passed 13 fixtures: 625 routes, 2756 raw matches, 2698 unique
 coordinates, 2028 mapped, 43 reviewed nonwriters, 627 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Generated NPC wallet restoration
+
+Four denomination assignments classified as decoded snapshot restoration.
+Empty state leaves wallet unchanged; capture can intentionally encode zero
+currency. Caller authority selection and repeated recovery must be qualified
+without treating restored balances as new issuance. Listed tests are candidates,
+not executed evidence.
+
+Draft validation passed 13 fixtures: 626 routes, 2756 raw matches, 2698 unique
+coordinates, 2032 mapped, 43 reviewed nonwriters, 623 unclassified.
+No gameplay changes; release readiness remains false.
