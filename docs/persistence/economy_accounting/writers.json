@@ -17475,6 +17475,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.treasure_chest_reward",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int treasure_chest(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Opening chest grants zero to four newly allocated prototype51004 potions from two nested random trials, then detaches the chest from its room.",
+      "authority_boundary": "Crumbles narration does not match explicit retirement: handler only calls obj_from_room. Preserve reward draw/count, output identities and detached-source disposition; allocation is unchecked and room detachment is not destruction proof.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          4643,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          4645,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          4655,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.zarbon_curse_creation",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int rod_of_zarbon(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eligible female drow cleric wielding rod has1/100 melee-hit chance to allocate prototype36761 and place it in victim inventory.",
+      "authority_boundary": "New curse object is issuance despite hostile purpose. Bind hit attempt, source rod and victim lifetime; allocation failure skips publication. Retry must not reroll or create another object.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          7725,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          7728,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.imprison_retirement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int obj_imprison(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Imprison object retires if bound player is absent from its room or if player escapes through struggle depletion/random success; clears imprisonment flag where found.",
+      "authority_boundary": "Preserve PID binding, struggle payload and flag clearing with object retirement. Missing/offline player is not evidence that persistent player flag was cleared; no save acknowledgement is established here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          10032,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10063,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

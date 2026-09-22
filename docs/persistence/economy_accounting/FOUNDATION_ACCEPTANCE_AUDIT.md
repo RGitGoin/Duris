@@ -1095,3 +1095,14 @@ Sequential cargo unloading is not proven atomic with passenger movement.
 Draft validator passed 13 fixtures: 362 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,286 mapped, 43 reviewed declarations and 1,369 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Chest reward, hostile issuance and imprisonment
+
+Seven sites classified. Treasure chest grants up to four potions but only detaches
+itself despite crumbling narration; retirement must not be inferred. Zarbon curse
+objects are fresh issuance into victim inventory. Imprison retirement couples PID,
+struggle payload and flag clearing, without proving offline player save completion.
+
+Draft validator passed 13 fixtures: 365 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,293 mapped, 43 reviewed declarations and 1,362 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
