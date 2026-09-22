@@ -13752,6 +13752,111 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.bulk_put_submission",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void start_bulk_put(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Select durable roots under cumulative capacity constraints and submit one resolved container custody batch. Completion revalidates source carriage and destination/capacity, then calls put under acknowledgement guard.",
+      "authority_boundary": "Publication refusal can follow earlier live insertions and clears batch state without undoing committed custody. Remaining pass skips exactly batch-claimed UIDs and may submit newly durable candidates separately; it counts only actual live insertion, not put return alone. No command-wide atomicity or save receipt is established.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          5342,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.container_put_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "bool put(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After defer_durable_put either bypasses or acknowledges submission, move existing item from character or room into quiver/container/storage/corpse. Carried quiver insertion increments count; carried ordinary insertion adjusts optional space.",
+      "authority_boundary": "Same helpers serve acknowledged and synchronous paths. Room fallback has distinct count/space handling and its reachability is not proven by an old comment. Dirty marks, logging and storage write requests are not native save acknowledgement; destination nesting is economic topology rather than issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          5712,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5713,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5718,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5722,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5820,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5821,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5832,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          5833,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -739,3 +739,20 @@ No runtime behavior changed.
 Draft validator passed 13 fixtures: 293 routes, 2,756 raw matches, 2,698 unique
 coordinates, 956 mapped, 43 reviewed declarations and 1,699 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Bulk put and container publication
+
+Nine sites classified. Bulk put submits selected durable roots, revalidates capacity
+and live source, then publishes sequentially. A later publication refusal can follow
+earlier live insertions and clear batch state without undoing custody. The remaining
+pass skips exact batch UIDs, can defer newly durable candidates independently, and
+counts actual insertion rather than put's accepted/handled return value.
+
+Quiver and ordinary-container put paths serve both acknowledged and synchronous
+movement. Carried versus room fallback has distinct count/space updates; an old
+comment does not prove the room branch unreachable. Nesting, payload updates and
+native save acknowledgement must remain distinct. No runtime behavior changed.
+
+Draft validator passed 13 fixtures: 295 routes, 2,756 raw matches, 2,698 unique
+coordinates, 965 mapped, 43 reviewed declarations and 1,690 unclassified.
+Census and runtime qualification remain incomplete.
