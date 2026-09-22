@@ -1229,3 +1229,13 @@ does not establish spell success; artifact exclusion is a comment, not a predica
 Draft validator passed 13 fixtures: 388 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,345 mapped, 43 reviewed declarations and 1,310 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Shield and food creation spells
+
+Four coordinates classified. Shield output carries timer180 into caster inventory;
+food output carries nosell into the room. Both check allocation but neither helper
+publication nor preceding narration proves durable save or replay-safe admission.
+
+Draft validator passed 13 fixtures: 390 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,349 mapped, 43 reviewed declarations and 1,306 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

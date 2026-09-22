@@ -18550,6 +18550,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.spell_shield_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_shield(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Shield spell allocates prototype368, checks allocation, sets timer0 to180 and places the new shield in caster inventory.",
+      "authority_boundary": "Fresh shield UID and timer payload must be admitted once per accepted cast. Narration precedes publication; allocation success and obj_to_char do not prove durable save.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          5986,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          6002,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_food_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_create_food(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Create-food spell allocates prototype364, checks allocation, sets ITEM_NOSELL and publishes new food in caster room.",
+      "authority_boundary": "Destination is room rather than caster inventory; retain exact output UID, nosell property and source cast. Recovery must restore this object rather than issue another.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          6010,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          6021,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
