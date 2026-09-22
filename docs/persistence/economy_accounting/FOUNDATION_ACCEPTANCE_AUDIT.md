@@ -1595,3 +1595,17 @@ matches mapped; runtime integration remains incomplete.
 Draft validation passed13 fixtures:451 routes,2756 raw matches,2698 unique
 coordinates,1528 mapped,43 reviewed declarations,1127 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Quest inputs, rewards, previews and disappearance
+
+Eighteen coordinates classified in quest.c. Inputs consume NPC-held items/coins;
+item reward submission and coin issuance are separate sequential effects. Accepted
+grant submission is followed by narration without completion acknowledgement here.
+Description-only prototype loads are not economic admission. Disappearance cleanup
+follows reward calls even when completion tracking only logs failure. Input/reward
+identity, partial completion and NPC cleanup remain runtime qualification work.
+All current quest.c lexical matches mapped, not semantic completeness.
+
+Draft validation passed13 fixtures:456 routes,2756 raw matches,2698 unique
+coordinates,1546 mapped,43 reviewed declarations,1109 unclassified.
+No gameplay changes; release readiness remains false.

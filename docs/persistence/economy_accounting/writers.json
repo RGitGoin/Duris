@@ -21355,6 +21355,246 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "economy.quest_inputs",
+      "path": "src/world/quest.c",
+      "symbol": "bool quest_completion(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After goal prechecks, consumes matching quest NPC inventory objects and debits NPC coins; item-type pass follows specific-item pass.",
+      "authority_boundary": "Inputs reside on NPC after give, not directly on player. Preserve specific/type overlap, sequential partial-failure behavior and exact input UIDs/coins; completion recording and rewards occur later.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/quest.c",
+          162,
+          "item_publication"
+        ],
+        [
+          "src/world/quest.c",
+          163,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          167,
+          "money_helper"
+        ],
+        [
+          "src/world/quest.c",
+          178,
+          "item_publication"
+        ],
+        [
+          "src/world/quest.c",
+          179,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.quest_reward_items",
+      "path": "src/world/quest.c",
+      "symbol": "void give_reward(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates reward prototype, rejects existing artifact via extraction, selects player or room by strict carry limits, submits creation grant and extracts on refusal.",
+      "authority_boundary": "Accepted submission precedes reward narration/logging without completion callback here. Bind quest invocation and output identity, retained save state and input consumption; rejected provisional cleanup is not admitted-item retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/quest.c",
+          206,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          218,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          227,
+          "economic_submit"
+        ],
+        [
+          "src/world/quest.c",
+          228,
+          "economic_submit"
+        ],
+        [
+          "src/world/quest.c",
+          231,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.quest_reward_coins",
+      "path": "src/world/quest.c",
+      "symbol": "void give_reward(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Credits player gp number divided by temp fixed to1; narration/logging precede credit.",
+      "authority_boundary": "No corresponding NPC debit in this reward branch. Model quest issuance distinctly from consumed input coins; reward list may partially complete and requires replay-safe identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/quest.c",
+          274,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.quest_preview_objects",
+      "path": "src/world/quest.c",
+      "symbol": "void tell_quest(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Loads temporary prototypes for input/reward descriptions and extracts on obj plus real_object>0 condition; no custody publication.",
+      "authority_boundary": "Preview allocations are not economic admission. Nonnull allocation with failed real_object condition lacks local extraction; qualify helper effects separately, do not count previews as player rewards.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/quest.c",
+          380,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          385,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          416,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          421,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.quest_disappear_cleanup",
+      "path": "src/world/quest.c",
+      "symbol": "int quester(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After completion tracking attempt and give_reward, disappear branch unequips/extracts all NPC equipment, extracts carried objects and then extracts NPC.",
+      "authority_boundary": "Tracking failure only logs and grant submission is not completion evidence; cleanup still follows. Preserve remaining item subtree identities and NPC lifecycle without treating disappearance narration as durable reward delivery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/quest.c",
+          561,
+          "item_publication"
+        ],
+        [
+          "src/world/quest.c",
+          562,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/quest.c",
+          575,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
