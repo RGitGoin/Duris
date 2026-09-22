@@ -37619,6 +37619,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.clear_command",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_clear_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Uses temporary prototype for display while erasing artifact authority record (flatfile) or main then mortal SQL rows. Live artifact is not extracted by this temporary cleanup. Partial registry deletion and custody reconciliation require qualification.",
+      "authority_boundary": "Separate provisional object lifecycle from artifact registry edits and delegated durable item destruction. Qualify refusal, registry consistency, offline save and replay before claiming administrative accounting completion.",
+      "current_support": "Existing artifact administration; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3691,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3739,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.poof_command",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_poof_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Temporary validation copy is discarded before live/offline artifact lookup and delegation to poof_artifact. Offline dummy then undergoes nuke_eq/extract teardown. These direct sites are not the actual owned artifact sink; delegated destruction/save is separate.",
+      "authority_boundary": "Separate provisional object lifecycle from artifact registry edits and delegated durable item destruction. Qualify refusal, registry consistency, offline save and replay before claiming administrative accounting completion.",
+      "current_support": "Existing artifact administration; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3776,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3784,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3788,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.timer_command",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_timer_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Temporary validation/display prototype is discarded before timer arithmetic and registry update retaining owner/location/type. Nonartifact refusal returns without cleanup. This changes expiry metadata, not direct item ownership or issuance.",
+      "authority_boundary": "Separate provisional object lifecycle from artifact registry edits and delegated durable item destruction. Qualify refusal, registry consistency, offline save and replay before claiming administrative accounting completion.",
+      "current_support": "Existing artifact administration; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3918,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          3938,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

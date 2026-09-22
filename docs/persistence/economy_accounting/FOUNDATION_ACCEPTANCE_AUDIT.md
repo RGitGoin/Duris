@@ -3021,3 +3021,13 @@ owner/corpse saves. Offline failed terminal save retains dummy for recovery.
 Refusal cleanup and compound durability require qualification, not scope expansion.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 825 routes, 2756 raw matches, 2698 unique coordinates, 2527 mapped, 43 reviewed nonwriters, 128 unclassified.
+
+
+## Artifact clear, poof and timer commands
+
+Seven coordinates classify temporary validation copies in commands that erase
+registry entries, delegate real artifact poof, or edit expiry metadata. Registry
+clear is not live-item extraction; timer change is not issuance. SQL main/mortal
+partial deletion and delegated offline persistence remain qualification concerns.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 828 routes, 2756 raw matches, 2698 unique coordinates, 2534 mapped, 43 reviewed nonwriters, 121 unclassified.
