@@ -1322,3 +1322,13 @@ can leave prior retirement/binding changes; existing affect duration is unchange
 Draft validator passed 13 fixtures: 400 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,369 mapped, 43 reviewed declarations and 1,286 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Tree spell track cleanup
+
+One coordinate classified. Tree spell extracts all matching room track prototypes,
+without owner filtering despite the comment. Track economic enrollment needs
+qualification before assuming ledger retirement; preserve existing refusals.
+
+Draft validator passed 13 fixtures: 401 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,370 mapped, 43 reviewed declarations and 1,285 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
