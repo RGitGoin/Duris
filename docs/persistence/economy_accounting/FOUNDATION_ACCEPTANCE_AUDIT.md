@@ -3368,3 +3368,7 @@ The next useful crafting coverage is a shared native grant/refusal harness aroun
 ### 2026-09-22: tradeskill grant native boundary test
 
 Added test_tradeskill_grant_runtime.py, compiling the extracted production helper with ASan/UBSan. It passed under WSL: accepted submission preserves output and binds recipient/initiator; refusal releases only its provisional object once with FALSE; null output neither submits nor extracts. Linked only crafting.tradeskill_grant, reducing empty test lists to 686. Submission is stubbed; caller material consumption and backend durability remain untested by this harness. Draft validator and whitespace checks passed. No production behavior changed.
+
+### 2026-09-22: tradeskill caller failure boundaries
+
+Traced all three grant_tradeskill_item callers. Smith debits money and extracts ore before submission; refusal only cleans the new output. Refinement consumes inputs before its random result, so later output refusal is distinct from intended random failure. Fishing mutates its affect and grants experience before calling the helper and ignores its result. Updated these route authority boundaries to state the missing compound-operation acceptance cases. The helper test is deliberately not assigned as proof of caller rollback. This identifies integration work under the existing objective; no gameplay changes or new standalone issue/PR were made. Empty test lists remain 686. Draft validation and whitespace checks passed.

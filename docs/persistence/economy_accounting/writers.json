@@ -4605,7 +4605,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Coin cost, ore input and output item currently separate.",
-      "authority_boundary": "Link actual ore source ownership, cash cost and rolled output. Current loop reads ch inventory but rollback attaches ore to pl; preserve and verify original owner rather than assuming rollback is neutral. Costs and ore are consumed before output submission.",
+      "authority_boundary": "Link actual ore source ownership, cash cost and rolled output. Current loop reads ch inventory but rollback attaches ore to pl; preserve and verify original owner rather than assuming rollback is neutral. Costs and ore are consumed before output submission. Technical grant refusal occurs after wallet debit and ore extraction; grant helper only releases provisional output and does not restore either input. Acceptance must exercise this boundary with original input identities and payment evidence.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -4672,7 +4672,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Consumes two matching salvage items and all counted ore before the random outcome; charges 50,000 copper when ore count is not exactly one. Intended failure yields no output; success grants upgraded material.",
-      "authority_boundary": "Retain actual input identities, ore or cash costs and original random outcome; distinguish intended failed refinement from technical output failure. Current extraction loop reads ore vnum after extraction, so capture required input metadata before retirement in integration.",
+      "authority_boundary": "Retain actual input identities, ore or cash costs and original random outcome; distinguish intended failed refinement from technical output failure. Current extraction loop reads ore vnum after extraction, so capture required input metadata before retirement in integration. Successful random outcome can still lose output on allocation/submission failure after inputs were consumed. This technical refusal must be distinguished from the intended random failure sink.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -4734,7 +4734,7 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Fishing item admission.",
-      "authority_boundary": "Durable source event unresolved",
+      "authority_boundary": "Durable source event unresolved Caller applies fishing affect updates and experience reward before grant submission and ignores the helper return. An accepted queue is not item publication; refusal does not undo those effects.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
