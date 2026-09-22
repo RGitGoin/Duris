@@ -12,7 +12,6 @@
 
 namespace
 {
-constexpr uint32_t COIN_OPERATION_DOMAIN = 0x434f494e;
 constexpr size_t ENDPOINT_HEADER_BYTES = 36;
 
 void append_u32(std::vector<uint8_t> *output, uint32_t value)

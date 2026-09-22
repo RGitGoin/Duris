@@ -368,6 +368,7 @@ OBJS =  $(SHIP_OBJS) \
 				 economy/economic_enrollment_command.o \
 				 economy/economic_baseline_command.o \
 				 economy/economic_currency_adapter.o \
+				 economy/economic_coin_adapter.o \
 				 economy/auction_command.o \
 				 economy/auction_repository.o \
 				 economy/auction_transaction.o \

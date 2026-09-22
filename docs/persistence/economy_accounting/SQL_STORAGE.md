@@ -162,3 +162,27 @@ with ASan/UBSan, including six seeded child-ID collision cases, two attempts per
 case, and the existing native coin conversion/rollback/replay/reload/custody
 matrix. The private instance and temporary source/executable directories were
 cleaned up. MySQL-engine and compound accounting integration remain unqualified.
+
+### Typed wallet-to-wallet coin evidence preparation
+
+`economic_coin_adapter` now prepares the wallet-to-wallet part of the existing
+coin command using writer ID 3 (`ECONOMIC_WRITER_COIN_WALLETS`) and the
+`wallet_transfer` reason. Version-1 facts are 48 bytes: source then destination,
+each with little-endian wallet lifetime ID, bank lifetime ID and bank context.
+The command binding retains both native endpoints and their derived child IDs.
+
+Preparation uses both pre-root authority snapshots and the shared native currency
+arithmetic. It retains two child links and two denomination postings. A shared
+bank gets one unchanged-balance effect spanning both revision advances; different
+banks each get their own revision effect. The destination mutation starts from
+the source's bank after-state only when the native fence and retained bank mapping
+both identify the same bank. Divergent shared snapshots, mapping aliases, stale
+fences and altered intent are rejected without replacing the prepared output.
+
+This is a pure typed adapter, not a storage capability. Coin runtime admission
+remains refused. SQL must acquire/verify all native mappings and locks, execute
+these exact prepared effects under the existing root/child inbox owner, and
+append/verify evidence in that transaction before enabling it. Pile custody
+adapters and flat-file compound reservations remain separate incomplete work.
+The adapter test runs both SQL and client-free compilation modes with ASan/UBSan;
+its arithmetic parity does not prove backend storage parity.
