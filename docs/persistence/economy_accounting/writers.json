@@ -34319,6 +34319,136 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "building.evacuation",
+      "path": "src/world/buildings.c",
+      "symbol": "int Building::unload",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Moves every room-content root from each building interior to the outside location before extracting the building NPC. Existing objects are relocated, not reissued. Traversal retains next_content before movement; NPC extraction has its own indirect asset lifecycle.",
+      "authority_boundary": "Qualify source/destination custody, object identity and normal/refusal/partial publication behavior. Portal destinations are routing metadata, not money. Enclosing persistence and indirect NPC extraction require separate evidence; no atomicity inferred from helper return.",
+      "current_support": "Existing building item lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/buildings.c",
+          545,
+          "item_publication"
+        ],
+        [
+          "src/world/buildings.c",
+          546,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "building.portal_retirement",
+      "path": "src/world/buildings.c",
+      "symbol": "void Building::clear_portal_op",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Extracts each existing outpost/guildhall portal and clears its pointer. Repeated calls with null pointers do nothing; qualify the objects and any contents retired by extraction.",
+      "authority_boundary": "Qualify source/destination custody, object identity and normal/refusal/partial publication behavior. Portal destinations are routing metadata, not money. Enclosing persistence and indirect NPC extraction require separate evidence; no atomicity inferred from helper return.",
+      "current_support": "Existing building item lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/buildings.c",
+          685,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/buildings.c",
+          690,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "building.portal_admission",
+      "path": "src/world/buildings.c",
+      "symbol": "bool Building::generate_portals",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates and publishes two portal objects with destination values after existing-portal, guild and guildhall checks. Allocations are independent; the function returns success even if one or both allocations fail, and a partial pair blocks a subsequent generation attempt.",
+      "authority_boundary": "Qualify source/destination custody, object identity and normal/refusal/partial publication behavior. Portal destinations are routing metadata, not money. Enclosing persistence and indirect NPC extraction require separate evidence; no atomicity inferred from helper return.",
+      "current_support": "Existing building item lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/buildings.c",
+          767,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/buildings.c",
+          776,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/buildings.c",
+          773,
+          "item_publication"
+        ],
+        [
+          "src/world/buildings.c",
+          783,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

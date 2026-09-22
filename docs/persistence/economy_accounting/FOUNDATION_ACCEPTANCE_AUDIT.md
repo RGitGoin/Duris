@@ -2881,3 +2881,14 @@ recovery intent is not evidence of identity-preserving accounting. Duplicate
 replay, missing prototypes, allocation failure and partial publication remain
 qualification requirements under #489. No gameplay changes or runtime tests.
 Draft validation passed 13 fixtures: 749 routes, 2756 raw matches, 2698 unique coordinates, 2323 mapped, 43 reviewed nonwriters, 332 unclassified. Release readiness remains false.
+
+
+## Building evacuation and portals
+
+Eight coordinates classified as existing room-object evacuation, portal
+retirement and paired portal admission. Portal allocations publish independently
+and generation returns success even on partial allocation; an existing partial
+pair blocks retry. These are qualification findings, not additional bug fixes.
+Indirect building NPC extraction remains a semantic census consideration.
+No gameplay changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 752 routes, 2756 raw matches, 2698 unique coordinates, 2331 mapped, 43 reviewed nonwriters, 324 unclassified.
