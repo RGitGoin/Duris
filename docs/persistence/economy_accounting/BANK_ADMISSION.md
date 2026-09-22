@@ -121,5 +121,19 @@ The scenarios check retention before worker submission, while the worker waits o
 the real player snapshot lock, after a corrupt snapshot causes native save failure,
 and across save-pipeline shutdown/reinitialization with journal replay. After save
 completion, native readback must contain the expected revision and copper balance.
-The replay scenario resets runtime state in-process; process-crash coverage and
-production capture/coordinator integration remain separate requirements.
+The replay scenario resets runtime state in-process. The following journey adds
+production capture/coordinator coverage; process-crash coverage remains separate.
+
+`tests/async/test_economic_bank_native_journey.py` additionally links production
+status capture, the critical coordinator/journal, typed dispatcher and native bank
+transaction. It submits through `economic_bank_publication_submit` and tests normal
+completion, coordinator replay after accounting commit, and combined save/coordinator
+replay after a save journal append. The original critical record and entity fences
+must remain until status-save acknowledgement; final native snapshot and domain
+readback verify the saved balance/revision and one wallet/bank movement. No manual
+coordinator acknowledgement is used.
+
+The actor, account-bank cache and world are synthetic. Unused item/pet capture
+surfaces are assertion sentinels. Replay resets owners in-process, so this does not
+prove process-crash handling, login/materialization, production startup or SQL
+runtime behavior. Gameplay producers and activation remain unchanged.

@@ -116,7 +116,7 @@ void initialize_bucket(const std::string &root, const flatfile_authority_lock &l
 	if (!result)
 		commit(root, lock, changes);
 }
-void setup(const fs::path &path)
+void setup(const fs::path &path, bool with_history = true)
 {
 	const auto root = path.string();
 	for (const auto &dir : { path, path / "domains", path / "economic-evidence",
@@ -147,8 +147,11 @@ void setup(const fs::path &path)
 	player.domains.frags = 9;
 	player.domains.base_stats = { 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 };
 	player.domains.base_stat_revision = 1;
-	player.recent_pvp_deaths = { 50, 40 };
-	player.completed_epic_zones = { 3, 5 };
+	if (with_history)
+	{
+		player.recent_pvp_deaths = { 50, 40 };
+		player.completed_epic_zones = { 3, 5 };
+	}
 	assert(flatfile_player_domain_establish(root, player, nullptr) ==
 	       flatfile_player_domain_result::ok);
 	flatfile_authority_lock lock;
