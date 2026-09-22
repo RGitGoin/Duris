@@ -33007,6 +33007,171 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.minor_creation_factory",
+      "path": "src/magic/spells.c",
+      "symbol": "void cast_minor_creation",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Keyword lookup allocates selected object, marks NOSELL when successful, and passes even null result to spell_minor_creation. Delegate publication must be traced; allocation alone is provisional.",
+      "authority_boundary": "Bind spell operation and selected asset identities to provisional allocation, accepted publication or consumed ingredients. Preserve gates and semantic fields; qualify delegated effects, partial paired publication, exit state, save acknowledgement and replay without duplicate issuance or consumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/spells.c",
+          282,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.channel_avatar_focus",
+      "path": "src/magic/spells.c",
+      "symbol": "void cast_channel",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Reuses matching alignment avatar room object when present; otherwise eligible channel leader allocates alignment-specific focus, zeroes timer, publishes and applies decay. Distinguish reuse from fresh admission.",
+      "authority_boundary": "Bind spell operation and selected asset identities to provisional allocation, accepted publication or consumed ingredients. Preserve gates and semantic fields; qualify delegated effects, partial paired publication, exit state, save acknowledgement and replay without duplicate issuance or consumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/spells.c",
+          359,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/spells.c",
+          361,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/spells.c",
+          370,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.vines_herb_consumption",
+      "path": "src/magic/spells.c",
+      "symbol": "void cast_vines",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Already-vined refusal precedes selection. PCs and pets consume up to four carried green herbs before effect application; absence refuses. Other NPCs derive count from level without item cost.",
+      "authority_boundary": "Bind spell operation and selected asset identities to provisional allocation, accepted publication or consumed ingredients. Preserve gates and semantic fields; qualify delegated effects, partial paired publication, exit state, save acknowledgement and replay without duplicate issuance or consumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/spells.c",
+          2134,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.paired_spell_walls",
+      "path": "src/magic/spells.c",
+      "symbol": "bool create_walls",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Reciprocal exit check precedes two wall allocations. Either failure returns without local cleanup of successful partner. Both descriptions, destination/direction/power/type/level/owner fields and exit WALLED flags are configured before sequential room publication; optional decay applied.",
+      "authority_boundary": "Bind spell operation and selected asset identities to provisional allocation, accepted publication or consumed ingredients. Preserve gates and semantic fields; qualify delegated effects, partial paired publication, exit state, save acknowledgement and replay without duplicate issuance or consumption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/spells.c",
+          2637,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/spells.c",
+          2638,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/spells.c",
+          2693,
+          "item_publication"
+        ],
+        [
+          "src/magic/spells.c",
+          2694,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

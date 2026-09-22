@@ -2770,3 +2770,14 @@ integration scope and qualify actual utility persistence separately.
 Draft validation passed 13 fixtures: 718 routes, 2756 raw matches, 2698 unique
 coordinates, 2247 mapped, 43 reviewed nonwriters, 408 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Spell dispatch and paired walls
+
+Nine coordinates classified into minor-creation delegation, avatar-focus
+admission/reuse, vines herbs and paired walls. Preserve PC/pet ingredient cost
+and NPC exemption. Walls set exit state before paired publication; allocation
+partner cleanup and partial save/replay qualification remain open.
+
+Draft validation passed 13 fixtures: 722 routes, 2756 raw matches, 2698 unique
+coordinates, 2256 mapped, 43 reviewed nonwriters, 399 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
