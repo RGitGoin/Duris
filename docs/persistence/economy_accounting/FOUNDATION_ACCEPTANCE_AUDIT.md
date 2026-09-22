@@ -1445,3 +1445,19 @@ existing behavior, not a runtime correction.
 Draft validation: 13 fixtures, 414 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,405 mapped, 43 reviewed declarations, 1,250 unclassified.
 Release readiness remains false; no gameplay change or runtime qualification.
+
+## Regular and lesser resurrection fallback transfers
+
+Classified 28 coordinates in two fallback routes. Existing wallet denominations
+become a room coin pile before inventory/equipment release; corpse coin payload
+becomes wallet value and other children transfer to the resurrected character.
+These are value transfers, not fresh issuance. The player branch offers deferred
+persistence first. Fallback coin creation has no local allocation guard before
+wallet debit; inventory transient checks use corpse flags rather than item flags.
+Both routines retire the corpse despite player save failure. Deferred and NPC
+behavior, exact value conservation and restart/save acknowledgement remain
+unqualified; no gameplay fixes were made.
+
+Draft validator passed 13 fixtures: 416 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,433 mapped, 43 reviewed declarations, 1,222 unclassified.
+Release readiness remains false.

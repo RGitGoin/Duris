@@ -19630,6 +19630,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "economy.resurrect_fallback",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_resurrect(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy fallback converts positive existing wallet denominations into a room coin pile and debits wallet; releases inventory/equipment or retires transient entries; converts corpse coin payload to wallet value, transfers remaining children and retires corpse.",
+      "authority_boundary": "Player branch first offers persistence_defer_corpse_resurrection; this describes the fallback when it does not defer. Coin pile creation preserves existing value, not fresh issuance; no local allocation check precedes wallet debit. Corpse money uses copper + silver*10 + gold*100 + platinum*1000 then removes its object. Inventory transient predicate tests corpse flags, equipment tests item flags. Preserve exact wallet/pile values, item UIDs, old room and corpse graph across recovery. Player save failure only warns and still retires corpse; neither helper return nor extraction proves durable acknowledgement. Deferred and NPC paths require separate qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          15995,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          15997,
+          "money_helper"
+        ],
+        [
+          "src/magic/magic.c",
+          15998,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16005,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16010,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16011,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16022,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16025,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16030,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16044,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16047,
+          "money_helper"
+        ],
+        [
+          "src/magic/magic.c",
+          16050,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16055,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16160,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.lesser_resurrect_fallback",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_lesser_resurrect(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy fallback converts positive existing wallet denominations into a room coin pile and debits wallet; releases inventory/equipment or retires transient entries; converts corpse coin payload to wallet value, transfers remaining children and retires corpse.",
+      "authority_boundary": "Player branch first offers persistence_defer_corpse_resurrection; this describes the fallback when it does not defer. Coin pile creation preserves existing value, not fresh issuance; no local allocation check precedes wallet debit. Corpse money uses copper + silver*10 + gold*100 + platinum*1000 then removes its object. Inventory transient predicate tests corpse flags, equipment tests item flags. Preserve exact wallet/pile values, item UIDs, old room and corpse graph across recovery. Player save failure only warns and still retires corpse; neither helper return nor extraction proves durable acknowledgement. Deferred and NPC paths require separate qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          16396,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16398,
+          "money_helper"
+        ],
+        [
+          "src/magic/magic.c",
+          16399,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16408,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16413,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16414,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16424,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16432,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16436,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16448,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16451,
+          "money_helper"
+        ],
+        [
+          "src/magic/magic.c",
+          16454,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          16458,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          16500,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
