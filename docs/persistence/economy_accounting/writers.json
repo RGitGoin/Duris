@@ -17720,6 +17720,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.guild_badge_breakage",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int guild_badge(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic worn player badge has1/91 chance of extraction when its timer is due, before the surviving branch advances timer and adjusts bonuses.",
+      "authority_boundary": "Bind badge UID and due attempt; worn-item extraction must preserve equipment cleanup and payload semantics. Random breakage is retirement, not evidence that surviving bonus mutations are covered.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          9513,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.dragonslayer_rejection",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int dragonslayer(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Above-level36 nontrusted holder is rejected: carried or worn sword invokes obj_from_char and publishes into holder room.",
+      "authority_boundary": "Retain sword identity; this block accepts worn objects but does not explicitly unequip, so helper semantics need qualification. Refusal relocates rather than destroys the item.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          9862,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          9863,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.disarm_gloves_inventory",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int disarm_pick_gloves(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Glove proc on GOT_HIT has1/10 chance to unequip victim wielded droppable weapon into that same victim inventory, then strips holy sword.",
+      "authority_boundary": "Despite drops narration, destination is victim inventory, not room or glove owner. Preserve ownership, UID and related holy-sword state; chosen trigger must not replay as another disarm.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          13037,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          13042,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

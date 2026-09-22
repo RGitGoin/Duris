@@ -1118,3 +1118,15 @@ not-in-game comments do not establish current deployment status.
 Draft validator passed 13 fixtures: 368 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,299 mapped, 43 reviewed declarations and 1,356 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Badge breakage and forced equipment changes
+
+Five sites classified. Guild badge random breakage retires a worn object.
+Dragonslayer rejection accepts worn or carried source but invokes obj_from_char
+without explicit unequip; helper behavior needs qualification. Disarm gloves move
+the victim weapon to that same victim inventory despite drops narration, retaining
+ownership and coupling holy-sword state cleanup.
+
+Draft validator passed 13 fixtures: 371 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,304 mapped, 43 reviewed declarations and 1,351 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
