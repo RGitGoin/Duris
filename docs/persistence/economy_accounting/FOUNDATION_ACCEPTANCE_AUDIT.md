@@ -720,3 +720,22 @@ risk remains explicitly deferred in source. No runtime behavior changed.
 Draft validator passed 13 fixtures: 289 routes, 2,756 raw matches, 2,698 unique
 coordinates, 944 mapped, 43 reviewed declarations and 1,711 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Empty-container publication and poison consumption
+
+Twelve sites classified: empty submits durable roots separately from live movement,
+revalidates selected objects and destination graph, and attempts local rollback on
+insertion failure. That rollback cannot undo committed custody. Failed publication
+retains live operation state and returns false; storage writes/dirty marks on
+success are not native save receipts or restart-safe retention evidence.
+
+Poison application changes weapon payload and liquid quantity/weight before retiring
+an empty transient container. Belt containers are selectable although the final
+detach calls obj_from_char; helper behavior remains a qualification obligation.
+Food catalog diagnostic allocates prototypes without placement or cleanup in its
+body; no caller was found in searched src C files. It is not proven active issuance.
+No runtime behavior changed.
+
+Draft validator passed 13 fixtures: 293 routes, 2,756 raw matches, 2,698 unique
+coordinates, 956 mapped, 43 reviewed declarations and 1,699 unclassified.
+Census and runtime qualification remain incomplete.

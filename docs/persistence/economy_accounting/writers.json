@@ -13572,6 +13572,186 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.poison_application",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_apply_poison(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consume liquid quantity and weight while setting weapon poison payload; empty transient poison container is detached and extracted. Selection accepts inventory or belt-attached containers.",
+      "authority_boundary": "Weapon benefit, liquid depletion and container retirement are separate live mutations with no demonstrated compound save receipt. The final detach uses obj_from_char even for belt selection; helper behavior must be qualified, not assumed equivalent.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          9516,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9517,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.food_catalog_probe",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void list_foods(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Catalog diagnostic loops over vnums using read_object and logs food properties; no gameplay placement or extraction appears in this function.",
+      "authority_boundary": "Allocation is not admitted player issuance. No caller found in searched src C files; activation and lifetime cleanup remain unverified rather than treating this as a proven active reward source.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          9527,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.empty_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "publish_empty_objects",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Revalidate selected container contents and committed destination graph before moving them to target. Failed insertion attempts restore moved and remaining objects to source and undo counted quiver increments.",
+      "authority_boundary": "Live rollback does not undo committed custody. Completion returns false and retains operation state on publication failure; success marks dirty and requests storage saves before clearing state. This is not proof of restart-safe retention or native save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          9822,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9825,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9838,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9839,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9846,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9848,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9850,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          9851,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.empty_submission",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void start_empty(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Selected durable container roots submit a batch with destination parent and publication callback; entirely synchronous selections call the same publication helper without custody submission.",
+      "authority_boundary": "Selection tracks exact UIDs and pointers, graph counts, source/destination authority and capacity. Durable and synchronous roots share live publication but SQL commit and native save acknowledgement remain distinct; refusal before submission and publication failure after commit must not be conflated.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          10175,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
