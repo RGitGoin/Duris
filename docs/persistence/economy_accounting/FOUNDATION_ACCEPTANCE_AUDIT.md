@@ -1174,3 +1174,14 @@ post-movement liveness checking does not prove callback object validity.
 Draft validator passed 13 fixtures: 381 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,322 mapped, 43 reviewed declarations and 1,333 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Artifact forced wield
+
+Seven coordinates classified for good/evil sword forced primary equipment.
+Displaced items stay in the same owner inventory. Native-owned path reacquires
+actor runtime ID and sword UID after equip; that lifetime check is not durable
+accounting acknowledgement. Preserve slot conditions and holder exemptions.
+
+Draft validator passed 13 fixtures: 382 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,329 mapped, 43 reviewed declarations and 1,326 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

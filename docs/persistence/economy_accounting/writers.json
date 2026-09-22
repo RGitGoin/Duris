@@ -18225,6 +18225,71 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.good_evil_forced_wield",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int good_evil_sword(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Artifact sword21/22 removes itself from nonprimary slot and pushes occupied primary/hold/shield and conditional secondary items into same owner inventory before equipping itself primary.",
+      "authority_boundary": "All displaced items retain owner and UID. Sword configuration and nodrop flags are payload effects; native-owned path reacquires actor runtime ID and sword UID after equip, but this is not durable accounting acknowledgement. Preserve trusted-holder exemption and sequential equipment behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          3897,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3907,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3912,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3917,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3922,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3941,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3942,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
