@@ -25546,7 +25546,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nonpositive-charge node",
+      "destination": "Retired exhausted node"
     },
     {
       "id": "world.kingdom_node_shutdown_cleanup",
@@ -25581,7 +25583,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Recognized nodes and terrain cache at shutdown",
+      "destination": "Extracted runtime nodes/cache invalidation; durable retirement policy unresolved"
     },
     {
       "id": "world.kingdom_realm_harvest",
@@ -25616,7 +25620,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Node charge and eligible realm harvest",
+      "destination": "Capped abstract realm resources and spent charge, even at zero deposit"
     },
     {
       "id": "item.wonder_wand_gems",
@@ -26848,7 +26854,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship-generation chest/key/currency/material rolls",
+      "destination": "Bridge chest, captain key and generated contents with partial failure"
     },
     {
       "id": "world.cyrics_ship_bonus_treasure",
@@ -26898,7 +26906,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Base treasure and bonus fragment/key templates",
+      "destination": "Additional chest contents after possible prior publication"
     },
     {
       "id": "coin.chaos_starter_bank",
@@ -28455,7 +28465,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two separately gated fragment allocations",
+      "destination": "Olhydra/room first fragment and automaton second fragment; failure may be partial"
     },
     {
       "id": "ship.automaton_crew_exchange",
@@ -28767,7 +28779,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Recovered duplicate keeper equipment/inventory",
+      "destination": "Existing keeper stock, produced-template duplicate cleanup and duplicate NPC teardown"
     },
     {
       "id": "world.shopkeeper_reconcile_templates",
@@ -28809,7 +28823,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing configured produced-stock template",
+      "destination": "New keeper representative and dirty/retry state"
     },
     {
       "id": "item.forced_drop_staging",
@@ -29778,7 +29794,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ferry and per-stop automat templates",
+      "destination": "Route-room ferry and configured ticket automats; partial initialization possible"
     },
     {
       "id": "world.ferry_movement",
@@ -29818,7 +29836,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ferry representation and route step",
+      "destination": "Destination-room ferry after step increment"
     },
     {
       "id": "world.undead_ferry_initialization",
@@ -29858,7 +29878,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Enabled ferry configuration and undead ferry/Charon templates",
+      "destination": "Placed ferry and separately placed NPC"
     },
     {
       "id": "item.ferry_ticket_purchase",
@@ -30003,7 +30025,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Random NPC generation level",
+      "destination": "Rolled NPC gold/platinum, not snapshot restoration"
     },
     {
       "id": "world.random_mob_loot",
@@ -30043,7 +30067,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Theme/random equipment rolls",
+      "destination": "NPC inventory/equipment, possibly discarded on map-placement failure"
     },
     {
       "id": "item.level_five_achievement",
@@ -30197,7 +30223,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable initialization after return",
+      "destination": "No active wagon/horse admission"
     },
     {
       "id": "world.hour_flower_replacement",
@@ -30242,7 +30270,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing timed flower and checked replacement",
+      "destination": "Retired old flower and placed replacement"
     },
     {
       "id": "item.wind_light_stow",
@@ -30749,7 +30779,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing sector-limit track and new movement data",
+      "destination": "Retired prior track and new decaying room track"
     },
     {
       "id": "ship.maneuver_representation",
@@ -31626,7 +31658,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC inventory/equipment and positive wallet",
+      "destination": "Shard container with transferred holdings/money; caller wallet/death conservation unresolved"
     },
     {
       "id": "world.forest_animal_death_object",
@@ -31666,7 +31700,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "NPC death and same-vnum object template",
+      "destination": "New room decay object before continuing death processing"
     },
     {
       "id": "item.forest_corpse_conversion",
@@ -31851,7 +31887,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype3 and customized remains payload",
+      "destination": "Room remains; name alone is not coin evidence"
     },
     {
       "id": "item.burbul_map_grant",
@@ -31996,7 +32034,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two death-triggered object allocations",
+      "destination": "Sequential cleansed-lake/slime-sheen room outputs"
     },
     {
       "id": "world.juiblex_wormhole_admission",
@@ -32036,7 +32076,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death-triggered wormhole and source-room NPCs",
+      "destination": "New wormhole and relocated existing NPC holdings"
     },
     {
       "id": "item.verzanan_dog_one_consumption",
@@ -32221,7 +32263,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated scripted object template",
+      "destination": "New object in context room"
     },
     {
       "id": "item.studio_object_give",
@@ -32343,7 +32387,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Empty-handed eligible guard and customized weapon",
+      "destination": "Equipped guard weapon or rejected provisional cleanup"
     },
     {
       "id": "item.kingdom_banner_realm_cleanup",
@@ -32422,7 +32468,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible champion association and banner template",
+      "destination": "Configured room banner"
     },
     {
       "id": "item.kingdom_banner_break",
@@ -32601,7 +32649,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Boot fountain template and map-room selection",
+      "destination": "Room fountain with unresolved retry-exhaustion placement qualification"
     },
     {
       "id": "item.random_material_factory",
@@ -33170,7 +33220,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying outpost, rubble template and existing gate-room objects",
+      "destination": "New rubble, relocated contents and reset ownership/HP"
     },
     {
       "id": "world.justice_guard_light",
@@ -33210,7 +33262,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Placed guard and torch template after wallet clear",
+      "destination": "Held torch when equip succeeds; failed placement cleanup unverified"
     },
     {
       "id": "item.justice_guard_retirement",
@@ -33414,7 +33468,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible terrain and pond template",
+      "destination": "Caster-level room pond with timed decay"
     },
     {
       "id": "item.spell_bloodstone_replacement",
@@ -33946,7 +34002,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching existing focus or eligible new template",
+      "destination": "Reused focus or newly placed decaying alignment focus"
     },
     {
       "id": "item.vines_herb_consumption",
@@ -34031,7 +34089,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two provisional walls and reciprocal exit",
+      "destination": "Sequential paired room walls/exit flags; allocation failure cleanup incomplete"
     },
     {
       "id": "item.nq_factory",

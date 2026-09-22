@@ -3239,3 +3239,7 @@ Added 36 special, nexus, script and Winterhaven endpoints. Preserved independent
 ## World admission endpoints (2026-09-22)
 
 Added 25 world endpoints covering reset/prototype preparation, reconstruction, random loot, death rewards and kingdom nodes. Preserved same-owner moves, rejected provisional copies, disabled potion code and charge-before-partial-yield behavior. Explicit endpoints: 517; missing endpoints: 334; test-link gaps remain 710. Draft validation and diff checks pass; no runtime admission or backend qualification claimed.
+
+## Remaining world endpoints (2026-09-22)
+
+Added 30 remaining world endpoints, including NPC/ship loot, keeper reconciliation, ferries, death outputs, nodes and spell fixtures. Preserved reuse, partial allocation, indirect carried holdings and unresolved death-wallet conversion. All world routes now have explicit endpoints. Inventory total: 547 explicit, 304 missing; test-link gaps remain 710. Draft validation and diff checks pass; no runtime qualification claimed.
