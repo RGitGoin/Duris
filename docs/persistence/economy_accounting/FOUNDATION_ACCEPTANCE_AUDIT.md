@@ -2288,3 +2288,14 @@ extracts NPC after generation, requiring indirect cleanup qualification.
 Draft validation passed 13 fixtures: 628 routes, 2756 raw matches, 2698 unique
 coordinates, 2036 mapped, 43 reviewed nonwriters, 619 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Achievement item and currency rewards
+
+Four coordinates classified for level-five gift and two ship-owner currency
+rewards. Reward mutation precedes progress marker. Chaos tattoo helper does not
+locally gate ship-owner credit on existing level progress; caller once-only
+control remains to qualify. No incidental behavior fixes introduced.
+
+Draft validation passed 13 fixtures: 631 routes, 2756 raw matches, 2698 unique
+coordinates, 2040 mapped, 43 reviewed nonwriters, 615 unclassified.
+Release readiness remains false.

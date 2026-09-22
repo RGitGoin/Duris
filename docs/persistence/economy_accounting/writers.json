@@ -29234,6 +29234,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.level_five_achievement",
+      "path": "src/world/achievements.c",
+      "symbol": "update_achievements",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Level-five progress gate allocates prototype 400222, clears light for evil racewar if allocation succeeded, publishes gift without a success check and then advances achievement marker to five.",
+      "authority_boundary": "Couple reward admission and progress marker; missing allocation or refused placement must be qualified without duplicate grants or lost reward.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/achievements.c",
+          410,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/achievements.c",
+          415,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.level_twenty_ship_reward",
+      "path": "src/world/achievements.c",
+      "symbol": "update_achievements",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Level-twenty progress gate credits 100000 base money when player already owns ship; otherwise grants free-hull marker. Progress advances to twenty after reward branch.",
+      "authority_boundary": "Bind one reward credit to achievement progress and save acknowledgment; distinguish credit from later hull redemption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/achievements.c",
+          436,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.chaos_tattoo_ship_reward",
+      "path": "src/world/achievements.c",
+      "symbol": "grant_chaos_tattoo_achievement",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "PC level-at-least-thirty helper returns early only when free-sloop affect exists, advancing progress if necessary. Existing ship branch credits 100000 but does not grant free-sloop marker; progress is advanced afterward without acting as entry refusal here.",
+      "authority_boundary": "Qualify caller once-only gating and repeated invocation: local helper alone does not suppress repeated ship-owner credits based on progress. Couple wallet grant and durable reward identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/achievements.c",
+          631,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
