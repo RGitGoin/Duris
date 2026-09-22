@@ -34968,7 +34968,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_player_load_items.py"
+      ],
       "sites": [
         [
           "src/player/player_load_items.c",
@@ -35010,7 +35012,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_player_load_items.py"
+      ],
       "sites": [
         [
           "src/player/player_load_items.c",
