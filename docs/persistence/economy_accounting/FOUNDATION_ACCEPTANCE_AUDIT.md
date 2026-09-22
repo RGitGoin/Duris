@@ -2959,3 +2959,13 @@ enchant payment precedes delayed refusal/failure with no local refund. Preserve
 existing economics while qualifying identity, interruption and publication.
 No runtime changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 795 routes, 2756 raw matches, 2698 unique coordinates, 2427 mapped, 43 reviewed nonwriters, 228 unclassified.
+
+
+## Wizard grants and purges
+
+Ten coordinates classified across provisional load, ownership establishment,
+completion publication, named purge and room purge. UID-less direct admission
+and UID-bearing asynchronous admission differ. Committed stale publication is
+not successful native delivery; named artifact purge retains artifact registry.
+NPC teardown remains an indirect asset boundary. No runtime changes or tests.
+Draft validation passed 13 fixtures: 800 routes, 2756 raw matches, 2698 unique coordinates, 2437 mapped, 43 reviewed nonwriters, 218 unclassified. Release readiness remains false.

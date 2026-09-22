@@ -36219,6 +36219,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "wizard.load_prepare",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_load",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates wizard-requested object. UID-less objects publish directly to room or actor based on take flag; UID-bearing objects submit establishment and are discarded on submission refusal. NPC creation also has indirect asset considerations.",
+      "authority_boundary": "Administrative authority does not bypass economic identity and durable evidence. Qualify UID-less and UID-bearing admission, source/destination custody, refusal and postcommit native publication/save acknowledgement.",
+      "current_support": "Existing administrative item paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          5360,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          5390,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          5383,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          5385,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.load_establish",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "bool submit_wizard_load_establish",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Submits same-owner creation establishment for provisional UID object, selecting room vnum or actor PID and retaining publication context. Accepted submission alone does not admit native object.",
+      "authority_boundary": "Administrative authority does not bypass economic identity and durable evidence. Qualify UID-less and UID-bearing admission, source/destination custody, refusal and postcommit native publication/save acknowledgement.",
+      "current_support": "Existing administrative item paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          5287,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.load_completion",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void wizard_load_completion",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Resolves provisional object by UID; refusal discards only if nowhere. Commit publishes to captured room or actor after location checks; missing actor/object or stale publication returns without successful attachment. Restart/publication recovery remains unverified.",
+      "authority_boundary": "Administrative authority does not bypass economic identity and durable evidence. Qualify UID-less and UID-bearing admission, source/destination custody, refusal and postcommit native publication/save acknowledgement.",
+      "current_support": "Existing administrative item paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          5253,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          5268,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          5270,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.purge_named",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_purge",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Named room object purge refuses walls/storage and delegates ships separately. Other objects are extracted, including artifacts while intentionally retaining artifact registry entry. Qualify registry/custody distinction and contents.",
+      "authority_boundary": "Administrative authority does not bypass economic identity and durable evidence. Qualify UID-less and UID-bearing admission, source/destination custody, refusal and postcommit native publication/save acknowledgement.",
+      "current_support": "Existing administrative item paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          5506,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "wizard.purge_room",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "void do_purge",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Room purge skips walls/artifacts and extracts takeable objects or empty corpses after NPC extraction. Nonempty takeable corpses still match take flag. Indirect NPC item teardown also requires coverage.",
+      "authority_boundary": "Administrative authority does not bypass economic identity and durable evidence. Qualify UID-less and UID-bearing admission, source/destination custody, refusal and postcommit native publication/save acknowledgement.",
+      "current_support": "Existing administrative item paths; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          5603,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
