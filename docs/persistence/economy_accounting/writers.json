@@ -27753,6 +27753,151 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "ship.legacy_hull_debit",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "buy_hull",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy new-ship debit is unreachable: the enclosing unowned branch submits ship_hull_purchase_context then unconditionally returns before new_ship/load_ship and this debit. Owned positive and negative cost branches likewise submit and return before legacy reconstruction.",
+      "authority_boundary": "Retain as classified dormant code, not an active second purchase charge. Active charge authority is the separately mapped asynchronous hull purchase callback; any reactivation requires qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          2885,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ship.crew_hire",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "crew_shop_proc",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Room-selected crew hire checks duplicate crew, combined frag/skill eligibility, trusted-only zero price and affordability; debits wallet before change_crew, status update and queued ship save (labelled chief hire).",
+      "authority_boundary": "Couple exact eligible crew transition and wallet charge with durable publication; queue acceptance alone is not persistence evidence. Preserve conjunction-based eligibility and refusal behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3444,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ship.chief_hire",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "crew_shop_proc",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Room-selected chief hire checks existing chief slots, combined frag/relevant-skill eligibility, trusted-only zero price and affordability; debits wallet before set_chief, status update and queued save.",
+      "authority_boundary": "Couple wallet debit and semantic chief slot replacement; qualify refusal, durable save, restart and duplicate request behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          3491,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ship.summon_transit",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "summon_ship",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-time-only summon clears cargo and queues save for untrusted caller, sets SUMMONED, removes occupants, then detaches existing ship representation and moves it to transit room before scheduling arrival event.",
+      "authority_boundary": "Existing ship item retains identity; no new issuance. Couple service payment route, cargo removal, transit state and scheduled arrival across restart; time-only query must not mutate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          868,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          869,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

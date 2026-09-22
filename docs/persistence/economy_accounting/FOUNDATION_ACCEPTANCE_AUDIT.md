@@ -2115,3 +2115,15 @@ remain qualification work; no incidental gameplay fixes were introduced.
 Draft validation passed 13 fixtures: 593 routes, 2756 raw matches, 2698 unique
 coordinates, 1954 mapped, 43 reviewed nonwriters, 701 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Remaining ship-shop candidates
+
+Five coordinates classified: crew and chief hiring debit before semantic ship
+changes and queued save; summon moves the existing ship item into transit and
+schedules arrival after optional cargo clearing. The old hull debit is unreachable
+because the current branch submits an asynchronous purchase and returns first.
+It remains a dormant classified site, not a second active payment route.
+
+Draft validation passed 13 fixtures: 597 routes, 2756 raw matches, 2698 unique
+coordinates, 1959 mapped, 43 reviewed nonwriters, 696 unclassified.
+No gameplay changes; release readiness remains false.
