@@ -21010,6 +21010,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.fired_projectile_disposition",
+      "path": "src/combat/range.c",
+      "symbol": "void do_fire(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Non-cursed shot detaches missile from quiver and decrements count. Hit may reduce condition and MakeScrap or transfer missile to victim; blocked hit may also damage and scrap non-artifact shield. Miss publishes missile in computed room. Cursed arrows remain in quiver and bypass these missile mutations.",
+      "authority_boundary": "Preserve projectile UID, quiver count, condition and shooter PID marker; no fresh projectile issuance. Resolve MakeScrap replacement/destruction semantics separately. Missile disposition and shield damage precede melee/enchantment effects, so qualify object lifetime after scrapping and death/recovery ordering. Cursed-arrow marking/enchantment payload changes still occur despite unchanged custody; no save qualification claimed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/range.c",
+          735,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          908,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/range.c",
+          912,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          917,
+          "item_publication"
+        ],
+        [
+          "src/combat/range.c",
+          929,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/range.c",
+          1036,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

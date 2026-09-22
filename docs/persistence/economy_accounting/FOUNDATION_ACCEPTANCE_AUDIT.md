@@ -1556,3 +1556,16 @@ Exact quantities, UID custody, combat ordering and durable save remain unqualifi
 Draft validation passed13 fixtures:443 routes,2756 raw matches,2698 unique
 coordinates,1507 mapped,43 reviewed declarations,1148 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Fired projectile disposition
+
+Six coordinates classified: non-cursed arrows detach and decrement quiver count,
+then hit transfers to victim or invokes MakeScrap, while misses publish to computed
+room. Shield blocks may also scrap shields. Cursed arrows retain custody but still
+receive PID/enchantment payload mutations. Scrapping precedes later damage and
+enchantment use, requiring object-lifetime and recovery qualification.
+All current range.c lexical coordinates are mapped, not runtime qualified.
+
+Draft validation passed13 fixtures:444 routes,2756 raw matches,2698 unique
+coordinates,1513 mapped,43 reviewed declarations,1142 unclassified.
+No gameplay changes; release readiness remains false.
