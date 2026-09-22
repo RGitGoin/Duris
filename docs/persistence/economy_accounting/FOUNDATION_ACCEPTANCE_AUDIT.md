@@ -1582,3 +1582,16 @@ Compound retirement/reward, delivery/charge and unlock/consumption remain unqual
 Draft validation passed13 fixtures:447 routes,2756 raw matches,2698 unique
 coordinates,1520 mapped,43 reviewed declarations,1135 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Patrol, hireling and stable transactions
+
+Eight coordinates classified. Patrol/hireling allocation precedes fees and follower
+publication. Stabling charges before writePet and ticket allocation with no local
+refund on failure. Redemption charges and destroys the ticket while petrestore is
+commented out; narration is not restoration evidence. Preserve exact fee and
+pet/ticket lineage and qualify compound failures. All current specs.room.c lexical
+matches mapped; runtime integration remains incomplete.
+
+Draft validation passed13 fixtures:451 routes,2756 raw matches,2698 unique
+coordinates,1528 mapped,43 reviewed declarations,1127 unclassified.
+No gameplay changes; release readiness remains false.

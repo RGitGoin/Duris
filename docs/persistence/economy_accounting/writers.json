@@ -21195,6 +21195,166 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "economy.patrol_purchase",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int patrol_shops(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After patrol count and affordability checks and successful mobile allocation, debits EXP/2 then publishes patrol, flees and configures patrol state.",
+      "authority_boundary": "Bind purchased NPC lifetime and exact fee; allocation precedes debit, publication follows. NPC prototype cash/items and failed setup require separate qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          824,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.hireling_purchase",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int pet_shops(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After level, pet-count and affordability checks and successful mobile allocation, debits EXP*8, adjusts class, setup_pet PET_NOCASH, publishes and attaches follower.",
+      "authority_boundary": "Purchase fee, prototype wallet clearing and follower admission are separate effects requiring compound recovery and save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          918,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.stable_rent_ticket",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int pet_shops(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Debits level*100 before writePet. Successful write then allocates prototype5 ticket, fills pet ID, room vnum, timestamp and fee, publishes ticket and extracts mount. Write or ticket allocation failure does not locally refund fee.",
+      "authority_boundary": "Preserve saved pet/ticket lineage and exactly-once charge. Ticket allocation failure follows persisted pet write while live mount remains. Ticket admission is not proof of durable player save or atomic stabling.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          966,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.room.c",
+          978,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.room.c",
+          1000,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.stable_ticket_redemption",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int pet_shops(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After affordability and room-value checks, debits ticket value0 and detaches/extracts ticket; petrestore call is commented out despite returned-pet narration.",
+      "authority_boundary": "No local ticket prototype/type check or active restoration call in reviewed branch. Do not treat narration as restored pet evidence; qualify claim identity, charge, consumption and actual restoration before completion.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          1058,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.room.c",
+          1059,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.room.c",
+          1060,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
