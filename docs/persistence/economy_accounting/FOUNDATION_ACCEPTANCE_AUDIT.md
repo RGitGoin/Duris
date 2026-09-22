@@ -3227,3 +3227,7 @@ Added endpoints for 12 wizard and 11 inspection routes. Actual grants/purges/sto
 ## Service and entitlement endpoints (2026-09-22)
 
 Added 28 staff, boon, kingdom, reward, guildhall and service endpoints. Preserved entitlement versus live instance, non-coin realm resources, temporary fixture lifecycle, disabled boon code, and unchecked/post-payment service limits. Explicit endpoints: 427; missing endpoints: 424; test-link gaps remain 710. Draft validation and diff checks pass; no reward/service behavior or backend qualification changed.
+
+## Helper, building and remaining service endpoints (2026-09-22)
+
+Added 29 helper/building/ship/gambling/quest/spell endpoints, preserving transfers versus issuance, independent portal allocations, unreachable legacy hull debit and acceptance-versus-commit limits. Explicit endpoints: 456; missing endpoints: 395; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.

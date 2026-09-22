@@ -477,7 +477,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Pet wallet before PET_NOCASH normalization",
+      "destination": "Zero wallet; distinguish provisional initialization from admitted-value sink"
     },
     {
       "id": "special.money_changer",
@@ -877,7 +879,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest entitlement and coin/item reward policy",
+      "destination": "Player coin/item issuance with retained source identity"
     },
     {
       "id": "quest.requirements",
@@ -906,7 +910,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest NPC-held requirements transferred by player",
+      "destination": "Consumed quest inputs"
     },
     {
       "id": "world_quest.full_reward",
@@ -935,7 +941,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed world-quest entitlement",
+      "destination": "Full quest reward issuance"
     },
     {
       "id": "world_quest.kill_reward",
@@ -964,7 +972,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed kill-quest entitlement",
+      "destination": "Kill reward issuance"
     },
     {
       "id": "achievement.reward",
@@ -993,7 +1003,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Achievement entitlement or ship alternative",
+      "destination": "Achievement reward, including alternative coin grant"
     },
     {
       "id": "item.extraction",
@@ -6388,7 +6400,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Debtor selected equipment/inventory and item-derived value",
+      "destination": "Item retirement and debt credit; active content promotion preserves children"
     },
     {
       "id": "lifecycle.legacy_pet_save",
@@ -10335,7 +10349,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Greater orb for eligible high-level pet conjure",
+      "destination": "Consumed orb before pet setup, except trusted bypass"
     },
     {
       "id": "spell.faerie_sight_dust",
@@ -10375,7 +10391,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried faerie dust",
+      "destination": "Consumed dust and refreshed/added detection effects"
     },
     {
       "id": "item.disabled_descent_cost",
@@ -15930,7 +15948,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player denomination or accepted ore",
+      "destination": "Smelter wallet/inventory; pooled inputs may trigger separate smelt"
     },
     {
       "id": "craft.smelter_conversion",
@@ -15985,7 +16005,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Smelter-held ore pair and optional fee",
+      "destination": "Next-size output to current player with summed item costs"
     },
     {
       "id": "service.epic_task_clear",
@@ -28404,7 +28426,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Intact moonstone and player hire payment",
+      "destination": "Destroyed moonstone and installed automaton crew with queued ship save"
     },
     {
       "id": "item.moonstone_ring_exchange",
@@ -28489,7 +28513,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable legacy hull-payment branch after submission/return",
+      "destination": "No additional reachable legacy debit"
     },
     {
       "id": "ship.crew_hire",
@@ -28524,7 +28550,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player hire payment under eligibility policy",
+      "destination": "Changed crew and queued ship save"
     },
     {
       "id": "ship.chief_hire",
@@ -28559,7 +28587,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player chief payment under eligibility policy",
+      "destination": "Installed chief and queued ship save"
     },
     {
       "id": "ship.summon_transit",
@@ -28599,7 +28629,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ship/cargo/occupants and summon request",
+      "destination": "Cargo clear where applicable and ship moved to transit with delayed arrival"
     },
     {
       "id": "world.shopkeeper_reconcile_stock",
@@ -30683,7 +30715,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing ship representation/location",
+      "destination": "Updated location and relocated representation with maneuver timer"
     },
     {
       "id": "coin.ship_coffer_claim",
@@ -35146,7 +35180,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Building interior room-content roots",
+      "destination": "Outside-room holdings followed by building NPC extraction"
     },
     {
       "id": "building.portal_retirement",
@@ -35186,7 +35222,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing portal objects and contents",
+      "destination": "Extracted portals and cleared pointers"
     },
     {
       "id": "building.portal_admission",
@@ -35236,7 +35274,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two independent portal allocations and destination metadata",
+      "destination": "Published portal pair or partial pair; success result does not prove both exist"
     },
     {
       "id": "script.eth2_tree_obj_assets",
@@ -35581,7 +35621,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player selected-denomination wager",
+      "destination": "Wallet debit and game stake state, without table-wallet credit"
     },
     {
       "id": "gambling.blackjack_settlement",
@@ -35616,7 +35658,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Game win/push/refund payout obligation",
+      "destination": "Player gross payout; losing stake already deducted"
     },
     {
       "id": "storage.remaining_combat_reward_storage",
@@ -35999,7 +36043,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary world-listing prototype",
+      "destination": "Description/count output and cleanup without admission"
     },
     {
       "id": "helper.remaining_transfer_builder",
@@ -36034,7 +36080,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Operation identity and transfer payload",
+      "destination": "Encoded command entities/revisions only"
     },
     {
       "id": "helper.remaining_synthetic_transfer",
@@ -36069,7 +36117,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Background operator-repair transfer intent",
+      "destination": "Retained coordinator operation identity, not committed ownership"
     },
     {
       "id": "helper.remaining_random_exit",
@@ -36104,7 +36154,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Generator object and optional routing changes",
+      "destination": "Consumed generator even when random condition fails"
     },
     {
       "id": "helper.remaining_rename_charge",
@@ -36139,7 +36191,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Successful character/ship-owner rename and payer wallet",
+      "destination": "Subsequent unchecked rename expense"
     },
     {
       "id": "helper.remaining_web_auction_remove",
@@ -36174,7 +36228,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Verified web removal request",
+      "destination": "Background auction removal submission; response precedes commit"
     },
     {
       "id": "helper.remaining_zone_purge",
@@ -36209,7 +36265,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible zone-room objects and NPC holdings",
+      "destination": "Extraction under actual exclusions, including nonempty nonartifact corpses"
     },
     {
       "id": "alchemy.poison_components",
