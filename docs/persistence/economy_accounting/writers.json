@@ -1053,7 +1053,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Live item graph and runtime tracking",
+      "destination": "Unlinked/freed representations; caller determines destruction versus unload/staging cleanup"
     },
     {
       "id": "item.scrap",
@@ -1082,7 +1084,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Original concrete item",
+      "destination": "Retired original and distinct scrap output"
     },
     {
       "id": "world.zone_purge",
@@ -3019,7 +3023,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing item custody and parent/root topology",
+      "destination": "Requested container custody/topology; documented bypasses remain"
     },
     {
       "id": "item.bulk_movement",
@@ -3050,7 +3056,9 @@
         "tests/async/test_flatfile_item_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected existing item roots",
+      "destination": "Bounded destination item batches; coins are not implicitly atomic"
     },
     {
       "id": "item.movement_submit",
@@ -3107,7 +3115,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Captured item trees, ownership revisions and snapshots",
+      "destination": "Pending operation with optional retained publication; absent-root adoption separate from transfer"
     },
     {
       "id": "item.trusted_steal",
@@ -3166,7 +3176,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim carried/equipped item",
+      "destination": "Trusted thief custody under existing permission/detection policy"
     },
     {
       "id": "shop.buy_existing",
@@ -4810,7 +4822,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Allocated arrow template strings",
+      "destination": "Existing arrow text aliases; temporary object lifetime remains unresolved"
     },
     {
       "id": "item.creation_completion",
@@ -4822,7 +4836,7 @@
       "coverage": "legacy",
       "classification": "Publish committed single/batch grants into rooms, player inventories or containers and verify final location. Mark dirty player components. Failed uncommitted single grants discard nowhere candidates; committed publication failure retains the queue rather than discarding durable ownership.",
       "authority_boundary": "Publication projects an existing committed creation; do not issue again. Dirty marking is not durable save acknowledgment. Keep the original operation until required live/native publication is acknowledged.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate is source-structure reconciliation validation",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -4838,8 +4852,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_multi_buy_sequence.py",
-        "tests/async/test_kingdom_contract.py"
+        "tests/async/test_creation_grant_reconciliation.py"
       ],
       "sites": [
         [
@@ -4873,7 +4886,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed grant roots/results",
+      "destination": "Live room/player/container placement; failed committed publication stays pending"
     },
     {
       "id": "kingdom.store_purchase",
@@ -5309,9 +5324,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_creation_grant_reconciliation.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/world/handler.c",
@@ -5424,7 +5437,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Live item and current location",
+      "destination": "Linked/unlinked room/player/container/equipment state; helpers include admission and destruction exceptions"
     },
     {
       "id": "death.corpse_release_publication",
@@ -5737,7 +5752,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expiring root and contents",
+      "destination": "Promoted surviving contents and retired root, or extracted tree without valid destination"
     },
     {
       "id": "lifecycle.character_item_teardown",
@@ -8526,7 +8543,7 @@
       "coverage": "legacy",
       "classification": "Rebuild committed grant roots from retained payload/results. Temporarily displace conflicting live UIDs, restore them on failed materialization, or extract displaced copies and publish reconstructed roots on success.",
       "authority_boundary": "Retained committed payload owns identity. Temporary graph cleanup and superseded live-copy removal must not retire durable items or mint replacements.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate is source-structure reconciliation validation",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8542,8 +8559,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_multi_buy_sequence.py",
-        "tests/async/test_kingdom_contract.py"
+        "tests/async/test_creation_grant_reconciliation.py"
       ],
       "sites": [
         [
@@ -8562,7 +8578,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Retained committed payload/results and possible conflicting live UIDs",
+      "destination": "Reconstructed live grant roots; conflict copies restored on failure or discarded on success"
     },
     {
       "id": "item.creation_queue_discard",
@@ -8590,8 +8608,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_multi_buy_sequence.py",
-        "tests/async/test_kingdom_contract.py"
+        "tests/async/test_creation_grant_batch_submission.py"
       ],
       "sites": [
         [
@@ -8610,7 +8627,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unsubmitted/unadmitted detached candidates",
+      "destination": "Freed provisional copies; active journaled roots retained"
     },
     {
       "id": "item.creation_queue_submit",
@@ -8622,7 +8641,7 @@
       "coverage": "legacy",
       "classification": "Queue player/room/before-entry creation requests and start single or batch movement. Existing runtime ownership selects operator_repair for a single grant; absent ownership selects creation. Admission failure leaves caller-owned roots, while accepted queues retain work.",
       "authority_boundary": "Do not infer fresh value from the grant API name. Preserve existing owner identity, batch membership, output provenance and original operation through deferred admission and publication.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate is source-structure reconciliation validation",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8638,8 +8657,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_multi_buy_sequence.py",
-        "tests/async/test_kingdom_contract.py"
+        "tests/async/test_creation_grant_reconciliation.py"
       ],
       "sites": [
         [
@@ -8683,7 +8701,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-owned creation roots and request context",
+      "destination": "Accepted retained grant queue or unchanged caller roots on admission failure"
     },
     {
       "id": "item.corpse_batch_projection",
@@ -8710,10 +8730,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_shop_multi_buy_sequence.py",
-        "tests/async/test_kingdom_contract.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/item/item_movement_transaction.c",
@@ -8726,7 +8743,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character inventory roots after committed batch",
+      "destination": "Corpse contents retaining each root child topology"
     },
     {
       "id": "locker.corpse_ejection",
@@ -10076,7 +10095,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Concrete carried instances selected by prototype/count",
+      "destination": "Unlinked/extracted instances and artifact log where applicable"
     },
     {
       "id": "crafting.shard_exchange",
@@ -10241,7 +10262,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dormant ingredient-consumption branch after refusal",
+      "destination": "No reachable retirement under current disabled command"
     },
     {
       "id": "crafting.salvage_tools",
@@ -13079,7 +13102,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing source item custody",
+      "destination": "PC custody or same-owner NPC mobile-claim boundary before live handoff"
     },
     {
       "id": "item.get_broken_scrap",
@@ -13114,7 +13139,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Condition-zero pickup target",
+      "destination": "Scrap transformation before ordinary pickup transfer"
     },
     {
       "id": "item.trusted_junk_reward",
@@ -13184,7 +13211,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Trusted actor selected nonartifact item",
+      "destination": "Item destruction and ordinary/bulk copper reward; transient dissolution has no reward"
     },
     {
       "id": "item.container_get_publication",
@@ -13224,7 +13253,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing container child",
+      "destination": "Character inventory and updated container space; live transfer projection"
     },
     {
       "id": "item.player_drop_publication",
