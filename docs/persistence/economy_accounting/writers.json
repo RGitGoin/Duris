@@ -32022,6 +32022,216 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.guildhall_overmax_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_overmax",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Wallet debit precedes construction-point reduction and overmax increment; trusted actors skip money only, while construction-point mutation remains outside that guard. Overmax cost property is used directly unlike other platinum prices. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          246,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guildhall_guildhall_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_guildhall",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful main-hall construction precedes wallet and construction-point debit. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          306,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guildhall_room_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_room",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful new-room construction precedes wallet and construction-point debit. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          416,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guildhall_golem_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_golem",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful golem construction in selected slot precedes wallet and construction-point debit. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          602,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guildhall_upgrade_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_upgrade",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful room upgrade precedes wallet and construction-point debit. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          809,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guildhall_rename_payment",
+      "path": "src/guild/guildhall_cmds.c",
+      "symbol": "void do_construct_rename",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful room rename precedes wallet and construction-point debit. Affordability is prechecked, but SUB_MONEY result is unchecked locally. For main/room/golem/upgrade/rename trusted actors bypass both charges.",
+      "authority_boundary": "Couple payer wallet sink with guild construction points and resulting service state. Trace service/helper persistence before claiming atomicity; preserve native price units, exemptions and refusal behavior. Qualify failure after service success, save acknowledgement and replay without duplicate construction or charge.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guildhall_cmds.c",
+          907,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

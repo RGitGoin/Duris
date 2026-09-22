@@ -2667,3 +2667,15 @@ lifetime and save/replay qualification remain open. Preserve existing gates.
 Draft validation passed 13 fixtures: 694 routes, 2756 raw matches, 2698 unique
 coordinates, 2194 mapped, 43 reviewed nonwriters, 461 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Guildhall construction payments
+
+Six wallet sinks classified with construction points and service state. Most
+helpers construct first, then charge; overmax charges before increment. Preserve
+overmax price units and trusted construction-point behavior, which differ from
+other commands. Debit results, helper persistence and save/replay atomicity
+remain unqualified. No incidental price or exemption changes.
+
+Draft validation passed 13 fixtures: 700 routes, 2756 raw matches, 2698 unique
+coordinates, 2200 mapped, 43 reviewed nonwriters, 455 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
