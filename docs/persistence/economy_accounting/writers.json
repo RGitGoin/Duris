@@ -18865,6 +18865,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.flame_blade_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_flame_blade(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates prototype366, sets norent and level-dependent proc/protection payload, timer180 and PC PID or NPC sentinel, then publishes blade to caster inventory.",
+      "authority_boundary": "Retain complete selected payload and new UID once per cast; norent does not make creation economically invisible. Allocation is guarded, but narration and inventory publication do not prove durable admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          5899,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          5953,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.minor_creation_publication",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_minor_creation(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Receives an already supplied object, sets STOREITEM, publishes it in caster room, then sets height to caster height.",
+      "authority_boundary": "This helper does not allocate object; source creation/admission must be traced in caller. Room publication precedes height assignment; retain same UID and final payload rather than treating helper invocation as new issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          5864,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

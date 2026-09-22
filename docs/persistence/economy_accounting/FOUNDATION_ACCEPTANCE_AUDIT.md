@@ -1291,3 +1291,14 @@ retirement alone does not establish completion of the broader channel operation.
 Draft validator passed 13 fixtures: 396 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,360 mapped, 43 reviewed declarations and 1,295 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Flame blade and minor creation publication
+
+Three coordinates classified. Flame blade creates level-dependent temporary weapon
+payload with caster PID or NPC sentinel before inventory publication. Minor creation
+instead receives an existing object, publishes to room, then sets height; caller
+allocation/admission remains distinct from this helper.
+
+Draft validator passed 13 fixtures: 398 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,363 mapped, 43 reviewed declarations and 1,292 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
