@@ -2712,3 +2712,14 @@ completion. Room movement precedes wallet submission. No test account data read.
 Draft validation passed 13 fixtures: 707 routes, 2756 raw matches, 2698 unique
 coordinates, 2215 mapped, 43 reviewed nonwriters, 440 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Pond and bloodstone spell assets
+
+Five coordinates classified as pond admission and bloodstone replacement.
+Bloodstone selects previous object by prototype without local owner check;
+old retirement and affect mutation precede replacement allocation. Preserve
+existing fields and gates; partial replacement/save/replay remain unqualified.
+
+Draft validation passed 13 fixtures: 709 routes, 2756 raw matches, 2698 unique
+coordinates, 2220 mapped, 43 reviewed nonwriters, 435 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

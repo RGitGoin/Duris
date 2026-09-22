@@ -32517,6 +32517,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.spell_pond_admission",
+      "path": "src/magic/blispells.c",
+      "symbol": "void spell_create_pond",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Ground-sector gate precedes checked pond allocation. Caster level value and ten-minute decay are configured before room publication; supplied spell level is not used for value.",
+      "authority_boundary": "Distinguish new temporary world-object admission from prior object retirement and character affect state. Bind selected instance and operation identity; preserve native terrain/owner fields and decay. Qualify allocation refusal, partial replacement, save acknowledgement and restart without double issuance or wrong-instance retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/blispells.c",
+          1045,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/blispells.c",
+          1056,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_bloodstone_replacement",
+      "path": "src/magic/blispells.c",
+      "symbol": "void spell_bloodstone",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Alive PC and terrain gates precede replacement. Existing spell-affect room is searched by prototype only and first matching bloodstone extracted without local owner check. Affect room updates or NOSAVE affect creation precedes checked replacement allocation. New stone receives caster PID and decay before room publication; failure leaves prior effects already applied.",
+      "authority_boundary": "Distinguish new temporary world-object admission from prior object retirement and character affect state. Bind selected instance and operation identity; preserve native terrain/owner fields and decay. Qualify allocation refusal, partial replacement, save acknowledgement and restart without double issuance or wrong-instance retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/blispells.c",
+          1257,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/blispells.c",
+          1272,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/blispells.c",
+          1293,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
