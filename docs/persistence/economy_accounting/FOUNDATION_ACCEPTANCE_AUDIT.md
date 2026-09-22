@@ -2586,3 +2586,15 @@ direct fallback both require qualification. Existing contents are not issuance.
 Draft validation passed 13 fixtures: 677 routes, 2756 raw matches, 2698 unique
 coordinates, 2151 mapped, 43 reviewed nonwriters, 504 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Lohrr scripted death assets
+
+Five coordinates classified as one legacy scripted death route: headgear
+retention/hiding, new head admission, indirect death and corpse/content sink.
+Deferred corpse destruction precedes direct extraction. Name-based corpse
+selection, partial effects and save/replay qualification remain open; no change
+to targeting or gameplay policy.
+
+Draft validation passed 13 fixtures: 678 routes, 2756 raw matches, 2698 unique
+coordinates, 2156 mapped, 43 reviewed nonwriters, 499 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

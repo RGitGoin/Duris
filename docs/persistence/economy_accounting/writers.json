@@ -31287,6 +31287,61 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.lohrr_scripted_death",
+      "path": "src/specs/specs.lohrr.c",
+      "symbol": "int very_angry_npc",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Legacy identity-gated shout handler resolves pets to master, drops and hides existing headgear, allocates/customizes a head object and publishes it, then invokes death and searches the head room for a matching corpse by name. Corpse destruction first offers persistence_defer_corpse_destruction, otherwise extracts recursively with artifact handling. Head allocation lacks a local null check; matching corpse absence returns false after earlier effects.",
+      "authority_boundary": "Compound scripted death spans retained headgear custody and secret flag, new head admission, indirect death assets and recursive corpse/content retirement. Qualify identity selection, deferred and direct destruction, partial effects, native saves and replay; do not treat all objects as new or provisional. Record legacy behavior without extending its targeting or changing gameplay policy.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.lohrr.c",
+          451,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.lohrr.c",
+          500,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.lohrr.c",
+          444,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.lohrr.c",
+          446,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.lohrr.c",
+          463,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
