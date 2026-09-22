@@ -2232,3 +2232,14 @@ different boolean conditions; preserve existing behavior during integration.
 Draft validation passed 13 fixtures: 619 routes, 2756 raw matches, 2698 unique
 coordinates, 2012 mapped, 43 reviewed nonwriters, 643 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Innate spring and foundry admission
+
+Four coordinates classified: delayed innate events allocate checked prototypes,
+publish into actor current room, then attach timed decay. Timed decay does not
+by itself prove a transient accounting exemption. Event retry/recovery, room
+changes and allocation/placement failure remain qualification work.
+
+Draft validation passed 13 fixtures: 621 routes, 2756 raw matches, 2698 unique
+coordinates, 2016 mapped, 43 reviewed nonwriters, 639 unclassified.
+No gameplay changes; release readiness remains false.

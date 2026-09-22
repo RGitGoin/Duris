@@ -28841,6 +28841,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.innate_water_spring",
+      "path": "src/classes/innates.c",
+      "symbol": "event_conjure_water",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Delayed innate event announces success before checked allocation of prototype 93300, publishes to actor current room and then sets timed decay to 15*60*4. Command checks innate timer before scheduling; no currency debit at these sites.",
+      "authority_boundary": "First successful room admission of a new timed world object; decay alone does not establish accounting transient exemption. Qualify event retry/recovery, actor relocation, failed allocation and placement before setting decay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/innates.c",
+          3449,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/innates.c",
+          3456,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.innate_foundry",
+      "path": "src/classes/innates.c",
+      "symbol": "event_foundry",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Delayed innate event announces success before checked allocation of prototype 361, publishes to actor current room and then sets timed decay to 15*60*4. Command checks innate timer before scheduling; no currency debit at these sites.",
+      "authority_boundary": "First successful room admission of a new timed world object; decay alone does not establish accounting transient exemption. Qualify event retry/recovery, actor relocation, failed allocation and placement before setting decay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/innates.c",
+          3487,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/innates.c",
+          3494,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
