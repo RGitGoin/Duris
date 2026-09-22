@@ -1032,3 +1032,16 @@ Neither handler proves durable publication or restart-safe exactly-once behavior
 Draft validator passed 13 fixtures: 337 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,194 mapped, 43 reviewed declarations and 1,461 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## NPC absorption, exchanges and rewards
+
+Seventeen sites classified across phalanx, blob, rainbow-key exchange, trusted
+fooquest transformation and newbie-paladin reward. Blob digestion preserves direct
+children before retiring their container; absorption is a distinct custody change.
+Rainbow input retirement precedes output allocation; newbie eligibility removal
+precedes sword creation. The fooquest transfer comment actually describes fresh
+prototype allocation. These ordering distinctions remain integration obligations.
+
+Draft validator passed 13 fixtures: 342 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,211 mapped, 43 reviewed declarations and 1,444 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

@@ -16265,6 +16265,241 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.phalanx_death_drop",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int phalanx(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death allocates prototype 12000 and publishes it to the NPC room, then returns false for ordinary death handling.",
+      "authority_boundary": "Fresh drop admission must bind the NPC death lifetime; this is not a transfer of an existing possession. Allocation failure returns to ordinary death handling; repeated callback execution is not fenced here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          5136,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5144,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.blob_absorb_digest",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int blob(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Idle awake nonfighting blob absorbs the first takeable nonartifact room object; later digestion moves direct container children into its inventory before retiring the parent.",
+      "authority_boundary": "Absorption is custody transfer and digestion is destruction, with preserved child identities. Only absorption checks artifact exclusion; nested content and previously held inventory need explicit retirement accounting. Timer state is not durable operation identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          5517,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5518,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5545,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5546,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5552,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5553,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.rainbow_key_shards",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int claw_cavern_drow_mage(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Give handler removes and destroys the carried rainbow key, allocates rainbow shards in the room, then extracts the mage.",
+      "authority_boundary": "Input retirement precedes output allocation; allocation failure still consumes the key and extracts the NPC. Bind input UID and output issuance to one exchange attempt while preserving current economics; no atomic rollback or durable receipt is established.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          10535,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          10536,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          10547,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          10551,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.fooquest_transform_reward",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int fooquest_mob(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Trusted use transform creates NPC 65013 and gives it newly allocated prototype 21 or 22 according to source NPC racewar alignment.",
+      "authority_boundary": "Despite the transfer comment, the object is newly allocated rather than moved from inventory. Bind privileged source attempt and created NPC lifetime; allocation is unchecked here and prototype cash needs independent qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          10794,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          10798,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          10800,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.newbie_paladin_sword",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int newbie_paladin(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eligible ask racewar removes TAG_LIFESTREAMNEWBIE and creates a blessed sword directly in the player inventory.",
+      "authority_boundary": "Eligibility tag removal precedes unchecked allocation and publication. Persist reward eligibility and output identity consistently to prevent retry duplication or lost entitlement; messaging alone is not save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          11308,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11311,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
