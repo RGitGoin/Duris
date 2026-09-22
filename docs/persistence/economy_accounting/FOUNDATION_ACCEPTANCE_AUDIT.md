@@ -3612,3 +3612,33 @@ Added native extracted MobAlchemistGetPotions test with production headers and c
 ### #475 golden acceptance recheck
 
 Live upstream master remains feed2939125c3e9a955b92adbf627a2ad568586e, matching the recorded current-master census comparison. Verified all eight issue-named golden scenarios are present and exercised by test_all_golden_examples: wallet/bank, wallet/pile change, multi-recipient split, reward, expense, item/container move, 100-gold shop sale with fee and staged auction settlement. The contract also asserts exact denomination results and that staged settlement does not debit the buyer twice. Rechecked `python3 tests/async/test_economy_accounting_contract.py`: all 49 tests pass. This closes no route-census gap; 627 writers still lack executable candidates and census_complete remains false.
+
+## Current-head #475 verification (2026-09-22)
+
+This check supersedes earlier #475 counts in the historical audit above. Source
+baseline is `c83e51bbd53696e4f113d7865f0d57cbc34f895e`. The scanner now has 2,780
+raw rows and 2,722 unique coordinates; 2,624 coordinates map to 840 writer routes,
+98 are hash-checked nonwriters, and none are unclassified. This completes the
+lexical site mapping only. The required semantic review against direct-field,
+aliased, indirect and ledger mutations is still open.
+
+The corrected lexer no longer treats C++ digit separators as multiline character
+literals. Its corrected pass exposed six `actwiz.c` object-clone sites. The clone
+path is assigned to #486 and has a focused source-contract test; it creates new
+identities and publishes copies while preserving the source object. Thirteen
+prototype-inspection routes were reclassified as nonwriters only after exact
+function-span review verified all hits and found no publication sites. The
+validator rejects changed functions, incomplete hit lists and publication sites
+inside a temporary-inspection exclusion.
+
+The shared census test validates source mapping and golden fixtures but does not
+exercise each economic route, so it is not counted in `test_candidates`. There are
+614 writer routes with no route-covering executable test candidate; their integration
+owners remain the planned follow-on issues. Consequently `census_complete=false`
+and `scripts/validate_economy_accounting.py --census` does not pass. The frozen
+registry, golden tests and lexical map are useful progress, not #475 completion.
+
+Verification: the draft contract validator, 54 accounting contract tests, the
+source-mapping/golden census test and clone source-contract test pass. No gameplay
+source, storage, migration or activation code changed. #475 remains open externally;
+no issue is closed by these local changes.

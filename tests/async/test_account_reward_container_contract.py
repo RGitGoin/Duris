@@ -91,7 +91,18 @@ assert contains(reward, "SET child.container_id=reward.container_id")
 clear_start = index(reward, "static bool clear_saved_grant")
 clear_end = index(reward, "static void revoke_live_grant", clear_start)
 clear_saved = reward[clear_start:clear_end]
-assert index(clear_saved, "UPDATE player_items child") < clear_saved.rindex("DELETE")
+assert clear_saved.count("UPDATE player_items child") == 2
+legacy_cleanup_start = index(clear_saved, "if (grant.template_version == 0)")
+stable_cleanup_start = index(clear_saved, "if (!qry(\"UPDATE player_items child", legacy_cleanup_start)
+legacy_cleanup = clear_saved[legacy_cleanup_start:stable_cleanup_start]
+stable_cleanup = clear_saved[stable_cleanup_start:]
+assert index(legacy_cleanup, "UPDATE player_items child") < index(legacy_cleanup, "DELETE pi FROM player_items")
+assert index(stable_cleanup, "UPDATE player_items child") < index(stable_cleanup, "DELETE FROM player_items")
+assert "JOIN player_data pd" in legacy_cleanup
+assert "reward.vnum=%d" in legacy_cleanup
+assert "account_characters" in legacy_cleanup
+assert "DELETE FROM account_bound_rewards" in reward
+assert index(reward, "clear_saved_grant(grant)") < index(reward, "sql_commit()")
 revoke_start = index(reward, "static void revoke_live_grant")
 revoke_end = index(reward, "static void purge_expired_grants", revoke_start)
 revoke = reward[revoke_start:revoke_end]

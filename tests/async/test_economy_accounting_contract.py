@@ -33,6 +33,17 @@ class AccountingContractTest(unittest.TestCase):
             self.assertEqual([(s['line'],s['family']) for s in sites],
                              [(1,'item_lifecycle')])
 
+    def test_character_literal_mask_does_not_cross_digit_separators_or_lines(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'src').mkdir()
+            (root/'src/probe.c').write_text(
+                "int total = 10'000; int hexadecimal = 0xA'BC; char first = 'x';\n"
+                "P_obj item = read_object(vnum, REAL);\n"
+                "char quote = '\\'';\n"
+                "extract_obj(item);\n")
+            self.assertEqual([(row['line'],row['family']) for row in contract.scan_sources(root)],
+                             [(2,'item_lifecycle'),(4,'item_lifecycle')])
+
     def test_bank_publication_entrypoints_are_candidates(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);(root/'src').mkdir()
@@ -136,6 +147,18 @@ class AccountingContractTest(unittest.TestCase):
             with self.subTest(section=section):
                 with self.assertRaisesRegex(contract.ContractError,'invalid '+section):
                     contract.validate_registry(changed)
+
+    def test_unknown_registry_status_is_rejected(self):
+        changed=copy.deepcopy(self.registry);changed['status']='complete'
+        with self.assertRaisesRegex(contract.ContractError,'unknown registry status'):
+            contract.validate_registry(changed)
+
+    def test_census_completion_requires_frozen_registry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            changed=copy.deepcopy(self.registry);changed['status']='draft'
+            with self.assertRaisesRegex(contract.ContractError,'registry contract not frozen'):
+                contract.validate_inventory(inventory,changed,root,census=True)
 
     def test_duplicate_registry_id(self):
         self.registry['reasons'].append(copy.deepcopy(self.registry['reasons'][0]))
@@ -264,6 +287,51 @@ class AccountingContractTest(unittest.TestCase):
             with self.assertRaisesRegex(contract.ContractError,'invalid test candidate list'):
                 contract.validate_inventory(missing,self.registry,root)
 
+    def test_temporary_inspection_requires_exact_function_review(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            source='''void inspect() {
+    const char *example = "extract_obj(fake); }";
+    P_obj preview = read_object(100, REAL);
+    extract_obj(preview);
+}
+'''
+            (root/'src/example.c').write_text(source)
+            census=contract.scan_sources(root)
+            end,digest,hits=contract.reviewed_function(root,'src/example.c','inspect',1)
+            review=dict(sites=[list(site) for site in hits],classification='temporary_inspection',
+                function='inspect',function_start_line=1,function_end_line=end,
+                function_sha256=digest,rationale='Prototype copy is displayed then discarded without owner publication.')
+            inventory=dict(schema_version=1,writers=[],census=census,census_complete=True,
+                           nonwriters=[review])
+            contract.validate_inventory(inventory,self.registry,root,census=True)
+            missing=copy.deepcopy(inventory);missing['nonwriters'][0]['sites'].pop()
+            with self.assertRaisesRegex(contract.ContractError,'unreviewed item lifecycle sites'):
+                contract.validate_inventory(missing,self.registry,root,census=True)
+            changed=copy.deepcopy(inventory)
+            (root/'src/example.c').write_text(source.replace('extract_obj(fake); }','extract_obj(other); }'))
+            changed['census']=contract.scan_sources(root)
+            with self.assertRaisesRegex(contract.ContractError,'function changed'):
+                contract.validate_inventory(changed,self.registry,root,census=True)
+
+    def test_temporary_inspection_cannot_hide_item_publication(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                'void inspect(P_char ch) {\n'
+                '    P_obj preview = read_object(100, REAL);\n'
+                '    obj_to_char(preview, ch);\n'
+                '}\n')
+            census=contract.scan_sources(root)
+            end,digest,hits=contract.reviewed_function(root,'src/example.c','inspect',1,census)
+            inventory=dict(schema_version=1,writers=[],census=census,census_complete=True,
+                nonwriters=[dict(sites=[list(site) for site in hits],
+                    classification='temporary_inspection',function='inspect',function_start_line=1,
+                    function_end_line=end,function_sha256=digest,
+                    rationale='Must not exclude a temporary prototype after publishing it to a character.')])
+            with self.assertRaisesRegex(contract.ContractError,'non-item economic sites'):
+                contract.validate_inventory(inventory,self.registry,root,census=True)
+
     def test_inventory_rejects_duplicate_site_ownership(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.census_fixture(root)
@@ -371,7 +439,9 @@ class AccountingContractTest(unittest.TestCase):
     def test_writer_cannot_also_be_excluded(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.census_fixture(root)
-            inventory['nonwriters']=[dict(site=inventory['writers'][0]['sites'][0])]
+            inventory['nonwriters']=[dict(site=inventory['writers'][0]['sites'][0],
+                classification='declaration',rationale='overlap regression',end_line=1,
+                source_sha256='0'*64)]
             with self.assertRaisesRegex(contract.ContractError,'conflicting'):
                 contract.validate_inventory(inventory,self.registry,root)
 

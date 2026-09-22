@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "draft",
-  "source_commit": "48c0aedd8e094eee37285111e46e735e4cf12320",
+  "status": "frozen",
+  "source_commit": "c83e51bbd53696e4f113d7865f0d57cbc34f895e",
   "denomination_copper": [
     1,
     10,

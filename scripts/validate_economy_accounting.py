@@ -49,6 +49,7 @@ def unique(rows, key, label):
 
 def validate_registry(registry):
     require(registry['schema_version'] == 1, 'unsupported registry version')
+    require(registry['status'] in {'draft','frozen'}, 'unknown registry status')
     require(registry['denomination_copper'] == [1, 10, 100, 1000], 'denomination units changed')
     for section in ('account_kinds', 'reasons'):
         unique(registry[section], 'id', section)
@@ -186,7 +187,7 @@ def validate_fixture(fixture, registry):
 # A conservative lexical census, not proof of reachability or policy correctness.
 # Every hit must be reviewed. Mask comments/strings for C++ calls; retain strings
 # only for SQL mutation discovery. Source-site snapshots make changed/new hits visible.
-LEXEME = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'')
+LEXEME = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\\n])*"|(?<![0-9A-Fa-f])\'(?:\\.|[^\'\\\n])*\'')
 PATTERNS = {
     'money_helper': r'\b(?:ADD_MONEY|SUB_MONEY|SUB_BANK|CLEAR_MONEY|insert_money_pickup|transact)\s*\(',
     'economic_publication': r'\beconomic_bank_publication_(?:submit|restore|pulse)\s*\(',
@@ -197,6 +198,10 @@ PATTERNS = {
     'item_lifecycle': r'\b(?:read_object|read_one_object|instantiate_object_template|create_money|extract_obj|vnum_from_inv|MakeScrap)\s*\(',
     'item_publication': r'\b(?:obj_to_char(?:_at_end)?|obj_to_obj(?:_at_end)?|obj_to_room|obj_from_char|obj_from_obj|obj_from_room|equip_char|unequip_char)\s*\(',
     'sql_economy': r'\b(?:INSERT(?: IGNORE)? INTO|UPDATE|DELETE FROM)\s+(?:currency_ledger|item_current_owner|item_ownership_ledger|account_banks|auction_money_pickups|auction_item_custody|saved_items)\b',
+    # player_items also contains full snapshot rewrites; keep this lifecycle SQL
+    # census narrowly bound to account reward revocation until other SQL writers
+    # receive their own semantic classification.
+    'sql_reward_items': r'\b(?:UPDATE\s+player_items\b|DELETE(?:\s+\w+)?\s+FROM\s+player_items\b)',
 }
 
 
@@ -209,7 +214,7 @@ def scan_sources(root):
         comments_masked=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]) if m[0].startswith(('/',)) else m[0], source)
         code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),source)
         for family,pattern in PATTERNS.items():
-            for match in re.finditer(pattern,comments_masked if family=='sql_economy' else code,
+            for match in re.finditer(pattern,comments_masked if family in ('sql_economy','sql_reward_items') else code,
                                      re.IGNORECASE if family=='sql_economy' else 0):
                 line=source.count('\n',0,match.start())+1
                 excerpt=source.splitlines()[line-1].strip()
@@ -217,9 +222,41 @@ def scan_sources(root):
     return found
 
 
+def reviewed_function(root, path, function, start_line, census=None):
+    """Return an exact source slice and census hits for one reviewed function."""
+    source=(root/path).read_text(encoding='utf-8',errors='replace')
+    lines=source.splitlines(keepends=True)
+    require(type(start_line) is int and 1 <= start_line <= len(lines),
+            'invalid reviewed function start')
+    start=sum(len(line) for line in lines[:start_line-1])
+    masked=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),source)
+    signature=re.search(r'\b'+re.escape(function)+r'\s*\(',masked[start:])
+    require(signature is not None and signature.start() < len(lines[start_line-1]),
+            'reviewed function signature missing at start line')
+    opening=masked.find('{',start+signature.end())
+    require(opening >= 0,'reviewed function body missing')
+    depth=0; closing=None
+    for offset in range(opening,len(masked)):
+        if masked[offset]=='{': depth+=1
+        elif masked[offset]=='}':
+            depth-=1
+            if depth==0:
+                closing=offset; break
+    require(closing is not None,'reviewed function body is unterminated')
+    end_line=source.count('\n',0,closing)+1
+    fragment=source[start:closing+1]
+    digest=hashlib.sha256(fragment.encode()).hexdigest()
+    if census is None:
+        census=scan_sources(root)
+    hits=[(row['path'],row['line'],row['family']) for row in census
+          if row['path']==path and start_line <= row['line'] <= end_line]
+    return end_line,digest,hits
+
+
 def validate_inventory(inventory, registry, root, release=False, census=False):
     require(inventory['schema_version']==1,'unsupported inventory version')
     unique(inventory['writers'],'id','writer ID')
+    current=scan_sources(root)
     reasons={r['id'] for r in registry['reasons']}
     census_sites={(site['path'],site['line'],site['family']) for site in inventory['census']}
     site_owners={}
@@ -256,35 +293,67 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
     mapped={tuple(site) for writer in inventory['writers'] for site in writer.get('sites',[])}
     excluded=set()
     for review in inventory.get('nonwriters',[]):
-        site=tuple(review['site'])
-        require(site in census_sites,'nonwriter source site missing from census')
-        require(site not in excluded and site not in mapped,'duplicate or conflicting nonwriter classification')
-        require(review['classification']=='declaration','unknown nonwriter classification')
-        require(isinstance(review.get('rationale'),str) and review['rationale'].strip(),'missing nonwriter rationale')
-        lines=(root/site[0]).read_text(encoding='utf-8',errors='replace').splitlines()
-        end=integer(review['end_line'],'invalid declaration end',site[1],len(lines))
-        fragment='\n'.join(lines[site[1]-1:end])
-        require(hashlib.sha256(fragment.encode()).hexdigest()==review['source_sha256'],
-                'reviewed declaration changed; reclassify source')
-        code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),fragment).strip()
-        require(code.endswith(';') and not any(c in code for c in '{}#')
-                and re.match(r'^(?:extern\s+)?(?:bool|int|void|P_obj|critical_submit_result)\s+\w+\s*\(',code),
-                'nonwriter is not a reviewed declaration')
-        excluded.add(site)
-    current=scan_sources(root)
+        classification=review.get('classification')
+        require(classification in {'declaration','temporary_inspection'},
+                'unknown nonwriter classification')
+        if classification=='temporary_inspection':
+            raw_sites=review.get('sites')
+            require(isinstance(raw_sites,list) and bool(raw_sites),
+                    'temporary inspection has no reviewed sites')
+        else:
+            raw_sites=[review['site']]
+        sites=[tuple(raw_site) for raw_site in raw_sites]
+        require(len(sites)==len(set(sites)),'duplicate nonwriter source site')
+        for site in sites:
+            require(site in census_sites,'nonwriter source site missing from census')
+            require(site not in excluded and site not in mapped,
+                    'duplicate or conflicting nonwriter classification')
+        require(isinstance(review.get('rationale'),str) and review['rationale'].strip(),
+                'missing nonwriter rationale')
+        lines=(root/sites[0][0]).read_text(encoding='utf-8',errors='replace').splitlines()
+        if classification=='declaration':
+            require(len(sites)==1,'declaration review must name one site')
+            site=sites[0]
+            end=integer(review['end_line'],'invalid declaration end',site[1],len(lines))
+            fragment='\n'.join(lines[site[1]-1:end])
+            require(hashlib.sha256(fragment.encode()).hexdigest()==review['source_sha256'],
+                    'reviewed declaration changed; reclassify source')
+            code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),fragment).strip()
+            require(code.endswith(';') and not any(c in code for c in '{}#')
+                    and re.match(r'^(?:extern\s+)?(?:bool|int|void|P_obj|critical_submit_result)\s+\w+\s*\(',code),
+                    'nonwriter is not a reviewed declaration')
+        else:
+            function=review.get('function')
+            require(isinstance(function,str) and function.strip(),
+                    'missing reviewed function name')
+            require(all(site[0]==sites[0][0] for site in sites),
+                    'temporary inspection spans multiple source files')
+            start=integer(review.get('function_start_line'),'invalid reviewed function start',1,len(lines))
+            end,digest,hits=reviewed_function(root,sites[0][0],function,start,current)
+            require(review.get('function_end_line')==end and
+                    review.get('function_sha256')==digest,
+                    'reviewed temporary function changed; reclassify source')
+            require(all(start <= site[1] <= end for site in sites),
+                    'temporary site outside reviewed function')
+            require(all(hit[2]=='item_lifecycle' for hit in hits),
+                    'temporary inspection function includes non-item economic sites')
+            require(set(sites)==set(hits),
+                    'temporary inspection function has unreviewed item lifecycle sites')
+        excluded.update(sites)
     require(current==inventory['census'],'economic writer census drift; review new/changed sites')
     if census or release or inventory.get('census_complete',False):
-        require(inventory.get('census_complete') is True,'writer census not complete')
+        if census or release:
+            require(registry['status']=='frozen','registry contract not frozen')
         require(census_sites <= mapped | excluded,'unclassified writer candidate')
 
         for writer in inventory['writers']:
             for field in ('source','destination'):
                 require(isinstance(writer.get(field),str) and writer[field].strip(),
                         f"writer {writer['id']} missing {field} classification")
-            require(bool(writer['test_candidates']),
-                    f"writer {writer['id']} missing executable test candidate")
-    if release:
-        require(registry['status']=='frozen','registry contract not frozen')
+        missing_candidates=sum(not writer['test_candidates'] for writer in inventory['writers'])
+        require(missing_candidates==0,
+                f'{missing_candidates} writer routes missing executable test candidates')
+        require(inventory.get('census_complete') is True,'writer census not complete')
 
 
 def main():
@@ -308,7 +377,12 @@ def main():
           f"{len(inventory['census'])} candidate sites; release_ready={args.release}")
     sites={(s['path'],s['line'],s['family']) for s in inventory['census']}
     mapped={tuple(s) for w in inventory['writers'] for s in w.get('sites',[])}
-    excluded={tuple(n['site']) for n in inventory.get('nonwriters',[])}
+    excluded=set()
+    for review in inventory.get('nonwriters',[]):
+        if review.get('classification')=='temporary_inspection':
+            excluded.update(tuple(site) for site in review['sites'])
+        else:
+            excluded.add(tuple(review['site']))
     print(f'Census: {len(sites)} unique coordinates; {len(mapped)} mapped; '
           f'{len(excluded)} reviewed nonwriters; {len(sites-mapped-excluded)} unclassified.')
     if not args.release:

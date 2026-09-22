@@ -1,8 +1,6 @@
 # Economy accounting contract
 
-Status: **phased implementation; draft coverage, typed SQL bank repository execution and durable admission,
-no gameplay activation or release qualification**. Parent #474; partial delivery for #475 and #476. Source census
-baseline: `48c0aedd8e094eee37285111e46e735e4cf12320`.
+Status: **phased implementation; frozen #475 contract and complete lexical site mapping, route-test census and semantic source review remain incomplete, no gameplay activation or release qualification**. Parent #474. Source census baseline: `c83e51bbd53696e4f113d7865f0d57cbc34f895e`.
 See [phased delivery and acceptance](economy_accounting/DELIVERY_PLAN.md).
 
 The machine-readable contract lives in `economy_accounting/registry.json`,
@@ -256,16 +254,18 @@ it is neither a complete semantic census nor evidence that a hit mutates money.
 Direct fields, SQL, administrative and lifecycle paths also require review.
 
 Census completion can be checked independently with
-`python3 scripts/validate_economy_accounting.py --census`; `--release` additionally
-requires runtime qualification. The `nonwriters` inventory records individually
-reviewed declaration coordinates, rationale, end line and a SHA-256 of the full
-LF-normalized declaration (without a trailing newline). A changed continuation
-line invalidates that review even if the first-line census excerpt is unchanged.
-Declarations cannot also be mapped as writers. Macro bodies, inline definitions,
-projections and recovery mutations are not declaration exclusions. Definitions
-and callers still require independent review. Repeated lexical matches at the
-same path/line/family count as one review coordinate; raw hit count is reported
-separately. None of these classifications establishes runtime enforcement.
+`python3 scripts/validate_economy_accounting.py --census`; this gate requires a
+frozen registry and a complete source mapping, but not runtime qualification.
+`--release` additionally requires qualified backend evidence. The `nonwriters`
+inventory records either reviewed declaration coordinates or exact function-scoped
+temporary-inspection exclusions. A function exclusion stores its start/end, full
+LF-normalized source hash, rationale and every census hit; the validator rejects
+it if the function changes, a hit is omitted, or any non-lifecycle economic site
+appears. Declarations cannot also be mapped as writers. Macro bodies, inline
+definitions, projections and recovery mutations are not declaration exclusions.
+Definitions and callers still require independent review. Repeated lexical matches
+at the same path/line/family count as one review coordinate; raw hit count is
+reported separately. None of these classifications establishes runtime enforcement.
 
 Coverage states are legacy, observed, enforced, unsupported, and projection.
 Observed evidence does not gate the writer. Enforced evidence participates in
@@ -346,8 +346,14 @@ current tests exercise them. Existing candidate tests stay separately identified
 in `writers.json`; source review alone does not advance backend coverage.
 
 The completed census gate requires each route to provide explicit nonempty `source`
-and `destination` classifications and an existing `test_candidates` link. These
-fields describe economic endpoints, including provisional objects and projections;
-they do not assert backend enforcement. Review must still establish that the linked
-test covers the route: file existence alone cannot prove executable coverage. Draft
-validation permits unfinished metadata while `census_complete` remains false.
+and `destination` classifications plus a route-covering executable `test_candidates`
+link. These fields describe economic endpoints, including provisional objects and
+projections; they do not assert backend enforcement. The static test
+`tests/async/test_economy_accounting_census.py` verifies scanner drift, writer-site
+mapping, nonwriter reviews and golden fixtures, but it is not a substitute for a
+route-covering test candidate. Current lexical mapping has 840 writer routes,
+2,780 raw scanner rows, 2,722 unique coordinates, 2,624 mapped writer coordinates,
+98 reviewed nonwriter coordinates, and zero unclassified coordinates. However,
+614 writer routes still lack route-covering executable tests, and indirect/aliased
+semantic review is not complete. `census_complete` remains false and `--census`
+continues to fail; this does not claim gameplay or backend coverage.

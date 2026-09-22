@@ -1,3 +1,14 @@
+# Current update: 2026-09-22
+
+The normative registry is frozen and the lexical census currently maps 2,722 unique
+coordinates with zero unclassified sites. This is not enough to complete #475:
+614 writer routes still lack route-covering executable tests, and direct-field,
+alias and indirect-mutation review remains outstanding. The generic census test
+checks mapping and golden fixtures only, so it is not counted as a route test.
+`census_complete` remains false, and #475 remains open on GitHub. No PR was opened;
+all work stays in the branch for the one final #474 PR and xander-l review requested
+by the user.
+
 # Issue closure status for #474
 
 Status checked on 2026-09-21 against live Community-Duris/Duris issue and PR state.

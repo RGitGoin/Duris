@@ -16,12 +16,15 @@ checks. See [ISSUE_CLOSURE_STATUS.md](ISSUE_CLOSURE_STATUS.md).
 
 ## Current issue-sized focus: #475 inventory acceptance
 
-Finish the inventory's indirect-write review and executable test candidates before
-claiming its contract frozen. The latest census refresh repairs seven moved anchors
-and adds the bank publication owner/hooks: 852 routes and 2,716 classified lexical
-coordinates, with 627 routes still lacking test candidates. Passing the draft
-validator does not satisfy this issue's completion gate. See the current-head
-section of FOUNDATION_ACCEPTANCE_AUDIT.md.
+The normative registry is frozen and all 2,722 unique coordinates in the current
+lexical scanner map to 840 writer routes or 98 source-reviewed nonwriters. This is
+only lexical site mapping: it is not yet the complete semantic census required by
+#475. The issue requires a route-covering executable test candidate for every
+writer, and 614 routes still lack one. The generic census test checks the mapping
+and fixtures but is not counted as a writer test. Direct-field, alias and indirect
+mutation review also remains open. Keep `census_complete=false` and do not claim
+#475 complete until those requirements pass. See the current-head section of
+FOUNDATION_ACCEPTANCE_AUDIT.md.
 
 The native flatfile bank journey now connects production capture, descriptor lookup,
 shared-bank publication and save acknowledgement, including three fresh-process
