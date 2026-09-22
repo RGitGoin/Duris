@@ -1009,3 +1009,14 @@ exact ticket/traveler linkage without changing existing admission policy.
 Draft validator passed 13 fixtures: 334 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,174 mapped, 43 reviewed declarations and 1,481 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Xexos form-change custody
+
+Eight sites classified across combat transformation and idle reversion. Inventory
+and equipment move to the opposite allocated NPC form before source extraction;
+these are existing items, not repeated issuance. Cash is not explicitly transferred
+in these blocks, so prototype balances and source disposition require separate review.
+
+Draft validator passed 13 fixtures: 335 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,182 mapped, 43 reviewed declarations and 1,473 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

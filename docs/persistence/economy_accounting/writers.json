@@ -16075,6 +16075,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.xexos_form_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int xexos(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Xexos combat transformation and agthrodos idle reversion allocate opposite NPC form, move existing inventory and equipment to it, then extract source character.",
+      "authority_boundary": "Repeated form changes preserve intended item identity, not fresh loot issuance. These blocks do not transfer cash explicitly; prototype balances and source extraction effects require separate qualification. Sequential graph publication across NPC lifetimes is not proven atomic.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          3461,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3462,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3472,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3473,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3597,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3598,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3608,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3609,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
