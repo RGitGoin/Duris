@@ -2910,8 +2910,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Supported custody movement; ordinary NPC gift restricted and durable pets supported.",
-      "authority_boundary": "Existing item command and postcommit publication",
+      "classification": "Generic durable put submits ownership and parent/root topology, including same-owner nesting. Already-owned locker roots remain live-only; acknowledgement reentry, excluded ownership classes and uid-less containers bypass submission.",
+      "authority_boundary": "Submission acceptance is not commit or native save acknowledgement. Put completion checks live source/container then calls put under acknowledgement guard; its return is ignored. Missing runtime source falls back to player identity; destination must resolve.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2930,7 +2930,13 @@
       "test_candidates": [
         "tests/async/run_item_transfer_schema_mysql.sh"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          800,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -12842,6 +12848,176 @@
         [
           "src/cmd/actobj.c",
           3168,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.container_get_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "publish_container_get",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Detach an existing item from its container and attach it to the character; adjust container space and announce movement. This helper serves live publication rather than new issuance.",
+      "authority_boundary": "Acknowledged corpse bulk haul re-finds the UID after insertion and rejects failed carriage. The helper alone does not establish commit, recovery or native save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          423,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          446,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.player_drop_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "publish_player_drop",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Resolved player drop submits existing-item custody; completion checks committed context and live source before detaching and placing the item in the recorded room.",
+      "authority_boundary": "Redis floor hint, dirty components and corpse write invocation are projections/persistence requests, not proof of acknowledged saving. Stale completion alerts without completing live handoff.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          543,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          544,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          830,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.player_give_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "item_give_completion",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Committed player gift callback moves an existing live item to the recipient PID, marks both players dirty and invokes give hooks. Missing recipient or changed source alerts and returns.",
+      "authority_boundary": "Committed custody precedes live handoff. Callback checks source carriage but does not recheck shared room; hooks may cause subsequent outcomes. Dirty marks do not establish save acknowledgement or atomic hook execution.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          660,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          664,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.pet_give_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "pet_give_completion",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Committed owner/pet gift verifies runtime pet, durable pet identity, master/charm, owner PID, original room and source carriage. Success moves the live item and invokes hooks; stale topology extracts an extant live copy and requests reconnect recovery.",
+      "authority_boundary": "Stale-copy extraction retires a representation after committed custody, not economic destruction. Owner/pet dirty marks and reconnect advice are not native save or restart-recovery qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          708,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actobj.c",
+          713,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          717,
           "item_publication"
         ]
       ],

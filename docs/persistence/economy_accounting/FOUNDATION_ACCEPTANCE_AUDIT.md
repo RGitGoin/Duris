@@ -646,3 +646,22 @@ container descendants and asynchronous reward delivery need linked identities.
 Draft validator passed 13 fixtures: 273 routes, 2,756 raw matches, 2,698 unique
 coordinates, 895 mapped, 43 reviewed declarations and 1,760 unclassified. Eighteen
 additional sites classified; no runtime changes. Census/qualification remain open.
+
+## Gift, container and drop publication boundaries
+
+Classified eleven command movement sites. Generic put records parent/root topology
+including same-owner nesting; an already-owned locker root has a distinct live-only
+exception. Submission acceptance and the put callback's ignored result do not prove
+native publication or save acknowledgement. Container-get and drop helpers relocate
+existing items; Redis hints, dirty marks and corpse writes are not save receipts.
+
+Player gift completion checks source carriage and recipient PID but not shared room,
+then invokes hooks after the live handoff. Pet gift completion additionally checks
+pet identity, ownership/charm and original room. Its stale-topology extraction
+removes a live representation after committed custody, not the economic item.
+Recovery advice does not itself qualify restart recovery. These distinctions remain
+implementation/test obligations for #482; this inventory changes no game behavior.
+
+Draft validator passed 13 fixtures: 277 routes, 2,756 raw matches, 2,698 unique
+coordinates, 906 mapped, 43 reviewed declarations and 1,749 unclassified.
+Census and runtime qualification remain incomplete.
