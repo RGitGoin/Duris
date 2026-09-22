@@ -30005,6 +30005,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.guild_deposit",
+      "path": "src/guild/assocs.c",
+      "symbol": "Guild::deposit",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checks individual wallet denominations, requires successful aggregate SUB_MONEY, then increments guild denominations. Updates ledger and may reduce member debt/flags before character save then guild save.",
+      "authority_boundary": "Couple wallet debit, guild credit and debt changes; separate saves/ledger text do not prove atomic durability. Qualify refusal, retry and partial save failure.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/assocs.c",
+          2942,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.guild_withdraw",
+      "path": "src/guild/assocs.c",
+      "symbol": "Guild::withdraw",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After withdrawal guards including fine/officer policy, credits wallet before decrementing guild denominations. Writes ledger/log then saves character followed by guild.",
+      "authority_boundary": "Existing guild-to-player transfer, not issuance; qualify authorization, balances and partial save/replay across both owners.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/assocs.c",
+          3805,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.guild_motd_paper",
+      "path": "src/guild/assocs.c",
+      "symbol": "do_gmotd",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Requires nonempty paper action description, writes guild MOTD file, then detaches and extracts paper. Local fopen/write results are not checked before consumption.",
+      "authority_boundary": "Couple existing paper retirement to accepted MOTD update; qualify file failure and retry without assuming fclose establishes transaction durability.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/assocs.c",
+          2236,
+          "item_publication"
+        ],
+        [
+          "src/guild/assocs.c",
+          2237,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

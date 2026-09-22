@@ -2394,3 +2394,13 @@ ship money without local save. Caller durability/replay remain unqualified.
 Draft validation passed 13 fixtures: 647 routes, 2756 raw matches, 2698 unique
 coordinates, 2075 mapped, 43 reviewed nonwriters, 580 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Guild association transfers and MOTD paper
+
+Four coordinates classified: deposit/withdrawal couple player and guild balances
+with sequential saves; deposit also changes debt state. MOTD paper consumption
+follows unchecked local file write. Atomic durability/replay remain unqualified.
+
+Draft validation passed 13 fixtures: 650 routes, 2756 raw matches, 2698 unique
+coordinates, 2079 mapped, 43 reviewed nonwriters, 576 unclassified.
+No gameplay changes; release readiness remains false.
