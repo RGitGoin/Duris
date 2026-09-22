@@ -1777,3 +1777,15 @@ and lock/tool durability remain unqualified. Current actmove.c lexical matches m
 Draft validation passed13 fixtures:494 routes,2756 raw matches,2698 unique
 coordinates,1692 mapped,43 reviewed declarations,963 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Death-generated loot admission
+
+Six fight.c coordinates classified under #486. Dragon scales, eligible soul
+shards and independently selected random loot are new outputs placed on the
+dying NPC before corpse handling. Replay must preserve selected identities and
+payloads without rerolling or counting later corpse movement as issuance.
+Scale/shard allocation failure and compound death publication remain unqualified.
+
+Draft validation passed 13 fixtures: 495 routes, 2756 raw matches, 2698 unique
+coordinates, 1698 mapped, 43 reviewed declarations, 957 unclassified.
+No gameplay changes; release readiness remains false.

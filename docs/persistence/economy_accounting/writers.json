@@ -23465,6 +23465,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.death_generated_loot",
+      "path": "src/combat/fight.c",
+      "symbol": "void die(P_char ch, P_char killer)",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death creates dragon scales for positive-experience dragons and chance-based soul shards for eligible level-52+ non-pet, non-conjured NPCs. Separate random-drop checks generate stones, equipment or materials and publish accepted nonnull outputs to the dying NPC. Scale and shard allocations are not locally null-checked. These are new outputs, not transfers of existing corpse inventory.",
+      "authority_boundary": "Persist the selected output identity and exact randomized payload once before admission to the dying NPC and subsequent corpse transfer. Preserve the two independent random-drop decisions and original eligibility; retries must not reroll or count corpse movement as fresh issuance. Allocation failure and death/corpse publication durability remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/fight.c",
+          3133,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          3134,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          3147,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/fight.c",
+          3148,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          3192,
+          "item_publication"
+        ],
+        [
+          "src/combat/fight.c",
+          3203,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
