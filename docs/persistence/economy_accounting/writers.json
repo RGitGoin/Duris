@@ -29770,6 +29770,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.historical_mail_gift",
+      "path": "src/cmd/mail.c",
+      "symbol": "1135362289",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Historical time-limited gift branch checks vote marker, unchecked allocates prototype 666, sets player PID, publishes, then sets vote marker. Expired cutoff makes it dormant under current ordinary wall clock.",
+      "authority_boundary": "Conditional historical admission; preserve cutoff and once-only marker ordering. Qualify only if reactivated, without treating dormant gift as current issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/mail.c",
+          637,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/mail.c",
+          642,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.mail_postage",
+      "path": "src/cmd/mail.c",
+      "symbol": "postmaster_send_mail",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Debits postage when entering mail composition, before editor allocation and eventual message completion. Sets mail flag and recipient/editor state afterward.",
+      "authority_boundary": "Charge belongs to composition start; qualify abort, failed composition and durable message/payment ordering without assuming payment occurs on send.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/mail.c",
+          711,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.mail_receipt",
+      "path": "src/cmd/mail.c",
+      "symbol": "postmaster_receive_mail",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "While mail exists, checked letter allocation is configured, read_delete consumes stored message before publishing letter to player; absent body produces error text on letter. Allocation failure breaks before read_delete.",
+      "authority_boundary": "Couple stored message removal and physical letter admission; qualify failed publication and restart without duplicate letters or lost mail.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/mail.c",
+          752,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/mail.c",
+          771,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

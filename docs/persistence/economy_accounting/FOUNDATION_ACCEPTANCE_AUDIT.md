@@ -2364,3 +2364,13 @@ refund and save acknowledgment remain unqualified.
 Draft validation passed 13 fixtures: 641 routes, 2756 raw matches, 2698 unique
 coordinates, 2064 mapped, 43 reviewed nonwriters, 591 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Mail postage and letter admission
+
+Five coordinates classified: historical date-gated gift, postage charged before
+composition, and stored-message deletion before letter publication. Allocation
+failure, composition abort and publication/restart ordering remain unqualified.
+
+Draft validation passed 13 fixtures: 644 routes, 2756 raw matches, 2698 unique
+coordinates, 2069 mapped, 43 reviewed nonwriters, 586 unclassified.
+No gameplay changes; release readiness remains false.
