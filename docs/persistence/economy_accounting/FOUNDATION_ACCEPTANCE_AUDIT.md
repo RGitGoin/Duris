@@ -1706,3 +1706,15 @@ Reload uses i for room versus id for output, recorded for integration review.
 Draft validation passed13 fixtures:480 routes,2756 raw matches,2698 unique
 coordinates,1636 mapped,43 reviewed declarations,1019 unclassified.
 No gameplay changes; release readiness remains false.
+
+## CTF pickup, drop and capture custody
+
+Six coordinates classified. Pickup uses detached flag plus TAG_CTF, reclaim returns
+home, drop publishes before affect removal, and capture updates bonuses before
+relocation. Boon/nonpositive destinations can retain detached event-held objects.
+Logical custody and exactly-once bonus/save require qualification beyond inventory.
+All current ctf.c lexical matches mapped, not semantic/runtime completion.
+
+Draft validation passed13 fixtures:483 routes,2756 raw matches,2698 unique
+coordinates,1642 mapped,43 reviewed declarations,1013 unclassified.
+No gameplay changes; release readiness remains false.

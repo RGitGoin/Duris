@@ -22765,6 +22765,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ctf_pickup_reclaim",
+      "path": "src/combat/ctf.c",
+      "symbol": "int ctf_flag_proc(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Own-team flag reclaim moves room object home; enemy/secondary pickup detaches flag from room and applies carrier state, resets timer, rather than placing in inventory.",
+      "authority_boundary": "Preserve flag UID and TAG_CTF logical custody. Reclaim and pickup have different endpoints; event effects and durable carrier state need qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          276,
+          "item_publication"
+        ],
+        [
+          "src/combat/ctf.c",
+          283,
+          "item_publication"
+        ],
+        [
+          "src/combat/ctf.c",
+          338,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ctf_drop",
+      "path": "src/combat/ctf.c",
+      "symbol": "bool drop_ctf_flag(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Drop resolves flag via TAG_CTF, publishes in carrier room then removes affect and invokes capture check; null flag removes affect and returns failure.",
+      "authority_boundary": "Room publication precedes carrier-state removal. Qualify interrupted handoff and capture effects together, not ordinary inventory drop.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          483,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ctf_capture_relocation",
+      "path": "src/combat/ctf.c",
+      "symbol": "void capture_flag(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After bonus updates, capture detaches flag, records entry, relocates non-boon flag to configured or new random room, then checks boon completion.",
+      "authority_boundary": "Boon or nonpositive destination can leave detached flag; preserve event-held custody, random destination/description and exactly-once bonus separate from item admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          611,
+          "item_publication"
+        ],
+        [
+          "src/combat/ctf.c",
+          627,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
