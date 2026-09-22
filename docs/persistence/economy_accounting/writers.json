@@ -22600,6 +22600,171 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ctf_initial_flags",
+      "path": "src/combat/ctf.c",
+      "symbol": "int load_ctf(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Loads configured flag prototype after room selection, checks allocation, customizes applicable descriptions and publishes at configured room.",
+      "authority_boundary": "Bind event/flag generation identity and randomized destination. Boot loading is not proof of first economic admission or replay-safe replacement; determine event object accounting scope.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          152,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/ctf.c",
+          173,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ctf_missing_primary_flags",
+      "path": "src/combat/ctf.c",
+      "symbol": "bool check_ctf_capture(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Capture check recreates missing good/evil flag with checked allocation and home-room publication.",
+      "authority_boundary": "Missing runtime lookup alone does not prove no durable predecessor. Reconcile logical flag identity before fresh admission to prevent duplicate ownership.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          509,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/ctf.c",
+          514,
+          "item_publication"
+        ],
+        [
+          "src/combat/ctf.c",
+          521,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/ctf.c",
+          526,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ctf_recreate_flag",
+      "path": "src/combat/ctf.c",
+      "symbol": "int ctf_reload_flag(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Reload allocates replacement after prior deletion/room check, chooses random room when applicable, customizes description and publishes using ctfdata[i].room while output index is id.",
+      "authority_boundary": "Preserve replacement lineage and inspect i-versus-id destination semantics during integration. Deletion can precede failed allocation; recreation is not automatically fresh issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          996,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/ctf.c",
+          1018,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ctf_delete_flag",
+      "path": "src/combat/ctf.c",
+      "symbol": "void ctf_delete_flag(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Deletes registered flag after removing located carrier TAG_CTF affect, then clears runtime pointer.",
+      "authority_boundary": "Flag custody is represented by event/carrier state beyond ordinary inventory; qualify logical lifetime, affected carrier discovery and durable retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/ctf.c",
+          1066,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

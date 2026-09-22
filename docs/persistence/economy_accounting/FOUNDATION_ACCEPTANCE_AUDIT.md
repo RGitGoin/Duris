@@ -1694,3 +1694,15 @@ All current Undermountain lexical matches mapped, not semantic/runtime completio
 Draft validation passed13 fixtures:476 routes,2756 raw matches,2698 unique
 coordinates,1627 mapped,43 reviewed declarations,1028 unclassified.
 No gameplay changes; release readiness remains false.
+
+## CTF flag creation and retirement
+
+Nine coordinates classified: initial flags, missing-primary recreation, explicit
+reload and deletion. Logical event identity and carrier TAG_CTF state extend beyond
+ordinary inventory custody. Missing runtime object alone cannot prove new admission;
+recreation needs predecessor lineage and deletion/allocation-failure qualification.
+Reload uses i for room versus id for output, recorded for integration review.
+
+Draft validation passed13 fixtures:480 routes,2756 raw matches,2698 unique
+coordinates,1636 mapped,43 reviewed declarations,1019 unclassified.
+No gameplay changes; release readiness remains false.
