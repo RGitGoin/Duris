@@ -50,12 +50,23 @@ int main() {
     assert(submissions == 2 && releases == 1 && !feedback.empty());
 }
 """
-with tempfile.TemporaryDirectory(prefix="tradeskill-grant-") as directory:
-    source = Path(directory) / "grant.cpp"
-    binary = Path(directory) / "grant"
-    source.write_text(PRELUDE + extract_function(
-        "economy/tradeskill.c", "bool grant_tradeskill_item(") + DRIVER)
-    subprocess.run(["g++", "-std=c++20", "-fsanitize=address,undefined",
-                    "-fno-omit-frame-pointer", str(source), "-o", str(binary)], check=True)
-    subprocess.run([str(binary)], check=True)
-print("Tradeskill grant acceptance, refusal cleanup and null output passed")
+CASES = (
+    ("economy/tradeskill.c", "bool grant_tradeskill_item(", "grant_tradeskill_item",
+     "no tradeskill item was created", False),
+    ("world/world_quest.c", "static bool grant_world_quest_reward(", "grant_world_quest_reward",
+     "your quest reward was not created", True),
+)
+for path, signature, name, refusal_text, silent_null in CASES:
+    driver = DRIVER.replace("grant_tradeskill_item", name).replace(
+        "no tradeskill item was created", refusal_text)
+    if silent_null:
+        driver = driver.replace("releases == 1 && !feedback.empty()",
+                                "releases == 1 && feedback.empty()")
+    with tempfile.TemporaryDirectory(prefix="grant-boundary-") as directory:
+        source = Path(directory) / "grant.cpp"
+        binary = Path(directory) / "grant"
+        source.write_text(PRELUDE + extract_function(path, signature) + driver)
+        subprocess.run(["g++", "-std=c++20", "-fsanitize=address,undefined",
+                        "-fno-omit-frame-pointer", str(source), "-o", str(binary)], check=True)
+        subprocess.run([str(binary)], check=True)
+    print(name + ": acceptance, refusal cleanup and null output passed")
