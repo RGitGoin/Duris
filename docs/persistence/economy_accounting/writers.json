@@ -9751,7 +9751,7 @@
       "coverage": "legacy",
       "classification": "Reset destroys eligible takeable nonartifact objects and empty corpses, preserves walls, and moves surviving corpse/artifact roots to the entrance when it exists. NPC teardown occurs separately.",
       "authority_boundary": "Record actual recursive retirement versus surviving custody transfer, including missing-entrance disposition; reset is not a blanket sink for all room contents.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Source-contract candidate verifies valid room resolution before reset traversal and guarded entrance lookup; it does not execute destruction/relocation or prove durable custody.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -9766,7 +9766,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_relic_lab_reset_bounds.py"
+      ],
       "sites": [
         [
           "src/world/random.zone.c",
@@ -17282,8 +17284,8 @@
       "owner": "primary / #482",
       "coverage": "legacy",
       "classification": "Eligible ask racewar removes TAG_LIFESTREAMNEWBIE and creates a blessed sword directly in the player inventory.",
-      "authority_boundary": "Eligibility tag removal precedes unchecked allocation and publication. Persist reward eligibility and output identity consistently to prevent retry duplication or lost entitlement; messaging alone is not save acknowledgement.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "authority_boundary": "Eligibility tag removal precedes unchecked allocation and publication. Persist reward eligibility and output identity consistently to prevent retry duplication or lost entitlement; messaging alone is not save acknowledgement. Eligibility is removed before read_object and direct publication; this function has no allocation-failure recovery or durable operation ID, so once-only delivery cannot be inferred from the tag guard.",
+      "current_support": "Existing behavior only; accounting integration unverified Source-contract candidate verifies one sword publication call and no second starter-kit call; it does not prove durable once-only issuance or allocation-failure recovery.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -17298,7 +17300,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_newbie_paladin_reward_contract.py"
+      ],
       "sites": [
         [
           "src/specs/specs.mobile.c",
