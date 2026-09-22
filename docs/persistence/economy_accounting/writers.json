@@ -31457,6 +31457,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.kingdom_guard_arm",
+      "path": "src/kingdom/kingdom_guards.c",
+      "symbol": "kingdom_guard_arm",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Empty wield slot and supported class gate weapon allocation. Rank/class customize weapon before equip; equipment pointer verifies placement, otherwise provisional weapon is extracted. Repeated outfit with occupied hand does not issue again.",
+      "authority_boundary": "Separate provisional cleanup, first admission and existing-asset retirement. Bind realm/body/action identity and preserve weapon and banner semantic fields. Qualify native refusal, refresh repetition, partial publication, NPC lifetime, save acknowledgement and restart replay; local helper completion is not durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/kingdom/kingdom_guards.c",
+          964,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_guards.c",
+          1001,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_guards.c",
+          996,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.kingdom_banner_realm_cleanup",
+      "path": "src/kingdom/kingdom_guards.c",
+      "symbol": "kingdom_banners_of_realm_destroy",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Collects matching realm banners before extraction; association zero deliberately selects all banners, not only orphan stamps.",
+      "authority_boundary": "Separate provisional cleanup, first admission and existing-asset retirement. Bind realm/body/action identity and preserve weapon and banner semantic fields. Qualify native refusal, refresh repetition, partial publication, NPC lifetime, save acknowledgement and restart replay; local helper completion is not durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/kingdom/kingdom_guards.c",
+          1708,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.kingdom_banner_admission",
+      "path": "src/kingdom/kingdom_guards.c",
+      "symbol": "kingdom_banner_plant",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Valid champion room and positive association gate combat/sanctity banner allocation. Association, HP and descriptions are set before room publication.",
+      "authority_boundary": "Separate provisional cleanup, first admission and existing-asset retirement. Bind realm/body/action identity and preserve weapon and banner semantic fields. Qualify native refusal, refresh repetition, partial publication, NPC lifetime, save acknowledgement and restart replay; local helper completion is not durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/kingdom/kingdom_guards.c",
+          1718,
+          "item_lifecycle"
+        ],
+        [
+          "src/kingdom/kingdom_guards.c",
+          1753,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.kingdom_banner_break",
+      "path": "src/kingdom/kingdom_guards.c",
+      "symbol": "int kingdom_banner_proc",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Matching room attack subtracts random level/damroll damage from banner HP. Lethal damage removes realm garrison fury, sends guild notification and extracts banner; nonlethal damage retains mutated HP.",
+      "authority_boundary": "Separate provisional cleanup, first admission and existing-asset retirement. Bind realm/body/action identity and preserve weapon and banner semantic fields. Qualify native refusal, refresh repetition, partial publication, NPC lifetime, save acknowledgement and restart replay; local helper completion is not durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/kingdom/kingdom_guards.c",
+          1867,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.kingdom_orphan_banner_cleanup",
+      "path": "src/kingdom/kingdom_guards.c",
+      "symbol": "void kingdom_guards_refresh_all",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Refresh collects banners with invalid association or no live realm and extracts only those instances. This differs from association-zero bulk removal; adjacent NPC orphan extraction has indirect asset effects.",
+      "authority_boundary": "Separate provisional cleanup, first admission and existing-asset retirement. Bind realm/body/action identity and preserve weapon and banner semantic fields. Qualify native refusal, refresh repetition, partial publication, NPC lifetime, save acknowledgement and restart replay; local helper completion is not durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_kingdom_contract.py"
+      ],
+      "sites": [
+        [
+          "src/kingdom/kingdom_guards.c",
+          2309,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

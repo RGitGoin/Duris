@@ -2610,3 +2610,15 @@ and save/replay remain qualification work.
 Draft validation passed 13 fixtures: 681 routes, 2756 raw matches, 2698 unique
 coordinates, 2161 mapped, 43 reviewed nonwriters, 494 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Kingdom guard weapons and banners
+
+Eight coordinates classified into five routes: checked weapon equip, banner
+admission, realm cleanup, combat destruction and orphan cleanup. Preserve
+occupied-hand issuance gate, banner HP/association and distinction between
+zero-association bulk cleanup and orphan-only selection. Test file is a
+candidate, not executed coverage; lifetime/save/replay qualification remains.
+
+Draft validation passed 13 fixtures: 686 routes, 2756 raw matches, 2698 unique
+coordinates, 2169 mapped, 43 reviewed nonwriters, 486 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
