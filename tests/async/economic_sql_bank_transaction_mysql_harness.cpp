@@ -61,6 +61,8 @@ bool lose_next_pooled_commit = false;
 size_t pool_acquisitions = 0, pool_releases = 0, pool_replacements = 0;
 void close_pooled(MYSQL *connection)
 {
+	if (connection == coin_insert_error)
+		coin_insert_error = nullptr;
 	if (connection == lost_commit_connection)
 		lost_commit_connection = nullptr;
 	if (connection == lose_commit_reply)
@@ -294,7 +296,7 @@ int main()
 	const economic_account_key other_wallet = { lineage, economic_account_kind::wallet,
 						    mysql_insert_id(connection), 0 };
 	// Typed compound component under a fixture root owner. These cases do not
-	// enable dispatcher admission or claim retained-root replay qualification.
+	// enable gameplay admission; production root journeys are exercised below.
 	for (unsigned int mode = 0; mode < 12; ++mode)
 	{
 		const auto old_bank_revision =
@@ -725,10 +727,12 @@ int main()
 		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> bytes;
 		assert(coin_transfer_command_decode_payload(root, &endpoints));
 		assert(coin_transfer_command_encode_result(endpoints, component->result(), &bytes));
-		execute(connection, "UPDATE critical_operation_inbox SET status=1,result_code=" +
-					    std::to_string(code) +
-					    ",durable_revision=0,result_payload=" + binary(bytes) +
-					    " WHERE operation_id=" + literal(root.operation_id));
+		execute(connection,
+			"UPDATE critical_operation_inbox SET status=1,result_code=" +
+				std::to_string(code) + ",durable_revision=0,failure_stage=" +
+				std::to_string(static_cast<uint16_t>(component->failure_stage())) +
+				",result_payload=" + binary(bytes) +
+				" WHERE operation_id=" + literal(root.operation_id));
 		assert(component->verify_root_completion() == 0);
 		assert(economic_sql_coin_transaction::verify_retained(connection, root, code,
 								      bytes) == 0);
@@ -794,6 +798,155 @@ int main()
 		execute(connection, "ROLLBACK");
 	}
 	std::cout << "coin SQL business rejection, empty effects and retained replay passed\n";
+	// Exercise actual root ownership and pooled lost-COMMIT reconciliation.
+	for (unsigned int mode = 0; mode < 6; ++mode)
+	{
+		const auto old_bank_revision =
+			scalar(connection, "SELECT bank_revision FROM account_banks WHERE id=" +
+						   std::to_string(bank_id));
+		const std::array<uint32_t, 2> pids = { static_cast<uint32_t>(pid),
+						       static_cast<uint32_t>(other_pid) };
+		const std::array<economic_account_key, 2> wallets = { wallet, other_wallet },
+							  banks = { bank, bank };
+		std::array<uint64_t, 2> old_wallet_revision{};
+		for (size_t i = 0; i < 2; ++i)
+			old_wallet_revision[i] = scalar(
+				connection, "SELECT wallet_revision FROM player_data WHERE pid=" +
+						    std::to_string(pids[i]));
+		coin_transfer_payload endpoints;
+		coin_transfer_endpoint *ends[] = { &endpoints.source, &endpoints.destination };
+		for (size_t i = 0; i < 2; ++i)
+		{
+			auto &end = *ends[i];
+			constexpr const char *names[] = { "copper", "silver", "gold", "platinum" };
+			currency_command_payload native{};
+			native.pid = pids[i];
+			native.racewar = 1;
+			native.reason = currency_reason_type::coin_transfer;
+			std::memcpy(native.account_name.data(), account.data(), account.size());
+			for (size_t part = 0; part < 4; ++part)
+				end.before[part] =
+					scalar(connection, std::string("SELECT ") + names[part] +
+								   " FROM player_data WHERE pid=" +
+								   std::to_string(pids[i]));
+			end.after = end.before;
+			end.after[0] += i ? 10 : -10;
+			native.wallet_delta.amount[0] = i ? 10 : -10;
+			const auto revision = scalar(
+				connection, "SELECT wallet_revision FROM player_data WHERE pid=" +
+						    std::to_string(pids[i]));
+			assert(currency_command_build(
+				&end.change, new_id(), native,
+				revision + ((mode == 1 || mode == 3) && i == 0 ? 1 : 0),
+				old_bank_revision, critical_source_site::command,
+				critical_deadline_class::interactive));
+		}
+		critical_command root;
+		assert(coin_transfer_command_build(&root, new_id(), endpoints,
+						   critical_source_site::command,
+						   critical_deadline_class::interactive));
+		root.accepted_at_usec = 1;
+		assert(economic_coin_wallets_intent(root, epoch, wallets, banks,
+						    &root.accounting_intent) ==
+		       economic_accounting_error::ok);
+		root.schema_version = CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
+
+		assert(coin_transfer_command_decode_payload(root, &endpoints));
+		if (mode == 5)
+			pending(connection, endpoints.source.change);
+		if (mode == 4)
+			coin_insert_fault = 2;
+		if (mode >= 4)
+		{
+			critical_apply_result failed;
+			if (mode == 4)
+			{
+				pool_enabled = true;
+				std::thread worker(
+					[&] {
+						failed =
+							critical_command_repository_apply_from_pool(
+								root, nullptr);
+					});
+				worker.join();
+				pool_enabled = false;
+			}
+			else
+				failed = critical_command_repository_apply(connection, root);
+			assert(failed.outcome == critical_apply_outcome::retryable_failure);
+			coin_insert_error = nullptr;
+			assert(scalar(connection,
+				      "SELECT COUNT(*) FROM critical_operation_inbox WHERE operation_id=" +
+					      literal(root.operation_id)) == 0);
+			assert(scalar(connection, "SELECT copper FROM player_data WHERE pid=" +
+							  std::to_string(pid)) == 1000);
+			if (mode == 5)
+				execute(connection,
+					"DELETE FROM critical_operation_inbox WHERE operation_id=" +
+						literal(endpoints.source.change.operation_id));
+		}
+		pool_enabled = true;
+		lose_next_pooled_commit = mode == 2 || mode == 3;
+		critical_apply_result applied;
+		std::thread worker(
+			[&]
+			{ applied = critical_command_repository_apply_from_pool(root, nullptr); });
+		worker.join();
+		pool_enabled = false;
+		const bool rejected = mode == 1 || mode == 3;
+		assert(applied.outcome == (rejected  ? critical_apply_outcome::terminal_failure :
+					   mode == 2 ? critical_apply_outcome::already_applied :
+						       critical_apply_outcome::applied));
+		assert(applied.error_code == (rejected ? ESTALE : 0));
+		assert(applied.failure_stage ==
+		       (rejected ? critical_failure_stage::coin_source_wallet_revision :
+				   critical_failure_stage::none));
+		for (const auto &replay : { critical_command_repository_apply(connection, root),
+					    critical_command_repository_reconcile(observer, root) })
+		{
+			assert(replay.outcome == (rejected ?
+							  critical_apply_outcome::terminal_failure :
+							  critical_apply_outcome::already_applied));
+			assert(replay.error_code == applied.error_code &&
+			       replay.failure_stage == applied.failure_stage &&
+			       replay.durable_revision == applied.durable_revision &&
+			       replay.result_size == applied.result_size &&
+			       replay.result_payload == applied.result_payload);
+		}
+		assert(scalar(connection, "SELECT copper FROM player_data WHERE pid=" +
+						  std::to_string(pid)) == (rejected ? 1000 : 990));
+		assert(scalar(connection, "SELECT copper FROM player_data WHERE pid=" +
+						  std::to_string(other_pid)) ==
+		       (rejected ? 1000 : 1010));
+		execute(connection, "START TRANSACTION");
+		execute(connection,
+			"UPDATE critical_operation_inbox SET failure_stage=8192 WHERE operation_id=" +
+				literal(root.operation_id));
+		execute(connection, "COMMIT");
+		assert(critical_command_repository_reconcile(observer, root).outcome ==
+		       critical_apply_outcome::retryable_failure);
+		execute(connection, "START TRANSACTION");
+		const auto ids = literal(root.operation_id) + "," +
+				 literal(endpoints.source.change.operation_id) + "," +
+				 literal(endpoints.destination.change.operation_id);
+		for (const auto *table :
+		     { "economic_accounting_child", "economic_accounting_coin_posting",
+		       "economic_accounting_account_effect", "economic_accounting_operation",
+		       "currency_ledger", "critical_outbox", "critical_operation_inbox" })
+			execute(connection, std::string("DELETE FROM ") + table +
+						    " WHERE operation_id IN (" + ids + ")");
+		for (size_t i = 0; i < 2; ++i)
+			execute(connection, "UPDATE player_data SET copper=1000,wallet_revision=" +
+						    std::to_string(old_wallet_revision[i]) +
+						    " WHERE pid=" + std::to_string(pids[i]));
+		execute(connection, "UPDATE account_banks SET bank_revision=" +
+					    std::to_string(old_bank_revision) +
+					    " WHERE id=" + std::to_string(bank_id));
+		execute(connection, "COMMIT");
+	}
+	assert(pool_acquisitions == 7 && pool_releases == 7 && pool_replacements == 3);
+	pool_acquisitions = pool_releases = pool_replacements = 0;
+	puts("SQL coin root: apply, reject, replay, lost COMMIT reply, rollback and child collision passed");
 	std::vector<critical_operation_id> operations;
 	auto command_for = [&](int64_t amount, uint32_t payer = 0,
 			       const economic_account_key *payer_wallet = nullptr,

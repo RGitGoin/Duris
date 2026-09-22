@@ -19,8 +19,8 @@
 #include <cstring>
 #include <iostream>
 
-static bool supported_bank_pool = false;
-static bool bank_initialized_library = false;
+static bool supported_accounted_pool = false;
+static bool accounted_initialized_library = false;
 
 // These must remain unreachable for every unsupported envelope variant.
 extern "C" MYSQL *sql_pool_acquire()
@@ -39,8 +39,8 @@ extern "C" MYSQL *sql_pool_replace_connection(MYSQL *)
 }
 extern "C" int __wrap_mysql_server_init(int, char **, char **)
 {
-	assert(supported_bank_pool);
-	bank_initialized_library = true;
+	assert(supported_accounted_pool);
+	accounted_initialized_library = true;
 	return 1;
 }
 extern "C" decltype(mysql_thread_init()) __wrap_mysql_thread_init()
@@ -111,20 +111,21 @@ void check_rejected(const critical_command &command)
 	assert(transaction.error_code == EPROTONOSUPPORT);
 	assert(result_code == 123 && mutated);
 
-	const bool bank_root = command.schema_version ==
-				       CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION &&
-			       command.type == critical_command_type::account_bank &&
-			       critical_command_envelope_valid(command);
-	supported_bank_pool = bank_root;
+	const bool accounted_root = command.schema_version ==
+					    CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION &&
+				    (command.type == critical_command_type::account_bank ||
+				     command.type == critical_command_type::coin_transfer) &&
+				    critical_command_envelope_valid(command);
+	supported_accounted_pool = accounted_root;
 	const auto pooled = critical_command_repository_apply_from_pool(command, nullptr);
 	assert(pooled.outcome == critical_apply_outcome::retryable_failure);
-	assert(pooled.error_code == (bank_root ? EIO : EPROTONOSUPPORT));
-	if (bank_root)
-		assert(bank_initialized_library);
-	supported_bank_pool = false;
-	// Supported pooled banks reach SQL initialization; this fixture injects its
+	assert(pooled.error_code == (accounted_root ? EIO : EPROTONOSUPPORT));
+	if (accounted_root)
+		assert(accounted_initialized_library);
+	supported_accounted_pool = false;
+	// Supported pooled bank and coin roots reach SQL initialization; this fixture injects its
 	// failure. Unsupported paths never touch SQL. Direct roots reject nullptr.
-	auto *root_connection = bank_root ? nullptr : unusable_connection;
+	auto *root_connection = accounted_root ? nullptr : unusable_connection;
 	for (const auto &top_level :
 	     { critical_command_repository_apply(root_connection, command),
 	       critical_command_repository_reconcile(root_connection, command) })
@@ -197,5 +198,5 @@ int main()
 	check_rejected(bank);
 
 	std::cout
-		<< "closed SQL paths reject before access; typed bank pool reaches initialization and roots reject null connections\n";
+		<< "closed SQL paths reject before access; typed bank/coin pool reaches initialization and roots reject null connections\n";
 }

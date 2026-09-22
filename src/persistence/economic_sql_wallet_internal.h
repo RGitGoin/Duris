@@ -188,7 +188,8 @@ inline economic_digest hash(std::span<const uint8_t> bytes)
 	SHA256(bytes.data(), bytes.size(), digest.data());
 	return digest;
 }
-inline void inbox(MYSQL *connection, const critical_command &command, bool pending)
+inline void inbox(MYSQL *connection, const critical_command &command, bool pending,
+		  critical_failure_stage stage = critical_failure_stage::none)
 {
 	std::vector<uint8_t> encoded, keys;
 	require(critical_command_encode(command, &encoded) == critical_command_codec_result::ok,
@@ -199,15 +200,16 @@ inline void inbox(MYSQL *connection, const critical_command &command, bool pendi
 		for (size_t byte = 0; byte < 8; ++byte)
 			keys.push_back(static_cast<uint8_t>(key.id >> (8 * byte)));
 	}
-	const fields expected = { { "operation_id", id(command.operation_id) },
-				  { "command_hash", hex(hash(encoded)) },
-				  { "keys_hash", hex(hash(keys)) },
-				  { "command_type",
-				    std::to_string(static_cast<uint16_t>(command.type)) },
-				  { "schema_version", std::to_string(command.schema_version) },
-				  { "payload_version", std::to_string(command.payload_version) },
-				  { "status", pending ? "0" : "1" },
-				  { "failure_stage", "0" } };
+	const fields expected = {
+		{ "operation_id", id(command.operation_id) },
+		{ "command_hash", hex(hash(encoded)) },
+		{ "keys_hash", hex(hash(keys)) },
+		{ "command_type", std::to_string(static_cast<uint16_t>(command.type)) },
+		{ "schema_version", std::to_string(command.schema_version) },
+		{ "payload_version", std::to_string(command.payload_version) },
+		{ "status", pending ? "0" : "1" },
+		{ "failure_stage", std::to_string(static_cast<uint16_t>(stage)) }
+	};
 	// The owner inserted and holds this unique inbox row before calling prepare.
 	// FOR UPDATE also prevents a separate owner from completing it concurrently.
 	const auto row = read(connection,

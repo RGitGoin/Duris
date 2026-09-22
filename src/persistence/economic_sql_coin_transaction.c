@@ -38,6 +38,7 @@ struct economic_sql_coin_transaction::implementation
 	std::string checkpoint;
 	size_t next = 0;
 	unsigned int code = 0;
+	critical_failure_stage stage = critical_failure_stage::none;
 	bool failed = false, finalized = false, verified = false;
 #ifndef __NO_MYSQL__
 	coin_transfer_payload bind_command(const critical_command &source)
@@ -241,6 +242,11 @@ unsigned int economic_sql_coin_transaction::result_code() const
 	return state_->code;
 }
 
+critical_failure_stage economic_sql_coin_transaction::failure_stage() const
+{
+	return state_->stage;
+}
+
 #ifdef __NO_MYSQL__
 unsigned int
 economic_sql_coin_transaction::prepare(MYSQL *, const critical_command &,
@@ -311,7 +317,7 @@ economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command
 						  state->bank_ids[i]) };
 		const auto preparation = economic_coin_wallets_prepare(
 			command, intent, authority, currency_revision_policy::sql_legacy,
-			&state->prepared);
+			&state->prepared, &state->stage);
 		if (preparation != economic_accounting_error::ok)
 		{
 			state->code = rejection_code(preparation);
@@ -444,7 +450,6 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 		state.connection = connection;
 		state.code = result_code;
 		const auto payload = state.bind_command(command);
-		inbox(connection, command, false);
 		const auto root_where = "operation_id=" + id(command.operation_id);
 		const auto row =
 			read(connection,
@@ -465,9 +470,10 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 			std::optional<economic_prepared_coin_wallets> candidate;
 			const auto decision = economic_coin_wallets_prepare(
 				command, state.identities[0].intent, state.rejection_authority(),
-				currency_revision_policy::sql_legacy, &candidate);
+				currency_revision_policy::sql_legacy, &candidate, &state.stage);
 			require(decision != economic_accounting_error::capacity, ENOMEM);
 			require(rejection_code(decision) == result_code && !candidate);
+			inbox(connection, command, false, state.stage);
 			count(connection, "critical_operation_inbox",
 			      predicate({ { "operation_id", id(command.operation_id) },
 					  { "result_code", std::to_string(result_code) },
@@ -520,6 +526,7 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 		checked(economic_coin_wallets_prepare(
 			command, state.identities[0].intent, authority,
 			currency_revision_policy::sql_legacy, &state.prepared));
+		inbox(connection, command, false);
 		checked(state.prepared->agrees_with(plan));
 		for (size_t i = 0; i < 2; ++i)
 			state.result.wallets[i] = state.prepared->mutations()[i].after();

@@ -9,7 +9,7 @@
 // completes its receipt/outbox, then calls finalize. Only this component's own
 // successful native writes authorize appending the typed accounting evidence.
 // A nonzero result_code skips children and finalizes an unchanged-state rejection.
-// Runtime dispatch remains disabled until retained/root completion integration.
+// SQL root dispatch uses this component; gameplay admission remains closed.
 class economic_sql_coin_transaction
 {
     public:
@@ -21,6 +21,7 @@ class economic_sql_coin_transaction
 	const critical_command &child_command(size_t index) const;
 	const coin_transfer_result &result() const;
 	unsigned int result_code() const;
+	critical_failure_stage failure_stage() const;
 	unsigned int apply_endpoint(size_t index);
 	unsigned int finalize();
 	// After root inbox/outbox completion, immediately before its owner commits.

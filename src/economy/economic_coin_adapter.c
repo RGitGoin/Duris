@@ -116,8 +116,11 @@ economic_accounting_error
 economic_coin_wallets_prepare(const critical_command &command, const economic_frozen_intent &intent,
 			      const economic_coin_wallet_authority &authority,
 			      currency_revision_policy policy,
-			      std::optional<economic_prepared_coin_wallets> *prepared)
+			      std::optional<economic_prepared_coin_wallets> *prepared,
+			      critical_failure_stage *failure_stage)
 {
+	if (failure_stage)
+		*failure_stage = critical_failure_stage::none;
 	if (!prepared)
 		return error::invalid_identity;
 	try
@@ -178,7 +181,12 @@ economic_coin_wallets_prepare(const critical_command &command, const economic_fr
 			{
 				if (!coin_transfer_command_destination_after_source(payload, after,
 										    &child))
+				{
+					if (failure_stage)
+						*failure_stage = critical_failure_stage::
+							coin_destination_rebase;
 					return error::stale_revision;
+				}
 				if (shared_bank)
 				{
 					state.bank = after.wallets[0].bank;
@@ -192,11 +200,41 @@ economic_coin_wallets_prepare(const critical_command &command, const economic_fr
 				currency, state, child.expected_revisions[0].revision,
 				child.expected_revisions[1].revision, policy, &mutations[i]));
 			if (result != error::ok)
+			{
+				if (failure_stage && result == error::stale_revision)
+				{
+					uint16_t bits = 0;
+					if (child.expected_revisions[0].revision != UINT64_MAX &&
+					    child.expected_revisions[0].revision !=
+						    state.wallet_revision)
+						bits |= static_cast<uint16_t>(
+							i ? critical_failure_stage::
+									coin_destination_wallet_revision :
+							    critical_failure_stage::
+									coin_source_wallet_revision);
+					if (child.expected_revisions[1].revision != UINT64_MAX &&
+					    child.expected_revisions[1].revision !=
+						    state.bank_revision)
+						bits |= static_cast<uint16_t>(
+							i ? critical_failure_stage::
+									coin_destination_bank_revision :
+							    critical_failure_stage::
+									coin_source_bank_revision);
+					*failure_stage =
+						bits ? static_cast<critical_failure_stage>(bits) :
+						       critical_failure_stage::coin_revision_unknown;
+				}
 				return result;
+			}
 			after.wallets[i] = mutations[i]->after();
 			if (!std::equal(ends[i]->after.begin(), ends[i]->after.end(),
 					after.wallets[i].wallet.amount.begin()))
+			{
+				if (failure_stage)
+					*failure_stage =
+						critical_failure_stage::coin_revision_unknown;
 				return error::stale_revision;
+			}
 			const auto &next = after.wallets[i];
 			const auto wallet_index = static_cast<uint16_t>(plan.accounts.size());
 			plan.accounts.push_back({ authority[i].wallet_account, state.wallet.amount,

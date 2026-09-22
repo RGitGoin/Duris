@@ -24,11 +24,10 @@ class economic_prepared_coin_wallets
 	std::vector<uint8_t> encoded_;
 	economic_prepared_coin_wallets(std::array<currency_prepared_mutation, 2> mutations,
 				       economic_accounting_plan plan, std::vector<uint8_t> encoded);
-	friend economic_accounting_error
-	economic_coin_wallets_prepare(const critical_command &, const economic_frozen_intent &,
-				      const economic_coin_wallet_authority &,
-				      currency_revision_policy,
-				      std::optional<economic_prepared_coin_wallets> *);
+	friend economic_accounting_error economic_coin_wallets_prepare(
+		const critical_command &, const economic_frozen_intent &,
+		const economic_coin_wallet_authority &, currency_revision_policy,
+		std::optional<economic_prepared_coin_wallets> *, critical_failure_stage *);
 };
 
 // Wallet-to-wallet coin commands only. Pile endpoints need custody evidence and
@@ -42,6 +41,7 @@ economic_accounting_error
 economic_coin_wallets_prepare(const critical_command &command, const economic_frozen_intent &intent,
 			      const economic_coin_wallet_authority &authority,
 			      currency_revision_policy policy,
-			      std::optional<economic_prepared_coin_wallets> *prepared);
+			      std::optional<economic_prepared_coin_wallets> *prepared,
+			      critical_failure_stage *failure_stage = nullptr);
 
 #endif

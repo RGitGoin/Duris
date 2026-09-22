@@ -199,6 +199,55 @@ int main()
 						     &prepared) == expected);
 		assert(!prepared);
 	}
+	for (size_t endpoint = 0; endpoint < 2; ++endpoint)
+		for (unsigned int mask = 1; mask <= 3; ++mask)
+		{
+			auto f = make_fixture(false);
+			if (mask & 1)
+				++f.authority[endpoint].state.wallet_revision;
+			if (mask & 2)
+				++f.authority[endpoint].state.bank_revision;
+			std::optional<economic_prepared_coin_wallets> prepared;
+			critical_failure_stage stage = critical_failure_stage::none;
+			assert(economic_coin_wallets_prepare(f.command, f.intent, f.authority,
+							     currency_revision_policy::sql_legacy,
+							     &prepared,
+							     &stage) == error::stale_revision);
+			assert(static_cast<uint16_t>(stage) == (mask << (2 * endpoint)));
+			assert(!prepared);
+		}
+	for (bool rebase : { false, true })
+	{
+		auto f = make_fixture(true);
+		if (rebase)
+		{
+			coin_transfer_payload payload;
+			assert(coin_transfer_command_decode_payload(f.command, &payload));
+			++payload.destination.change.expected_revisions[1].revision;
+			assert(coin_transfer_command_build(&f.command, id(3), payload,
+							   critical_source_site::command,
+							   critical_deadline_class::interactive));
+			assert(economic_coin_wallets_intent(
+				       f.command, id(2),
+				       { f.authority[0].wallet_account,
+					 f.authority[1].wallet_account },
+				       { f.authority[0].bank_account, f.authority[1].bank_account },
+				       &f.command.accounting_intent) == error::ok);
+			f.command.schema_version = CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
+			assert(economic_intent_decode(f.command.accounting_intent, &f.intent) ==
+			       error::ok);
+		}
+		else
+			++f.authority[0].state.wallet.amount[0];
+		std::optional<economic_prepared_coin_wallets> prepared;
+		critical_failure_stage stage = critical_failure_stage::none;
+		assert(economic_coin_wallets_prepare(f.command, f.intent, f.authority,
+						     currency_revision_policy::sql_legacy,
+						     &prepared, &stage) == error::stale_revision);
+		assert(stage == (rebase ? critical_failure_stage::coin_destination_rebase :
+					  critical_failure_stage::coin_revision_unknown));
+		assert(!prepared);
+	}
 	std::cout
 		<< "coin wallet adapter: typed effects, child legs, shared bank, conversion, rejection and backend arithmetic parity passed\n";
 }
