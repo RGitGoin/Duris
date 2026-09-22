@@ -19559,8 +19559,8 @@
       "integration_issue": 482,
       "owner": "primary / #482",
       "coverage": "legacy",
-      "classification": "Post-commit resurrection releases existing inventory/equipment to old room or extracts transient entries, relocates player, then transfers corpse children to player while extracting money objects.",
-      "authority_boundary": "Money extraction is committed-result projection, not fresh wallet issuance here. Inventory transient predicate reads corpse obj flags whereas equipment predicate reads each item; preserve observed behavior pending explicit integration fix. Exact UIDs, old room, corpse graph and retained publication/save state must be qualified.",
+      "classification": "Post-commit resurrection releases existing inventory/equipment to old room or extracts transient entries, relocates player, then transfers corpse children to player while extracting money objects. Finally extracts the emptied corpse after attempting writeCharacter.",
+      "authority_boundary": "Money extraction is committed-result projection, not fresh wallet issuance here. Inventory transient predicate reads corpse obj flags whereas equipment predicate reads each item; preserve observed behavior pending explicit integration fix. Exact UIDs, old room, corpse graph and retained publication/save state must be qualified. Failed writeCharacter only logs and warns; corpse extraction still executes. Save failure must retain recovery authority and must not be treated as durable publication acknowledgement.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -19622,6 +19622,11 @@
           "src/magic/magic.c",
           15718,
           "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15797,
+          "item_lifecycle"
         ]
       ],
       "evidence": []

@@ -1434,3 +1434,14 @@ requires integration review. No correction or runtime qualification claimed.
 Draft validator passed 13 fixtures: 414 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,404 mapped, 43 reviewed declarations and 1,251 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Committed resurrection corpse retirement
+
+Reviewed the helper through its final corpse extraction. writeCharacter failure
+logs and warns but does not prevent corpse retirement; integration must preserve
+recovery authority until durable save acknowledgement. This is a documented
+existing behavior, not a runtime correction.
+
+Draft validation: 13 fixtures, 414 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,405 mapped, 43 reviewed declarations, 1,250 unclassified.
+Release readiness remains false; no gameplay change or runtime qualification.
