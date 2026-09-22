@@ -38099,6 +38099,436 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "winterhaven.cerberus_optional",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int cerberus_load",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death reward first roll 0..15 selects output only for 0..7; case6 creates four copies, others one. Allocations publish independently with no local null checks.",
+      "authority_boundary": "Preserve exact reward probabilities and multiplicities. Qualify stable death/operation identity, once-only output admission, allocation failure and partial publication without rerolling economics on replay.",
+      "current_support": "Existing scripted death rewards; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4954,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4958,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4962,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4966,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4970,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4974,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4978,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4980,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4982,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4984,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4988,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4955,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4959,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4963,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4967,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4971,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4975,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4979,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4981,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4983,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4985,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4989,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.cerberus_guaranteed",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int cerberus_load",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Second independent roll 8..15 always selects output; case15 creates five objects (two22065,two22064,one22035), others one. Then NPC is extracted; death identity must cover both rolls and partial multi-output publication.",
+      "authority_boundary": "Preserve exact reward probabilities and multiplicities. Qualify stable death/operation identity, once-only output admission, allocation failure and partial publication without rerolling economics on replay.",
+      "current_support": "Existing scripted death rewards; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4997,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5001,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5005,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5009,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5013,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5017,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5021,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5025,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5027,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5029,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5031,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5033,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4998,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5002,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5006,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5010,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5014,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5018,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5022,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5026,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5028,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5030,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5032,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          5034,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.tiamat_death",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int tiamat_human_to_rareloads",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death trigger selects one of four prototypes, checks allocation then publishes to room and sets decay value. Returns false for continuing death processing; not corpse-item relocation.",
+      "authority_boundary": "Preserve exact reward probabilities and multiplicities. Qualify stable death/operation identity, once-only output admission, allocation failure and partial publication without rerolling economics on replay.",
+      "current_support": "Existing scripted death rewards; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4560,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4563,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4566,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4569,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4582,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.dragonnia_death",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int dragonnia_heart",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death trigger creates checked heart prototype and publishes it to room. New reward identity distinct from original NPC inventory.",
+      "authority_boundary": "Preserve exact reward probabilities and multiplicities. Qualify stable death/operation identity, once-only output admission, allocation failure and partial publication without rerolling economics on replay.",
+      "current_support": "Existing scripted death rewards; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4600,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4607,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.lanella_death",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int lanella_heart",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death trigger selects one of two prototypes, checks allocation and publishes to room then sets decay value. Returns false for continuing death processing.",
+      "authority_boundary": "Preserve exact reward probabilities and multiplicities. Qualify stable death/operation identity, once-only output admission, allocation failure and partial publication without rerolling economics on replay.",
+      "current_support": "Existing scripted death rewards; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4792,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4795,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4806,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -3061,3 +3061,13 @@ already extracted prototype; record lifetime concern without expanding scope.
 Physical item ownership is distinct from binding metadata.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 835 routes, 2756 raw matches, 2698 unique coordinates, 2563 mapped, 43 reviewed nonwriters, 92 unclassified.
+
+
+## Winterhaven death reward groups
+
+Fifty-six coordinates grouped into Cerberus optional/guaranteed rolls and
+Tiamat, Dragonnia and Lanella death rewards. Cerberus branches can produce four
+and five objects, not uniformly one; preserve actual probabilities and counts.
+Stable death identity and partial publication need qualification.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 840 routes, 2756 raw matches, 2698 unique coordinates, 2619 mapped, 43 reviewed nonwriters, 36 unclassified.
