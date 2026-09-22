@@ -18710,6 +18710,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.summon_insects_component",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_summon_insects(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Without existing insect room affect, searches top-level inventory for mandrake within bounded traversal, extracts selected root, then installs duration250 room affect.",
+      "authority_boundary": "Bind consumed root UID and cast attempt to room effect. Destruction precedes effect publication; missing component/existing effect preserve input. Helper default extraction mode and room-affect persistence require qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          6230,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

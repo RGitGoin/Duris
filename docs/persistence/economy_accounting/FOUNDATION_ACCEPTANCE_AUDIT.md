@@ -1249,3 +1249,13 @@ is commented out. Initial admission and later decay remain separate obligations.
 Draft validator passed 13 fixtures: 392 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,353 mapped, 43 reviewed declarations and 1,302 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Insect spell component ordering
+
+One coordinate classified. Selected mandrake is destroyed before duration250 room
+affect installation. Existing room effect or missing component returns without
+consumption; root identity and effect publication need retained cast linkage.
+
+Draft validator passed 13 fixtures: 393 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,354 mapped, 43 reviewed declarations and 1,301 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
