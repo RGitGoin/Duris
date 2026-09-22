@@ -2757,3 +2757,16 @@ replay qualification remain open.
 Draft validation passed 13 fixtures: 717 routes, 2756 raw matches, 2698 unique
 coordinates, 2241 mapped, 43 reviewed nonwriters, 414 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Player-file utility stubs
+
+Six candidates belong to standalone pfile utility stubs (src/Makefile
+PFILE_OBJS_NAMES). Allocation/free, no-op room/container placement and local
+carrying-list linkage are not gameplay issuance/transfer/sinks. The memset
+match is not wallet mutation. Recorded as an infrastructure route because
+the nonwriter schema only supports declarations; exclude from active gameplay
+integration scope and qualify actual utility persistence separately.
+
+Draft validation passed 13 fixtures: 718 routes, 2756 raw matches, 2698 unique
+coordinates, 2247 mapped, 43 reviewed nonwriters, 408 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

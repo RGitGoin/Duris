@@ -32947,6 +32947,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "infrastructure.pfile_object_stubs",
+      "path": "src/account/pfile-stubs.c",
+      "symbol": "P_obj read_object",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Standalone PFILE_OBJS_NAMES build in src/Makefile uses these stubs. read_object allocates zeroed obj_data and assigns R_num; bulk memset is not wallet mutation. Room/container placement are no-ops; character placement only links carrying list; extraction frees memory. These are utility representations, not production world issuance or sinks.",
+      "authority_boundary": "Exclude stub allocation/free and no-op publication from gameplay integration counts. Qualify any actual pfile utility output at its real persistence writer; these functions neither prove world admission nor durable restoration. Keep utility inventory linking distinct from economic transfer.",
+      "current_support": "Utility stub behavior only; no gameplay accounting integration inferred",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/pfile-stubs.c",
+          41,
+          "coin_bulk_mutation"
+        ],
+        [
+          "src/account/pfile-stubs.c",
+          37,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/pfile-stubs.c",
+          78,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/pfile-stubs.c",
+          24,
+          "item_publication"
+        ],
+        [
+          "src/account/pfile-stubs.c",
+          46,
+          "item_publication"
+        ],
+        [
+          "src/account/pfile-stubs.c",
+          48,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
