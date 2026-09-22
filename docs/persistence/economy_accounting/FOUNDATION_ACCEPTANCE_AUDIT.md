@@ -810,3 +810,16 @@ accounting; the shown path does not establish paired commit or compensation.
 Draft validator passed 13 fixtures: 303 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,077 mapped, 43 reviewed declarations and 1,578 unclassified.
 No gameplay change; census and runtime qualification remain incomplete.
+
+## Group split ordering
+
+Both split helper sites classified. Eligible same-room visible PC/morph recipients
+receive independent ADD_MONEY calls before sender SUB_MONEY. Given increments
+without checking recipient credit outcomes; sender debit refusal only logs. Preserve
+membership, denomination and integer remainder in the future participant bundle.
+Seven-character input does not prove copper conversion fits int. No atomic transfer
+or compensation is demonstrated by this command; gameplay remains unchanged.
+
+Draft validator passed 13 fixtures: 303 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,079 mapped, 43 reviewed declarations and 1,576 unclassified.
+Census and runtime qualification remain incomplete.

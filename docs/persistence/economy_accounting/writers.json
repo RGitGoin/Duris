@@ -2479,8 +2479,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Same-room visible PC or morph recipients, excluding sender; integer shares leave sender share and remainder. Current recipient credits precede sender debit.",
-      "authority_boundary": "Resolve recipient set and exact denominations; pair each accepted transfer with its debit under existing command boundaries, without assuming global bulk atomicity.",
+      "classification": "Split computes integer denomination shares for visible same-room PC or morph group members, credits each other recipient with ADD_MONEY, then debits sender using SUB_MONEY for total given. Remainder and sender share remain with sender.",
+      "authority_boundary": "Recipient credits precede sender debit; given increments without checking credit outcome, and debit submission failure only logs. No atomic participant bundle or compensation is demonstrated. Preserve selected membership, integer remainder and denomination value; long-to-int copper casts and endpoint limits require qualification, not assumed safety from seven-character amount input.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2497,7 +2497,18 @@
         }
       },
       "test_candidates": [],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          6239,
+          "money_helper"
+        ],
+        [
+          "src/cmd/actoth.c",
+          6254,
+          "money_helper"
+        ]
+      ],
       "evidence": []
     },
     {
