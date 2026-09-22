@@ -869,3 +869,15 @@ identity. Helper success does not itself prove atomic common-accounting delivery
 Draft validator passed 13 fixtures: 312 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,100 mapped, 43 reviewed declarations and 1,555 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Replacement skeleton starting balances
+
+Eight cash assignments classified. Animated skeleton death independently allocates
+two replacement NPCs and clears prototype cash before room placement. This is
+initialization, not established destruction of admitted currency or a transfer from
+the dying skeleton. Original death disposition and replacement lifetime/admission
+remain separate obligations; allocation failures can produce partial spawning.
+
+Draft validator passed 13 fixtures: 313 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,108 mapped, 43 reviewed declarations and 1,547 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

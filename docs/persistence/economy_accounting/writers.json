@@ -15045,6 +15045,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "currency.skeleton_spawn_initialization",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int animated_skeleton(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death special may allocate two replacement skeletons from prototype, independently clear all four cash denominations on each successful allocation, then place each in room. Allocation failures are independent.",
+      "authority_boundary": "Zeroing new NPC prototype cash before room placement is initialization, not demonstrated destruction of admitted funds or transfer from dead skeleton. Parent wallet/item death disposition is separate; spawn generation and lifetime require explicit admission policy without invented durable NPC holdings.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          5330,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5331,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5332,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5333,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5365,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5366,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5367,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5368,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
