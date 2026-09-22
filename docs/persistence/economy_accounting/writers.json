@@ -15390,6 +15390,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "service.epic_task_clear",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int clear_epic_task_spec(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Epic-task clearing computes task-dependent price, checks live money, removes task affect then invokes SUB_MONEY without checking result.",
+      "authority_boundary": "Benefit precedes payment submission and no compensation/commit callback is demonstrated. Bind exact task instance and fee; announcements and logs do not prove durable payment or task clearing.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          15785,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "service.monk_remort",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int monk_remort(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Eligible cleric remort checks money and epic threshold, invokes SUB_MONEY without checking result, then forgets spells and resets class to monk.",
+      "authority_boundary": "Eligibility is not payment commit. Character transformation proceeds independently of debit outcome; preserve eligibility, original class state and fee in compound service handling. Epic threshold check alone does not imply epic spending.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          16099,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -918,3 +918,15 @@ fee/output failure handling remain unqualified, rather than assumed durable escr
 Draft validator passed 13 fixtures: 319 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,127 mapped, 43 reviewed declarations and 1,528 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Task clearing and monk remort fees
+
+Two fee sites classified. Task clearing removes the affect before unchecked debit;
+monk remort invokes unchecked debit then resets class/spells. Live affordability is
+not committed payment, and no compensation callback is demonstrated. Preserve exact
+task or original character state and existing eligibility; epic threshold is not
+proof of an epic charge.
+
+Draft validator passed 13 fixtures: 321 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,129 mapped, 43 reviewed declarations and 1,526 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
