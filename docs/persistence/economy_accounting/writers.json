@@ -17065,6 +17065,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.monolith_absorption",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int artifact_monolith(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic room monolith adds max(1, donor charges) from each matching-prototype object before extracting the donor.",
+      "authority_boundary": "Preserve recipient charge payload and donor retirement together; multiple donors are distinct identities and minimum-one conversion is existing policy. Payload mutation is outside the current lexical census.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          191,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.elemental_ring_exhaustion",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int ring_elemental_control(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful target-selection path decrements positive ring charges and unequips/retires the ring on reaching zero.",
+      "authority_boundary": "Charge consumption precedes ACT_BREAK_CHARM refusal, so consumption does not prove charm succeeded. Preserve item UID and charge state, including existing nonpositive-charge behavior.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          1240,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          1245,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.menden_figurine_consumption",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int menden_figurine(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Flexing held or wielded figurine creates and places its depicted NPC, invokes unequip, establishes pet/follower state, then extracts figurine.",
+      "authority_boundary": "NPC allocation failure preserves input. Local pos remains -1 at unequip call; do not treat that call as proven detachment. Bind figurine retirement and pet lifetime; PET_NOCASH is not full economy qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          5412,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5426,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.banana_peel_conversion",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int banana(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eating accepted banana applies fullness and wait, retires banana, creates prototype1234 peel with decay affect, and publishes it in room.",
+      "authority_boundary": "Retirement precedes unchecked peel allocation. Preserve food effects, input identity and fresh peel identity without assuming atomic replacement or successful persistence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          5570,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5572,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5574,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.crystal_spike_exhaustion",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int crystal_spike(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Held crystal spike decrements value0 on CMD_CAST and unequips/retires itself exactly when the value reaches zero.",
+      "authority_boundary": "Cast command observation is not proof spell execution succeeded. Persist charge decrement and final retirement consistently; initial nonpositive values do not meet the zero-after-decrement branch.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          5917,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          5918,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

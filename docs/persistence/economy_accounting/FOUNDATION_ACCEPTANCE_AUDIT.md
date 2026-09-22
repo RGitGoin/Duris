@@ -1071,3 +1071,16 @@ partial failure and pet lifetime behavior require explicit integration treatment
 Draft validator passed 13 fixtures: 352 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,264 mapped, 43 reviewed declarations and 1,391 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Charge exhaustion and object conversion
+
+Ten sites classified in monolith absorption, elemental ring exhaustion, Menden
+figurine consumption, banana-to-peel conversion and crystal spike exhaustion.
+Charge/item consumption does not establish successful charm or spell execution.
+Monolith charge aggregation and banana replacement involve payload/creation effects
+beyond retirement. Figurine unequip receives local pos=-1; detachment and pet
+lifetime require qualification rather than assuming success from the helper call.
+
+Draft validator passed 13 fixtures: 357 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,274 mapped, 43 reviewed declarations and 1,381 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
