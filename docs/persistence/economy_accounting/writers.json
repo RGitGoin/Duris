@@ -26513,7 +26513,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/classes/new_skills.c",
@@ -26550,7 +26552,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/classes/new_skills.c",
@@ -26681,7 +26685,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/classes/new_skills.c",
@@ -26718,7 +26724,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/classes/new_skills.c",
@@ -26834,7 +26842,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_wind_blade_creation_runtime.py"
+      ],
       "sites": [
         [
           "src/classes/ethermancer.c",
