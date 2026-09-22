@@ -14,7 +14,22 @@ component PR publication until the existing work has an acceptance audit and an
 issue-sized internal verification batch, consolidated into the final PR. Preserve the current enrollment WIP and finish running
 checks. See [ISSUE_CLOSURE_STATUS.md](ISSUE_CLOSURE_STATUS.md).
 
-## Current increment: initial SQL wallet/shared-bank enrollment
+## Current issue-sized focus: #475 inventory acceptance
+
+Finish the inventory's indirect-write review and executable test candidates before
+claiming its contract frozen. The latest census refresh repairs seven moved anchors
+and adds the bank publication owner/hooks: 852 routes and 2,716 classified lexical
+coordinates, with 674 routes still lacking test candidates. Passing the draft
+validator does not satisfy this issue's completion gate. See the current-head
+section of FOUNDATION_ACCEPTANCE_AUDIT.md.
+
+The native flatfile bank journey now connects production capture, descriptor lookup,
+shared-bank publication and save acknowledgement, including three fresh-process
+exit/recovery boundaries. Preserve that evidence in BANK_ADMISSION.md. It does not
+resolve the inventory gap or activate gameplay. Keep full login/startup, SQL native
+publication, lifecycle/cutover and wider-domain integration visibly pending.
+
+## Preserved component: initial SQL wallet/shared-bank enrollment
 
 Based on [PR #613](https://github.com/Community-Duris/Duris/pull/613) at `084bdc3ce`.
 Reuse the initial enrollment command, private transaction owner and borrowed

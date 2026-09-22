@@ -33,6 +33,34 @@ class AccountingContractTest(unittest.TestCase):
             self.assertEqual([(s['line'],s['family']) for s in sites],
                              [(1,'item_lifecycle')])
 
+    def test_bank_publication_entrypoints_are_candidates(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'src').mkdir()
+            (root/'src/probe.c').write_text(
+                'economic_bank_publication_submit(cmd);\n'
+                'economic_bank_publication_restore(cmd, nullptr);\n'
+                'economic_bank_publication_pulse();\n'
+                '// economic_bank_publication_pulse();\n'
+                'const char *text = "economic_bank_publication_submit(cmd)";\n')
+            self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
+                [(1,'economic_publication'),(2,'economic_publication'),(3,'economic_publication')])
+
+    def test_publication_result_declaration_requires_review_and_rejects_body(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);inventory=self.declaration_fixture(root)
+            for fragment,valid in (
+                ('critical_submit_result economic_bank_publication_submit(const critical_command &);',True),
+                ('critical_submit_result economic_bank_publication_submit(const critical_command &) { mutate(); };',False)):
+                (root/'src/example.c').write_text(fragment+'\n')
+                inventory['census']=contract.scan_sources(root)
+                inventory['nonwriters'][0].update(site=['src/example.c',1,'economic_publication'],
+                    end_line=1,source_sha256=contract.hashlib.sha256(fragment.encode()).hexdigest())
+                if valid:
+                    contract.validate_inventory(inventory,self.registry,root,census=True)
+                else:
+                    with self.assertRaisesRegex(contract.ContractError,'not a reviewed declaration'):
+                        contract.validate_inventory(inventory,self.registry,root,census=True)
+
     def test_all_golden_examples(self):
         contract.validate_registry(self.registry)
         for name in self.examples:

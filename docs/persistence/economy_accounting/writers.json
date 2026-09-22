@@ -8685,7 +8685,8 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_account_bank_delta_safety.py"
+        "tests/async/test_account_bank_delta_safety.py",
+        "tests/async/test_economic_bank_native_journey.py"
       ],
       "sites": [
         [
@@ -11028,7 +11029,8 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_currency_completion_retention.py"
+        "tests/async/test_currency_completion_retention.py",
+        "tests/async/test_economic_bank_native_journey.py"
       ],
       "sites": [
         [
@@ -11323,12 +11325,12 @@
       "sites": [
         [
           "src/economy/coin_transfer_command.c",
-          178,
+          177,
           "economic_submit"
         ],
         [
           "src/economy/coin_transfer_command.c",
-          241,
+          240,
           "economic_submit"
         ]
       ],
@@ -11369,7 +11371,7 @@
       "sites": [
         [
           "src/economy/coin_transfer_command.c",
-          338,
+          337,
           "economic_submit"
         ]
       ],
@@ -36583,12 +36585,12 @@
       "sites": [
         [
           "src/persistence/critical_command_repository.c",
-          833,
+          844,
           "sql_economy"
         ],
         [
           "src/persistence/critical_command_repository.c",
-          836,
+          847,
           "sql_economy"
         ]
       ],
@@ -36629,7 +36631,7 @@
       "sites": [
         [
           "src/persistence/critical_command_repository.c",
-          984,
+          995,
           "sql_economy"
         ]
       ],
@@ -40900,6 +40902,71 @@
       "evidence": [],
       "source": "Worn rubbed wand",
       "destination": "Consumed original then random carried replacement"
+    },
+    {
+      "id": "currency.accounted_bank_publication",
+      "path": "src/economy/economic_bank_publication.c",
+      "symbol": "economic_bank_publication_submit",
+      "reason": "bank_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Schema-2 bank submit registers a retained obligation. Replay restores immutable commands; game-thread pulses publish committed revisioned balances and request a status checkpoint, then acknowledge the original operation only after the required native save. Rejection can retire without publication; missing players or uncertain outcomes retain obligations. This is not new issuance or a gameplay activation path.",
+      "authority_boundary": "Existing critical coordinator owns commit and retained identity/fences; selected native bank transaction owns domain/evidence atomicity. The publication owner only projects committed state and retires its original obligation after save acknowledgement.",
+      "current_support": "Native flatfile journey, production capture/lookup/shared-bank publication and selected process-exit recovery qualified by candidates; full SQL/login/startup/activation and other writers remain unverified.",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_economic_bank_publication.py",
+        "tests/async/test_economic_bank_native_save.py",
+        "tests/async/test_economic_bank_native_journey.py"
+      ],
+      "sites": [
+        [
+          "src/economy/economic_bank_publication.c",
+          117,
+          "economic_publication"
+        ],
+        [
+          "src/economy/economic_bank_publication.c",
+          143,
+          "economic_publication"
+        ],
+        [
+          "src/economy/economic_bank_publication.c",
+          151,
+          "economic_publication"
+        ],
+        [
+          "src/economy/economic_bank_publication.c",
+          173,
+          "economic_publication"
+        ],
+        [
+          "src/net/comm.c",
+          176,
+          "economic_publication"
+        ],
+        [
+          "src/net/comm.c",
+          279,
+          "economic_publication"
+        ]
+      ],
+      "source": "Original committed bank result and immutable operation identity; terminal rejected result has no new effect",
+      "destination": "Live wallet/shared-bank projections and status snapshot, followed by original coordinator acknowledgement; no second economic event"
     }
   ],
   "nonwriters": [
@@ -41126,12 +41193,12 @@
     {
       "site": [
         "src/economy/coin_transfer_command.h",
-        37,
+        38,
         "economic_submit"
       ],
       "classification": "declaration",
       "rationale": "Reviewed function prototype only; no body or economic mutation. Definitions and call sites remain independently subject to census review.",
-      "end_line": 42,
+      "end_line": 43,
       "source_sha256": "142d721311bbb0f921fcc5e0e7a02e432782cd05038e8f2a891366f848193281"
     },
     {
@@ -41397,6 +41464,39 @@
       "rationale": "Single-item decoder prototype; callers and implementation are classified separately.",
       "end_line": 1138,
       "source_sha256": "278d2370c1a36b02b07aace88b4c25fbe36f9ad7c1b285dbcf35c07031af22ce"
+    },
+    {
+      "site": [
+        "src/economy/economic_bank_publication.h",
+        7,
+        "economic_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed bank publication prototype only; its definition and startup/pulse call sites are mapped separately.",
+      "end_line": 7,
+      "source_sha256": "a4a3f2ec3a3d78c5fb20597a1c5e393d47bcfe872048e21e9722219439eeadad"
+    },
+    {
+      "site": [
+        "src/economy/economic_bank_publication.h",
+        8,
+        "economic_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed bank publication prototype only; its definition and startup/pulse call sites are mapped separately.",
+      "end_line": 8,
+      "source_sha256": "d4d107c3f17abc7e760841321a1829ce59079e20a48667122a1b1a0d84055be3"
+    },
+    {
+      "site": [
+        "src/economy/economic_bank_publication.h",
+        9,
+        "economic_publication"
+      ],
+      "classification": "declaration",
+      "rationale": "Reviewed bank publication prototype only; its definition and startup/pulse call sites are mapped separately.",
+      "end_line": 9,
+      "source_sha256": "5b00795b4719a2fce626cc30e2452d514160afd19e8b8e4bc857c0801a8c8105"
     }
   ],
   "census": [
@@ -42314,10 +42414,10 @@
     {"path": "src/economy/cardgames.c", "line": 398, "family": "direct_cash_assignment", "excerpt": "ch->points.cash[obj->value[2]] += 2 * obj->value[1];"},
     {"path": "src/economy/cardgames.c", "line": 413, "family": "direct_cash_assignment", "excerpt": "ch->points.cash[obj->value[2]] += obj->value[1];"},
     {"path": "src/economy/cardgames.c", "line": 448, "family": "direct_cash_assignment", "excerpt": "ch->points.cash[obj->value[2]] += 2 * obj->value[1];"},
-    {"path": "src/economy/coin_transfer_command.c", "line": 178, "family": "economic_submit", "excerpt": "bool coin_transfer_command_build(critical_command *command,"},
-    {"path": "src/economy/coin_transfer_command.c", "line": 241, "family": "economic_submit", "excerpt": "if (!coin_transfer_command_build(&expected, command.operation_id, decoded,"},
-    {"path": "src/economy/coin_transfer_command.c", "line": 338, "family": "economic_submit", "excerpt": "if (!item_transfer_command_build(destination, payload.destination.change.operation_id,"},
-    {"path": "src/economy/coin_transfer_command.h", "line": 37, "family": "economic_submit", "excerpt": "bool coin_transfer_command_build(critical_command *command,"},
+    {"path": "src/economy/coin_transfer_command.c", "line": 177, "family": "economic_submit", "excerpt": "bool coin_transfer_command_build(critical_command *command,"},
+    {"path": "src/economy/coin_transfer_command.c", "line": 240, "family": "economic_submit", "excerpt": "if (!coin_transfer_command_build(&expected, command.operation_id, decoded,"},
+    {"path": "src/economy/coin_transfer_command.c", "line": 337, "family": "economic_submit", "excerpt": "if (!item_transfer_command_build(destination, payload.destination.change.operation_id,"},
+    {"path": "src/economy/coin_transfer_command.h", "line": 38, "family": "economic_submit", "excerpt": "bool coin_transfer_command_build(critical_command *command,"},
     {"path": "src/economy/collector_collection_preparation.c", "line": 345, "family": "item_lifecycle", "excerpt": "extract_obj(selected, FALSE);"},
     {"path": "src/economy/collector_collection_preparation.c", "line": 334, "family": "item_publication", "excerpt": "obj_from_obj(child);"},
     {"path": "src/economy/collector_collection_preparation.c", "line": 338, "family": "item_publication", "excerpt": "obj_to_obj(child, parent);"},
@@ -42437,6 +42537,13 @@
     {"path": "src/economy/currency_transaction.h", "line": 82, "family": "economic_submit", "excerpt": "bool currency_transaction_submit_wallet_value(P_char character, int64_t value_delta,"},
     {"path": "src/economy/currency_transaction.h", "line": 88, "family": "economic_submit", "excerpt": "bool currency_transaction_submit_bank_reward(P_char character, int64_t value,"},
     {"path": "src/economy/currency_transaction.h", "line": 94, "family": "economic_submit", "excerpt": "bool currency_transaction_submit_bank_payment(P_char character, int64_t value,"},
+    {"path": "src/economy/economic_bank_publication.c", "line": 117, "family": "economic_publication", "excerpt": "bool economic_bank_publication_restore(const critical_command &command, void *)"},
+    {"path": "src/economy/economic_bank_publication.c", "line": 143, "family": "economic_publication", "excerpt": "critical_submit_result economic_bank_publication_submit(const critical_command &command)"},
+    {"path": "src/economy/economic_bank_publication.c", "line": 151, "family": "economic_publication", "excerpt": "if (!economic_bank_publication_restore(command, nullptr))"},
+    {"path": "src/economy/economic_bank_publication.c", "line": 173, "family": "economic_publication", "excerpt": "void economic_bank_publication_pulse()"},
+    {"path": "src/economy/economic_bank_publication.h", "line": 7, "family": "economic_publication", "excerpt": "bool economic_bank_publication_restore(const critical_command &, void *context);"},
+    {"path": "src/economy/economic_bank_publication.h", "line": 8, "family": "economic_publication", "excerpt": "critical_submit_result economic_bank_publication_submit(const critical_command &);"},
+    {"path": "src/economy/economic_bank_publication.h", "line": 9, "family": "economic_publication", "excerpt": "void economic_bank_publication_pulse();"},
     {"path": "src/economy/mining.c", "line": 254, "family": "item_lifecycle", "excerpt": "ore = read_object(ore_type, VIRTUAL);"},
     {"path": "src/economy/mining.c", "line": 265, "family": "item_lifecycle", "excerpt": "P_obj gem = read_object(mining_config_gem_vnum(mine_quality), VIRTUAL);"},
     {"path": "src/economy/mining.c", "line": 283, "family": "item_lifecycle", "excerpt": "extract_obj(obj, TRUE); // Not an arti, but 'in game.'"},
@@ -43112,6 +43219,8 @@
     {"path": "src/mob/studioproc.c", "line": 1310, "family": "item_lifecycle", "excerpt": "extract_obj(cx->self_obj, TRUE);"},
     {"path": "src/mob/studioproc.c", "line": 1100, "family": "item_publication", "excerpt": "obj_to_room(o, room);"},
     {"path": "src/mob/studioproc.c", "line": 1106, "family": "item_publication", "excerpt": "obj_to_char(o, actor);"},
+    {"path": "src/net/comm.c", "line": 176, "family": "economic_publication", "excerpt": "return economic_bank_publication_restore(command, context) &&"},
+    {"path": "src/net/comm.c", "line": 279, "family": "economic_publication", "excerpt": "economic_bank_publication_pulse();"},
     {"path": "src/net/modify.c", "line": 1501, "family": "money_helper", "excerpt": "SUB_MONEY(ch, renamePrice, 0);"},
     {"path": "src/net/ws_handlers.c", "line": 482, "family": "economic_submit", "excerpt": "if (!auction_transaction_submit_background(payload, NULL))"},
     {"path": "src/persistence/copyover.c", "line": 1499, "family": "coin_assignment", "excerpt": "GET_GOLD(mob) = mob_entry.gold;"},
@@ -43131,9 +43240,9 @@
     {"path": "src/persistence/corpse_lifecycle_repository.c", "line": 1347, "family": "sql_economy", "excerpt": "if (!execute(connection, \"INSERT IGNORE INTO account_banks(account_name,racewar) VALUES('\" +"},
     {"path": "src/persistence/corpse_lifecycle_repository.c", "line": 1687, "family": "sql_economy", "excerpt": "sql = \"INSERT INTO saved_items(item_key,room_vnum,vnum,container_id,quantity,\""},
     {"path": "src/persistence/corpse_lifecycle_repository.c", "line": 2074, "family": "sql_economy", "excerpt": "\"DELETE FROM saved_items WHERE id=\" + std::to_string(root_row_id) +"},
-    {"path": "src/persistence/critical_command_repository.c", "line": 833, "family": "sql_economy", "excerpt": "\"UPDATE account_banks SET bank_copper=?,bank_silver=?,bank_gold=?,bank_platinum=?,\""},
-    {"path": "src/persistence/critical_command_repository.c", "line": 836, "family": "sql_economy", "excerpt": "\"INSERT INTO currency_ledger(operation_id,pid,bank_id,wallet_delta_copper,\""},
-    {"path": "src/persistence/critical_command_repository.c", "line": 984, "family": "sql_economy", "excerpt": "\"INSERT IGNORE INTO account_banks(account_name,racewar) VALUES(?,?)\";"},
+    {"path": "src/persistence/critical_command_repository.c", "line": 844, "family": "sql_economy", "excerpt": "\"UPDATE account_banks SET bank_copper=?,bank_silver=?,bank_gold=?,bank_platinum=?,\""},
+    {"path": "src/persistence/critical_command_repository.c", "line": 847, "family": "sql_economy", "excerpt": "\"INSERT INTO currency_ledger(operation_id,pid,bank_id,wallet_delta_copper,\""},
+    {"path": "src/persistence/critical_command_repository.c", "line": 995, "family": "sql_economy", "excerpt": "\"INSERT IGNORE INTO account_banks(account_name,racewar) VALUES(?,?)\";"},
     {"path": "src/persistence/player_death_restitution_repository.c", "line": 1076, "family": "sql_economy", "excerpt": "\"UPDATE item_current_owner SET root_item_uid=?,parent_item_uid=?,owner_type=1,owner_id=?,\""},
     {"path": "src/persistence/player_death_restitution_repository.c", "line": 1324, "family": "sql_economy", "excerpt": "\"INSERT INTO item_ownership_ledger(operation_id,event_index,item_uid,root_item_uid,parent_item_uid,\""},
     {"path": "src/player/player_load_items.c", "line": 39, "family": "item_lifecycle", "excerpt": "extract_obj(objects[index], FALSE);"},

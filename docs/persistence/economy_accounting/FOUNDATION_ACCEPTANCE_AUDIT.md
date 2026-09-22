@@ -6,7 +6,7 @@ needed for each remaining component. Finish an issue-sized batch first.
 
 | Issue | Established within original scope | Remaining acceptance work |
 | --- | --- | --- |
-| #475 inventory/contracts | All 2,707 raw coordinates classified: 2,662 mapped across 851 routes and 45 declarations; 13 golden fixtures and 43 contract tests pass | Review indirect/aliased mutations against current master; reconcile integration ownership; retain completed source/destination descriptions and finish executable test links (674 routes currently have no test candidates); freeze registry and refresh delivery status. Runtime enforcement is not required to close this contract issue. |
+| #475 inventory/contracts | All 2,716 lexical coordinates classified: 2,668 mapped across 852 routes and 48 declarations; 13 golden fixtures and 45 contract tests pass | Review indirect/aliased mutations against current master; reconcile integration ownership; retain completed source/destination descriptions and finish executable test links (674 routes currently have no test candidates); freeze registry and refresh delivery status. Runtime enforcement is not required to close this contract issue. |
 | #476 pure plans/links | Bounded types and plans, canonical encoding, deterministic links, typed intent comparison, rejection tests, legacy replay fixtures and coordinator interfaces | Repeat qualification on the final delivery head and satisfy #475 merge prerequisite. Replay/publication ownership is now explicit in the public contract; current pure-module checks passed at 623ae3803. Later gameplay integration is not a prerequisite for this pure module. |
 | #477 SQL storage | Additive tables/indexes; bank transaction-local evidence and rollback/lost-ACK coverage; local MySQL/MariaDB migration qualification | Common item/child/source append and finalization, compound savepoint rollback, application-role UPDATE/DELETE refusal with separate migration privileges, and common-adapter fault/invariant/original-ID deadlock coverage on both engines. Bank lock-timeout tests do not prove deadlock recovery. |
 | #478 flat-file storage | Shared native-afterimage/evidence protocol, process/syscall crash tests, cold replay beyond cache, corruption/capacity refusal, sealed retention, lifecycle and backup registration | Bounded item/child bundle coverage with maximum accepted/first refused cases; shared native SQL/flat-file golden output and error parity. A baseline witness is not a native item mutation; pure SQL policy comparison is not native backend parity. |
@@ -3464,3 +3464,27 @@ The same lifecycle harness now also executes the item-owner revision branch: sha
 Extended flatfile_accounting_store_test.cpp with 6,000 before/after item witnesses and 3,000 item events in a structurally valid plan. The private test bridge stages and commits the evidence, then reacquires authority and verifies exact plan/result bytes. One extra witness or event returns capacity and preserves the previous encoded plan. The full test_flatfile_accounting_store.py ASan/UBSan run passed, including its existing 85 syscall/process-exit fault cases. Initial test setup omitted bucket initialization; corrected before the passing run.
 
 This qualifies maximum item evidence storage, not a native item mutation owner or compound children. Child-bearing plans remain deliberately refused until unique child-ID reservation exists. The remaining #478 requirement still includes native item/child bundles and SQL/flat-file outcome parity. No production code or backend support flag changed; no full server build was needed for this test-only change.
+
+## Current-head census repair and publication coverage
+
+At `69b0a47be`, draft validation exposed seven moved source coordinates and one
+stale declaration location. Each coordinate had exactly one unchanged excerpt in
+its original file/family; the moved declaration retained its complete original
+hash. The refresh changes locations without claiming new semantic review of those
+routes. The scanner now discovers bank publication submit/restore/pulse entrypoints:
+six definition/call sites belong to `currency.accounted_bank_publication`, and three
+header prototypes are hash-verified declarations. The route records commit versus
+publication/save boundaries, #480 ownership, original-ID retention and native test
+candidates. Real wallet and revisioned shared-bank projection routes also link the
+native journey. No backend status or completeness flag was promoted.
+
+Validation: 13 golden fixtures, 852 routes, 2,774 lexical hits / 2,716 unique
+coordinates; 2,668 mapped and 48 declarations, none unclassified. All 45 contract
+tests pass. The strict census gate remains closed; 674 routes still lack executable
+test candidates, and indirect/aliased writes need semantic review.
+
+The issue repository master was verified as `feed2939125c3e9a955b92adbf627a2ad568586e`
+through `Community-Duris/Duris`. The configured `origin` is the separate
+`Community-Duris/DurisMUD` repository (`4b56d8a1ec3e1d64163d31f179665100326e0320`).
+Use the issue repository explicitly for master comparisons and final PR publication.
+This scoped refresh is not a whole-master census review or issue closure audit.
