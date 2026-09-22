@@ -228,7 +228,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reset templates and existing equipment where replaced",
+      "destination": "Accepted room/container/NPC stock; rejected provisional cleanup and same-owner equipment move"
     },
     {
       "id": "world.mobile_template",
@@ -313,7 +315,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "NPC prototype denominations and legacy parsing",
+      "destination": "Allocated NPC cash before conversion; callers distinguish creation/probe/recovery"
     },
     {
       "id": "world.mobile_scaling",
@@ -388,7 +392,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "NPC wallet and elite/race/difficulty policy",
+      "destination": "Recomputed/zeroed cash across creation and restoration callers"
     },
     {
       "id": "world.random_mobile",
@@ -417,7 +423,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "New random NPC currency roll",
+      "destination": "NPC gold/platinum at admission"
     },
     {
       "id": "world.generated_npc_hydration",
@@ -448,7 +456,9 @@
         "tests/async/test_generated_npc_state.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Encoded retained NPC state",
+      "destination": "Restored NPC projection, not issuance"
     },
     {
       "id": "pet.no_cash",
@@ -1137,7 +1147,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Zone-reset live assets",
+      "destination": "Mass extraction with sink/reconstruction classification still unresolved"
     },
     {
       "id": "world.npc_item_hydration",
@@ -1168,7 +1180,9 @@
         "tests/async/test_world_recovery_npc_items.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Reset gear reconstruction state",
+      "destination": "NPC gear projection; fresh UID alone not issuance evidence"
     },
     {
       "id": "death.wallet_disposition",
@@ -5245,7 +5259,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Object template and pool allocation",
+      "destination": "Provisional fields/UID with creation-candidate flag; caller owns admission"
     },
     {
       "id": "world.npc_zeroing",
@@ -5315,7 +5331,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Patrol/guard/zombie creation wallet",
+      "destination": "Zero wallet at caller-specific placement stage; admitted-balance status requires proof"
     },
     {
       "id": "world.prototype_weight_probe",
@@ -5355,7 +5373,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary object template",
+      "destination": "Weight observation and probe cleanup"
     },
     {
       "id": "world.entry_flower",
@@ -5395,7 +5415,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "NPC social flower template",
+      "destination": "New NPC-held flower then attempted player gift"
     },
     {
       "id": "item.live_publication",
@@ -9364,7 +9386,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Generated entrance/sign/sigil templates",
+      "destination": "Placed decorative features and transferable terminal sigil"
     },
     {
       "id": "world.random_zone_loot",
@@ -9454,7 +9478,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Generated chest/key and randomized loot",
+      "destination": "Populated chest moved to guardian plus optional epic stone"
     },
     {
       "id": "world.random_zone_disabled_potions",
@@ -9519,7 +9545,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Potion branch guarded by false condition",
+      "destination": "No active loot creation"
     },
     {
       "id": "world.relic_potion_reward",
@@ -9584,7 +9612,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible initial relic activation and potion roll",
+      "destination": "Updated relic timer/state and carrier potion"
     },
     {
       "id": "world.random_quest_turnin",
@@ -9639,7 +9669,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching carried sigil and participant entitlement",
+      "destination": "Consumed sigil plus epic/item rewards grouped under turn-in"
     },
     {
       "id": "world.random_sigil_allocation",
@@ -9674,7 +9706,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Generated zone identity/description and template",
+      "destination": "Provisional labeled sigil for caller publication"
     },
     {
       "id": "world.labyrinth_reset",
@@ -9719,7 +9753,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Labyrinth live objects and NPC holdings",
+      "destination": "Eligible retirement and surviving corpse/artifact relocation to entrance"
     },
     {
       "id": "world.labyrinth_probe",
@@ -9764,7 +9800,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary relic prototype",
+      "destination": "Artifact-tracking inspection and cleanup"
     },
     {
       "id": "world.labyrinth_relic",
@@ -9809,7 +9847,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "End-guardian relic candidate and registry check",
+      "destination": "Timed NPC-held relic or rejected candidate cleanup"
     },
     {
       "id": "enhance.replacement",
@@ -24216,7 +24256,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible NPC death and random reward selections",
+      "destination": "New scale/shard/stone/equipment/material outputs on dying NPC"
     },
     {
       "id": "item.combat_bloodstain",
@@ -25341,7 +25383,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected region/resource/room and randomized node payload",
+      "destination": "Admitted room node"
     },
     {
       "id": "world.kingdom_personal_gather",
@@ -25391,7 +25435,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared node charge and generated material yield",
+      "destination": "Bag materials or partial/zero output; exhausted node retired"
     },
     {
       "id": "world.kingdom_node_room_reap",
@@ -25426,7 +25472,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room nodes failing region/age/ownership policy",
+      "destination": "Retired recognized node instances"
     },
     {
       "id": "world.kingdom_node_sweep_reap",
@@ -25461,7 +25509,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Collected world nodes meeting reap predicate",
+      "destination": "Retired selected node identities without implicit replacement roll"
     },
     {
       "id": "world.kingdom_node_periodic_exhaustion",

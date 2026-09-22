@@ -3235,3 +3235,7 @@ Added 29 helper/building/ship/gambling/quest/spell endpoints, preserving transfe
 ## Scripted economy endpoints (2026-09-22)
 
 Added 36 special, nexus, script and Winterhaven endpoints. Preserved independent random outputs, same-owner equipment swaps, paired sinks, partial allocations and the gem-factory null-return limitation without changing mechanics. Explicit endpoints: 492; missing endpoints: 359; test-link gaps remain 710. Draft validation and diff checks pass; no native execution or gameplay qualification claimed.
+
+## World admission endpoints (2026-09-22)
+
+Added 25 world endpoints covering reset/prototype preparation, reconstruction, random loot, death rewards and kingdom nodes. Preserved same-owner moves, rejected provisional copies, disabled potion code and charge-before-partial-yield behavior. Explicit endpoints: 517; missing endpoints: 334; test-link gaps remain 710. Draft validation and diff checks pass; no runtime admission or backend qualification claimed.
