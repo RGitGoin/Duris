@@ -19550,6 +19550,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.resurrection_committed_inventory",
+      "path": "src/magic/magic.c",
+      "symbol": "void complete_player_resurrection_after_commit(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Post-commit resurrection releases existing inventory/equipment to old room or extracts transient entries, relocates player, then transfers corpse children to player while extracting money objects.",
+      "authority_boundary": "Money extraction is committed-result projection, not fresh wallet issuance here. Inventory transient predicate reads corpse obj flags whereas equipment predicate reads each item; preserve observed behavior pending explicit integration fix. Exact UIDs, old room, corpse graph and retained publication/save state must be qualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          15691,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          15694,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15695,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15702,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15704,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          15706,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15714,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          15716,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          15718,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -1423,3 +1423,14 @@ and UID without treating item exhaustion as durable travel or save proof.
 Draft validator passed 13 fixtures: 413 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,395 mapped, 43 reviewed declarations and 1,260 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Committed resurrection inventory publication
+
+Nine coordinates classified. Old possessions release/retire before corpse children
+transfer; money objects are removed as post-commit projection. Inventory transient
+predicate checks corpse flags, unlike equipment item flags; this observed distinction
+requires integration review. No correction or runtime qualification claimed.
+
+Draft validator passed 13 fixtures: 414 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,404 mapped, 43 reviewed declarations and 1,251 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
