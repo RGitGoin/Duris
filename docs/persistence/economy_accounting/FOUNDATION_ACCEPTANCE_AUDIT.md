@@ -1718,3 +1718,14 @@ All current ctf.c lexical matches mapped, not semantic/runtime completion.
 Draft validation passed13 fixtures:483 routes,2756 raw matches,2698 unique
 coordinates,1642 mapped,43 reviewed declarations,1013 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Crafting template removal and pick breakage
+
+Six coordinates classified. yank_make_item removes only held/carried matching
+input; local pointer clearing is not caller invalidation. make_key changes lock
+and existing key payload before optional pick retirement. Input/output identity,
+partial effects and save recovery remain qualification work.
+
+Draft validation passed13 fixtures:485 routes,2756 raw matches,2698 unique
+coordinates,1648 mapped,43 reviewed declarations,1007 unclassified.
+No gameplay changes; release readiness remains false.

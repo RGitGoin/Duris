@@ -22885,6 +22885,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.craft_template_removal",
+      "path": "src/cmd/actnew.c",
+      "symbol": "void yank_make_item(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Removes specified object only when held or found in character inventory: unequips or detaches then extracts. Local obj=null does not clear caller pointer.",
+      "authority_boundary": "Bind consumed template UID to caller crafting operation and output mutations. Missing possession is no removal; caller completion and save require separate qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          2991,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          2992,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3000,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3001,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.custom_key_pick_breakage",
+      "path": "src/cmd/actnew.c",
+      "symbol": "void make_key(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Object-lock branch sets target lock value2 and renames blank key, then chance based on held pick value1 unequips/extracts pick.",
+      "authority_boundary": "Lock/key payload changes precede tool retirement; same key UID is customized rather than newly allocated. Preserve exact chance and partial effect ordering with durable save/recovery.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actnew.c",
+          3148,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actnew.c",
+          3149,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
