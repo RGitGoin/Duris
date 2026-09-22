@@ -37,7 +37,13 @@ def copper(value):
 
 
 def unique(rows, key, label):
-    values = [row[key] for row in rows]
+    values = []
+    for row in rows:
+        require(key in row, f'missing {label}')
+        value = row[key]
+        if key == 'id':
+            require(isinstance(value, str) and bool(value.strip()), f'invalid {label}')
+        values.append(value)
     require(len(set(values)) == len(values), f'duplicate {label}')
 
 

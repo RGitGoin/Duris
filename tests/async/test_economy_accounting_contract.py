@@ -94,6 +94,21 @@ class AccountingContractTest(unittest.TestCase):
         f=self.examples['wallet_bank'];f['holdings']['alias']=copy.deepcopy(f['holdings']['wallet'])
         with self.assertRaisesRegex(contract.ContractError,'duplicate account'): self.validate('wallet_bank')
 
+    def test_named_ids_reject_missing_blank_and_nonstring_values(self):
+        for label in ('writer ID','fixture ID','account_kinds','reasons'):
+            for row in ({},{'id':''},{'id':'  '},{'id':None},{'id':7},{'id':[]}):
+                with self.subTest(label=label,row=row):
+                    with self.assertRaises(contract.ContractError):
+                        contract.unique([row],'id',label)
+
+    def test_registry_rejects_blank_named_id_before_references(self):
+        for section in ('account_kinds','reasons'):
+            changed=copy.deepcopy(self.registry)
+            changed[section][0]['id']=' '
+            with self.subTest(section=section):
+                with self.assertRaisesRegex(contract.ContractError,'invalid '+section):
+                    contract.validate_registry(changed)
+
     def test_duplicate_registry_id(self):
         self.registry['reasons'].append(copy.deepcopy(self.registry['reasons'][0]))
         with self.assertRaisesRegex(contract.ContractError,'duplicate'): contract.validate_registry(self.registry)
