@@ -1332,3 +1332,13 @@ qualification before assuming ledger retirement; preserve existing refusals.
 Draft validator passed 13 fixtures: 401 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,370 mapped, 43 reviewed declarations and 1,285 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## General portal endpoint creation
+
+Five coordinates classified. Optional second allocation failure cleans unpublished
+first portal; successful endpoints receive links/timers before sequential room
+publication. Retain paired UIDs and distinguish cleanup from admitted retirement.
+
+Draft validator passed 13 fixtures: 402 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,375 mapped, 43 reviewed declarations and 1,280 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

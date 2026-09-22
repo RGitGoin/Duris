@@ -19065,6 +19065,61 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.general_portal_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "bool spell_general_portal(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates outbound and optional return portal; second allocation failure extracts unpublished first. Sets destination/timing/decay payload, calls set_up_portals, then publishes endpoints sequentially to rooms.",
+      "authority_boundary": "Separate unpublished allocation cleanup from retirement of admitted portals. Retain both fresh UIDs, one-way decision, linkage and payload; sequential endpoint placement and logs do not prove atomic durable pair admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          21639,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          21649,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          21658,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          21720,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          21722,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
