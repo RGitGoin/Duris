@@ -3584,3 +3584,7 @@ Read the passing native assertions and mapped three routes: ownership insertion 
 ### Native coin payload evidence
 
 At 50d0c81a2, run_economic_accounting_schema_local.py --suite currency passed private MariaDB bootstrap, migration replay, compatibility/schema checks and native ASan/UBSan currency/coin harness. Inspected pile_amount decoding and partial-pickup, merge/replay and depleted-pile NULL payload assertions; linked storage.item_coin_payload to the runner. Missing candidates decrease to 631. This is existing repository evidence, not common accounting integration, MySQL parity or native publication/save acknowledgement. No production changes.
+
+### Candidate metadata validation
+
+The validator now requires test_candidates to be a list of nonblank strings and rejects duplicates. Previously a dictionary could be iterated as evidence paths and malformed values could raise incidental TypeError/KeyError instead of a contract error. Regression includes dictionary/string/scalar/null containers, invalid elements, duplicates and a missing field. All 49 contract tests and current draft validation pass. Existing 631 candidate gaps remain; metadata validation does not establish runtime coverage.

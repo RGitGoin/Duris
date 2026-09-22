@@ -241,7 +241,12 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
             key=tuple(site)
             require(key not in site_owners,'duplicate writer source site ownership')
             site_owners[key]=writer['id']
-        for test in writer['test_candidates']:
+        candidates=writer.get('test_candidates')
+        require(isinstance(candidates,list),'invalid test candidate list')
+        require(all(isinstance(test,str) and test.strip() for test in candidates),
+                'invalid test candidate path')
+        require(len(candidates)==len(set(candidates)),'duplicate test candidate')
+        for test in candidates:
             require((root/test).is_file(),'missing test candidate')
         if release:
             require(bool(writer.get('evidence')),'writer has no executable evidence')

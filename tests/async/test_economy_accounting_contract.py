@@ -246,6 +246,24 @@ class AccountingContractTest(unittest.TestCase):
                 with self.assertRaisesRegex(contract.ContractError,'missing'):
                     contract.validate_inventory(missing,self.registry,root)
 
+    def test_inventory_rejects_malformed_test_candidates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            for value in (None,42,True,'test.py',{'test.py':True},[None],[42],[''],['  ']):
+                invalid=copy.deepcopy(inventory)
+                invalid['writers'][0]['test_candidates']=value
+                with self.subTest(value=value), self.assertRaisesRegex(
+                        contract.ContractError,'invalid test candidate'):
+                    contract.validate_inventory(invalid,self.registry,root)
+            duplicate=copy.deepcopy(inventory)
+            duplicate['writers'][0]['test_candidates']*=2
+            with self.assertRaisesRegex(contract.ContractError,'duplicate test candidate'):
+                contract.validate_inventory(duplicate,self.registry,root)
+            missing=copy.deepcopy(inventory)
+            del missing['writers'][0]['test_candidates']
+            with self.assertRaisesRegex(contract.ContractError,'invalid test candidate list'):
+                contract.validate_inventory(missing,self.registry,root)
+
     def test_inventory_rejects_duplicate_site_ownership(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.census_fixture(root)
