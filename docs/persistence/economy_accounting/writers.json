@@ -28586,6 +28586,56 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.account_display_cleanup",
+      "path": "src/account/account.c",
+      "symbol": "cleanup_temp_char",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Account display helper restores a temporary character, reads display fields, then cleanup unequips/extracts equipment and detaches/extracts carried items with FALSE before caller frees character. This disposes temporary loaded copies rather than intentionally retiring saved inventory.",
+      "authority_boundary": "Keep temporary display materialization and cleanup separate from durable ownership retirement. Qualify helper side effects and restore failure cleanup; a read-only account display must not change saved item custody.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/account.c",
+          1587,
+          "item_publication"
+        ],
+        [
+          "src/account/account.c",
+          1588,
+          "item_lifecycle"
+        ],
+        [
+          "src/account/account.c",
+          1596,
+          "item_publication"
+        ],
+        [
+          "src/account/account.c",
+          1597,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

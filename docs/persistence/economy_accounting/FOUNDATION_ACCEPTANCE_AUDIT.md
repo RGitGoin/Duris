@@ -2198,3 +2198,14 @@ Replay and durable ordering remain unqualified.
 Draft validation passed 13 fixtures: 613 routes, 2756 raw matches, 2698 unique
 coordinates, 1997 mapped, 43 reviewed nonwriters, 658 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Account display temporary inventory cleanup
+
+Four coordinates classified in cleanup_temp_char, called after temporary
+restoreCharOnly display extraction. Equipment/inventory extraction disposes
+loaded copies, not intended saved-item retirement. Helper side effects and
+restore-failure cleanup remain qualification work.
+
+Draft validation passed 13 fixtures: 614 routes, 2756 raw matches, 2698 unique
+coordinates, 2001 mapped, 43 reviewed nonwriters, 654 unclassified.
+No gameplay changes; release readiness remains false.
