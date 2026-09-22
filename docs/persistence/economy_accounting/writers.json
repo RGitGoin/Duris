@@ -15460,6 +15460,101 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "service.witch_elixir",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int witch_doctor(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Elixir purchase calls transact, applies timed character affect, narrates drinking and clears witch platinum balance. No potion item is allocated in purchase branch.",
+      "authority_boundary": "Payment, benefit and NPC platinum sink are separate steps; entire denomination reset need not equal fee. Rested eligibility and duration are existing policy. Narration does not establish item creation or durable benefit receipt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          14015,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          14035,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "service.artifact_locator",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int llyren(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Artifact-location service charges type-dependent fee via transact, clears all NPC cash and then displays matching live object locations.",
+      "authority_boundary": "This purchases information, not artifact custody. Balance reset includes prior NPC funds; payment and sink need explicit links. Display success and helper return do not prove common settlement or native saving.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          15568,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15573,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15574,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15575,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15576,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

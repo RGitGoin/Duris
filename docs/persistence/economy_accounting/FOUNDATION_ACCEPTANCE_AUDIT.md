@@ -930,3 +930,14 @@ proof of an epic charge.
 Draft validator passed 13 fixtures: 321 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,129 mapped, 43 reviewed declarations and 1,526 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Elixir effects and artifact information fees
+
+Seven sites classified. Witch purchase applies an affect without creating a potion,
+then clears NPC platinum. Artifact locator sells information without moving artifacts
+and clears all NPC cash after payment. Those sinks can include prior holdings, not
+only current fees; helper return and narration do not qualify atomic settlement.
+
+Draft validator passed 13 fixtures: 323 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,136 mapped, 43 reviewed declarations and 1,519 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
