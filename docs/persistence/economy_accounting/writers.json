@@ -18330,6 +18330,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.dragonlord_reversion_equipment",
+      "path": "src/specs/specs.object.c",
+      "symbol": "void event_dragonlord_check(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Dragonlord event removes conflicting plate into same owner inventory and reschedules; otherwise race reversion invokes remove procs then unequips all equipment into same owner inventory.",
+      "authority_boundary": "Preserve separate conflict/reversion branches and exact item identities. Race/affect restoration precedes bulk equipment movement; remove callbacks and rescheduling do not establish atomic custody or durable save.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2521,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2554,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.dragonlord_legacy_equipment",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int dragonlord_plate_old(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy periodic worn plate handler moves other equipment into wearer inventory after invoking each remove proc before applying race-change effects.",
+      "authority_boundary": "Preserve plate exemption and same-owner item identity. Old function name does not establish whether handler is currently registered; reachability needs separate qualification. Remove-proc mutation and lifetime effects are not proven safe by this census.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2609,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -1196,3 +1196,14 @@ Linked payload publication is not established by the room-movement census alone.
 Draft validator passed 13 fixtures: 383 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,331 mapped, 43 reviewed declarations and 1,324 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Dragonlord equipment transitions
+
+Three coordinates classified for plate conflict removal, race reversion and legacy
+transformation equipment removal. Ownership remains unchanged; remove callbacks,
+race effects and event rescheduling need independent qualification. Legacy naming
+does not establish registration or justify excluding a writer.
+
+Draft validator passed 13 fixtures: 385 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,334 mapped, 43 reviewed declarations and 1,321 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
