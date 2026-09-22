@@ -4459,7 +4459,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actual ingredients/essence/tools or pouch usage and provisional output",
+      "destination": "Crafted player grant after input consumption; separate save and submission boundaries"
     },
     {
       "id": "crafting.forge",
@@ -4544,7 +4546,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Forge materials/essence/flux or pouch usage",
+      "destination": "Provisional forged output submitted after consumption"
     },
     {
       "id": "crafting.smith",
@@ -4609,7 +4613,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player coin cost and ore",
+      "destination": "Smith output under currently separate payment/input/output steps"
     },
     {
       "id": "crafting.refine",
@@ -4669,7 +4675,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Two salvage inputs, counted ore and conditional coin fee",
+      "destination": "Upgraded material on success or intended no-output failure"
     },
     {
       "id": "crafting.fishing",
@@ -4704,7 +4712,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fishing-produced provisional item",
+      "destination": "Admitted fishing output"
     },
     {
       "id": "crafting.parchment",
@@ -4744,7 +4754,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rolled provisional recipe parchment",
+      "destination": "Room parchment when rarity permits; rejected allocation not locally freed"
     },
     {
       "id": "crafting.epic_store",
@@ -4784,7 +4796,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Epic entitlement debit and provisional item",
+      "destination": "Created player item; epic value outside coin supply"
     },
     {
       "id": "mining.harvest",
@@ -4829,7 +4843,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reserved mine charge and ore/gem roll",
+      "destination": "Room output or no harvest on interruption/load failure"
     },
     {
       "id": "item.arrow_reset_temporary",
@@ -7415,7 +7431,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional crafted object",
+      "destination": "Player creation queue or rejected candidate cleanup"
     },
     {
       "id": "crafting.recipe_description",
@@ -7475,7 +7493,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary low/high material templates",
+      "destination": "Recipe description and discarded probes"
     },
     {
       "id": "crafting.recipe_lookup",
@@ -7530,7 +7550,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved/legacy recipe and temporary target template",
+      "destination": "Validated recipe availability and discarded probe"
     },
     {
       "id": "crafting.recipe_preview",
@@ -7695,7 +7717,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary recipe/item/material templates",
+      "destination": "Preview or material-name output and cleanup; not inventory consumption"
     },
     {
       "id": "crafting.forge_preview",
@@ -7785,7 +7809,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary forge output/material templates",
+      "destination": "List/info/stat output and cleanup"
     },
     {
       "id": "crafting.tradeskill_grant",
@@ -7825,7 +7851,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional tradeskill output",
+      "destination": "Player creation queue or rejected candidate cleanup"
     },
     {
       "id": "crafting.legacy_parchment_learning",
@@ -7860,7 +7888,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable parchment-consumption code after return",
+      "destination": "No active consumption under current control flow"
     },
     {
       "id": "crafting.legacy_forge_allocation",
@@ -7895,7 +7925,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Generic object allocation and forge rolls",
+      "destination": "Configured provisional object returned to caller"
     },
     {
       "id": "crafting.bandage",
@@ -7930,7 +7962,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected bandage and healing capacity",
+      "destination": "Consumed bandage and scheduled healing event"
     },
     {
       "id": "crafting.learn_recipe",
@@ -7990,7 +8024,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Physical recipe scroll and validation probe",
+      "destination": "Recorded recipe entitlement then scroll consumption; probe discarded"
     },
     {
       "id": "crafting.refine_message_probe",
@@ -8030,7 +8066,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Old-material prototype after output submission",
+      "destination": "Message output and temporary cleanup"
     },
     {
       "id": "shop.creation_refund",
@@ -9784,7 +9822,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original equipment, cash and physical/pouch material",
+      "destination": "Replacement output followed by old equipment/material retirement"
     },
     {
       "id": "enhance.prototype_inspection",
@@ -9854,7 +9894,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary equipment/material templates",
+      "destination": "Modifier/description/requirement data and probe cleanup"
     },
     {
       "id": "enhance.superior",
@@ -9894,7 +9936,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing equipment, cash and physical/pouch materials",
+      "destination": "Superior modifiers on same item and consumed cost/materials"
     },
     {
       "id": "enhance.modifier",
@@ -9939,7 +9983,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing item, cash and enhancement material",
+      "destination": "Changed affects/flag and consumed material; payment separate"
     },
     {
       "id": "enhance.seasonal_mobile_item",
@@ -9979,7 +10025,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "New seasonal mobile and item template",
+      "destination": "Item carried by mobile before room admission"
     },
     {
       "id": "enhance.death_essence",
@@ -10019,7 +10067,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible NPC death essence roll",
+      "destination": "At most one essence on dying NPC"
     },
     {
       "id": "enhance.index_probes",
@@ -10084,7 +10134,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured template range",
+      "destination": "Copied enhancement index metadata and discarded probes"
     },
     {
       "id": "enhance.reset_material_fallback",
@@ -10124,7 +10176,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Skipped NPC item reset and derived material choice",
+      "destination": "New high-quality material on mobile"
     },
     {
       "id": "item.consume_by_vnum",
@@ -10216,7 +10270,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured soul-shard instances and allocated orb",
+      "destination": "Consumed shards and published orb"
     },
     {
       "id": "spell.conjure_orb_cost",
@@ -10373,7 +10429,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Scientific tool instance",
+      "destination": "Consumed tool and salvage chance/protection adjustment"
     },
     {
       "id": "crafting.salvage_grant",
@@ -10413,7 +10471,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional salvage output",
+      "destination": "Player creation queue or rejected output cleanup"
     },
     {
       "id": "crafting.material_downgrade",
@@ -10463,7 +10523,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Higher-quality material",
+      "destination": "Two separately submitted lower-quality outputs then consumed input"
     },
     {
       "id": "crafting.salvage_breakage",
@@ -10503,7 +10565,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Salvage input subject to tool protection",
+      "destination": "Destroyed input without usable output on intended failure"
     },
     {
       "id": "crafting.salvage_outputs",
@@ -10568,7 +10632,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original item and rolled salvage outcome",
+      "destination": "Separate material/essence/scroll grants then original retirement"
     },
     {
       "id": "guildhall.fixture_materialization",
@@ -11211,7 +11277,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Depleted mine or last reserved charge",
+      "destination": "Extracted mine before possible outstanding harvest completion"
     },
     {
       "id": "mining.pick_fumble",
@@ -11261,7 +11329,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Mounted actor equipped pick",
+      "destination": "Same-player inventory pick; harvest attempt aborted"
     },
     {
       "id": "mining.mine_placement",
@@ -11306,7 +11376,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional mine and placement/quality rolls",
+      "destination": "Room mine or rejected candidate cleanup"
     },
     {
       "id": "mining.admin_purge",
@@ -11341,7 +11413,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching mines in selected region",
+      "destination": "Extracted mines before optional reset replacement"
     },
     {
       "id": "nexus.guardian_cash",

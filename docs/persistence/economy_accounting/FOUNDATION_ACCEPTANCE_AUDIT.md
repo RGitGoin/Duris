@@ -3207,3 +3207,7 @@ Added endpoints for 20 storage helpers and nine locker routes. Retained distinct
 ## Import, backup, restore and mixed economy endpoints (2026-09-22)
 
 Added 30 endpoint classifications spanning import/openings, backup/restore, utility-only representations and mixed quest/service routes. Preserved disabled pet restoration, nonrefunded rent failure, post-save hometown charge and ambiguous recovery publication limits. Explicit endpoints: 305; missing endpoints: 546; test-link gaps: 710. Draft validation and diff checks pass; no gameplay, production restoration or runtime qualification performed.
+
+## Crafting, enhancement and mining endpoints (2026-09-22)
+
+Added 37 endpoint classifications preserving real inputs versus probes, provisional grants, pouch substitutions, intended random loss, separate output submissions, same-item enhancement and delayed harvest. Explicit endpoints: 342; missing endpoints: 509; test-link gaps remain 710. Draft validation and diff checks pass. No prices, distributions, input-loss behavior or backend qualification changed.
