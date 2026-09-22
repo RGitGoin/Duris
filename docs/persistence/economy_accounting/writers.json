@@ -19205,6 +19205,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.soulbind_player_transfer_submit",
+      "path": "src/magic/magic.c",
+      "symbol": "void do_soulbind(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Cross-player soulbind checks recipient weight and active source ownership, then submits movement with source/destination PID, item UID, room context and replacement flag to publication callback.",
+      "authority_boundary": "Submission rejection leaves this branch without direct movement or metadata application. Acceptance is pending, not durable completion; callback must revalidate participants/context and apply metadata after qualified commit. Nonplayer and same-player branches use separate helpers.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          22910,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

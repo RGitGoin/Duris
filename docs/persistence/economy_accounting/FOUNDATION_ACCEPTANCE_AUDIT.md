@@ -1362,3 +1362,14 @@ submission cleans unpublished output. Submission acceptance is not save acknowle
 Draft validator passed 13 fixtures: 404 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,380 mapped, 43 reviewed declarations and 1,275 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Soulbind player movement submission
+
+One coordinate classified. Cross-player submission checks active source ownership
+and recipient weight, retaining UID/PIDs/rooms/replacement context for publication.
+Accepted submission remains pending; callback and save acknowledgement require
+separate qualification. Same-player and nonplayer helpers are distinct paths.
+
+Draft validator passed 13 fixtures: 405 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,381 mapped, 43 reviewed declarations and 1,274 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
