@@ -21070,6 +21070,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "economy.dump_reward",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int dump(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "First removes all non-artifact room objects without reward on nonperiodic calls with character. CMD_DROP then calls do_drop and removes resulting non-artifact room objects, rewarding bounded cost/10 for items; each money object sets accumulated value to1 rather than adding1.",
+      "authority_boundary": "Preserve ordering-dependent reward and pre-drop cleanup; extraction can include containers and contents. Item retirement plus wallet reward requires compound identity and replay qualification; artifact exclusion is top-level.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          699,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.room.c",
+          729,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.room.c",
+          737,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.prayer_item_delivery",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int pray_for_items(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "CMD_PRAY locates first adjacent-index room object with matching item_for_player extra-description keyword, moves existing object to caster room then debits cost+1.",
+      "authority_boundary": "No local affordability check before movement/debit; exact name-based selection, room-index semantics, price and existing UID must be preserved. Publication precedes charge and neither proves durable acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          1112,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.room.c",
+          1116,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.room.c",
+          1121,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "economy.feed_lock_key",
+      "path": "src/specs/specs.room.c",
+      "symbol": "int feed_lock(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unlock special locates door/key and, when door initially locked, calls do_unlock then extracts key without checking unlock success.",
+      "authority_boundary": "Preserve existing key UID and door outcome; old not-in-game comment does not establish current registration status. Consumption and unlock are distinct effects requiring qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.room.c",
+          1192,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

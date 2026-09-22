@@ -1569,3 +1569,16 @@ All current range.c lexical coordinates are mapped, not runtime qualified.
 Draft validation passed13 fixtures:444 routes,2756 raw matches,2698 unique
 coordinates,1513 mapped,43 reviewed declarations,1142 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Room dump rewards, prayer delivery and key consumption
+
+Seven coordinates classified. Dump removes preexisting non-artifact room objects
+before command dispatch; dropped money sets reward accumulator to1, making reward
+order-sensitive. Prayer moves first matching named item before charging cost+1,
+without local affordability check. Feed-lock consumes key after do_unlock without
+checking outcome; historical inactive comment is not registration evidence.
+Compound retirement/reward, delivery/charge and unlock/consumption remain unqualified.
+
+Draft validation passed13 fixtures:447 routes,2756 raw matches,2698 unique
+coordinates,1520 mapped,43 reviewed declarations,1135 unclassified.
+No gameplay changes; release readiness remains false.
