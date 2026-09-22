@@ -29885,6 +29885,51 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.track_replacement",
+      "path": "src/cmd/track.c",
+      "symbol": "add_track",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Counts room tracks and removes first matching track when at sector limit, then allocates new track without null check, configures movement description/direction, places in actor room and sets decay. Duration depends on terrain/race/movement and weight; removed track precedes allocation.",
+      "authority_boundary": "World trace object admission and prior track retirement require explicit transient policy. Qualify allocation failure after old removal, room placement and decay/recovery without counting mere allocation as economic issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/track.c",
+          594,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/track.c",
+          603,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/track.c",
+          663,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2374,3 +2374,13 @@ failure, composition abort and publication/restart ordering remain unqualified.
 Draft validation passed 13 fixtures: 644 routes, 2756 raw matches, 2698 unique
 coordinates, 2069 mapped, 43 reviewed nonwriters, 586 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Track object replacement
+
+Three coordinates classified: sector-limit cleanup precedes unchecked new track
+allocation, configuration, room placement and decay. Explicit transient policy
+and failure/recovery qualification remain open.
+
+Draft validation passed 13 fixtures: 645 routes, 2756 raw matches, 2698 unique
+coordinates, 2072 mapped, 43 reviewed nonwriters, 583 unclassified.
+No gameplay changes; release readiness remains false.
