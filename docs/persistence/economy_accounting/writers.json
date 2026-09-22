@@ -23180,6 +23180,146 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.movement_frost_ice",
+      "path": "src/cmd/actmove.c",
+      "symbol": "void make_ice(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After existing-ice check, checked allocation sets decay400 and publishes in current room or valid previous room; invalid fallback extracts provisional object.",
+      "authority_boundary": "Capture generated UID/decay/destination once; current-room contents access precedes NOWHERE fallback check and needs integration review. Failed provisional cleanup is not admitted retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actmove.c",
+          2163,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2172,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2175,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2180,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.unlock_key_breakage",
+      "path": "src/cmd/actmove.c",
+      "symbol": "void do_unlock(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Container/door unlock branches may unequip held key and extract it on positive value1 break chance after unlocking local target.",
+      "authority_boundary": "Container custom-key bypass and door reverse-side updates are distinct branches. Preserve exact key UID, unlock effects and break roll with save/replay qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actmove.c",
+          2966,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2967,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3038,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3039,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.drag_object_relocation",
+      "path": "src/cmd/actmove.c",
+      "symbol": "void do_drag(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After movement command, rejects locker destination and non-room object; if player room differs, moves existing object to player room.",
+      "authority_boundary": "Command interpreter effects precede object move; bind object UID/source room and verify runtime lifetime and durable corpse/container graph movement separately.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actmove.c",
+          3762,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3763,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

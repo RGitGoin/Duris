@@ -1753,3 +1753,15 @@ replay remain unqualified. All current actnew.c lexical matches mapped.
 Draft validation passed13 fixtures:489 routes,2756 raw matches,2698 unique
 coordinates,1665 mapped,43 reviewed declarations,990 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Movement ice, unlock keys and dragging
+
+Ten coordinates classified. Ice allocation/decay/publication distinguishes rejected
+provisional objects; current-room contents access precedes NOWHERE fallback check.
+Key breakage follows local unlock effects; dragging follows command-interpreter
+movement and locker/object checks. Exact UID, destination and compound save/replay
+ordering remain qualification work.
+
+Draft validation passed13 fixtures:492 routes,2756 raw matches,2698 unique
+coordinates,1675 mapped,43 reviewed declarations,980 unclassified.
+No gameplay changes; release readiness remains false.
