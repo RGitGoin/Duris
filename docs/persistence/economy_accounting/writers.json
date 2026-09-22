@@ -38004,6 +38004,101 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.bind_maintenance",
+      "path": "src/guild/artifact.c",
+      "symbol": "void event_artifact_check_bind_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates temporary description prototype while reconciling binding owner/timer from artifact authority and online-owner eligibility. Cleans copy after each row. Binding metadata update is separate from physical owner movement.",
+      "authority_boundary": "Separate temporary description objects from durable binding/timer metadata. Qualify backend consistency and refusal/reporting; this classification does not prove runtime safety or accounting integration.",
+      "current_support": "Existing artifact binding maintenance; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4425,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4514,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.binding_repair",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_fixit_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Repairs player binding and resets artifact timer; prototype only supplies report description. Flatfile helper outcome is checked. SQL mismatch branch extracts prototype before reporting then reaches second extraction, a lifetime concern for qualification; do not count either as owned-item destruction.",
+      "authority_boundary": "Separate temporary description objects from durable binding/timer metadata. Qualify backend consistency and refusal/reporting; this classification does not prove runtime safety or accounting integration.",
+      "current_support": "Existing artifact binding maintenance; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4563,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4570,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4631,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4635,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4646,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

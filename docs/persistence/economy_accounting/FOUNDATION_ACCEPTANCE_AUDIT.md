@@ -3051,3 +3051,13 @@ update before optional save; hunt can retire zone copies while correcting
 registry ownership. These are not pure read-only scans or ordinary rewards.
 No runtime changes or tests; lifecycle qualification remains open.
 Draft validation passed 13 fixtures: 833 routes, 2756 raw matches, 2698 unique coordinates, 2556 mapped, 43 reviewed nonwriters, 99 unclassified. Release readiness remains false.
+
+
+## Artifact binding maintenance
+
+Seven coordinates classified as temporary description copies around binding
+and timer reconciliation. SQL repair mismatch path accesses then extracts an
+already extracted prototype; record lifetime concern without expanding scope.
+Physical item ownership is distinct from binding metadata.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 835 routes, 2756 raw matches, 2698 unique coordinates, 2563 mapped, 43 reviewed nonwriters, 92 unclassified.
