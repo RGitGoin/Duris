@@ -2466,3 +2466,14 @@ Creation/payment atomicity and restart qualification remain open.
 Draft validation passed 13 fixtures: 658 routes, 2756 raw matches, 2698 unique
 coordinates, 2093 mapped, 43 reviewed nonwriters, 562 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Locker identification prepared payment
+
+One submit coordinate classified with prepared-operation identity, owner checks,
+uncertain-result retry, paid receipt recording and display/delivery marker phases.
+No item transfer occurs. Duplicate-charge and receipt failure/recovery behavior
+remain qualification work.
+
+Draft validation passed 13 fixtures: 659 routes, 2756 raw matches, 2698 unique
+coordinates, 2094 mapped, 43 reviewed nonwriters, 561 unclassified.
+No gameplay changes; release readiness remains false.

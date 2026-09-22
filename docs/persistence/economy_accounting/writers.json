@@ -30425,6 +30425,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.locker_identification_receipt",
+      "path": "src/item/locker_identify.c",
+      "symbol": "locker_identify_pulse",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Receipt state machine submits prepared currency operation only for online matching owner. Rejected enqueue retries same operation; paid callback checks operation and phase, records paid or definite failed outcome, and retries uncertain results. Receipt text is shown after recording, then delivered marker is written; failed delivered write permits redisplay on recovery.",
+      "authority_boundary": "Preserve prepared operation identity across payment/recovery and separate financial commit from receipt persistence/display. Qualification must prove no duplicate charge under uncertain callback, reconnect, receipt write failure and restart; item itself is inspected, not transferred.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/locker_identify.c",
+          354,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
