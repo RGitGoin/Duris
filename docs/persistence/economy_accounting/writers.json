@@ -28921,6 +28921,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.ferry_initialization",
+      "path": "src/world/ferry.c",
+      "symbol": "Ferry::init",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates ferry representation without null check and places at first route room, then initializes runtime route state. Each stopping station gets checked ticket automat allocation with ferry ID, price and stop fields before room placement; failed allocation breaks remaining route initialization after earlier objects may be published.",
+      "authority_boundary": "Bind generated ferry and station objects to initialization identity; qualify repeated boot/recovery, partial failure and environmental placement. Infrastructure/template policy must be explicit before counting as economic issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/ferry.c",
+          89,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/ferry.c",
+          90,
+          "item_publication"
+        ],
+        [
+          "src/world/ferry.c",
+          108,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/ferry.c",
+          120,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.ferry_movement",
+      "path": "src/world/ferry.c",
+      "symbol": "Ferry::move",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Checks representation and route-step bounds, increments route step before destination checks, then detaches existing ferry object and publishes to destination room; invalid conditions call panic.",
+      "authority_boundary": "Preserve ferry item identity during movement; qualify route-state and room-placement recovery together, with no new issuance for ordinary movement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/ferry.c",
+          385,
+          "item_publication"
+        ],
+        [
+          "src/world/ferry.c",
+          387,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

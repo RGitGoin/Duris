@@ -2243,3 +2243,14 @@ changes and allocation/placement failure remain qualification work.
 Draft validation passed 13 fixtures: 621 routes, 2756 raw matches, 2698 unique
 coordinates, 2016 mapped, 43 reviewed nonwriters, 639 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ferry initialization and movement
+
+Six coordinates classified: ferry/station object generation can partially
+publish before initialization failure; route movement relocates an existing
+ferry identity and advances route state before destination validation.
+Infrastructure policy, repeat initialization and recovery remain unqualified.
+
+Draft validation passed 13 fixtures: 623 routes, 2756 raw matches, 2698 unique
+coordinates, 2022 mapped, 43 reviewed nonwriters, 633 unclassified.
+No gameplay changes; release readiness remains false.
