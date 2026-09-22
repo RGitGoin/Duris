@@ -2837,3 +2837,14 @@ repeat recovery and save/replay qualification remain open; test is candidate onl
 Draft validation passed 13 fixtures: 732 routes, 2756 raw matches, 2698 unique
 coordinates, 2292 mapped, 43 reviewed nonwriters, 363 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## World recovery object graph
+
+Nine coordinates classified as snapshot graph restoration and reverse rollback.
+Existing roots may be reused; new representations preserve snapshot UIDs.
+Failure cleanup does not locally clear those UIDs, so extraction side effects
+and rollback membership require qualification. No new issuance inferred.
+
+Draft validation passed 13 fixtures: 734 routes, 2756 raw matches, 2698 unique
+coordinates, 2301 mapped, 43 reviewed nonwriters, 354 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

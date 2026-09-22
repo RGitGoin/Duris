@@ -33654,6 +33654,111 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.world_recovery_graph",
+      "path": "src/world/world_recovery_pipeline.c",
+      "symbol": "P_obj materialize_object",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Returns existing root when planned; otherwise allocates snapshot prototypes, restores supplied UIDs and semantic fields, links parent-first graph, restores aggregate weights/values after linking and publishes root to planned room. Allocation/missing-parent/map-allocation failures extract partial graph. Cleanup retains restored UIDs locally, unlike player staging; extraction side effects require qualification.",
+      "authority_boundary": "Restore authoritative world identities without new issuance. Qualify planned existing-root reuse, graph validation, publication refusal, UID-sensitive extraction and rollback membership, ownership hydration and restart idempotence; native placement is not durable save acknowledgement.",
+      "current_support": "Existing recovery materialization; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/world_recovery_pipeline.c",
+          1291,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1295,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1338,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1340,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1352,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1354,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1343,
+          "item_publication"
+        ],
+        [
+          "src/world/world_recovery_pipeline.c",
+          1367,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.world_recovery_rollback",
+      "path": "src/world/world_recovery_pipeline.c",
+      "symbol": "void rollback_materialized",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Rollback extracts tracked object roots in reverse order and then tracked mobs. This undoes in-memory recovery publication, not intended authoritative destruction; caller tracking must exclude reused roots and account for extracted-NPC holdings.",
+      "authority_boundary": "Restore authoritative world identities without new issuance. Qualify planned existing-root reuse, graph validation, publication refusal, UID-sensitive extraction and rollback membership, ownership hydration and restart idempotence; native placement is not durable save acknowledgement.",
+      "current_support": "Existing recovery materialization; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/world_recovery_pipeline.c",
+          1375,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
