@@ -1910,7 +1910,9 @@
         "tests/async/test_legacy_dump_import.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Guarded legacy dump and retained identities",
+      "destination": "Imported opening/hydrated holdings, not gameplay issuance"
     },
     {
       "id": "import.currency_baselines",
@@ -1941,7 +1943,9 @@
         "tests/async/test_legacy_dump_import.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing revision-zero balances without baseline rows",
+      "destination": "Opening position evidence without new credits"
     },
     {
       "id": "backup.capture",
@@ -1972,7 +1976,9 @@
         "tests/async/test_persistence_backup_integration.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Authoritative stores and replay journals",
+      "destination": "Archival copies, not new economic holdings"
     },
     {
       "id": "backup.retention",
@@ -2003,7 +2009,9 @@
         "tests/async/test_persistence_backup_integration.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Stored backup generations",
+      "destination": "Retained/pruned archival copies, not live supply destruction"
     },
     {
       "id": "restore.qualification",
@@ -2034,7 +2042,9 @@
         "tests/async/test_persistence_backup_integration.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved backup authorities",
+      "destination": "Isolated restored test state, without automatic live promotion"
     },
     {
       "id": "restore.erasure_gate",
@@ -2065,7 +2075,9 @@
         "tests/async/test_account_erasure.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Nonempty tombstone ledger without propagation adapter",
+      "destination": "Refused restoration pending supported erasure propagation"
     },
     {
       "id": "lifecycle.archive",
@@ -20197,7 +20209,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing wallet, equipment/inventory and corpse holdings",
+      "destination": "Room pile/items and restored wallet/items; transient/corpse copies retired"
     },
     {
       "id": "economy.lesser_resurrect_fallback",
@@ -20297,7 +20311,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing wallet, equipment/inventory and corpse holdings",
+      "destination": "Room pile/items and restored wallet/items; transient/corpse copies retired"
     },
     {
       "id": "item.remove_curse_drop",
@@ -21584,7 +21600,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nonartifact dump-room objects and bounded reward rule",
+      "destination": "Destroyed objects plus player reward; money resets accumulated value to one"
     },
     {
       "id": "economy.prayer_item_delivery",
@@ -21629,7 +21647,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing adjacent-room player-tagged object and payer wallet",
+      "destination": "Caster-room item then cost-plus-one expense"
     },
     {
       "id": "economy.feed_lock_key",
@@ -21664,7 +21684,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected carried door key",
+      "destination": "Extracted key after unlock attempt, regardless of success"
     },
     {
       "id": "economy.patrol_purchase",
@@ -21699,7 +21721,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and allocated patrol prototype",
+      "destination": "Patrol admission/configuration and EXP/2 expense"
     },
     {
       "id": "economy.hireling_purchase",
@@ -21734,7 +21758,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and allocated hireling prototype",
+      "destination": "Configured no-cash pet/follower and EXP*8 expense"
     },
     {
       "id": "economy.stable_rent_ticket",
@@ -21779,7 +21805,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player fee and live mount",
+      "destination": "Saved pet and rent ticket followed by mount extraction; failures have no local refund"
     },
     {
       "id": "economy.stable_ticket_redemption",
@@ -21824,7 +21852,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player fee and rent ticket",
+      "destination": "Expense and consumed ticket; pet restoration call disabled"
     },
     {
       "id": "economy.quest_inputs",
@@ -21879,7 +21909,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest NPC selected inventory and coins",
+      "destination": "Consumed component instances and NPC wallet debit"
     },
     {
       "id": "economy.quest_reward_items",
@@ -21934,7 +21966,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reward prototype candidate",
+      "destination": "Player/room grant or rejected candidate cleanup"
     },
     {
       "id": "economy.quest_reward_coins",
@@ -21969,7 +22003,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest gp reward obligation",
+      "destination": "Player coin credit following narration/logging"
     },
     {
       "id": "economy.quest_preview_objects",
@@ -22019,7 +22055,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary quest input/reward prototypes",
+      "destination": "Description output and conditional temporary cleanup"
     },
     {
       "id": "economy.quest_disappear_cleanup",
@@ -22064,7 +22102,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed quest NPC inventory/equipment",
+      "destination": "Extracted items and disappearing NPC after reward attempt"
     },
     {
       "id": "item.encounter_loot_publication",
@@ -23564,7 +23604,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim or attacker equipped weapon",
+      "destination": "Same-character inventory and changed equipment effects"
     },
     {
       "id": "economy.morph_prototype_cash",
@@ -23614,7 +23656,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fresh morph NPC prototype wallet",
+      "destination": "Zeroed provisional wallet before further morph setup"
     },
     {
       "id": "economy.home_change_fee",
@@ -23649,7 +23693,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wallet and prior hometown fields",
+      "destination": "Saved new hometown followed by expense; failed save restores fields"
     },
     {
       "id": "item.movement_frost_ice",
@@ -24456,7 +24502,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Failed staged corpse/item/money graph and runtime entries",
+      "destination": "Forgotten runtime identities and freed temporary copies; saved authority retained"
     },
     {
       "id": "restore.flatfile_corpse_materialization",
@@ -24513,7 +24561,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated saved corpse, ownership and denomination records",
+      "destination": "Detached corpse/items/money projection or failed-stage cleanup"
     },
     {
       "id": "restore.flatfile_room_materialization",
@@ -24555,7 +24605,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated room ownership/item/currency record",
+      "destination": "Detached restored graph and money projection; failure discards copies"
     },
     {
       "id": "restore.flatfile_catalog_publication",
@@ -24617,7 +24669,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fully staged saved room/corpse catalog",
+      "destination": "Live room/corpse roots and money copies; placement failure rollback has documented limits"
     },
     {
       "id": "item.transport_sign_reconcile",
@@ -30896,7 +30950,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Allocator link pointer bytes",
+      "destination": "Local/free-list pointer linkage only; no economic holdings"
     },
     {
       "id": "item.scribe_scroll_consumption",
@@ -33570,7 +33626,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Standalone utility object data",
+      "destination": "Utility-only carrying list or freed representations, not production custody"
     },
     {
       "id": "item.minor_creation_factory",
@@ -33972,7 +34030,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary weapon/missile/shield prototypes",
+      "destination": "Diagnostic output and temporary-copy cleanup"
     },
     {
       "id": "item.load_staging_cleanup",

@@ -3203,3 +3203,7 @@ Added explicit endpoints for all seven death and 15 lifecycle routes, preserving
 ## Storage and locker endpoints (2026-09-21)
 
 Added endpoints for 20 storage helpers and nine locker routes. Retained distinctions include bank-row ensure versus deposit, recovery projection versus issuance, savepoint release versus commit, quarantine versus destruction, and synthetic chest teardown versus contained-asset retirement. Explicit endpoints: 275; missing endpoints: 576; test-link gaps remain 710. Draft contract validation and diff checks pass. No backend or payment behavior changed or qualified.
+
+## Import, backup, restore and mixed economy endpoints (2026-09-22)
+
+Added 30 endpoint classifications spanning import/openings, backup/restore, utility-only representations and mixed quest/service routes. Preserved disabled pet restoration, nonrefunded rent failure, post-save hometown charge and ambiguous recovery publication limits. Explicit endpoints: 305; missing endpoints: 546; test-link gaps: 710. Draft validation and diff checks pass; no gameplay, production restoration or runtime qualification performed.
