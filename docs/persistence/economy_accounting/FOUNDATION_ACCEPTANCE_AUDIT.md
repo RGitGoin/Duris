@@ -2870,3 +2870,14 @@ transaction qualification; no separate issuance or native publication inferred.
 Draft validation passed 13 fixtures: 745 routes, 2756 raw matches, 2698 unique
 coordinates, 2313 mapped, 43 reviewed nonwriters, 342 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+
+## NPC copyover asset recovery
+
+Ten coordinates classified across file and buffer NPC wallet/item restoration.
+Gold assignment restores saved balances. Equipment and inventory reconstruction
+uses prototype vnums rather than retained object UIDs or complete item graphs;
+recovery intent is not evidence of identity-preserving accounting. Duplicate
+replay, missing prototypes, allocation failure and partial publication remain
+qualification requirements under #489. No gameplay changes or runtime tests.
+Draft validation passed 13 fixtures: 749 routes, 2756 raw matches, 2698 unique coordinates, 2323 mapped, 43 reviewed nonwriters, 332 unclassified. Release readiness remains false.

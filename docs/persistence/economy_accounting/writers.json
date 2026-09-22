@@ -34149,6 +34149,176 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "recovery.copyover_file_wallet",
+      "path": "src/persistence/copyover.c",
+      "symbol": "int copyover_recover",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Restores saved NPC gold after recreating the NPC and restoring its identity. Balance assignment is recovery, not a reward or independent currency issuance.",
+      "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/copyover.c",
+          1499,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.copyover_file_items",
+      "path": "src/persistence/copyover.c",
+      "symbol": "int copyover_recover",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Recreates NPC equipment and carried items from saved prototype vnums, then equips or attaches them. This is intended recovery but these calls do not restore prior object UIDs or complete item graphs; fresh object construction must not be mistaken for ordinary gameplay issuance.",
+      "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/copyover.c",
+          1531,
+          "item_lifecycle"
+        ],
+        [
+          "src/persistence/copyover.c",
+          1544,
+          "item_lifecycle"
+        ],
+        [
+          "src/persistence/copyover.c",
+          1534,
+          "item_publication"
+        ],
+        [
+          "src/persistence/copyover.c",
+          1547,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.copyover_buffer_wallet",
+      "path": "src/persistence/copyover.c",
+      "symbol": "P_char copyover_restore_mob_from_buffer",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Restores saved NPC gold after recreating the NPC and restoring its identity. Balance assignment is recovery, not a reward or independent currency issuance.",
+      "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/copyover.c",
+          2010,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "recovery.copyover_buffer_items",
+      "path": "src/persistence/copyover.c",
+      "symbol": "P_char copyover_restore_mob_from_buffer",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Recreates NPC equipment and carried items from saved prototype vnums, then equips or attaches them. This is intended recovery but these calls do not restore prior object UIDs or complete item graphs; fresh object construction must not be mistaken for ordinary gameplay issuance.",
+      "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/copyover.c",
+          2055,
+          "item_lifecycle"
+        ],
+        [
+          "src/persistence/copyover.c",
+          2072,
+          "item_lifecycle"
+        ],
+        [
+          "src/persistence/copyover.c",
+          2057,
+          "item_publication"
+        ],
+        [
+          "src/persistence/copyover.c",
+          2074,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
