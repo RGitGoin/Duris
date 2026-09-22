@@ -1342,3 +1342,13 @@ publication. Retain paired UIDs and distinguish cleanup from admitted retirement
 Draft validator passed 13 fixtures: 402 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,375 mapped, 43 reviewed declarations and 1,280 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Soulbind global cleanup
+
+One coordinate classified. Global soulbind cleanup uses name keywords, retaining
+keep_uid and excluding kingdom-store-bound objects. Preserve exact retired identities
+across custody locations; helper does not prove replacement or player save completion.
+
+Draft validator passed 13 fixtures: 403 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,376 mapped, 43 reviewed declarations and 1,279 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
