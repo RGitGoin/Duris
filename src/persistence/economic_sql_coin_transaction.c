@@ -3,6 +3,25 @@
 #include "persistence/critical_outbox.h"
 
 using namespace economic_sql_wallet_detail;
+#ifndef __NO_MYSQL__
+namespace
+{
+unsigned int rejection_code(economic_accounting_error error)
+{
+	switch (error)
+	{
+	case economic_accounting_error::stale_revision:
+		return ESTALE;
+	case economic_accounting_error::negative_holding:
+		return ENOSPC;
+	case economic_accounting_error::overflow:
+		return ERANGE;
+	default:
+		return 0;
+	}
+}
+}
+#endif
 
 struct economic_sql_coin_transaction::implementation
 {
@@ -18,6 +37,7 @@ struct economic_sql_coin_transaction::implementation
 	coin_transfer_result result;
 	std::string checkpoint;
 	size_t next = 0;
+	unsigned int code = 0;
 	bool failed = false, finalized = false, verified = false;
 #ifndef __NO_MYSQL__
 	coin_transfer_payload bind_command(const critical_command &source)
@@ -118,6 +138,70 @@ struct economic_sql_coin_transaction::implementation
 		count(connection, "economic_accounting_operation",
 		      "operation_id=" + id(child.operation_id), 0);
 	}
+	economic_coin_wallet_authority rejection_authority() const
+	{
+		economic_coin_wallet_authority before;
+		for (size_t i = 0; i < 2; ++i)
+			before[i] = { identities[i].intent.admission.metadata.epoch,
+				      identities[i].wallet,
+				      identities[i].bank,
+				      children[i].keys[0],
+				      children[i].keys[1],
+				      result.wallets[i] };
+		return before;
+	}
+	void verify_rejection()
+	{
+		require(business_error(code));
+		verify_authority();
+		for (size_t i = 0; i < 2; ++i)
+		{
+			require(equal(balances(connection, identities[i], bank_ids[i]),
+				      result.wallets[i]),
+				ESTALE);
+			const auto where = "operation_id=" + id(children[i].operation_id);
+			for (const char *table :
+			     { "critical_operation_inbox", "critical_outbox", "currency_ledger",
+			       "economic_accounting_operation" })
+				count(connection, table, where, 0);
+		}
+		count(connection, "currency_ledger", "operation_id=" + id(command.operation_id), 0);
+	}
+	void retained_mappings()
+	{
+		for (size_t i = 0; i < 2; ++i)
+		{
+			const auto &identity = identities[i];
+			bank_ids[i] =
+				code ? mapping_hint(connection, identity.bank.authority_id) :
+				       integer<uint64_t>(read(
+					       connection,
+					       "SELECT bank_id FROM currency_ledger WHERE operation_id=" +
+						       id(children[i].operation_id),
+					       1)[0]);
+			require(bank_ids[i] && bank_ids[i] <= UINT32_MAX);
+			for (bool bank : { false, true })
+			{
+				const auto &key = bank ? identity.bank : identity.wallet;
+				count(connection, "economic_account_mapping",
+				      predicate(
+					      { { "mapping_id", std::to_string(key.authority_id) },
+						{ "lineage", id(key.lineage) },
+						{ "account_kind", bank ? "2" : "1" },
+						{ "context_id", std::to_string(key.context_id) },
+						{ "backend_kind", "1" },
+						{ "locator_kind",
+						  std::to_string(bank ? BANK_LOCATOR :
+									PLAYER_LOCATOR) },
+						{ "native_id",
+						  std::to_string(bank ? bank_ids[i] :
+									identity.payload.pid) } }),
+				      1);
+			}
+			if (!code)
+				child_receipt(i, false);
+		}
+	}
 	void verify_effects()
 	{
 		verify_authority();
@@ -150,6 +234,11 @@ const critical_command &economic_sql_coin_transaction::child_command(size_t inde
 const coin_transfer_result &economic_sql_coin_transaction::result() const
 {
 	return state_->result;
+}
+
+unsigned int economic_sql_coin_transaction::result_code() const
+{
+	return state_->code;
 }
 
 #ifdef __NO_MYSQL__
@@ -220,14 +309,25 @@ economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command
 					 state->children[i].keys[1],
 					 balances(connection, state->identities[i],
 						  state->bank_ids[i]) };
-		checked(economic_coin_wallets_prepare(command, intent, authority,
-						      currency_revision_policy::sql_legacy,
-						      &state->prepared));
-		for (size_t i = 0; i < 2; ++i)
-			state->result.wallets[i] = state->prepared->mutations()[i].after();
-		require(coin_transfer_command_destination_after_source(payload, state->result,
-								       &state->children[1]),
-			ESTALE);
+		const auto preparation = economic_coin_wallets_prepare(
+			command, intent, authority, currency_revision_policy::sql_legacy,
+			&state->prepared);
+		if (preparation != economic_accounting_error::ok)
+		{
+			state->code = rejection_code(preparation);
+			if (!state->code)
+				checked(preparation);
+			for (size_t i = 0; i < 2; ++i)
+				state->result.wallets[i] = authority[i].state;
+		}
+		else
+		{
+			for (size_t i = 0; i < 2; ++i)
+				state->result.wallets[i] = state->prepared->mutations()[i].after();
+			require(coin_transfer_command_destination_after_source(
+					payload, state->result, &state->children[1]),
+				ESTALE);
+		}
 		critical_operation_id marker_id{};
 		require(critical_operation_id_generate(&marker_id), ENOMEM);
 		char marker_hex[CRITICAL_COMMAND_ID_HEX_SIZE]{};
@@ -251,7 +351,7 @@ economic_sql_coin_transaction::prepare(MYSQL *connection, const critical_command
 unsigned int economic_sql_coin_transaction::apply_endpoint(size_t index)
 {
 	auto &state = *state_;
-	if (state.failed || state.finalized || index != state.next || index >= 2)
+	if (state.failed || state.finalized || state.code || index != state.next || index >= 2)
 		return EPERM;
 	state.failed = true;
 	try
@@ -296,18 +396,24 @@ unsigned int economic_sql_coin_transaction::apply_endpoint(size_t index)
 unsigned int economic_sql_coin_transaction::finalize()
 {
 	auto &state = *state_;
-	if (state.failed || state.finalized || state.next != 2)
+	if (state.failed || state.finalized || (state.code ? state.next != 0 : state.next != 2))
 		return EPERM;
 	state.failed = true;
 	try
 	{
 		state.marker();
-		state.verify_effects();
-		evidence(state.connection, state.command, state.identities[0], 0,
-			 &state.prepared->plan(), true, true);
-		evidence(state.connection, state.command, state.identities[0], 0,
-			 &state.prepared->plan(), false, true);
-		state.verify_effects();
+		if (state.code)
+			state.verify_rejection();
+		else
+			state.verify_effects();
+		evidence(state.connection, state.command, state.identities[0], state.code,
+			 state.prepared ? &state.prepared->plan() : nullptr, true, true);
+		evidence(state.connection, state.command, state.identities[0], state.code,
+			 state.prepared ? &state.prepared->plan() : nullptr, false, true);
+		if (state.code)
+			state.verify_rejection();
+		else
+			state.verify_effects();
 		inbox(state.connection, state.command, true);
 		active(state.connection, state.session);
 		state.finalized = true;
@@ -333,9 +439,10 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 		require(connection, EINVAL);
 		const auto session = mysql_thread_id(connection);
 		active(connection, session);
-		require(!result_code, EPROTONOSUPPORT);
+		require(!result_code || business_error(result_code), EPROTONOSUPPORT);
 		implementation state;
 		state.connection = connection;
+		state.code = result_code;
 		const auto payload = state.bind_command(command);
 		inbox(connection, command, false);
 		const auto root_where = "operation_id=" + id(command.operation_id);
@@ -344,6 +451,36 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 			     "SELECT canonical_plan FROM economic_accounting_operation WHERE " +
 				     root_where,
 			     1);
+		if (result_code)
+		{
+			require(!row[0].has_value());
+			require(coin_transfer_command_decode_result(payload, result_payload.data(),
+								    result_payload.size(),
+								    &state.result));
+			std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> encoded;
+			require(coin_transfer_command_encode_result(payload, state.result,
+								    &encoded));
+			require(result_payload.size() == encoded.size() &&
+				std::equal(encoded.begin(), encoded.end(), result_payload.begin()));
+			std::optional<economic_prepared_coin_wallets> candidate;
+			const auto decision = economic_coin_wallets_prepare(
+				command, state.identities[0].intent, state.rejection_authority(),
+				currency_revision_policy::sql_legacy, &candidate);
+			require(decision != economic_accounting_error::capacity, ENOMEM);
+			require(rejection_code(decision) == result_code && !candidate);
+			count(connection, "critical_operation_inbox",
+			      predicate({ { "operation_id", id(command.operation_id) },
+					  { "result_code", std::to_string(result_code) },
+					  { "result_payload", hex(encoded) },
+					  { "durable_revision", "0" } }),
+			      1);
+			state.retained_mappings();
+			count(connection, "currency_ledger", root_where, 0);
+			evidence(connection, command, state.identities[0], result_code, nullptr,
+				 false, true);
+			active(connection, session);
+			return 0;
+		}
 		require(row[0].has_value());
 		economic_accounting_plan plan;
 		checked(economic_plan_decode(
@@ -402,37 +539,7 @@ unsigned int economic_sql_coin_transaction::verify_retained(MYSQL *connection,
 				  { "result_payload", hex(encoded) },
 				  { "durable_revision", std::to_string(revision) } }),
 		      1);
-		for (size_t i = 0; i < 2; ++i)
-		{
-			const auto &identity = state.identities[i];
-			state.bank_ids[i] = integer<uint64_t>(
-				read(connection,
-				     "SELECT bank_id FROM currency_ledger WHERE operation_id=" +
-					     id(state.children[i].operation_id),
-				     1)[0]);
-			require(state.bank_ids[i] && state.bank_ids[i] <= UINT32_MAX);
-			// Retired mappings retain native identity; active_native_id, current
-			// epoch and native balances intentionally play no role in replay.
-			for (bool bank : { false, true })
-			{
-				const auto &key = bank ? identity.bank : identity.wallet;
-				count(connection, "economic_account_mapping",
-				      predicate(
-					      { { "mapping_id", std::to_string(key.authority_id) },
-						{ "lineage", id(key.lineage) },
-						{ "account_kind", bank ? "2" : "1" },
-						{ "context_id", std::to_string(key.context_id) },
-						{ "backend_kind", "1" },
-						{ "locator_kind",
-						  std::to_string(bank ? BANK_LOCATOR :
-									PLAYER_LOCATOR) },
-						{ "native_id",
-						  std::to_string(bank ? state.bank_ids[i] :
-									identity.payload.pid) } }),
-				      1);
-			}
-			state.child_receipt(i, false);
-		}
+		state.retained_mappings();
 		count(connection, "currency_ledger", root_where, 0);
 		evidence(connection, command, state.identities[0], 0, &plan, false, true);
 		active(connection, session);
@@ -462,8 +569,19 @@ unsigned int economic_sql_coin_transaction::verify_root_completion()
 		require(coin_transfer_command_decode_payload(state.command, &payload));
 		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> encoded;
 		require(coin_transfer_command_encode_result(payload, state.result, &encoded));
-		const auto code = verify_retained(state.connection, state.command, 0, encoded);
+		const auto code =
+			verify_retained(state.connection, state.command, state.code, encoded);
 		require(!code, code);
+		if (state.code)
+		{
+			state.verify_rejection();
+			count(state.connection, "critical_outbox",
+			      "operation_id=" + id(state.command.operation_id), 0);
+			active(state.connection, state.session);
+			state.verified = true;
+			state.failed = false;
+			return 0;
+		}
 		state.verify_effects();
 		std::array<uint8_t, CRITICAL_OUTBOX_COIN_RECEIPT_BYTES> receipt;
 		std::copy(state.children[0].operation_id.bytes.begin(),

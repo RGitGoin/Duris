@@ -167,6 +167,38 @@ int main()
 				reject(bad);
 			}
 		}
+	for (int mode = 0; mode < 5; ++mode)
+	{
+		auto f = make_fixture(true);
+		std::optional<economic_prepared_coin_wallets> prepared;
+		auto expected = error::corrupt_evidence;
+		if (mode == 0)
+		{
+			f.authority[0].state.wallet.amount[0] = 5;
+			expected = error::negative_holding;
+		}
+		if (mode == 1)
+		{
+			f.authority[1].state.wallet.amount[0] = INT32_MAX;
+			expected = error::overflow;
+		}
+		if (mode == 2)
+		{
+			f.authority[0].state.wallet.amount[0] = 101;
+			expected = error::stale_revision;
+		}
+		if (mode == 3)
+		{
+			++f.authority[0].state.wallet_revision;
+			f.authority[1].state.wallet.amount[0] = -1;
+		}
+		if (mode == 4)
+			++f.authority[1].state.bank_revision;
+		assert(economic_coin_wallets_prepare(f.command, f.intent, f.authority,
+						     currency_revision_policy::sql_legacy,
+						     &prepared) == expected);
+		assert(!prepared);
+	}
 	std::cout
 		<< "coin wallet adapter: typed effects, child legs, shared bank, conversion, rejection and backend arithmetic parity passed\n";
 }

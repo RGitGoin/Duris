@@ -15,6 +15,7 @@
 #include <vector>
 #include <thread>
 #include <barrier>
+#include <iostream>
 
 // Test-only link wrapper: let the real server commit, then hide its reply from
 // the repository. This exercises its ambiguous outcome and fresh reconciliation.
@@ -627,6 +628,172 @@ int main()
 							  literal(root.operation_id)) == 0);
 	}
 	puts("coin accounting component: locked writes, child receipts, evidence, rollback and tamper refusal passed");
+	// Business rejections persist unchanged witnesses and no child effects.
+	for (unsigned int mode = 0; mode < 9; ++mode)
+	{
+		execute(connection, "START TRANSACTION");
+		if (mode == 5)
+			execute(connection,
+				"UPDATE account_banks SET bank_revision=18446744073709551614 WHERE id=" +
+					std::to_string(bank_id));
+		const auto old_bank_revision =
+			scalar(connection, "SELECT bank_revision FROM account_banks WHERE id=" +
+						   std::to_string(bank_id));
+		const std::array<uint32_t, 2> pids = { static_cast<uint32_t>(pid),
+						       static_cast<uint32_t>(other_pid) };
+		const std::array<economic_account_key, 2> wallets = { wallet, other_wallet },
+							  banks = { bank, bank };
+		coin_transfer_payload endpoints;
+		coin_transfer_endpoint *ends[] = { &endpoints.source, &endpoints.destination };
+		for (size_t i = 0; i < 2; ++i)
+		{
+			auto &end = *ends[i];
+			constexpr const char *names[] = { "copper", "silver", "gold", "platinum" };
+			currency_command_payload native{};
+			native.pid = pids[i];
+			native.racewar = 1;
+			native.reason = currency_reason_type::coin_transfer;
+			std::memcpy(native.account_name.data(), account.data(), account.size());
+			for (size_t part = 0; part < 4; ++part)
+				end.before[part] =
+					scalar(connection, std::string("SELECT ") + names[part] +
+								   " FROM player_data WHERE pid=" +
+								   std::to_string(pids[i]));
+			end.after = end.before;
+			end.after[0] += i ? 10 : -10;
+			native.wallet_delta.amount[0] = i ? 10 : -10;
+			const auto revision = scalar(
+				connection, "SELECT wallet_revision FROM player_data WHERE pid=" +
+						    std::to_string(pids[i]));
+			assert(currency_command_build(
+				&end.change, new_id(), native,
+				revision + ((mode == 0 || mode == 8) && i == 0 ? 1 : 0),
+				old_bank_revision, critical_source_site::command,
+				critical_deadline_class::interactive));
+		}
+		critical_command root;
+		assert(coin_transfer_command_build(&root, new_id(), endpoints,
+						   critical_source_site::command,
+						   critical_deadline_class::interactive));
+		root.accepted_at_usec = 1;
+		assert(economic_coin_wallets_intent(root, epoch, wallets, banks,
+						    &root.accounting_intent) ==
+		       economic_accounting_error::ok);
+		root.schema_version = CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
+		pending(connection, root);
+
+		if (mode == 1 || mode == 3 || mode == 6)
+			execute(connection, "UPDATE player_data SET copper=" +
+						    std::string(mode == 1 ? "5" :
+								mode == 3 ? "1001" :
+									    "-1") +
+						    " WHERE pid=" + std::to_string(pid));
+		if (mode == 2 || mode == 4)
+			execute(connection,
+				"UPDATE player_data SET " +
+					std::string(mode == 2 ?
+							    "copper=2147483647" :
+							    "wallet_revision=wallet_revision+1") +
+					" WHERE pid=" + std::to_string(other_pid));
+		if (mode == 7)
+			execute(connection,
+				"UPDATE account_banks SET bank_copper=2147483648 WHERE id=" +
+					std::to_string(bank_id));
+		std::unique_ptr<economic_sql_coin_transaction> component;
+		const auto prepared =
+			economic_sql_coin_transaction::prepare(connection, root, &component);
+		if (mode == 6 || mode == 7)
+		{
+			assert(prepared != 0 && !component);
+			execute(connection, "ROLLBACK");
+			continue;
+		}
+		assert(prepared == 0 && component);
+		const unsigned int code = mode == 1		   ? ENOSPC :
+					  (mode == 2 || mode == 5) ? ERANGE :
+								     ESTALE;
+		assert(component->result_code() == code);
+		assert(component->apply_endpoint(0) == EPERM);
+		if (mode == 8)
+		{
+			pending(connection, component->child_command(0));
+			assert(component->finalize() != 0);
+			execute(connection, "ROLLBACK");
+			continue;
+		}
+		assert(component->finalize() == 0);
+		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> bytes;
+		assert(coin_transfer_command_decode_payload(root, &endpoints));
+		assert(coin_transfer_command_encode_result(endpoints, component->result(), &bytes));
+		execute(connection, "UPDATE critical_operation_inbox SET status=1,result_code=" +
+					    std::to_string(code) +
+					    ",durable_revision=0,result_payload=" + binary(bytes) +
+					    " WHERE operation_id=" + literal(root.operation_id));
+		assert(component->verify_root_completion() == 0);
+		assert(economic_sql_coin_transaction::verify_retained(connection, root, code,
+								      bytes) == 0);
+		for (const auto *table :
+		     { "economic_accounting_child", "economic_accounting_account_effect",
+		       "economic_accounting_coin_posting", "critical_outbox", "currency_ledger" })
+			assert(scalar(connection, std::string("SELECT COUNT(*) FROM ") + table +
+							  " WHERE operation_id=" +
+							  literal(root.operation_id)) == 0);
+		for (size_t i = 0; i < 2; ++i)
+			assert(scalar(connection,
+				      "SELECT COUNT(*) FROM critical_operation_inbox WHERE operation_id=" +
+					      literal(component->child_command(i).operation_id)) ==
+			       0);
+		execute(connection, "SAVEPOINT rejection_tamper");
+		const auto forged = code == ESTALE ? ENOSPC : ESTALE;
+		for (const auto *table :
+		     { "critical_operation_inbox", "economic_accounting_operation" })
+			execute(connection,
+				std::string("UPDATE ") + table +
+					" SET result_code=" + std::to_string(forged) +
+					" WHERE operation_id=" + literal(root.operation_id));
+		assert(economic_sql_coin_transaction::verify_retained(connection, root, forged,
+								      bytes) != 0);
+		execute(connection, "ROLLBACK TO SAVEPOINT rejection_tamper");
+		auto corrupt = component->result();
+		corrupt.wallets[0].bank.amount[0] = -1;
+		std::array<uint8_t, COIN_TRANSFER_RESULT_BYTES> corrupt_bytes;
+		assert(coin_transfer_command_encode_result(endpoints, corrupt, &corrupt_bytes));
+		execute(connection, "UPDATE critical_operation_inbox SET result_payload=" +
+					    binary(corrupt_bytes) +
+					    " WHERE operation_id=" + literal(root.operation_id));
+		assert(economic_sql_coin_transaction::verify_retained(connection, root, code,
+								      corrupt_bytes) != 0);
+		execute(connection, "ROLLBACK TO SAVEPOINT rejection_tamper");
+		if (mode == 0)
+		{
+			execute(connection, "COMMIT");
+			execute(observer, "START TRANSACTION");
+			execute(observer,
+				"UPDATE economic_lineage_state SET active_epoch=NULL,revision=revision+1 WHERE lineage=" +
+					literal(lineage));
+			execute(observer,
+				"UPDATE economic_account_mapping SET active_native_id=NULL,retiring_operation_id=" +
+					literal(bootstrap) +
+					",revision=revision+1 WHERE lineage=" + literal(lineage));
+
+			execute(observer,
+				"UPDATE player_data SET copper=copper+1,wallet_revision=wallet_revision+1 WHERE pid=" +
+					std::to_string(pid));
+			assert(economic_sql_coin_transaction::verify_retained(observer, root, code,
+									      bytes) == 0);
+			execute(observer, "ROLLBACK");
+			execute(connection, "START TRANSACTION");
+			execute(connection,
+				"DELETE FROM economic_accounting_operation WHERE operation_id=" +
+					literal(root.operation_id));
+			execute(connection,
+				"DELETE FROM critical_operation_inbox WHERE operation_id=" +
+					literal(root.operation_id));
+			execute(connection, "COMMIT");
+		}
+		execute(connection, "ROLLBACK");
+	}
+	std::cout << "coin SQL business rejection, empty effects and retained replay passed\n";
 	std::vector<critical_operation_id> operations;
 	auto command_for = [&](int64_t amount, uint32_t payer = 0,
 			       const economic_account_key *payer_wallet = nullptr,

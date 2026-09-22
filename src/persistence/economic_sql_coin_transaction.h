@@ -8,6 +8,7 @@
 // The root owner reserves each child, invokes apply_endpoint in source order,
 // completes its receipt/outbox, then calls finalize. Only this component's own
 // successful native writes authorize appending the typed accounting evidence.
+// A nonzero result_code skips children and finalizes an unchanged-state rejection.
 // Runtime dispatch remains disabled until retained/root completion integration.
 class economic_sql_coin_transaction
 {
@@ -19,12 +20,13 @@ class economic_sql_coin_transaction
 				    std::unique_ptr<economic_sql_coin_transaction> *);
 	const critical_command &child_command(size_t index) const;
 	const coin_transfer_result &result() const;
+	unsigned int result_code() const;
 	unsigned int apply_endpoint(size_t index);
 	unsigned int finalize();
 	// After root inbox/outbox completion, immediately before its owner commits.
 	unsigned int verify_root_completion();
-	// Caller supplies an active transaction with reconnect disabled. Successful
-	// retained receipts only; no active epoch, current balances or outbox needed.
+	// Caller supplies an active transaction with reconnect disabled. Retained
+	// success and rejection receipts; no active epoch, current balances or outbox needed.
 	static unsigned int verify_retained(MYSQL *, const critical_command &,
 					    unsigned int result_code,
 					    std::span<const uint8_t> result_payload);

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cerrno>
+#include <climits>
 #include <new>
 #include <utility>
 
@@ -142,13 +143,27 @@ economic_coin_wallets_prepare(const critical_command &command, const economic_fr
 		coin_transfer_payload payload;
 		if (!coin_transfer_command_decode_payload(command, &payload))
 			return error::corrupt_evidence;
+		const coin_transfer_endpoint *ends[] = { &payload.source, &payload.destination };
+		// Corrupt authority is never a durable stale/insufficient-funds decision,
+		// including when the other endpoint would reject before it is visited.
+		for (size_t i = 0; i < 2; ++i)
+		{
+			const auto &child = ends[i]->change;
+			if (!critical_entity_key_equal(authority[i].player_fence, child.keys[0]) ||
+			    !critical_entity_key_equal(authority[i].bank_fence, child.keys[1]))
+				return error::invalid_identity;
+			for (const auto &amounts :
+			     { authority[i].state.wallet.amount, authority[i].state.bank.amount })
+				for (auto amount : amounts)
+					if (amount < 0 || amount > INT_MAX)
+						return error::corrupt_evidence;
+		}
 		const bool shared_bank = economic_account_key_equal(authority[0].bank_account,
 								    authority[1].bank_account);
 		if (shared_bank &&
 		    (authority[0].state.bank.amount != authority[1].state.bank.amount ||
 		     authority[0].state.bank_revision != authority[1].state.bank_revision))
-			return error::stale_revision;
-		const coin_transfer_endpoint *ends[] = { &payload.source, &payload.destination };
+			return error::corrupt_evidence;
 		std::array<std::optional<currency_prepared_mutation>, 2> mutations;
 		coin_transfer_result after;
 		economic_accounting_plan plan;
@@ -158,13 +173,7 @@ economic_coin_wallets_prepare(const critical_command &command, const economic_fr
 		for (size_t i = 0; i < 2; ++i)
 		{
 			auto child = ends[i]->change;
-			if (!critical_entity_key_equal(authority[i].player_fence, child.keys[0]) ||
-			    !critical_entity_key_equal(authority[i].bank_fence, child.keys[1]))
-				return error::invalid_identity;
 			auto state = authority[i].state;
-			if (!std::equal(ends[i]->before.begin(), ends[i]->before.end(),
-					state.wallet.amount.begin()))
-				return error::stale_revision;
 			if (i)
 			{
 				if (!coin_transfer_command_destination_after_source(payload, after,
@@ -187,7 +196,7 @@ economic_coin_wallets_prepare(const critical_command &command, const economic_fr
 			after.wallets[i] = mutations[i]->after();
 			if (!std::equal(ends[i]->after.begin(), ends[i]->after.end(),
 					after.wallets[i].wallet.amount.begin()))
-				return error::corrupt_evidence;
+				return error::stale_revision;
 			const auto &next = after.wallets[i];
 			const auto wallet_index = static_cast<uint16_t>(plan.accounts.size());
 			plan.accounts.push_back({ authority[i].wallet_account, state.wallet.amount,
