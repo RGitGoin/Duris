@@ -35442,7 +35442,7 @@
       "coverage": "legacy",
       "classification": "Inserts initial current-owner row with supplied UID/root, revision zero and state one. SQL helper is part of upstream creation transaction, not an independent gameplay issuer.",
       "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
-      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified Native creation and multi-root batch assert active owner rows, child ancestry and revision1; exact replay retains revisions and duplicate creation refuses EEXIST. Private MariaDB ASan/UBSan suite passed at 4cd736cd3 before whitespace formatting. Legacy repository evidence only; MySQL parity, common accounting integration and native publication/save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35457,7 +35457,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_item_transfer_local.py"
+      ],
       "sites": [
         [
           "src/item/item_transfer_repository.c",
@@ -35479,7 +35481,7 @@
       "coverage": "legacy",
       "classification": "Changes topology, owner and custody state with expected item revision; next revision is prior+1. Requires caller transaction ownership and affected-row qualification.",
       "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
-      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified Native cross-owner transfer/replay, same-owner reparent/detach and destruction assert resulting custody, topology and revisions; incomplete, stale and overflow requests refuse. Private MariaDB ASan/UBSan suite passed at 4cd736cd3 before whitespace formatting. Legacy repository evidence only; MySQL parity, common accounting integration and native publication/save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35494,7 +35496,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_item_transfer_local.py"
+      ],
       "sites": [
         [
           "src/item/item_transfer_repository.c",
@@ -35516,7 +35520,7 @@
       "coverage": "legacy",
       "classification": "Appends operation/event-index item ownership event with resolved target topology, owner/item revisions and reason/source metadata.",
       "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
-      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified Native creation/transfer/destruction sequence with replay and rejected requests asserts six ledger rows for two UIDs and three distinct ledger-linked outbox operations. Field-by-field ledger semantics and common economic links remain unqualified. Private MariaDB ASan/UBSan suite passed at 4cd736cd3 before whitespace formatting. Legacy repository evidence only; MySQL parity, common accounting integration and native publication/save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35531,7 +35535,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_item_transfer_local.py"
+      ],
       "sites": [
         [
           "src/item/item_transfer_repository.c",
