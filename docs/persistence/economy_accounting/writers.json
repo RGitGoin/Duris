@@ -30787,6 +30787,106 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.forest_animal_death_object",
+      "path": "src/specs/specs.twintowers.c",
+      "symbol": "int forest_animals",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death special allocates an object matching the NPC vnum, publishes it in the death room, then initializes its periodic decay counter. Returns false even after publication; caller/default death processing needs qualification.",
+      "authority_boundary": "Distinguish new object admission from original asset retirement and provisional cleanup. Bind death or decay identity to resulting objects; qualify partial publication, retained or destroyed contents, allocation refusal, save acknowledgement and replay. Existing direct helpers do not establish atomic accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.twintowers.c",
+          47,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          54,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.forest_corpse_conversion",
+      "path": "src/specs/specs.twintowers.c",
+      "symbol": "int forest_corpse",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Periodic post-decrement counter reaching zero allocates a rotting corpse, copies weight and assigns decay, publishes to original carrier/room/container, then destroys the original object. Unsupported original location destroys both. Allocation failure returns after counter has decremented below zero; no local retry reset. Original contents are not explicitly transferred by this helper.",
+      "authority_boundary": "Distinguish new object admission from original asset retirement and provisional cleanup. Bind death or decay identity to resulting objects; qualify partial publication, retained or destroyed contents, allocation refusal, save acknowledgement and replay. Existing direct helpers do not establish atomic accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.twintowers.c",
+          91,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          122,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          124,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          108,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          113,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.twintowers.c",
+          117,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

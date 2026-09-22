@@ -2526,3 +2526,16 @@ replay conservation require qualification; no incidental fix or test claim.
 Draft validation passed 13 fixtures: 666 routes, 2756 raw matches, 2698 unique
 coordinates, 2117 mapped, 43 reviewed nonwriters, 538 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Twin Towers forest death and decay
+
+Eight coordinates classified into death-object admission and periodic corpse
+replacement. Replacement publishes before original destruction; unsupported
+location destroys both. Allocation failure leaves the post-decrement counter
+below zero, and contents are not explicitly transferred. These are qualification
+concerns only. Caller death behavior, compound replacement and restart/save
+conservation remain unverified.
+
+Draft validation passed 13 fixtures: 668 routes, 2756 raw matches, 2698 unique
+coordinates, 2125 mapped, 43 reviewed nonwriters, 530 unclassified.
+No gameplay changes; release readiness remains false.
