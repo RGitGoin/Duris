@@ -751,7 +751,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-provided denomination vector; economic origin belongs to the caller.",
+      "destination": "Detached provisional ITEM_MONEY object; prototype amounts are cleared before copying requested value."
     },
     {
       "id": "currency.pile_add",
@@ -788,7 +790,9 @@
           "coin_bulk_mutation"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-provided additions; this helper has no source holding identity.",
+      "destination": "Existing ITEM_MONEY value[0..3]; checked in-memory addition at handler.c:6263, without a durable commit."
     },
     {
       "id": "currency.room_pile_merge",
@@ -12616,7 +12620,7 @@
       "coverage": "legacy",
       "classification": "Revision-checked committed pile publication removes consumed piles, discards detached copies for offline owners, or restores exact UID and attaches it to its container. Newer revisions suppress stale publication; live denomination copy and description update project the committed result.",
       "authority_boundary": "Consumption is linked to transferred value, while offline detached cleanup is not economic destruction. Hydration/materialization must not be counted again as issuance; save and restart qualification remain separate.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; linked test has structural publication checks, not full native publication/restart qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -12631,7 +12635,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_coin_custody_lifecycle.py"
+      ],
       "sites": [
         [
           "src/cmd/actobj.c",
@@ -12649,7 +12655,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed endpoint.after plus retained item UID and revision.",
+      "destination": "Live coin-pile value[0..3], copied at actobj.c:4001; projection of existing committed value, not issuance."
     },
     {
       "id": "coin.put_rejected_provisional",
@@ -12774,7 +12782,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing pile denomination values consumed by legacy NPC pickup.",
+      "destination": "NPC wallet through ADD_MONEY; source pile cleared and retired. Legacy arithmetic and persistence remain unqualified."
     },
     {
       "id": "item.get_admission",
