@@ -3134,7 +3134,7 @@
       "coverage": "legacy",
       "classification": "After payment through transact, detach existing stock and submit it through the creation-grant interface; rejection extracts the detached item. This is transfer of prior stock ownership, not fresh production.",
       "authority_boundary": "Link payment and retained existing item identity; preserve or restore stock on technical refusal rather than treating it as unowned provisional creation.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -3150,7 +3150,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -3174,7 +3174,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer wallet and existing keeper stock",
+      "destination": "Keeper payment and buyer custody of same item; failed detached grant may extract stock"
     },
     {
       "id": "shop.buy_produced",
@@ -3287,7 +3289,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer payment and newly materialized produced-stock candidate",
+      "destination": "Keeper credit and buyer output; legacy failure refund is separate"
     },
     {
       "id": "shop.sell_store",
@@ -3344,7 +3348,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player item and keeper payment capacity",
+      "destination": "Player wallet credit and stored keeper item, or selected destruction path"
     },
     {
       "id": "shop.sell_destroy",
@@ -3381,7 +3387,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player duplicate/trash item and keeper payment",
+      "destination": "Player wallet credit and item retirement"
     },
     {
       "id": "shop.stock_cleanup",
@@ -3393,7 +3401,7 @@
       "coverage": "legacy",
       "classification": "Buying, perusing and listing can remove invalid stock. Flatfile routes cleanup through a discard transaction; legacy branches extract immediately. These are stock retirement actions even when triggered by an inspection command.",
       "authority_boundary": "Typed flatfile cleanup invoked from read and trade paths",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -3409,7 +3417,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -3443,7 +3451,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Invalid keeper stock",
+      "destination": "Stock retirement, durable discard or immediate legacy extraction"
     },
     {
       "id": "shop.keeper_cash",
@@ -3474,7 +3484,9 @@
         "tests/async/test_shop_trade_transaction.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed trade payment delta",
+      "destination": "Live keeper cash projection, subject to finite-cash policy"
     },
     {
       "id": "shop.repair",
@@ -3519,7 +3531,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player payment, existing weapon and temporary template probe",
+      "destination": "Keeper payment and changed weapon condition/type; probe discarded"
     },
     {
       "id": "shop.flat_apply",
@@ -3550,7 +3564,9 @@
         "tests/async/test_flatfile_shop_trade_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Flat-file wallet, stock and custody before-images",
+      "destination": "Committed trade after-images and receipt"
     },
     {
       "id": "collector.collect",
@@ -6931,7 +6947,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured produced-item template",
+      "destination": "Derived stock representative; authoritative admission status still requires proof"
     },
     {
       "id": "recovery.sql_saved_projection",
@@ -7908,9 +7926,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/economy/shop.c",
@@ -7923,7 +7939,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Failed output grant payment obligation",
+      "destination": "Player refund then attempted keeper debit/save; non-atomic failure remains visible"
     },
     {
       "id": "shop.trade_failure_cleanup",
@@ -7935,7 +7953,7 @@
       "coverage": "legacy",
       "classification": "Discard a matching nowhere produced candidate only when the callback has no durable-commit evidence. A committed trade with failed live publication emits an alert and preserves the obligation.",
       "authority_boundary": "Do not reverse or re-issue a committed trade merely because its live projection is missing; only unadmitted allocation cleanup is disposable.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -7951,7 +7969,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -7960,7 +7978,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Detached produced candidate without durable commit evidence",
+      "destination": "Temporary candidate cleanup; committed publication obligation retained"
     },
     {
       "id": "shop.trade_discard_completion",
@@ -7972,7 +7992,7 @@
       "coverage": "legacy",
       "classification": "Extract invalid stock after the discard transaction reports committed matching ownership.",
       "authority_boundary": "Committed storage retirement owns the economic effect; live extraction must not append a second destruction.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -7988,7 +8008,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -7997,7 +8017,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed matching invalid-stock retirement",
+      "destination": "Live stock representation extracted"
     },
     {
       "id": "shop.trade_buy_completion",
@@ -8009,7 +8031,7 @@
       "coverage": "legacy",
       "classification": "After matched committed buy, credit keeper live cash and publish produced output or move existing stock to player and optional container.",
       "authority_boundary": "Distinguish native projection from a new debit/credit or issuance; retain commit-to-publication obligations and target container identity.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8025,7 +8047,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -8054,7 +8076,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed purchase and existing/provisional output",
+      "destination": "Live keeper credit and buyer/container item placement"
     },
     {
       "id": "shop.trade_sell_completion",
@@ -8066,7 +8090,7 @@
       "coverage": "legacy",
       "classification": "After matched committed sale, debit keeper live cash, unlink player item and either destroy the sold root or place it into keeper stock.",
       "authority_boundary": "Committed sale owns value and custody changes; callback projection/cleanup cannot create a second payment or retirement.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; candidate checks source routing/publication structure, not native callback execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8082,7 +8106,7 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
+        "tests/async/test_shop_trade_live_route.py"
       ],
       "sites": [
         [
@@ -8106,7 +8130,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed sale and live player item",
+      "destination": "Live keeper debit and stored or destroyed item"
     },
     {
       "id": "shop.keeper_death",
@@ -8133,9 +8159,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/economy/shop.c",
@@ -8153,7 +8177,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dead keeper inventory",
+      "destination": "Artifacts moved to valid room; other stock and artifacts without valid room extracted"
     },
     {
       "id": "shop.payment_cash",
@@ -8180,9 +8206,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/economy/shop.c",
@@ -8200,7 +8224,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Payer wallet",
+      "destination": "Recipient wallet in same room, before separate item/service outcome"
     },
     {
       "id": "shop.payment_barter_dormant",
@@ -8227,9 +8253,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_shop_trade_runtime.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/economy/shop.c",
@@ -8252,7 +8276,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dormant merchandise/cash branch; merchandise forced null",
+      "destination": "Unreachable barter transfer/change under current control flow"
     },
     {
       "id": "shop.peruse_fee",
@@ -8287,7 +8313,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nontrusted player inspection fee",
+      "destination": "Keeper payment without item custody movement"
     },
     {
       "id": "currency.bank_payment_helper",
@@ -11847,7 +11875,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_shop_trade_transaction.py"
+      ],
       "sites": [
         [
           "src/economy/shop_trade_transaction.c",
@@ -11855,7 +11885,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Typed trade intent and later committed result",
+      "destination": "Pending operation then wallet/custody/shop-revision publication and callback"
     },
     {
       "id": "auction.sql_wallet_delta",
@@ -15201,7 +15233,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer payment and salesman selected stock",
+      "destination": "Payment through transact; follow/sentinel state changed on success"
     },
     {
       "id": "currency.skeleton_spawn_initialization",
