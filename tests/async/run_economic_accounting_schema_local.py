@@ -4,6 +4,7 @@
 Requires mariadb-server-core and mariadb-client-core; installs nothing and does
 not use checkout configuration or an existing database. No system service starts.
 """
+import argparse
 import os
 from pathlib import Path
 import secrets
@@ -15,7 +16,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 
-def run_local():
+def run_local(suite="accounting"):
     for name in ("mariadb-install-db", "mariadbd", "mysql", "mysql_config"):
         if not shutil.which(name):
             raise SystemExit(f"missing prerequisite: {name}")
@@ -82,16 +83,19 @@ def run_local():
                 run("bash", "migrations/verify_runtime_compatibility.sh")
                 sql_file("migrations/immutable/0031_economy_accounting.sql")
                 run("bash", "migrations/immutable/0031_economy_accounting.sh")
-                run("python3", "tests/async/test_economic_accounting_schema_mysql.py", "-v")
-                run("python3", "migrations/verify_economic_baseline_schema.py")
-                run("python3", "tests/async/test_economic_baseline_schema_mysql.py", "-v")
-                run("bash", "tests/async/run_economic_accounting_authority_mysql.sh")
-                for test in ("test_economic_sql_bank_transaction_flatfile.py",
-                             "run_economic_sql_bank_transaction_mysql.py",
-                             "run_economic_sql_baseline_transaction_mysql.py",
-                             "run_economic_sql_source_snapshot_mysql.py",
-                             "run_economic_sql_enrollment_transaction_mysql.py"):
-                    run("python3", "tests/async/" + test)
+                if suite == "currency":
+                    run("python3", "tests/async/run_currency_transaction_local.py")
+                else:
+                    run("python3", "tests/async/test_economic_accounting_schema_mysql.py", "-v")
+                    run("python3", "migrations/verify_economic_baseline_schema.py")
+                    run("python3", "tests/async/test_economic_baseline_schema_mysql.py", "-v")
+                    run("bash", "tests/async/run_economic_accounting_authority_mysql.sh")
+                    for test in ("test_economic_sql_bank_transaction_flatfile.py",
+                                 "run_economic_sql_bank_transaction_mysql.py",
+                                 "run_economic_sql_baseline_transaction_mysql.py",
+                                 "run_economic_sql_source_snapshot_mysql.py",
+                                 "run_economic_sql_enrollment_transaction_mysql.py"):
+                        run("python3", "tests/async/" + test)
             finally:
                 if server.poll() is None:
                     server.terminate()
@@ -100,15 +104,18 @@ def run_local():
                     except subprocess.TimeoutExpired:
                         server.kill()
                         server.wait(timeout=10)
-    print("Disposable local MariaDB accounting qualification passed", flush=True)
+    print("Disposable local MariaDB qualification passed", flush=True)
 
 def main():
     global ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--suite", choices=("accounting", "currency"), default="accounting")
+    args = parser.parse_args()
     # Some tracked helper scripts contain CRLF. Normalize an execution copy,
     # never the source checkout or sealed immutable migration bytes.
     helper = ROOT / "migrations/verify_runtime_compatibility.sh"
     if b"\r\n" not in helper.read_bytes():
-        return run_local()
+        return run_local(args.suite)
     source = ROOT
     with tempfile.TemporaryDirectory(prefix="duris-accounting-source-") as directory:
         ROOT = Path(directory)
@@ -120,7 +127,7 @@ def main():
                 if "immutable" not in script.relative_to(ROOT).parts:
                     script.write_bytes(script.read_bytes().replace(b"\r\n", b"\n"))
             print("Using temporary LF helper scripts; sealed migrations unchanged", flush=True)
-            run_local()
+            run_local(args.suite)
         finally:
             ROOT = source
 

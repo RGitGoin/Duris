@@ -146,3 +146,19 @@ initial enrollment suites, including their native fault/replay cases and
 client-free refusal variants. The revised runner also completed successfully
 with private-instance verification and automatic LF-copy handling. These results
 qualify the existing components, not the missing compound accounting integration.
+
+Use `python3 tests/async/run_economic_accounting_schema_local.py --suite currency`
+to qualify the existing native currency/coin transaction owner separately. This
+reuses its maintained production link set with ASan/UBSan. The collision matrix
+seeds retained root/child inbox fixtures at the command's derived child IDs,
+then checks both endpoints and exact-command retries. Balances, wallet/shared-bank
+revisions, inbox, ledger and outbox counts must remain unchanged on collision;
+the original completed transfer must remain replayable. This is evidence for
+reusing the legacy transaction owner, not proof of compound accounting evidence
+append or flat-file child reservations.
+
+Verification on 2026-09-22: the currency suite passed on private MariaDB 10.11.14
+with ASan/UBSan, including six seeded child-ID collision cases, two attempts per
+case, and the existing native coin conversion/rollback/replay/reload/custody
+matrix. The private instance and temporary source/executable directories were
+cleaned up. MySQL-engine and compound accounting integration remain unqualified.

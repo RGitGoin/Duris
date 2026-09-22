@@ -522,6 +522,64 @@ void coin_failure_matrix()
 	assert(scalar("SELECT copper FROM player_data WHERE pid=" + pid_text) == 990);
 	assert(scalar("SELECT copper FROM player_data WHERE pid=" + std::to_string(recipient)) ==
 	       10);
+	// Root and child IDs share the inbox namespace. A destination collision
+	// must undo the source debit, revision advances, ledger and receipt.
+	coin_transfer_payload completed_give;
+	assert(coin_transfer_command_decode_payload(give, &completed_give));
+	for (const auto &reserved : { give.operation_id,
+				     completed_give.source.change.operation_id,
+				     completed_give.destination.change.operation_id })
+	{
+		for (size_t endpoint = 0; endpoint < 2; ++endpoint)
+		{
+			auto source = coin_wallet(pid, account, { 990, 0, 0, 0 }, { 989, 0, 0, 0 });
+			auto destination = coin_wallet(recipient, account, { 10, 0, 0, 0 },
+						       { 11, 0, 0, 0 });
+			const auto collision = coin_command(source, destination);
+			coin_transfer_payload collision_payload;
+			assert(coin_transfer_command_decode_payload(collision, &collision_payload));
+			const auto &derived_id = (endpoint ? collision_payload.destination :
+							 collision_payload.source).change.operation_id;
+			// Derived IDs cannot be supplied by the caller. Seed a retained inbox
+			// fixture at that ID to exercise the real unique-key collision path.
+			execute("INSERT INTO critical_operation_inbox(operation_id,command_hash,keys_hash,"
+				"command_type,schema_version,payload_version,status,result_code,failure_stage,"
+				"durable_revision,result_payload,committed_at) SELECT UNHEX('" +
+				operation_hex(derived_id) + "'),command_hash,keys_hash,command_type,"
+				"schema_version,payload_version,status,result_code,failure_stage,"
+				"durable_revision,result_payload,committed_at FROM critical_operation_inbox "
+				"WHERE operation_id=UNHEX('" + operation_hex(reserved) + "')");
+			const std::vector<std::string> unchanged_queries = {
+				"SELECT copper FROM player_data WHERE pid=" + pid_text,
+				"SELECT copper FROM player_data WHERE pid=" + std::to_string(recipient),
+				"SELECT wallet_revision FROM player_data WHERE pid=" + pid_text,
+				"SELECT wallet_revision FROM player_data WHERE pid=" + std::to_string(recipient),
+				"SELECT bank_revision FROM account_banks WHERE account_name='coin_matrix_account' AND racewar=1",
+				"SELECT COUNT(*) FROM critical_operation_inbox",
+				"SELECT COUNT(*) FROM critical_outbox",
+				"SELECT COUNT(*) FROM currency_ledger",
+				"SELECT COUNT(*) FROM critical_operation_inbox WHERE operation_id=UNHEX('" +
+					operation_hex(collision.operation_id) + "')"
+			};
+			std::vector<long long> before;
+			for (const auto &query : unchanged_queries)
+				before.push_back(scalar(query));
+			assert(before.back() == 0);
+			for (unsigned int attempt = 0; attempt < 2; ++attempt)
+			{
+				const auto rejected = critical_command_repository_apply(connection, collision);
+				assert(rejected.outcome != critical_apply_outcome::applied &&
+				       rejected.outcome != critical_apply_outcome::already_applied);
+				assert(rejected.error_code == 1062);
+				for (size_t index = 0; index < unchanged_queries.size(); ++index)
+					assert(scalar(unchanged_queries[index]) == before[index]);
+			}
+			assert(critical_command_repository_apply(connection, give).outcome ==
+			       critical_apply_outcome::already_applied);
+			execute("DELETE FROM critical_operation_inbox WHERE operation_id=UNHEX('" +
+				operation_hex(derived_id) + "')");
+		}
+	}
 	// Pre-upgrade piles have no canonical blob. Establish their amounts from the
 	// actual owner-specific payload stores, including current private/public lockers.
 	execute("INSERT INTO lockers(locker_name,owner_pid) VALUES('CoinLocker'," + pid_text + ")");
