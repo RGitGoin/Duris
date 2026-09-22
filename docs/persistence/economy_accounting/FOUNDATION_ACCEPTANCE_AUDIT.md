@@ -2175,3 +2175,14 @@ listed as a candidate, not executed evidence.
 Draft validation passed 13 fixtures: 607 routes, 2756 raw matches, 2698 unique
 coordinates, 1987 mapped, 43 reviewed nonwriters, 668 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Disabled breath-weapon item drops
+
+Six coordinates in fire, frost and crimson breath are inside #if FALSE blocks
+(FALSE is defined as false in core/config.h). They remain traceable dormant
+candidate routes, not active destruction or transfer coverage. Re-enabling them
+would require custody/environmental-placement qualification.
+
+Draft validation passed 13 fixtures: 610 routes, 2756 raw matches, 2698 unique
+coordinates, 1993 mapped, 43 reviewed nonwriters, 662 unclassified.
+No gameplay changes; release readiness remains false.

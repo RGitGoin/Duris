@@ -28356,6 +28356,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.disabled_fire_breath_drop",
+      "path": "src/combat/breath_weapons.c",
+      "symbol": "breath_weapon_fire",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Inventory detach and room placement are inside #if FALSE disabled item-drop block. Dormant logic selects a carried non-artifact/non-transient item after random/save/arena and water checks and moves it to breather room. This is not an active equipment destruction route.",
+      "authority_boundary": "Disabled source candidate retained for census traceability, not active economic coverage. Any reactivation must qualify existing-item custody transfer and environmental room handling; no first admission occurs.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/breath_weapons.c",
+          115,
+          "item_publication"
+        ],
+        [
+          "src/combat/breath_weapons.c",
+          116,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.disabled_frost_breath_drop",
+      "path": "src/combat/breath_weapons.c",
+      "symbol": "breath_weapon_frost",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Inventory detach and room placement are inside #if FALSE disabled item-drop block. Dormant logic selects a carried non-artifact/non-transient item after random/save/arena and water checks and moves it to breather room. This is not an active equipment destruction route.",
+      "authority_boundary": "Disabled source candidate retained for census traceability, not active economic coverage. Any reactivation must qualify existing-item custody transfer and environmental room handling; no first admission occurs.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/breath_weapons.c",
+          244,
+          "item_publication"
+        ],
+        [
+          "src/combat/breath_weapons.c",
+          245,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.disabled_crimson_breath_drop",
+      "path": "src/combat/breath_weapons.c",
+      "symbol": "breath_weapon_crimson",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Inventory detach and room placement are inside #if FALSE disabled item-drop block. Dormant logic selects a carried non-artifact/non-transient item after random/save/arena and water checks and moves it to breather room. This is not an active equipment destruction route.",
+      "authority_boundary": "Disabled source candidate retained for census traceability, not active economic coverage. Any reactivation must qualify existing-item custody transfer and environmental room handling; no first admission occurs.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/breath_weapons.c",
+          559,
+          "item_publication"
+        ],
+        [
+          "src/combat/breath_weapons.c",
+          560,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
