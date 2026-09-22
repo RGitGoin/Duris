@@ -3580,3 +3580,7 @@ Added --suite item to the isolated local MariaDB runner and run_item_transfer_lo
 ### Native item inventory evidence
 
 Read the passing native assertions and mapped three routes: ownership insertion (including multi-root creation/replay/collision), ownership update (transfer/topology/destruction/refusal), and ledger insertion (six rows and three outbox-linked operations across two UIDs after replay/refusal). Missing candidates decrease from 635 to 632. No coverage claimed for coin payload writes, whole-owner destruction, field-by-field ledger semantics, common economic links or other backends. Backend qualification flags remain unverified.
+
+### Native coin payload evidence
+
+At 50d0c81a2, run_economic_accounting_schema_local.py --suite currency passed private MariaDB bootstrap, migration replay, compatibility/schema checks and native ASan/UBSan currency/coin harness. Inspected pile_amount decoding and partial-pickup, merge/replay and depleted-pile NULL payload assertions; linked storage.item_coin_payload to the runner. Missing candidates decrease to 631. This is existing repository evidence, not common accounting integration, MySQL parity or native publication/save acknowledgement. No production changes.

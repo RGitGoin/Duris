@@ -35559,7 +35559,7 @@
       "coverage": "legacy",
       "classification": "Validates single money-item snapshot identity/prototype and nonnegative denomination fields, then updates serialized coin payload under item UID/revision; destruction binds null payload.",
       "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
-      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "current_support": "Private MariaDB ASan/UBSan currency harness verifies decoded persisted pile amounts after partial pickup and merge replay, and NULL coin payload plus retired custody after depletion. Current-head native suite passed; common accounting integration, MySQL parity and native publication/save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35574,7 +35574,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_currency_transaction_local.py"
+      ],
       "sites": [
         [
           "src/item/item_transfer_repository.c",
