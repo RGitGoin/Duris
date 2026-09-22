@@ -7912,7 +7912,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_tradeskill_grant_runtime.py"
+      ],
       "sites": [
         [
           "src/economy/tradeskill.c",
