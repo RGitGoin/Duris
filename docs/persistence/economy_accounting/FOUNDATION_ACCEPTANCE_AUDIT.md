@@ -2792,3 +2792,14 @@ Preserve economics and qualify partial effects, NPC lifetime and save/replay.
 Draft validation passed 13 fixtures: 726 routes, 2756 raw matches, 2698 unique
 coordinates, 2265 mapped, 43 reviewed nonwriters, 390 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Test-command prototype reports
+
+Eight coordinates are temporary prototype copies for weapon-dice, missile and
+two-pass shield reports. They are never published by these loops; exclude
+from gameplay issuance/sink integration. Infrastructure route records this
+classification under the current declaration-only nonwriter schema.
+
+Draft validation passed 13 fixtures: 727 routes, 2756 raw matches, 2698 unique
+coordinates, 2273 mapped, 43 reviewed nonwriters, 382 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

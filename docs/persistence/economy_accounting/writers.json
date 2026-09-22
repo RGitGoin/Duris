@@ -33337,6 +33337,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "infrastructure.testcmd_object_reports",
+      "path": "src/cmd/testcmd.c",
+      "symbol": "void do_test",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Trusted weapondice, missile and two-pass shield reports allocate prototype copies, inspect dice/cost/armor fields, then extract each temporary copy. No room, character or container publication occurs in these report loops. Allocation lacks local null checks; reports are not item grants or destruction of admitted assets.",
+      "authority_boundary": "Exclude report-only copies from gameplay issuance and sink integration. Any lower-level allocation side effects need qualification separately; do not infer economic admission from read_object or extraction alone. Preserve trusted command gate.",
+      "current_support": "Temporary report objects only; no gameplay accounting integration inferred",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/testcmd.c",
+          349,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          356,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          418,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          438,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          561,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          689,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          699,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/testcmd.c",
+          813,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
