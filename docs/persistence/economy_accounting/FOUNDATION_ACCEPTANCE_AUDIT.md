@@ -2254,3 +2254,14 @@ Infrastructure policy, repeat initialization and recovery remain unqualified.
 Draft validation passed 13 fixtures: 623 routes, 2756 raw matches, 2698 unique
 coordinates, 2022 mapped, 43 reviewed nonwriters, 633 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ferry ticket purchase and undead ferry admission
+
+Six coordinates classified: provisional ticket allocation/insufficient-funds
+cleanup, machine-price debit then ticket publication, and undead ferry room
+admission. Displayed ferry price and charged machine field are distinct sources.
+Compound durability and repeated initialization remain unqualified.
+
+Draft validation passed 13 fixtures: 625 routes, 2756 raw matches, 2698 unique
+coordinates, 2028 mapped, 43 reviewed nonwriters, 627 unclassified.
+No gameplay changes; release readiness remains false.

@@ -29011,6 +29011,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.undead_ferry_initialization",
+      "path": "src/world/ferryact.c",
+      "symbol": "init_ferries",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Unless DISABLE_FERRIES returns early, initializes configured ferries then checked allocation of undead ferry is placed in room resolved from 600586. Charon NPC is separately allocated/placed afterward.",
+      "authority_boundary": "World infrastructure admission; qualify initialization identity and recovery policy to avoid duplicate representations. Allocation success alone is not placement proof.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/ferryact.c",
+          222,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/ferryact.c",
+          225,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ferry_ticket_purchase",
+      "path": "src/world/ferryact.c",
+      "symbol": "ferry_automat_proc",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "BUY ticket resolves ferry, allocates ticket before affordability check, extracts provisional ticket on insufficient funds, then sets ferry ID/description, debits machine value[1] price and publishes to buyer. LOOK displays ferry ticket_price instead; no explicit save acknowledgment here.",
+      "authority_boundary": "Couple charged machine price with one ticket admission; provisional cleanup is not admitted-item retirement. Qualify allocation, insufficient funds, publication failure and replay while preserving current price source.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/ferryact.c",
+          445,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/ferryact.c",
+          452,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/ferryact.c",
+          465,
+          "money_helper"
+        ],
+        [
+          "src/world/ferryact.c",
+          466,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
