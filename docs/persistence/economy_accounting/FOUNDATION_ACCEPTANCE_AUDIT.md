@@ -1957,3 +1957,15 @@ All current lexical candidates in this file mapped; runtime qualification remain
 Draft validation passed 13 fixtures: 541 routes, 2756 raw matches, 2698 unique
 coordinates, 1840 mapped, 43 reviewed declarations, 815 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ethermancer creation, consumption and relocation
+
+Ten coordinates classified: faerie dust consumption, wind blade grant, frost
+beacon/debris creation and cosmic-rift relocation. Beacon flag follows publication;
+frost debris allocation precedes NOWHERE refusal. Rift matches value3 before corpse
+type and traverses after moving object; exact destinations and save acknowledgement
+remain unqualified. All current ethermancer.c lexical candidates mapped.
+
+Draft validation passed 13 fixtures: 546 routes, 2756 raw matches, 2698 unique
+coordinates, 1850 mapped, 43 reviewed declarations, 805 unclassified.
+No gameplay changes; release readiness remains false.

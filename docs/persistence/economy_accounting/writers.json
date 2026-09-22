@@ -25623,6 +25623,206 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.faerie_sight_dust",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "spell_faerie_sight",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consumes first carried faerie dust to enable detection flags before applying victim affect. Consumption and granted effect require coordinated recovery.",
+      "authority_boundary": "Bind source/output identity and exact chosen payload/destination. Distinguish provisional cleanup, admission, consumption and existing-object movement; commit/publication/save and event replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          280,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.wind_blade_grant",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "void grant_wind_blade",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checked blade allocation configures NORENT, level-dependent properties and timer180, then submits creation grant with UID context. Immediate refusal extracts provisional blade. Accepted submission is not proof of completed grant, wear or follow-up attack.",
+      "authority_boundary": "Bind source/output identity and exact chosen payload/destination. Distinguish provisional cleanup, admission, consumption and existing-object movement; commit/publication/save and event replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          592,
+          "economic_submit"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          543,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          595,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.frost_beacon_creation",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "spell_frost_beacon",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checked prototype99 allocation receives randomized decay and caster PID, publishes to room then sets ITEM_SECRET. Preserve exact payload including post-publication flag and qualify placement lifetime.",
+      "authority_boundary": "Bind source/output identity and exact chosen payload/destination. Distinguish provisional cleanup, admission, consumption and existing-object movement; commit/publication/save and event replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          777,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          795,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.frost_bolt_debris",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "spell_frost_bolt",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates prototype50 before NOWHERE check, sets decay800 then publishes room debris before remaining spell effects. Successful allocation with NOWHERE returns without local cleanup.",
+      "authority_boundary": "Bind source/output identity and exact chosen payload/destination. Distinguish provisional cleanup, admission, consumption and existing-object movement; commit/publication/save and event replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          926,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          931,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.cosmic_rift_object_relocation",
+      "path": "src/classes/ethermancer.c",
+      "symbol": "spell_single_cosmic_rift",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After victim death scans room objects matching value3 id, detaches and moves each to random astral room, saving PC corpses. Match precedes corpse type check and traversal uses next_content after movement. Preserve existing UID and selected destination; traversal and save acknowledgement need qualification.",
+      "authority_boundary": "Bind source/output identity and exact chosen payload/destination. Distinguish provisional cleanup, admission, consumption and existing-object movement; commit/publication/save and event replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/ethermancer.c",
+          2339,
+          "item_publication"
+        ],
+        [
+          "src/classes/ethermancer.c",
+          2340,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
