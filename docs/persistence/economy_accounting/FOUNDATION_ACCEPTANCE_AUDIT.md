@@ -1461,3 +1461,18 @@ unqualified; no gameplay fixes were made.
 Draft validator passed 13 fixtures: 416 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,433 mapped, 43 reviewed declarations, 1,222 unclassified.
 Release readiness remains false.
+
+## Remaining magic.c item-drop candidates
+
+Classified the final14 unique lexical coordinates in magic.c across seven routes:
+curse-removal drops, recall weight drops, disabled fire/frost breath and crimson
+light drops, disabled wraithform drops, and unequip_char_dale. Breath/crimson
+branches follow unconditional returns; wraithform also uses #if 0. These are
+not current runtime enforcement evidence. Active drops preserve existing UIDs;
+curse-removal direct object flag mutation and other payload-only writes remain
+semantic coverage work beyond this lexical census.
+
+Draft validation passed13 fixtures:423 routes,2756 raw matches,2698 unique
+coordinates,1447 mapped,43 reviewed declarations,1208 unclassified.
+All current magic.c lexical matches are mapped; broader census and runtime
+qualification remain incomplete. No gameplay changes.

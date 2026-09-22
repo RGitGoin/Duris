@@ -19830,6 +19830,286 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.remove_curse_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_remove_curse(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Consent-gated character-target branch drops cursed equipment and carried items into victim room while retaining curse flags. Direct object targeting instead clears NODROP. Prototype67243 spell effects precede detach.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          8081,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          8114,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          8115,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.recall_weight_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_word_of_recall(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Word of recall drops equipped items in slot order while weight exceeds (CAN_CARRY_W / 100) * 70, before character relocation. Preserve integer arithmetic and original room; existing UID transfer.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          8577,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.fire_breath_disabled_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_fire_breath(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unreachable inventory-to-caster-room drop: unconditional return at10992 disables item drop logic after spell damage.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          11041,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          11042,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.frost_breath_disabled_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_frost_breath(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unreachable inventory-to-caster-room drop: unconditional return at11085 disables item drop logic after spell damage.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          11134,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          11135,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.fire_disabled_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_crimson_light(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unreachable inventory-to-caster-room drop: unconditional return at11460 disables item drop logic after spell damage.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          11507,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          11508,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.wraithform_disabled_drop",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_wraithform(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Equipment/inventory drops are inside #if 0 and follow unconditional Disabled return. No current runtime item transfer on this path.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          13009,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          13015,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          13016,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.unequip_dale",
+      "path": "src/magic/magic.c",
+      "symbol": "void unequip_char_dale(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Helper finds last matching worn slot and calls unequip_char; no explicit destination publication here. Caller owns subsequent object disposition; same UID, not issuance.",
+      "authority_boundary": "Preserve existing UID, source equipment/inventory and destination where reachable; caller effects and durable save acknowledgement require separate qualification. Disabled branches are inventory coverage only, not evidence of runtime enforcement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          13568,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
