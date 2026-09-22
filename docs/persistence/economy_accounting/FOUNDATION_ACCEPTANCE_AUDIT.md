@@ -2598,3 +2598,15 @@ to targeting or gameplay policy.
 Draft validation passed 13 fixtures: 678 routes, 2756 raw matches, 2698 unique
 coordinates, 2156 mapped, 43 reviewed nonwriters, 499 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Studio script object actions
+
+Five coordinates classified into room load, actor gift and self-object purge.
+GIVE creates an asset rather than transferring script-owner stock. Record
+trigger/action identity and oneof selection without suppressing legitimate
+repeat invocations. Ordered partial execution, indirect mobile purge, contents
+and save/replay remain qualification work.
+
+Draft validation passed 13 fixtures: 681 routes, 2756 raw matches, 2698 unique
+coordinates, 2161 mapped, 43 reviewed nonwriters, 494 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

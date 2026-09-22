@@ -31342,6 +31342,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.studio_object_load",
+      "path": "src/mob/studioproc.c",
+      "symbol": "sp_execute",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "SP_A_OLOAD checks prototype availability and allocation then publishes a new object in the validated context room.",
+      "authority_boundary": "Bind trigger invocation and selected action identity to asset mutation, including oneof selection and ordered partial execution. Preserve valid repeated script executions while deduplicating replay; qualify allocation refusal, nested contents, publication/save acknowledgement and restart. Interpreter execution alone is not durable commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/studioproc.c",
+          1099,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/studioproc.c",
+          1100,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.studio_object_give",
+      "path": "src/mob/studioproc.c",
+      "symbol": "sp_execute",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "SP_A_GIVE requires a live actor with valid room, checks prototype and allocation, then publishes a new object directly to actor inventory. This creates a gift, not transfer from script owner inventory.",
+      "authority_boundary": "Bind trigger invocation and selected action identity to asset mutation, including oneof selection and ordered partial execution. Preserve valid repeated script executions while deduplicating replay; qualify allocation refusal, nested contents, publication/save acknowledgement and restart. Interpreter execution alone is not durable commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/studioproc.c",
+          1104,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/studioproc.c",
+          1106,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.studio_object_purge",
+      "path": "src/mob/studioproc.c",
+      "symbol": "sp_execute",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "SP_A_PURGE on object context recursively extracts the existing self object with artifact handling, clears context pointer and returns SELFGONE. Adjacent mobile purge uses extract_char and requires separate indirect asset accounting.",
+      "authority_boundary": "Bind trigger invocation and selected action identity to asset mutation, including oneof selection and ordered partial execution. Preserve valid repeated script executions while deduplicating replay; qualify allocation refusal, nested contents, publication/save acknowledgement and restart. Interpreter execution alone is not durable commit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/studioproc.c",
+          1310,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
