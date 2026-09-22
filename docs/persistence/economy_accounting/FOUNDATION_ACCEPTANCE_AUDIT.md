@@ -2090,3 +2090,15 @@ allocations. Atomic durability/replay remain unqualified.
 Draft validation passed 13 fixtures: 587 routes, 2756 raw matches, 2698 unique
 coordinates, 1936 mapped, 43 reviewed declarations, 719 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship weapon and equipment installation
+
+Two payment coordinates classified with slot/maintenance mutations. Weapon
+progression gate uses conjunction and has inactive PvP build multiplier; equipment
+uses active PvP multiplier and listed weight despite scaled-weight prose. Both
+debit before installation; exact eligibility/pricing and compound save/replay
+remain qualification work.
+
+Draft validation passed 13 fixtures: 589 routes, 2756 raw matches, 2698 unique
+coordinates, 1938 mapped, 43 reviewed declarations, 717 unclassified.
+No gameplay changes; release readiness remains false.

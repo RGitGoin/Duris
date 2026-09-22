@@ -27483,6 +27483,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.ship_weapon_purchase",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int buy_weapon",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After eligibility/arc/capacity/capital/affordability checks, debits listed cost then set_weapon mutates selected ship slot. Weapon progression refusal requires both insufficient frags and crew skill. Weight-times75 maintenance is halved for quickbuild; PvP multiplier is commented out.",
+      "authority_boundary": "Capture chosen slot/configuration, exact fee and maintenance delta with original eligibility. Abstract ship slot installation is not ordinary inventory issuance. Compound wallet/ship persistence and replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          2466,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_equipment_purchase",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int buy_equipment",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates equipment, listed weight, hull permission, free slot, frags, uniqueness/capital and affordability. Debits ram-specific or listed cost then set_equipment. Listed-weight-times75 maintenance gets active PvP times4 then quickbuild half. Local weight check uses listed weight despite prose suggesting scaled weight.",
+      "authority_boundary": "Capture chosen slot/configuration, exact fee and maintenance delta with original eligibility. Abstract ship slot installation is not ordinary inventory issuance. Compound wallet/ship persistence and replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          2590,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
