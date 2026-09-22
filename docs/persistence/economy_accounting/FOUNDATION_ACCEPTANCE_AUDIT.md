@@ -2030,3 +2030,16 @@ stages auction pickup from captured entitlement; repeat-safe fallback unqualifie
 Draft validation passed 13 fixtures: 564 routes, 2756 raw matches, 2698 unique
 coordinates, 1900 mapped, 43 reviewed declarations, 755 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship movement and sinking insurance
+
+Sixteen coordinates classified across shutdown evacuation, loading, panel reset,
+navigation, docking fallback, sinking and summon arrival. Existing representation
+movement is not issuance; cargo helper effects remain separate qualification.
+Insurance bank path truncates to platinum while fallback uses full amount and can
+mutate ship coffers directly. Void docking fallback later overwrites ship location
+with original destination; state agreement requires review.
+
+Draft validation passed 13 fixtures: 572 routes, 2756 raw matches, 2698 unique
+coordinates, 1916 mapped, 43 reviewed declarations, 739 unclassified.
+No gameplay changes; release readiness remains false.

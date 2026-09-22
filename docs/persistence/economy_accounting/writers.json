@@ -26613,6 +26613,326 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ship_shutdown_evacuation",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void shutdown_ships",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Shutdown moves existing ship-room objects to anchor before ship write; preserve root identities and distinguish evacuation from destruction.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          644,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          645,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_load_publication",
+      "path": "src/ships/ship_base.c",
+      "symbol": "int load_ship",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Marks loaded/docked, publishes existing panel then ship representation; missing representation may fail after panel placement. Construction versus restoration caller determines admission policy.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          1122,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          1133,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_reset_panel",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void reset_ship",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Detaches existing panel, rebuilds ship layout and publishes panel in new bridge. Same UID retained; layout/cargo helper effects require coordinated custody.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          1753,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          1758,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_navigation_representation",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void ship_activity",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Updates ship location then moves same representation to navigation destination; no item issuance.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          2733,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          2734,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_dock_anchor_fallback",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void dock_ship",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Void destination moves representation back to anchor but subsequent code assigns ship location from original to_room; state agreement requires qualification.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          2910,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          2911,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_sink_insurance",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void finish_sinking",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Computes non-sloop insurance by NPC/merchant/warship policy. Online bank path truncates to platinum, immediate failure/offline stages full insurance at auction, failed staging adds ship money directly. Bank acceptance is not commit and source ship coffer mutation is a semantic writer.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          3058,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_base.c",
+          3045,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_sink_holding_move",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void finish_sinking",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After content/jettison helpers and class reset, moves player ship representation to holding room, docks and queues save; preserve identity through structural reset.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          3089,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          3090,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_summon_arrival",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void summon_ship_event",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eligible named nonbusy ship moves representation to requested room then docks, inspects contraband and clears cargo. Movement and cargo effects/save must be qualified together.",
+      "authority_boundary": "Preserve persistent ship/object/entitlement identities and original destination/amount semantics. Distinguish runtime publication, indirect cargo changes, payout staging and save acknowledgement; recovery and backend qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          3129,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          3130,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
