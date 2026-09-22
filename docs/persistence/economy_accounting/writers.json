@@ -20305,6 +20305,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.exhume_cadaver",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void do_exhume(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Creates prototype2 cadaver after tool/terrain/height/cooldown checks for nontrusted users, skill notch and wait. Sets randomized capped CORPSE_LEVEL, cadaver description and string mask; publishes to room before decay tag and embalming.",
+      "authority_boundary": "Allocation is dereferenced without local null check. Bind one admission to invocation and preserve randomized level/metadata through recovery; timer/wait and publication are not durable acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2643,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2648,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.summon_host_cadaver",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void do_summon_host(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Innate/trusted-gated host summons prototype2 after nontrusted cooldown and wait. Tool/terrain checks are commented out. Sets randomized capped CORPSE_LEVEL and cadaver description/string mask, publishes then applies decay tag and embalming.",
+      "authority_boundary": "Allocation is dereferenced without local null check. Bind one admission to invocation and preserve randomized level/metadata through recovery; timer/wait and publication are not durable acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2752,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2757,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.corpseform_consumption",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_corpseform(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After corpseform eligibility checks, applies transformation effects, changes race and adjusts followers before unloading all corpse children into caster room and extracting corpse. Children retain identity; consumption is not new item issuance.",
+      "authority_boundary": "Bind exact corpse and child UIDs and room; transformation precedes source retirement. Qualify compound effect ordering, persistence and replay without repeating child publication or transformation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2960,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2961,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2965,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

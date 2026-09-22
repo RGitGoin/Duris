@@ -1502,3 +1502,16 @@ retirement. These are classifications, not runtime fixes or qualified behavior.
 Draft validation passed 13 fixtures: 427 routes, 2756 raw matches, 2698 unique
 coordinates, 1462 mapped, 43 reviewed declarations, 1193 unclassified.
 Release readiness remains false.
+
+## Cadaver creation and corpseform consumption
+
+Seven coordinates classified. Exhume and summon host allocate prototype2, set
+randomized capped corpse level and description, publish, then apply decay/embalm.
+Allocation has no local null guard; host tool/terrain checks are commented out.
+Corpseform applies transformation and follower changes before releasing children
+and retiring its source corpse. Admission and replay must preserve generated
+payloads and existing child UIDs without repeating transformation effects.
+
+Draft validation passed13 fixtures:430 routes,2756 raw matches,2698 unique
+coordinates,1469 mapped,43 reviewed declarations,1186 unclassified.
+No gameplay changes or runtime qualification; release readiness remains false.
