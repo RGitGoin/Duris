@@ -30115,6 +30115,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.training_split_payment",
+      "path": "src/guild/guild.c",
+      "symbol": "RobCash",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Rejects null actor/nonpositive cost. If wallet insufficient, debits bank shortfall with checked return then drains positive wallet; otherwise debits wallet cost. Wallet debit return is not checked before TRUE.",
+      "authority_boundary": "Couple bank and wallet portions with training effect in caller; qualify partial debit, refusal, duplicate request and save ordering. Adjacent SUB_BALANCE is semantic boundary beyond these wallet coordinates.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guild.c",
+          507,
+          "money_helper"
+        ],
+        [
+          "src/guild/guild.c",
+          513,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.practice_skill_payment",
+      "path": "src/guild/guild.c",
+      "symbol": "do_practice",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After practice eligibility, non-memorizing-class or nonspell branch debits SkillRaiseCost then increments learned skill capped at 100. Debit return is not checked at this site.",
+      "authority_boundary": "Couple wallet cost with one skill increment, preserving separate spell-learning path; qualify failure and replay without granting practice twice.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/guild.c",
+          1249,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2404,3 +2404,13 @@ follows unchecked local file write. Atomic durability/replay remain unqualified.
 Draft validation passed 13 fixtures: 650 routes, 2756 raw matches, 2698 unique
 coordinates, 2079 mapped, 43 reviewed nonwriters, 576 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Training split payment and practice
+
+Three wallet coordinates classified: RobCash debits bank shortfall before wallet
+remainder, while practice debits before skill increment. Wallet return handling,
+compound debit and caller save/replay remain qualification work.
+
+Draft validation passed 13 fixtures: 652 routes, 2756 raw matches, 2698 unique
+coordinates, 2082 mapped, 43 reviewed nonwriters, 573 unclassified.
+No gameplay changes; release readiness remains false.
