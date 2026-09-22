@@ -3279,3 +3279,7 @@ Specified source/destination metadata for 25 existing routes after checking thei
 ### 2026-09-22: starter, ship and material endpoints
 
 Added verified source/destination descriptions for 30 existing starter-kit, ship, reward, forced-drop, material-report and disabled breath routes. Provisional cleanup and report allocations are not admission; ship restoration intent remains caller-dependent; disabled blocks remain dormant. Explicit endpoints now cover 777/851 routes, leaving 74. The 710 test-candidate gaps and all backend qualification statuses are unchanged. Draft validation passed with 13 fixtures and the unchanged census; whitespace validation passed. No gameplay changes.
+
+### 2026-09-22: consumption, class and scripted endpoints
+
+Specified 35 source-verified endpoint pairs for smoking, slip/disguise, innate objects, tickets, mail, spell devices and scripted transfers. Temporary restored copies/probes remain distinct from retirement; dormant branches remain labeled; compound effects and save attempts do not imply durable completion. Endpoint coverage is 812/851, leaving 39. Test-candidate gaps remain 710 and backend qualification is unchanged. Draft validator (13 fixtures, unchanged census) and whitespace checks passed. No gameplay changes.

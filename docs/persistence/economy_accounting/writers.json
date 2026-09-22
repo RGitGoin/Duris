@@ -29759,7 +29759,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dormant selected carried item in disabled block",
+      "destination": "Dormant room transfer; no active runtime endpoint"
     },
     {
       "id": "item.smoking_heat_loss",
@@ -29794,7 +29796,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected carried/equipped herb",
+      "destination": "Extracted herb before spell effects"
     },
     {
       "id": "item.smoking_pipe_consumption",
@@ -29834,7 +29838,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rolling papers or pipe after herb effects",
+      "destination": "Consumed papers, reduced pipe durability or exhausted pipe extraction"
     },
     {
       "id": "item.smoking_herb_consumption",
@@ -29869,7 +29875,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing herb after smoking effects",
+      "destination": "Consumed herb for PC/pet; retained by uncontrolled NPC"
     },
     {
       "id": "item.account_display_cleanup",
@@ -29919,7 +29927,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary restored character inventory/equipment copies",
+      "destination": "Released display copies without intended saved-asset retirement"
     },
     {
       "id": "item.slip_durable",
@@ -29964,7 +29974,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Durable item held by source PC",
+      "destination": "Committed transfer to recipient PC followed by character save attempts"
     },
     {
       "id": "item.slip_legacy",
@@ -30004,7 +30016,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing actor-carried item outside durable branch",
+      "destination": "Recipient inventory via direct transfer"
     },
     {
       "id": "item.slip_failed_drop",
@@ -30044,7 +30058,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor-carried item on failed skill check",
+      "destination": "Actor room via direct drop followed by save attempt"
     },
     {
       "id": "item.disguise_failed_kit",
@@ -30084,7 +30100,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried/held disguise kit on failed roll",
+      "destination": "Chance-based kit extraction unless exempt; otherwise retained kit"
     },
     {
       "id": "item.disguise_success_kit",
@@ -30124,7 +30142,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried/held kit and eligible disguise target",
+      "destination": "Disguise state plus consumed kit unless exempt"
     },
     {
       "id": "item.innate_water_spring",
@@ -30164,7 +30184,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Delayed innate event and spring prototype",
+      "destination": "New spring in actor current room with timed decay"
     },
     {
       "id": "item.innate_foundry",
@@ -30204,7 +30226,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Delayed innate event and foundry prototype",
+      "destination": "New foundry in actor current room with timed decay"
     },
     {
       "id": "world.ferry_initialization",
@@ -30390,7 +30414,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer wallet and provisional ferry ticket",
+      "destination": "Debited wallet and configured ticket in buyer inventory; unaffordable provisional released"
     },
     {
       "id": "coin.generated_npc_restore",
@@ -30569,7 +30595,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Level-five progress gate and gift prototype",
+      "destination": "Gift placement attempt plus advanced achievement marker"
     },
     {
       "id": "coin.level_twenty_ship_reward",
@@ -30772,7 +30800,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped outdoor light",
+      "destination": "Same light in wearer inventory"
     },
     {
       "id": "item.training_dummy_cleanup",
@@ -30825,7 +30855,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dummy prototype equipment and carried items",
+      "destination": "Extracted items before dummy room placement"
     },
     {
       "id": "coin.training_dummy_zero_wallet",
@@ -30925,7 +30957,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior matching room beacon and actor affect",
+      "destination": "Old beacon removed and affect updated before replacement room admission"
     },
     {
       "id": "item.imprison_shell_admission",
@@ -30965,7 +30999,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional shell and eligible victim",
+      "destination": "Configured room shell and imprison state; disbelieve can leave unpublished allocation"
     },
     {
       "id": "item.imprison_shell_damage",
@@ -31000,7 +31036,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing victim shell and its HP",
+      "destination": "Reduced HP or extracted shell with imprison cleared when damage exceeds HP"
     },
     {
       "id": "coin.epic_skill_purchase",
@@ -31077,7 +31115,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried encrustable stone and device charge/wear state",
+      "destination": "Consumed stone plus changed device charges/wear and cooldown"
     },
     {
       "id": "item.historical_mail_gift",
@@ -31117,7 +31157,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Historical time gate and provisional gift",
+      "destination": "Player-bound gift and vote marker in dormant historical branch"
     },
     {
       "id": "coin.mail_postage",
@@ -31194,7 +31236,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Stored mail message and provisional letter",
+      "destination": "Deleted stored message and configured letter in player inventory"
     },
     {
       "id": "world.track_replacement",
@@ -31434,7 +31478,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried paper with action description",
+      "destination": "Guild MOTD file write attempt and consumed paper"
     },
     {
       "id": "coin.training_split_payment",
@@ -31558,7 +31604,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected provisional quest reward",
+      "destination": "Queued player grant or provisional release on rejection"
     },
     {
       "id": "coin.world_quest_mercenary_reward",
@@ -31640,7 +31688,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary zone item prototype",
+      "destination": "Retained eligibility/value metadata and released probe object"
     },
     {
       "id": "infrastructure.allocator_link_copies",
@@ -31717,7 +31767,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Source scroll and destination spellbook",
+      "destination": "Updated book pages plus consumed single-spell scroll or cleared matching slot"
     },
     {
       "id": "coin.guild_creation_confirmation",
@@ -31826,7 +31878,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reserved source scroll UID with cleared spell slots",
+      "destination": "Ready queue entry removed and live source extracted by game-thread pulse"
     },
     {
       "id": "item.wonder_gem_admission",
@@ -31873,7 +31927,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Preselected gem prototypes and committed wand charge",
+      "destination": "Accepted gems in origin room; invalid-action provisional released"
     },
     {
       "id": "item.vecna_corpse_north",
@@ -31913,7 +31969,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First room corpse with contents",
+      "destination": "Same corpse through north exit"
     },
     {
       "id": "item.vecna_corpse_down",
@@ -31953,7 +32011,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First room corpse with contents",
+      "destination": "Same corpse through down exit"
     },
     {
       "id": "item.oaken_staff_death_drop",
@@ -31993,7 +32053,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor equipment and carried items before lethal staff effect",
+      "destination": "Dropped room possessions before relocation and death processing"
     },
     {
       "id": "item.krindor_container_reset",
@@ -32043,7 +32105,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Device container contents and device state",
+      "destination": "Detached children placed in device room/carrier/wearer inventory when supported; reset device"
     },
     {
       "id": "world.claw_caverns_golem_shatter",
@@ -32222,7 +32286,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing object with expired counter",
+      "destination": "Replacement corpse in supported original location and extracted original; unsupported location releases both"
     },
     {
       "id": "item.dragonnia_mob_disarm",
@@ -32262,7 +32328,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim wielded weapon",
+      "destination": "Same weapon in attacker room"
     },
     {
       "id": "item.dragonnia_false_key",
@@ -32307,7 +32375,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching held/carried player keys",
+      "destination": "Held key stowed then first matching carried key consumed with character effects"
     },
     {
       "id": "world.dragonnia_remains",
