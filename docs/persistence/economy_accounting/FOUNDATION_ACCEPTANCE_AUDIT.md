@@ -1373,3 +1373,13 @@ separate qualification. Same-player and nonplayer helpers are distinct paths.
 Draft validator passed 13 fixtures: 405 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,381 mapped, 43 reviewed declarations and 1,274 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Conjured weapon submission
+
+Three coordinates classified. NPC publication is direct; PC creation captures
+UID/PID/kind/health cost and cleans unpublished output on rejection. Completion
+identity/live checks precede effects but do not prove save or restart-safe replay.
+
+Draft validator passed 13 fixtures: 406 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,384 mapped, 43 reviewed declarations and 1,271 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
