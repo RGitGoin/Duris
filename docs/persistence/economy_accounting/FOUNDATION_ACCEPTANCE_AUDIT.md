@@ -1858,3 +1858,16 @@ All current epic.c lexical candidates mapped; integration remains unverified.
 Draft validation passed 13 fixtures: 515 routes, 2756 raw matches, 2698 unique
 coordinates, 1768 mapped, 43 reviewed declarations, 887 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Condition damage and scrap conversion
+
+Eleven coordinates classified including MakeScrap definition/body. Condition damage
+is itself a semantic mutation. Normal destruction replaces source with allocated
+scrap and releases children; forced destruction extracts directly. Failed scrap
+allocation or missing room can leave source despite caller destruction result.
+Actual wearer resolution and direct stale location clearing require identity-aware
+qualification. Children retained in room are neither new issuance nor retirement.
+
+Draft validation passed 13 fixtures: 517 routes, 2756 raw matches, 2698 unique
+coordinates, 1779 mapped, 43 reviewed declarations, 876 unclassified.
+No gameplay changes; release readiness remains false.

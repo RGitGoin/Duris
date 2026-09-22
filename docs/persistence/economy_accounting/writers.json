@@ -24483,6 +24483,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.condition_damage_retirement",
+      "path": "src/world/condition.c",
+      "symbol": "DamageOneItem",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Excludes totems, keys, spellbooks and artifacts. Applies bounded material-adjusted condition damage, then forced destruction extracts directly while normal destruction calls MakeScrap. Condition mutation itself is a semantic writer even without retirement. Return value can report destruction when MakeScrap cannot allocate or has no room.",
+      "authority_boundary": "Coordinate source retirement, replacement admission and child custody without treating retained children as destroyed or newly issued. Preserve original damage/refusal semantics and exact source/destination identities. Compound commit/publication/save and allocation-failure recovery remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/condition.c",
+          124,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/condition.c",
+          126,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.condition_scrap_conversion",
+      "path": "src/world/condition.c",
+      "symbol": "void MakeScrap",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Definition and body: checked scrap prototype9 allocation precedes source detachment. Resolves actual wearer with global fallback, detaches carried/equipped source, configures scrap descriptions/decay, publishes scrap to caller room, releases contained objects there, applies falling behavior then extracts source. Invalid caller/room or failed allocation returns without source retirement; recovery branches can directly clear stale location pointers.",
+      "authority_boundary": "Coordinate source retirement, replacement admission and child custody without treating retained children as destroyed or newly issued. Preserve original damage/refusal semantics and exact source/destination identities. Compound commit/publication/save and allocation-failure recovery remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/condition.c",
+          132,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/condition.c",
+          144,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/condition.c",
+          265,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/condition.c",
+          166,
+          "item_publication"
+        ],
+        [
+          "src/world/condition.c",
+          204,
+          "item_publication"
+        ],
+        [
+          "src/world/condition.c",
+          232,
+          "item_publication"
+        ],
+        [
+          "src/world/condition.c",
+          253,
+          "item_publication"
+        ],
+        [
+          "src/world/condition.c",
+          258,
+          "item_publication"
+        ],
+        [
+          "src/world/condition.c",
+          259,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
