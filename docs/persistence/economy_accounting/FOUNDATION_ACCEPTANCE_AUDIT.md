@@ -2425,3 +2425,13 @@ compound completion/replay qualification remains open.
 Draft validation passed 13 fixtures: 654 routes, 2756 raw matches, 2698 unique
 coordinates, 2087 mapped, 43 reviewed nonwriters, 568 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Quest reward profile probes
+
+Two coordinates classified as temporary prototype inspection with RAII cleanup;
+only reward metadata survives and no item is published. Allocation/extraction
+helper side effects remain unqualified independently of actual quest grants.
+
+Draft validation passed 13 fixtures: 655 routes, 2756 raw matches, 2698 unique
+coordinates, 2089 mapped, 43 reviewed nonwriters, 566 unclassified.
+No gameplay changes; release readiness remains false.

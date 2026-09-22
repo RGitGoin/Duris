@@ -30275,6 +30275,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.quest_reward_profile_probe",
+      "path": "src/world/world_quest_policy.c",
+      "symbol": "load_reward_profiles",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Loads temporary object for each valid-zone prototype to assess reward eligibility and item value. Null loads skip; excluded items continue; RAII object_probe_guard extracts FALSE on every scope exit. Only profile metadata is retained, with no item publication.",
+      "authority_boundary": "Temporary policy probe is not economic admission or retirement. Qualify underlying allocation/extraction side effects independently from later actual quest reward grants.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/world_quest_policy.c",
+          107,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_quest_policy.c",
+          273,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
