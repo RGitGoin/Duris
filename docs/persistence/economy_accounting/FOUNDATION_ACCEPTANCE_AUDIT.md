@@ -3512,3 +3512,7 @@ Re-read live #475 and fetched Community-Duris/Duris master at `feed2939125c3e9a9
 ### NPC buffer recovery candidate audit
 
 Extended the singleton harness with nonzero NPC gold preservation across five production buffer save/restore cycles; existing stock-count/equipment checks remain. ASan/UBSan harness and compatibility source checks pass. Linked the two buffer recovery routes, leaving 659 candidate gaps. The separate copyover custody fixture has no NPCs and telemetry serialization does not test NPC holdings, so neither was assigned to file/buffer NPC wallet routes. Controlled world I/O and prototype reconstruction do not qualify durable accounting or preservation of original item UIDs; file-based NPC recovery still has no candidate.
+
+### Prefix-mutation census guard
+
+The scanner now detects prefix increment/decrement on denomination macros and cash/bank array expressions, including member-qualified cash arrays. A regression covers those writes and excludes comments, strings and read-only arguments; all 46 contract tests pass. This addresses one syntactic blind spot, not general alias analysis. Reviewed reference-search examples include transaction bank-byte decoding and auction result-vector decoding (construction of decoded state rather than independent live issuance); mutable bank references in flat-file command application still require their full transaction context when qualifying authority. No route was reclassified from these searches alone.

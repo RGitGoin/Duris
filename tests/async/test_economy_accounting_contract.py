@@ -363,6 +363,21 @@ class AccountingContractTest(unittest.TestCase):
             self.assertEqual([(s['line'],s['family']) for s in contract.scan_sources(root)],
                 [(1,'sql_economy'),(2,'sql_economy'),(3,'sql_economy')])
 
+    def test_census_tracks_prefix_currency_mutations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src').mkdir()
+            (root/'src/example.c').write_text(
+                '++GET_COPPER(ch);\n'
+                '--GET_BALANCE_GOLD(ch);\n'
+                '++ch->points.cash[0];\n'
+                '--bank[1];\n'
+                '// ++GET_COPPER(ch);\n'
+                'const char *text = "--bank[1]";\n'
+                'inspect(GET_GOLD(ch), bank[0]);\n')
+            self.assertEqual({(s['line'],s['family']) for s in contract.scan_sources(root)},
+                {(1,'coin_assignment'),(2,'coin_assignment'),
+                 (3,'direct_cash_assignment'),(4,'direct_cash_assignment')})
+
     def test_census_tracks_indirect_inventory_consumption(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'src').mkdir()
