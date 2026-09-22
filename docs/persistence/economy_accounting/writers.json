@@ -2643,7 +2643,7 @@
       "coverage": "legacy",
       "classification": "Builds a prepared identify service debit from wallet or bank with wallet change. Building and normalization do not submit or commit the payment.",
       "authority_boundary": "Preserve existing receipt identity",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native adapter candidate exercises positive-cost preparation, encoding, zero-cost refusal and absence of submission/fencing during preparation; bank-fallback arithmetic and storage atomicity are not qualified by this candidate.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -2658,7 +2658,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_input_queue.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",
@@ -11227,7 +11229,7 @@
       "coverage": "legacy",
       "classification": "Converts a signed wallet value into denomination deltas and delegates to generic submission; no separate issuance or expense occurs in the adapter.",
       "authority_boundary": "The caller operation owns provenance, source or sink and original identity; command construction is not commit.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native adapter/codecs candidate exercises wallet reward/spend submission and completion retention with controlled coordinator/world endpoints in SQL and client-free builds; it is not native database integration.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -11242,7 +11244,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_completion_retention.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",

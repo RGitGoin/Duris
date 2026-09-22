@@ -3492,3 +3492,7 @@ This scoped refresh is not a whole-master census review or issue closure audit.
 ### Quest test candidate audit
 
 Linked four world-quest reward/fee/refund routes to inspected source-contract tests, reducing missing candidates from 674 to 670. The reward rejection test existed but was omitted from its standalone runner; it is now included and passes. Both quest scripts and all 45 accounting contract tests pass. These candidates cover selected item publication, payment ordering and refund invocation contracts, not native backend atomicity, durable refund identity or currency issuance. Each route records that limit; support and completeness flags remain unchanged. Crafting/salvage symbol-only checks were not assigned to economic output routes.
+
+### Native currency candidate audit
+
+Linked identify preparation and wallet-value submission to inspected native adapter tests; 668 routes now lack candidates. The queue harness initially failed to link because its controlled item-movement stub lacked the current publication callback parameter. Updated that signature and asserted that this admission path passes no publication callback. The queue harness then passed SQL and client-free ASan/UBSan variants. Completion retention passed all 34 sanitizer scenarios, the accounting contract suite passed 45 tests, and draft validation passed. These use controlled coordinator/world endpoints, not database integration; identify bank-fallback arithmetic remains unqualified by this candidate. No production source, backend support status or completeness flag changed.
