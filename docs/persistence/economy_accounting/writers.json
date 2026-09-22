@@ -23320,6 +23320,151 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.reward_container_open",
+      "path": "src/cmd/actmove.c",
+      "symbol": "void do_open(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Turkey innards chooses fixed rewards by random roll; faerie bags repeatedly allocate random prototypes until takeable/nonexcluded and value thresholds pass, extracting rejected candidates. Clears secret/nodrop/invisible, publishes reward to player then detaches/extracts source.",
+      "authority_boundary": "Bind source UID and selected output/payload once, without replay rerolls. Rejected prototypes are not admitted retirement. Turkey allocation lacks local null guard; random selection has no bounded attempts. Output admission and source consumption need compound durability.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actmove.c",
+          2496,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2500,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2504,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2512,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2528,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2534,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2540,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2546,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2570,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2571,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          2572,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.lockpick_breakage",
+      "path": "src/cmd/actmove.c",
+      "symbol": "void do_pick(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Container/door failed-pick branches may unequip/extract pick then return; successful door picking can increase wear value1, with final break check after lock effects.",
+      "authority_boundary": "Preserve actual conditional-expression precedence in container failure formula and exact wear/random outcomes. Final break check can follow refusal branches that fall through. Couple tool UID retirement with lock state/save recovery without inventing successful unlock.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actmove.c",
+          3163,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3164,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3216,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3217,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3267,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actmove.c",
+          3268,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

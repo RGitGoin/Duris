@@ -1765,3 +1765,15 @@ ordering remain qualification work.
 Draft validation passed13 fixtures:492 routes,2756 raw matches,2698 unique
 coordinates,1675 mapped,43 reviewed declarations,980 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Reward containers and lockpick consumption
+
+Seventeen coordinates classified. Reward opening selects/filters provisional
+objects, clears flags, publishes output then consumes source; replay must preserve
+selected output. Lockpick failure/success/refusal fallthrough paths can consume
+pick with actual wear and expression precedence preserved. Compound source/output
+and lock/tool durability remain unqualified. Current actmove.c lexical matches mapped.
+
+Draft validation passed13 fixtures:494 routes,2756 raw matches,2698 unique
+coordinates,1692 mapped,43 reviewed declarations,963 unclassified.
+No gameplay changes; release readiness remains false.
