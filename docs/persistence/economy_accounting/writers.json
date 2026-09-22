@@ -19285,6 +19285,111 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.ensis_unguis_allocation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_ensis_unguis(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Alive caster allocates prototype56, sets norent, level-based proc values, timer180 and player PID or NPC sentinel, then delegates to submit_conjured_weapon.",
+      "authority_boundary": "Allocation does not establish admission. Preserve complete configured payload and spell kind through shared submission; publication/effects/rejected cleanup are classified separately. Prototype defaults below explicit level thresholds remain part of actual output.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          23131,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.lancea_cineralae_allocation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_lancea_cineralae(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Alive caster allocates prototype93, sets norent, level-based proc values, timer180 and player PID or NPC sentinel, then delegates to submit_conjured_weapon.",
+      "authority_boundary": "Allocation does not establish admission. Preserve complete configured payload and spell kind through shared submission; publication/effects/rejected cleanup are classified separately. Prototype defaults below explicit level thresholds remain part of actual output.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          23183,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.simulacrum_anguis_allocation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_simulacrum_anguis(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Alive caster allocates prototype171, sets norent, level-based proc values, timer180 and player PID or NPC sentinel, then delegates to submit_conjured_weapon.",
+      "authority_boundary": "Allocation does not establish admission. Preserve complete configured payload and spell kind through shared submission; publication/effects/rejected cleanup are classified separately. Prototype defaults below explicit level thresholds remain part of actual output.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          23235,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

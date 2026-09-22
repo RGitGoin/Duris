@@ -1383,3 +1383,13 @@ identity/live checks precede effects but do not prove save or restart-safe repla
 Draft validator passed 13 fixtures: 406 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,384 mapped, 43 reviewed declarations and 1,271 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Conjured weapon allocation callers
+
+Three coordinates classified for ensis, lancea and simulacrum prototypes. Each
+configures level/timer/PID payload then delegates shared submission. Preserve
+prototype defaults where branches do not override; allocation is not admission.
+
+Draft validator passed 13 fixtures: 409 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,387 mapped, 43 reviewed declarations and 1,268 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
