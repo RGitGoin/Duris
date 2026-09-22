@@ -225,9 +225,11 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
     site_owners={}
     for writer in inventory['writers']:
         require(writer['reason'] in reasons,'unknown writer reason')
-        require(bool(writer['owner']),'missing integration owner')
-        require(bool(writer['authority_boundary']),'missing authority boundary')
-        require(bool(writer['classification']),'missing source/sink classification')
+        for field,label in (('owner','integration owner'),
+                            ('authority_boundary','authority boundary'),
+                            ('classification','source/sink classification')):
+            require(isinstance(writer.get(field),str) and writer[field].strip(),
+                    f'missing {label}')
         require(set(writer['backends'])=={'mysql','mariadb','flatfile'},'missing backend coverage entry')
         require(all(b['status'] in {'unverified','qualified','refused','projection'} for b in writer['backends'].values()),'unknown backend status')
         integer(writer['integration_issue'],'invalid slice dependency',475,490)

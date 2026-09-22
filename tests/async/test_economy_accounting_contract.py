@@ -231,6 +231,21 @@ class AccountingContractTest(unittest.TestCase):
             backends={name:dict(status='unverified') for name in ('mysql','mariadb','flatfile')})
         return dict(schema_version=1,writers=[writer],census=contract.scan_sources(root),census_complete=True)
 
+    def test_inventory_requires_textual_owner_and_classification(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            for field in ('owner','authority_boundary','classification'):
+                for value in (None,'',' \t',42,True,{'label':'placeholder'}):
+                    invalid=copy.deepcopy(inventory)
+                    invalid['writers'][0][field]=value
+                    with self.subTest(field=field,value=value), self.assertRaisesRegex(
+                            contract.ContractError,'missing'):
+                        contract.validate_inventory(invalid,self.registry,root)
+                missing=copy.deepcopy(inventory)
+                del missing['writers'][0][field]
+                with self.assertRaisesRegex(contract.ContractError,'missing'):
+                    contract.validate_inventory(missing,self.registry,root)
+
     def test_inventory_rejects_duplicate_site_ownership(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.census_fixture(root)

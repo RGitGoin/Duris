@@ -3544,3 +3544,7 @@ Added test_money_helpers_runtime.py extracting actual ADD_MONEY/SUB_MONEY bodies
 ### Native shop cash/dormant barter evidence
 
 Extended the money helper harness with actual transact: room mismatch causes no submission, refused debit leaves recipient unchanged, and passing merchandise still charges cash because production explicitly disables barter. ASan/UBSan passes. Accepted persisted-payer submission credits the transient recipient while payer live balance remains unchanged; this demonstrates the existing completion boundary, not atomic payment. Two routes linked, leaving 644 candidate gaps. Existing shop live-route source contract also passes but was not treated as repair/peruse execution coverage. No production behavior changed.
+
+### Required ownership text validation
+
+Owner, authority boundary and source/sink classification now require nonblank strings. Truthy numbers, booleans, objects and whitespace previously passed; missing fields now produce a contract error rather than KeyError. Regression covers each malformed value and omitted field; all 48 contract tests pass. Current inventory audit found no invalid entries. This validates metadata shape, not semantic correctness or completion; 644 candidate gaps remain.
