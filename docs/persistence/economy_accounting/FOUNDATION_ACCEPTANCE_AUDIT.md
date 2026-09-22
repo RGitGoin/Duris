@@ -1403,3 +1403,13 @@ Preserve selected UID; name lookup does not prove newest corpse or durable owner
 Draft validator passed 13 fixtures: 410 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,389 mapped, 43 reviewed declarations and 1,266 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Soulbind live publication helpers
+
+Four coordinates classified for direct nonplayer transfer and committed player
+publication. Detached recovery and same-UID reacquisition differ from a new economic
+transfer; live custody checks alone do not establish metadata/save completion.
+
+Draft validator passed 13 fixtures: 412 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,393 mapped, 43 reviewed declarations and 1,262 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

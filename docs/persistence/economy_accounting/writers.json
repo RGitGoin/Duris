@@ -19430,6 +19430,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.soulbind_nonplayer_publication",
+      "path": "src/magic/magic.c",
+      "symbol": "static bool publish_nonplayer_soulbind(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checks source currently carries object, detaches it and attaches to recipient, returning live custody check.",
+      "authority_boundary": "Same UID transfers directly; result is not durable ownership or save acknowledgement. Metadata applied separately by caller.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          22548,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          22549,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.soulbind_committed_publication",
+      "path": "src/magic/magic.c",
+      "symbol": "static bool soulbind_transfer_publication(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Publication branch checks recipient capacity and permits source-carried or detached object, moves to recipient and reacquires by UID; already-applied metadata path retries required save.",
+      "authority_boundary": "Preserve committed transfer identity and detached recovery semantics. Live movement alone does not prove metadata/save completion; failure after placement requires retained publication state, not a repeated economic transfer.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          22635,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          22636,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
