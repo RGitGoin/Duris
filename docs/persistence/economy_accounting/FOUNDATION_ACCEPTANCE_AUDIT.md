@@ -3092,3 +3092,13 @@ All Winterhaven raw candidates mapped. Remaining raw candidate is an extern
 ship money-helper declaration unsupported by current exclusion syntax.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 851 routes, 2756 raw matches, 2698 unique coordinates, 2654 mapped, 43 reviewed nonwriters, 1 unclassified.
+
+
+## Raw scanner classification complete
+
+All 2698 unique coordinates now classified: 2654 mapped across 851 routes and
+44 reviewed declarations. Added optional extern declaration recognition with
+a regression proving an extern function body remains ineligible for exclusion.
+39 contract tests and 13 draft fixtures pass. census_complete remains false
+pending semantic indirect-writer review and acceptance metadata reconciliation;
+zero raw matches is not issue closure or runtime qualification.

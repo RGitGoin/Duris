@@ -39509,6 +39509,17 @@
       "rationale": "Function prototype only; implementation and consumption callers are separately classified.",
       "end_line": 892,
       "source_sha256": "9f6b4936d40811b9151476052012e9e9ee0d7f2ed6eb4c8c7b1248322880df9b"
+    },
+    {
+      "site": [
+        "src/ships/ship_base.c",
+        126,
+        "money_helper"
+      ],
+      "classification": "declaration",
+      "rationale": "Extern function prototype only; implementation and callers require independent classification.",
+      "end_line": 126,
+      "source_sha256": "23225371d99335237609c959007d01d7e875eb5afe8eb0ba9187d658fe40c454"
     }
   ],
   "census": [

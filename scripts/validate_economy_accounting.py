@@ -250,7 +250,7 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
                 'reviewed declaration changed; reclassify source')
         code=LEXEME.sub(lambda m: re.sub('[^\n]',' ',m[0]),fragment).strip()
         require(code.endswith(';') and not any(c in code for c in '{}#')
-                and re.match(r'^(?:bool|int|void|P_obj)\s+\w+\s*\(',code),
+                and re.match(r'^(?:extern\s+)?(?:bool|int|void|P_obj)\s+\w+\s*\(',code),
                 'nonwriter is not a reviewed declaration')
         excluded.add(site)
     current=scan_sources(root)

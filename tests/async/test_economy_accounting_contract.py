@@ -214,6 +214,22 @@ class AccountingContractTest(unittest.TestCase):
             root=Path(directory);inventory=self.declaration_fixture(root)
             contract.validate_inventory(inventory,self.registry,root,census=True)
 
+    def test_reviewed_extern_declaration_can_complete_census(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.declaration_fixture(root)
+            fragment='extern bool currency_transaction_submit(int amount);'
+            (root/'src/example.c').write_text(fragment+'\n')
+            inventory['census']=contract.scan_sources(root)
+            inventory['nonwriters'][0].update(end_line=1,
+                source_sha256=contract.hashlib.sha256(fragment.encode()).hexdigest())
+            contract.validate_inventory(inventory,self.registry,root,census=True)
+            fragment='extern bool currency_transaction_submit() { return true; };'
+            (root/'src/example.c').write_text(fragment+'\n')
+            inventory['census']=contract.scan_sources(root)
+            inventory['nonwriters'][0]['source_sha256']=contract.hashlib.sha256(fragment.encode()).hexdigest()
+            with self.assertRaisesRegex(contract.ContractError,'not a reviewed declaration'):
+                contract.validate_inventory(inventory,self.registry,root,census=True)
+
     def test_declaration_review_detects_change_after_first_line(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.declaration_fixture(root)
