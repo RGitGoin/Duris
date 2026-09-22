@@ -1515,3 +1515,17 @@ payloads and existing child UIDs without repeating transformation effects.
 Draft validation passed13 fixtures:430 routes,2756 raw matches,2698 unique
 coordinates,1469 mapped,43 reviewed declarations,1186 unclassified.
 No gameplay changes or runtime qualification; release readiness remains false.
+
+## Committed raise publication and saved corpse copies
+
+Eleven coordinates classified across saved-copy cleanup/publication, recursive
+money/transient removal and committed raise inventory publication. Saved clones
+need original/copy lineage rather than duplicate economic admission. Committed
+raise routes children by pet_uid, handles destroy-equipment, retires corpse and
+publishes/configures follower before caster checkpoint. Failed writeCharacter
+only logs; void completion is not durable acknowledgement. Nested transient
+container disposal and retained recovery remain qualification requirements.
+
+Draft validation passed13 fixtures:434 routes,2756 raw matches,2698 unique
+coordinates,1480 mapped,43 reviewed declarations,1175 unclassified.
+No runtime changes; release readiness remains false.

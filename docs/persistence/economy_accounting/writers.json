@@ -20430,6 +20430,181 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.saved_corpse_cleanup",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void check_saved_corpse(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Extracts event-associated saved corpse only when its room equals CORPSE_STORAGE; event holds raw corpse pointer.",
+      "authority_boundary": "Qualify saved-copy identity and cleanup separately from original corpse retirement; callback lifetime and child disposal require evidence.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1263,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.saved_corpse_clone",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void create_saved_corpse(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "For PC corpse clones shell and container contents, appends savecorpse marker, assigns time-based SAVEID, publishes in room40, removes decay and schedules recurring event.",
+      "authority_boundary": "Backup clone is not automatically new economic issuance. Bind original/copy lineage and exclude duplicate ownership; clone helpers and later cleanup require separate admission review.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1290,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.nested_raise_discard",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void discard_nested_money(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Recursively detaches and extracts money or transient objects; recurses only into other containers.",
+      "authority_boundary": "Extraction of a transient container also implicates its subtree; qualify exact value/UID disposition against committed plan, not only top-level money.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1308,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1309,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.committed_raise_inventory",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void complete_corpse_raise_after_commit(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Post-commit removes money/transient objects recursively, detaches remaining corpse children, destroys equipment when requested or appends to follower for pet_uid else caster, then extracts corpse.",
+      "authority_boundary": "Retain exact recipient and child order; capacity overflow only warns and suppresses hostile attack when no pet_uid. Follower publication/setup follows corpse retirement. Final caster writeCharacter failure only logs; void return is not durable save acknowledgement. Qualify retained recovery state and avoid repeating committed money effects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1437,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1438,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1466,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1468,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1470,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1474,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1496,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
