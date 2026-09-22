@@ -3271,3 +3271,7 @@ Added 25 item endpoints for projectiles, random encounter outputs, NPC equipment
 ## Command, corpse and transport endpoints (2026-09-22)
 
 Added 25 item endpoints including CTF carrier state, breakage, potions, combat disarm, corpse transactions and transport tickets. Preserved compound-service and object-lifetime concerns rather than asserting completed behavior. Explicit endpoints: 722; missing endpoints: 129; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.
+
+### 2026-09-22: condition, summon and spell endpoints
+
+Specified source/destination metadata for 25 existing routes after checking their source sites: condition/scrap conversion, scripted web/fire and gems, spell drops, summoned replacements, consumed materials, previews and recipe grants. Temporary previews and provisional allocations remain distinct from admission; detached smoke is not claimed retired, and wallet projection is not claimed a debit. No gameplay, ownership, test links or backend qualification changed. Explicit endpoints now cover 747 of 851 routes, leaving 104; 710 routes still lack test candidates. Draft contract validation and whitespace validation passed; these checks do not establish runtime acceptance.

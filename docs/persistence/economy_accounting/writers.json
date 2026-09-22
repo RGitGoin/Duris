@@ -25618,7 +25618,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing eligible object and its condition",
+      "destination": "Reduced condition, or forced extraction / attempted scrap conversion"
     },
     {
       "id": "item.condition_scrap_conversion",
@@ -25693,7 +25695,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing damaged object and contained items",
+      "destination": "New room scrap, released room contents and extracted original after successful preparation"
     },
     {
       "id": "world.kingdom_node_spawn",
@@ -26012,7 +26016,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Randomized wand outcome and provisional gem allocations",
+      "destination": "Successfully allocated gems in caster room"
     },
     {
       "id": "item.blackness_sword_ankh",
@@ -26062,7 +26068,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped ankh and existing room sword",
+      "destination": "Consumed ankh and modified sword in player inventory"
     },
     {
       "id": "item.mir_spider_web",
@@ -26112,7 +26120,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Spider event and selected web prototype",
+      "destination": "New web in spider room"
     },
     {
       "id": "item.mir_fire_smoke",
@@ -26152,7 +26162,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Neighboring web room and provisional smoke",
+      "destination": "Room smoke plus scheduled conversion event"
     },
     {
       "id": "item.mir_smoke_fire_conversion",
@@ -26197,7 +26209,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing room smoke and provisional fire",
+      "destination": "Detached smoke and newly published room fire; no local smoke extraction"
     },
     {
       "id": "item.shattering_iceball_debris",
@@ -26237,7 +26251,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Spell outcome and provisional debris",
+      "destination": "Decaying debris in resolved room"
     },
     {
       "id": "item.transfer_wellness_death_drop",
@@ -26292,7 +26308,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caster carried/equipped items and wallet denomination projection",
+      "destination": "Room items and money pile before death; no local wallet debit"
     },
     {
       "id": "coin.summoned_beast_prototype_reset",
@@ -26424,7 +26442,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Race/chance event and provisional object",
+      "destination": "Current/prior room output, rejected cleanup, or unpublished allocation on failed goblin chance"
     },
     {
       "id": "item.falling_room_transfer",
@@ -26464,7 +26484,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing object in upper room",
+      "destination": "Same object in downward exit room, or changed height without transfer"
     },
     {
       "id": "item.summoned_replacement_retirement",
@@ -26499,7 +26521,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Globally matched actor book/totem objects excluding replacement UID",
+      "destination": "Extracted prior matching objects"
     },
     {
       "id": "item.summoned_replacement_submission",
@@ -26544,7 +26568,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional replacement and existing matching summons",
+      "destination": "NPC direct grant and retirement, or PC queued grant completion; refusal releases provisional only"
     },
     {
       "id": "item.bind_rope_consumption",
@@ -26584,7 +26610,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held rope and eligible target",
+      "destination": "Consumed rope and bound target effect"
     },
     {
       "id": "item.capture_rope_consumption",
@@ -26624,7 +26652,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held rope and successful capture outcome",
+      "destination": "Consumed rope and bound/prone target effects"
     },
     {
       "id": "item.summoned_book_payload",
@@ -26659,7 +26689,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Book prototype and actor personalization",
+      "destination": "Configured provisional book passed to replacement submission"
     },
     {
       "id": "item.summoned_totem_payload",
@@ -26694,7 +26726,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Totem prototype and actor level/personalization",
+      "destination": "Configured provisional totem passed to replacement submission"
     },
     {
       "id": "item.corpse_carved_part",
@@ -26734,7 +26768,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Corpse part availability and weight",
+      "destination": "Mutated corpse plus newly carved item inside corpse on success"
     },
     {
       "id": "item.faerie_sight_dust",
@@ -26769,7 +26805,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First matching carried faerie dust",
+      "destination": "Consumed dust and detection affect"
     },
     {
       "id": "item.wind_blade_grant",
@@ -26814,7 +26852,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured provisional blade and recipient",
+      "destination": "Queued grant with completion context, or provisional cleanup on refusal"
     },
     {
       "id": "item.frost_beacon_creation",
@@ -26854,7 +26894,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Beacon prototype and caster identity",
+      "destination": "Room beacon with randomized decay and secret flag"
     },
     {
       "id": "item.frost_bolt_debris",
@@ -26894,7 +26936,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional ice debris",
+      "destination": "Decaying room debris; NOWHERE return leaves allocation without local cleanup"
     },
     {
       "id": "item.cosmic_rift_object_relocation",
@@ -26934,7 +26978,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room objects matching victim identifier",
+      "destination": "Same objects in randomly selected astral rooms with PC corpse save attempts"
     },
     {
       "id": "item.pvp_store_preview",
@@ -26974,7 +27020,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary orb allocation for display",
+      "destination": "Display text and released preview object; no custody admission"
     },
     {
       "id": "item.recipe_scroll_creation",
@@ -27014,7 +27062,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Recipe prototype and eligible target payload",
+      "destination": "Configured recipe scroll in supplied character inventory"
     },
     {
       "id": "item.random_recipe_preview_cleanup",
