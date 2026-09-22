@@ -1529,3 +1529,17 @@ container disposal and retained recovery remain qualification requirements.
 Draft validation passed13 fixtures:434 routes,2756 raw matches,2698 unique
 coordinates,1480 mapped,43 reviewed declarations,1175 unclassified.
 No runtime changes; release readiness remains false.
+
+## Legacy raise contents: remaining necromancy matches
+
+Twelve coordinates classified across raise_undead, call titan, dracolich, golem,
+avatar and greater dracolich. Each reviewed transfer block saves a corpse copy
+when contents exist, detaches children through place_raised_item and retires the
+source after reading decay. Preserve child identities and backup lineage; each
+spell's complete follower setup, gameplay baseline and save/recovery ordering
+still require qualification. Current necromancy.c lexical matches are all mapped,
+which does not establish semantic or runtime completeness.
+
+Draft validation passed13 fixtures:440 routes,2756 raw matches,2698 unique
+coordinates,1492 mapped,43 reviewed declarations,1163 unclassified.
+No runtime changes; release readiness remains false.

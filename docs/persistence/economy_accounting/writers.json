@@ -20605,6 +20605,246 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.raise_undead_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void raise_undead(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          726,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          754,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_call_titan_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_call_titan(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1186,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1200,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_create_dracolich_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_create_dracolich(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          1790,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          1808,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.create_golem_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void create_golem(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2055,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2067,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_call_avatar_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_call_avatar(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2277,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2288,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spell_create_greater_dracolich_legacy_contents",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_create_greater_dracolich(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise path creates saved corpse copy when contents exist, detaches each child and delegates recipient routing to place_raised_item, reads decay time and retires source corpse.",
+      "authority_boundary": "Existing child identities transfer rather than being newly issued. Helper routes non-money to PC caster and other cases to follower; backup clone lineage must not duplicate admitted ownership. Preserve per-spell follower publication/setup ordering and qualify failure/recovery separately from source extraction. This mapping covers transfer/retirement sites, not complete summon or save qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          2528,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          2539,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
