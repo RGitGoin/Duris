@@ -33172,6 +33172,171 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.nq_factory",
+      "path": "src/cmd/nq.c",
+      "symbol": "P_obj nq_create_item",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Quest item allocation customizes optional descriptions without initial local null guard; return remains provisional until caller publication.",
+      "authority_boundary": "Bind quest instance/action to selected component IDs, native rounded money and reward outputs. Preserve player versus NPC custody and tag progression. Qualify allocation refusal, partial compound effects, save acknowledgement and replay without duplicate reward or repeated payment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/nq.c",
+          457,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.nq_reward",
+      "path": "src/cmd/nq.c",
+      "symbol": "void nq_reward_player",
+      "reason": "coin_transfer",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Reward adds cash/1000 directly to platinum, discarding sub-platinum remainder. Reward phrase/log happens earlier; item/skill/tag effects follow. Preserve native rounding while qualifying compound reward.",
+      "authority_boundary": "Bind quest instance/action to selected component IDs, native rounded money and reward outputs. Preserve player versus NPC custody and tag progression. Qualify allocation refusal, partial compound effects, save acknowledgement and replay without duplicate reward or repeated payment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/nq.c",
+          592,
+          "direct_cash_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.nq_reward",
+      "path": "src/cmd/nq.c",
+      "symbol": "void nq_reward_player",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Reward factory results go to mob for kill branch or player otherwise; multiple outputs are sequential. NPC custody is intentional intermediate destination, not proof player has received assets.",
+      "authority_boundary": "Bind quest instance/action to selected component IDs, native rounded money and reward outputs. Preserve player versus NPC custody and tag progression. Qualify allocation refusal, partial compound effects, save acknowledgement and replay without duplicate reward or repeated payment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/nq.c",
+          599,
+          "item_publication"
+        ],
+        [
+          "src/cmd/nq.c",
+          601,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.nq_action_payment",
+      "path": "src/cmd/nq.c",
+      "symbol": "int nq_test_single_action",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After component and mob-wallet sufficiency checks, consumes selected components, removes instance tags, then deducts action cash and rewrites all mob denominations. Despite test name, helper mutates assets. Partial consumption/tag/payment and later reward must be qualified together.",
+      "authority_boundary": "Bind quest instance/action to selected component IDs, native rounded money and reward outputs. Preserve player versus NPC custody and tag progression. Qualify allocation refusal, partial compound effects, save acknowledgement and replay without duplicate reward or repeated payment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/nq.c",
+          757,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/cmd/nq.c",
+          759,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/cmd/nq.c",
+          761,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/cmd/nq.c",
+          763,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/cmd/nq.c",
+          733,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

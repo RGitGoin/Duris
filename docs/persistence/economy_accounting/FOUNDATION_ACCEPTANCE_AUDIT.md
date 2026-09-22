@@ -2781,3 +2781,14 @@ partner cleanup and partial save/replay qualification remain open.
 Draft validation passed 13 fixtures: 722 routes, 2756 raw matches, 2698 unique
 coordinates, 2256 mapped, 43 reviewed nonwriters, 399 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## NQ quest payments and rewards
+
+Nine coordinates classified into provisional item factory, rounded platinum
+reward, player/NPC item publication and compound component/tag/wallet payment.
+The action-test helper mutates assets; reward cash truncates to platinum.
+Preserve economics and qualify partial effects, NPC lifetime and save/replay.
+
+Draft validation passed 13 fixtures: 726 routes, 2756 raw matches, 2698 unique
+coordinates, 2265 mapped, 43 reviewed nonwriters, 390 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
