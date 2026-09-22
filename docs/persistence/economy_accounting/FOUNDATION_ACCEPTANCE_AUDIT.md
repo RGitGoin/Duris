@@ -3319,3 +3319,15 @@ Mapped five Soulbind/conjured-weapon preparation/submission routes to the previo
 ### 2026-09-22: device consumption and wonder output test mapping
 
 Linked deferred scroll cleanup to test_device_actions_runtime.py, whose assertions check cleared slots, delayed pulse extraction, cancellation and one extraction. Linked wonder gem admission to test_wonder_actions_runtime.py, which includes production wonder_actions.c and asserts deterministic gem count/types, placements, roll count and interruption during output creation. Both harnesses use synthetic runtime boundaries and were inspected, not run in this pass; backend durability remains unverified. Empty test lists total 691. Draft validator and whitespace checks passed.
+
+### 2026-09-22: native harness verification at e903dd860
+
+Windows execution of test_forced_weapon_drop.py could not launch g++; Docker daemon was unavailable. The existing WSL distribution duris-474-build provided g++ and python3 and successfully ran the current mounted worktree. All five commands passed using `wsl -d duris-474-build -- python3 tests/async/<script>`:
+
+- test_forced_weapon_drop.py
+- test_issue_549_cross_player_transfer_runtime.py (ASan/UBSan callbacks)
+- test_issue_550_conjuration_runtime.py (ASan/UBSan callbacks)
+- test_world_recovery_npc_items.py
+- test_player_load_items.py
+
+These results supersede earlier inspected-only status for these exact harnesses. They exercise synthetic/stubbed native boundaries, not MySQL/MariaDB or flat-file durability journeys. No backend support status is promoted. Source was unchanged during these runs; 691 empty test-candidate lists remain.
