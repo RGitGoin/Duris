@@ -34759,6 +34759,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "gambling.blackjack_stake",
+      "path": "src/specs/specs.gellz.c",
+      "symbol": "magic_deck",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Checks selected denomination balance and configured maximum, converts stake to copper units and debits wallet. Debit refusal resets game state to prebid. No table wallet credit is performed here despite the message describing money on the table.",
+      "authority_boundary": "Qualify durable wager identity, stake sink and payout/refund source, denomination conversion, actor ownership, interrupted game and duplicate settlement. Shared static game state and messaging do not establish durable settlement or save acknowledgement.",
+      "current_support": "Existing blackjack currency helpers; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.gellz.c",
+          391,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "gambling.blackjack_settlement",
+      "path": "src/specs/specs.gellz.c",
+      "symbol": "int do_win",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Credits caller-supplied payout for winning/refund mode: normal wins pass twice stake, push passes stake; loss mode only logs because stake was already deducted. Credit result is not checked before success messaging/logging. Periodic dealer path separately passes single stake and requires actor/replay qualification.",
+      "authority_boundary": "Qualify durable wager identity, stake sink and payout/refund source, denomination conversion, actor ownership, interrupted game and duplicate settlement. Shared static game state and messaging do not establish durable settlement or save acknowledgement.",
+      "current_support": "Existing blackjack currency helpers; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.gellz.c",
+          768,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

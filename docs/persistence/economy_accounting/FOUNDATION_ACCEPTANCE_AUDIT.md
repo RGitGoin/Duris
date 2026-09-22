@@ -2903,3 +2903,14 @@ the call; callbacks and partially published quest entities require qualification
 Incidental failures are recorded, not expanded into unrelated implementation.
 No runtime changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 760 routes, 2756 raw matches, 2698 unique coordinates, 2345 mapped, 43 reviewed nonwriters, 310 unclassified.
+
+
+## Blackjack stakes and settlement
+
+Two coordinates classified as stake debit and payout/refund credit. A table
+message does not establish a house wallet transfer. Normal wins credit twice
+the stake, pushes return it, and losses have already paid; the periodic path
+uses a separate single-stake payout. Actor, durable wager identity, interruption
+and repeat settlement require qualification. Credit messaging ignores outcome.
+No gameplay changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 762 routes, 2756 raw matches, 2698 unique coordinates, 2347 mapped, 43 reviewed nonwriters, 308 unclassified.
