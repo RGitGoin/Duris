@@ -15115,6 +15115,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "service.rentacleric",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int rentacleric(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Paid cleric computes level-dependent spell price and calls transact; on success clears all cleric cash then attempts selected spell or resurrection.",
+      "authority_boundary": "Payment, NPC balance sink and spell delivery are separate steps. Clearing entire balance is not limited to this fee; cast invocation is not proof of effect or atomic service settlement. Preserve existing pricing including integer level division.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          9772,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9775,
+          "coin_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9776,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "service.carnival_admission",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int jindo_ticket_master(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Ticket purchase calls transact for 500 copper then moves customer to carnival room. Ticket narration does not create an item.",
+      "authority_boundary": "Payment helper success precedes relocation; no durable ticket asset or atomic travel receipt is demonstrated. Trusted west passage bypasses purchase; preserve admission policy and classify service rather than item issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          10669,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

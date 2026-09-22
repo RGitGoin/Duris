@@ -881,3 +881,15 @@ remain separate obligations; allocation failures can produce partial spawning.
 Draft validator passed 13 fixtures: 313 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,108 mapped, 43 reviewed declarations and 1,547 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Paid cleric and carnival services
+
+Four coordinates classified. Cleric payment is followed by clearing the NPC's whole
+cash balance and attempting a spell, not a demonstrated atomic fee/service bundle.
+Carnival purchase charges 500 copper then relocates the customer; ticket narration
+creates no item. Preserve pricing and trusted passage behavior. Source commands do
+not prove common settlement, effect delivery or native save acknowledgement.
+
+Draft validator passed 13 fixtures: 315 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,112 mapped, 43 reviewed declarations and 1,543 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
