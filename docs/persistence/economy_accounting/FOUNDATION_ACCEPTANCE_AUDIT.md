@@ -3231,3 +3231,7 @@ Added 28 staff, boon, kingdom, reward, guildhall and service endpoints. Preserve
 ## Helper, building and remaining service endpoints (2026-09-22)
 
 Added 29 helper/building/ship/gambling/quest/spell endpoints, preserving transfers versus issuance, independent portal allocations, unreachable legacy hull debit and acceptance-versus-commit limits. Explicit endpoints: 456; missing endpoints: 395; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.
+
+## Scripted economy endpoints (2026-09-22)
+
+Added 36 special, nexus, script and Winterhaven endpoints. Preserved independent random outputs, same-owner equipment swaps, paired sinks, partial allocations and the gem-factory null-return limitation without changing mechanics. Explicit endpoints: 492; missing endpoints: 359; test-link gaps remain 710. Draft validation and diff checks pass; no native execution or gameplay qualification claimed.

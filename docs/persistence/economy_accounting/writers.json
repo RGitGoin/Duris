@@ -508,7 +508,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Player input denomination",
+      "destination": "Converted denomination and fee sink"
     },
     {
       "id": "special.smelter",
@@ -537,7 +539,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Player denomination",
+      "destination": "Smelter NPC cash"
     },
     {
       "id": "special.rentacleric",
@@ -566,7 +570,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Paid cleric wallet",
+      "destination": "Zero wallet after service payment"
     },
     {
       "id": "special.witch_doctor",
@@ -595,7 +601,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Paid witch platinum",
+      "destination": "Zero platinum after service"
     },
     {
       "id": "special.llyren",
@@ -624,7 +632,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Paid service NPC wallet",
+      "destination": "Full wallet cleared after payment"
     },
     {
       "id": "currency.wallet_to_pile",
@@ -11517,7 +11527,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fresh guardian prototype wallet",
+      "destination": "Zero wallet before room placement"
     },
     {
       "id": "nexus.sage_cash",
@@ -11567,7 +11579,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fresh sage prototype wallet",
+      "destination": "Zero wallet before room placement"
     },
     {
       "id": "nexus.guardian_mace",
@@ -11607,7 +11621,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional mace and guardian",
+      "destination": "Equipped guardian mace before admission; guardian may lack mace on failure"
     },
     {
       "id": "nexus.stone_placement",
@@ -11647,7 +11663,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured stone template and logical metadata",
+      "destination": "Room stone with alignment/timers/descriptions"
     },
     {
       "id": "nexus.reset",
@@ -11682,7 +11700,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing stones and guardian/sage holdings",
+      "destination": "Extracted old representations followed by configured reload"
     },
     {
       "id": "nexus.reload",
@@ -11717,7 +11737,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching NPCs and first matching stone",
+      "destination": "Removed representations and configured replacement"
     },
     {
       "id": "nexus.expiration",
@@ -11752,7 +11774,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired stone and guardian/sage representations",
+      "destination": "Reset alignment and replacement with backend-specific save ordering"
     },
     {
       "id": "currency.card_game_stake",
@@ -35311,7 +35335,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing matching room tree object",
+      "destination": "Detached object without resolved destination after NPC spawn"
     },
     {
       "id": "script.akckx_assets",
@@ -35351,7 +35377,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Provisional quest item and soul NPC",
+      "destination": "Published NPC with item where both allocations succeed"
     },
     {
       "id": "script.ravenloft_bell_assets",
@@ -35386,7 +35414,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wielded mallet and locked swordcase",
+      "destination": "Consumed mallet and unlocked/re-described existing case"
     },
     {
       "id": "script.event_shabo_racechange_assets",
@@ -35421,7 +35451,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Equipped items during race restoration",
+      "destination": "Same-character inventory after remove callbacks"
     },
     {
       "id": "script.shaboath_necromancy_tower_assets",
@@ -35461,7 +35493,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Tower corpse roots and attached contents",
+      "destination": "Boss-room corpse roots with preserved identities"
     },
     {
       "id": "script.skull_leggings_assets",
@@ -35506,7 +35540,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Current leg equipment and carried leggings",
+      "destination": "Same-owner inventory/equipment swap after callbacks"
     },
     {
       "id": "script.zombies_game_assets",
@@ -35541,7 +35577,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room generator with missing zombie state",
+      "destination": "Destroyed generator"
     },
     {
       "id": "script.drowcrusher_assets",
@@ -35586,7 +35624,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wielded hammer and selected room stone",
+      "destination": "Paired item retirement before quest movement"
     },
     {
       "id": "gambling.blackjack_stake",
@@ -39216,7 +39256,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First death reward roll 0..15",
+      "destination": "Optional independent room outputs, four in case6"
     },
     {
       "id": "winterhaven.cerberus_guaranteed",
@@ -39366,7 +39408,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Second death reward roll 8..15",
+      "destination": "One or five room outputs then NPC extraction"
     },
     {
       "id": "winterhaven.tiamat_death",
@@ -39421,7 +39465,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death roll selecting one of four templates",
+      "destination": "New room reward with decay value"
     },
     {
       "id": "winterhaven.dragonnia_death",
@@ -39461,7 +39507,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "NPC death heart reward",
+      "destination": "New heart in room"
     },
     {
       "id": "winterhaven.lanella_death",
@@ -39506,7 +39554,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death roll selecting one of two templates",
+      "destination": "New room reward with decay value"
     },
     {
       "id": "winterhaven.corpse_object",
@@ -39546,7 +39596,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death template sharing NPC vnum",
+      "destination": "New decaying room object, separate from ordinary death continuation"
     },
     {
       "id": "winterhaven.corpse_decay",
@@ -39606,7 +39658,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired original and provisional replacement corpse",
+      "destination": "Replacement at supported location then original retirement; contents not explicitly transferred"
     },
     {
       "id": "winterhaven.heart_decay",
@@ -39681,7 +39735,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired heart and provisional replacement",
+      "destination": "Replacement at prior supported position; decremented counter limits retry on allocation failure"
     },
     {
       "id": "winterhaven.gem_factory",
@@ -39716,7 +39772,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Random gem allocation and item-cost roll",
+      "destination": "Unreturned provisional gem; function returns zero"
     },
     {
       "id": "winterhaven.gift_open",
@@ -39761,7 +39819,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Gift wrapper and two factory calls",
+      "destination": "Consumed wrapper with unestablished gem output due to null returns"
     },
     {
       "id": "winterhaven.janitor_pickup",
@@ -39801,7 +39861,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First eligible room object",
+      "destination": "Janitor inventory"
     },
     {
       "id": "winterhaven.janitor_well",
@@ -39841,7 +39903,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing-well template allocation",
+      "destination": "Fixed-room donation well; placement precedes null check"
     },
     {
       "id": "winterhaven.janitor_disposal",
@@ -39876,7 +39940,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Janitor equipment/inventory",
+      "destination": "Donation then residual nonartifact destruction"
     },
     {
       "id": "winterhaven.attribute_scroll",
@@ -39921,7 +39987,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Recited attribute scroll",
+      "destination": "Consumed original then random carried output"
     },
     {
       "id": "winterhaven.lorekeeper_scroll",
@@ -39966,7 +40034,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Recited legend scroll",
+      "destination": "Consumed original then random carried output"
     },
     {
       "id": "winterhaven.elemental_wand",
@@ -40011,7 +40081,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Worn rubbed wand",
+      "destination": "Consumed original then random carried replacement"
     }
   ],
   "nonwriters": [
