@@ -906,3 +906,15 @@ boundary recorded without gameplay changes.
 Draft validator passed 13 fixtures: 317 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,116 mapped, 43 reviewed declarations and 1,539 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Smelter pooled deposits and conversion
+
+Eleven sites classified. Give hook directly transfers coins or ore into NPC-held
+pooled stock, then separate fee debits precede conversion. finish_smelt detaches two
+matching inputs, allocates next-size ore and gives output to current player; it does
+not extract detached inputs in its body. Depositor identity, actual retirement and
+fee/output failure handling remain unqualified, rather than assumed durable escrow.
+
+Draft validator passed 13 fixtures: 319 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,127 mapped, 43 reviewed declarations and 1,528 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

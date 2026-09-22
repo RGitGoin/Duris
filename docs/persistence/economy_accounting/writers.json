@@ -15275,6 +15275,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "craft.smelter_deposits",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int smelter(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Give hook directly debits player denomination and credits smelter cash, or moves accepted ore into smelter inventory. Existing pooled ores and platinum can trigger smelting with a separate NPC money debit.",
+      "authority_boundary": "Deposits are pooled by NPC and prototype, without demonstrated depositor ownership or request linkage. Acceptance, fee sink and output belong to distinct steps; preserve exact contributed item/value identities and do not assume durable NPC escrow.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          16193,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16194,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16261,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16269,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16272,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16296,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "craft.smelter_conversion",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "void finish_smelt(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Find matching NPC-held ore pair, optionally debit fee when auto-selecting, detach both inputs, allocate next-size prototype, set output cost to summed input costs and give it to current player.",
+      "authority_boundary": "Inputs are detached but not extracted in this function; output replaces local ore pointer. Do not claim proven input retirement or atomic recipe settlement. Allocation failure, pooled stock ownership and fee-before-output failure need qualification; original item UIDs and result must be linked.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          16421,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16453,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16454,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16456,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16458,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
