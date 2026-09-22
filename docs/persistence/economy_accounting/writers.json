@@ -3069,7 +3069,7 @@
       "coverage": "legacy",
       "classification": "Wallet/pile custody and receipts committed together.",
       "authority_boundary": "Flatfile authority transaction",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Native test_flatfile_item_repository.py passed at ab6a7de77: both VOBJ_COINS and area coin prototype matrices cover atomic conversion, interrupted commit, replay/refusal, merge and retired payload/custody. Warning-clean client-free build with authority fault injection; no sanitizer or common accounting integration qualification inferred.",
       "backends": {
         "mysql": {
           "status": "unverified",

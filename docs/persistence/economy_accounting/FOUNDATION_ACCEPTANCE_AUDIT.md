@@ -3588,3 +3588,7 @@ At 50d0c81a2, run_economic_accounting_schema_local.py --suite currency passed pr
 ### Candidate metadata validation
 
 The validator now requires test_candidates to be a list of nonblank strings and rejects duplicates. Previously a dictionary could be iterated as evidence paths and malformed values could raise incidental TypeError/KeyError instead of a contract error. Regression includes dictionary/string/scalar/null containers, invalid elements, duplicates and a missing field. All 49 contract tests and current draft validation pass. Existing 631 candidate gaps remain; metadata validation does not establish runtime coverage.
+
+### Current flat-file item transaction qualification
+
+At ab6a7de77, test_flatfile_item_repository.py passed its warning-clean client-free native harness with authority fault injection. Both standard and area coin prototypes pass conversion, interrupted commit, replay/refusal, merge and retirement. The harness also passes its item, room, locker, corpse and shop custody/recovery assertions. Updated existing coin.flat_apply support evidence, without treating generic custody checks as complete domain economic integration. No sanitizer run, cross-backend parity, native game publication or #478 completion is claimed. Candidate gaps remain 631; no production changes.
