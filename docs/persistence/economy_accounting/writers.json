@@ -17265,6 +17265,216 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.charon_ship_movement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int charon_ship(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic ferry route updates move the existing galleon object between route rooms in either direction.",
+      "authority_boundary": "Retain vessel UID and route/timer payload with room movement; route progress changes before publication. No new vessel issuance occurs.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          603,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          604,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          623,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          624,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.charon_cargo_unload",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int charon_ship(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "At route endpoint the ferry moves all loose objects from its interior room to the vessel exterior room, after moving occupants.",
+      "authority_boundary": "Each cargo root retains identity and descendants. Sequential room unload and passenger movement are not an atomic accounting bundle; bind source/destination and individual object identities.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          661,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          662,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.floating_pool_movement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int floating_pool(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Idle floating pool has 75 percent movement chance, then chooses among eligible adjacent exits and moves its existing object.",
+      "authority_boundary": "Preserve selected destination across retry and existing exit/room exclusions. Object relocation is not issuance, and narration does not acknowledge durable location.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          1011,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          1012,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.teleporting_pool_movement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int teleporting_pool(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "With no actor, pool has15/250 chance to move to a random room in its zone excluding private/no-mob/no-track rooms.",
+      "authority_boundary": "Keep selected destination and object identity across retry; entering the pool delegates player travel separately. No allocation or retirement occurs.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          1095,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          1096,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.teleporting_map_pool_movement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int teleporting_map_pool(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "With no actor, map pool uses15/250 chance and random eligible zone room to relocate its existing object.",
+      "authority_boundary": "Preserve room exclusions, chosen destination and UID; magic_map_pool entry processing is a separate path. Room graph publication alone is not save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          1137,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          1138,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

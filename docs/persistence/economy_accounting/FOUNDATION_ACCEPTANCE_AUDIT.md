@@ -1084,3 +1084,14 @@ lifetime require qualification rather than assuming success from the helper call
 Draft validator passed 13 fixtures: 357 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,274 mapped, 43 reviewed declarations and 1,381 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Ferry and pool relocation
+
+Twelve sites classified in ferry movement/unloading and floating/teleporting pools.
+Existing vessel, cargo and pool identities survive room changes; no issuance occurs.
+Ferry route progress and random pool destinations need consistent retained state.
+Sequential cargo unloading is not proven atomic with passenger movement.
+
+Draft validator passed 13 fixtures: 362 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,286 mapped, 43 reviewed declarations and 1,369 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
