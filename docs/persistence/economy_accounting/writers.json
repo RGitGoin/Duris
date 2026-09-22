@@ -25088,6 +25088,151 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.shattering_iceball_debris",
+      "path": "src/magic/smagic.c",
+      "symbol": "spell_arieks_shattering_iceball",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After nonlethal damage and live caster/room checks, skips existing prototype50, otherwise checked allocation gains decay800 and room publication. Preserve distinct debris admission and spell effects.",
+      "authority_boundary": "Preserve original eligibility and object identities while distinguishing generated output, existing custody and provisional NPC cash. Runtime publication, death interaction and durable replay remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/smagic.c",
+          1281,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/smagic.c",
+          1287,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.transfer_wellness_death_drop",
+      "path": "src/magic/smagic.c",
+      "symbol": "spell_transfer_wellness",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Explosion branch drops all carried and equipped objects to resolved room, creates wallet-denomination pile and publishes without local allocation check or wallet debit, then moves caster to room1 and invokes die. Existing item drops differ from coin projection; subsequent death conversion must be qualified for duplicate money, not assumed conserving.",
+      "authority_boundary": "Preserve original eligibility and object identities while distinguishing generated output, existing custody and provisional NPC cash. Runtime publication, death interaction and durable replay remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/smagic.c",
+          1920,
+          "item_publication"
+        ],
+        [
+          "src/magic/smagic.c",
+          1921,
+          "item_publication"
+        ],
+        [
+          "src/magic/smagic.c",
+          1928,
+          "item_publication"
+        ],
+        [
+          "src/magic/smagic.c",
+          1934,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/smagic.c",
+          1936,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.summoned_beast_prototype_reset",
+      "path": "src/magic/smagic.c",
+      "symbol": "summon_beast_common",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After checked fresh read_mobile and room publication, zeroes all four NPC prototype coin denominations during summoned beast configuration. This is fresh NPC initialization, not player wallet debit; ordering after room placement requires explicit admission policy.",
+      "authority_boundary": "Preserve original eligibility and object identities while distinguishing generated output, existing custody and provisional NPC cash. Runtime publication, death interaction and durable replay remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/smagic.c",
+          3437,
+          "coin_assignment"
+        ],
+        [
+          "src/magic/smagic.c",
+          3438,
+          "coin_assignment"
+        ],
+        [
+          "src/magic/smagic.c",
+          3439,
+          "coin_assignment"
+        ],
+        [
+          "src/magic/smagic.c",
+          3440,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

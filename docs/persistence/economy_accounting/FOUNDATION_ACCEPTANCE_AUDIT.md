@@ -1908,3 +1908,15 @@ publication and compound input/output durability remain qualification work.
 Draft validation passed 13 fixtures: 529 routes, 2756 raw matches, 2698 unique
 coordinates, 1805 mapped, 43 reviewed declarations, 850 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Shaman spell debris, death drops and summoned cash
+
+Eleven unique coordinates classified. Iceball creates checked decaying debris.
+Transfer-wellness explosion moves inventory/equipment to room and creates wallet
+pile without local debit, then invokes death; duplicate-money interaction needs
+qualification. Summoned beast zeroes freshly loaded NPC cash after room placement,
+not player wallet. Current smagic.c lexical candidates mapped.
+
+Draft validation passed 13 fixtures: 532 routes, 2756 raw matches, 2698 unique
+coordinates, 1816 mapped, 43 reviewed declarations, 839 unclassified.
+No gameplay changes; release readiness remains false.
