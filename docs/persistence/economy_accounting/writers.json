@@ -37756,7 +37756,7 @@
       "coverage": "legacy",
       "classification": "Creates requested count of level-adjusted potions directly in NPC inventory. Qualify repeated issuance and partial allocation, not recovery of prior item identity.",
       "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
-      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified Native extracted success-path helper passes ASan/UBSan with controlled allocation/publication/wait endpoints: three requested potions publish in order, level cap at 50, zero/negative count publishes none and still waits once. Allocation-failure behavior, durable issuance and recovery remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -37771,7 +37771,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_alchemy_npc_potions.py"
+      ],
       "sites": [
         [
           "src/classes/salchemist.c",
