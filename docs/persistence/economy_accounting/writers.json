@@ -18155,6 +18155,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.revenant_reversion_equipment",
+      "path": "src/specs/specs.object.c",
+      "symbol": "void event_revenant_crown(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Race-reversion event restores race/age and removes race-change affect, invokes each equipped object remove proc, then moves each equipped item to same character inventory.",
+      "authority_boundary": "Ownership and item identities persist; remove procs may have additional effects before movement. Race restoration and sequential equipment publication are not proven atomic or durably saved.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2392,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.revenant_transformation_equipment",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int revenant_helm(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic eligible worn helm removes other equipment into same wearer inventory, invoking remove procs before each unequip and checking character alive afterward.",
+      "authority_boundary": "Preserve helm exception, item UIDs and callback ordering. Post-movement liveness check does not itself prove object validity after remove proc; transformation effects and save acknowledgement remain separate obligations.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2437,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

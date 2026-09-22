@@ -1163,3 +1163,14 @@ rejection damages wearer before retirement, requiring lifetime qualification.
 Draft validator passed 13 fixtures: 379 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,320 mapped, 43 reviewed declarations and 1,335 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Revenant equipment transitions
+
+Two coordinates classified for transformation and reversion equipment removal.
+Items remain with the same character; object remove procs run before unequip and
+may have additional effects. Preserve helm exception and race/affect ordering;
+post-movement liveness checking does not prove callback object validity.
+
+Draft validator passed 13 fixtures: 381 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,322 mapped, 43 reviewed declarations and 1,333 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
