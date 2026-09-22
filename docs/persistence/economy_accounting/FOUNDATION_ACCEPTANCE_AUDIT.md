@@ -3331,3 +3331,14 @@ Windows execution of test_forced_weapon_drop.py could not launch g++; Docker dae
 - test_player_load_items.py
 
 These results supersede earlier inspected-only status for these exact harnesses. They exercise synthetic/stubbed native boundaries, not MySQL/MariaDB or flat-file durability journeys. No backend support status is promoted. Source was unchanged during these runs; 691 empty test-candidate lists remain.
+
+### 2026-09-22: remaining mapped native harnesses
+
+At 80fff6fc5, ran four additional mapped harnesses with `wsl -d duris-474-build -- python3 tests/async/<script>`; all passed:
+
+- test_chaos_kit_runtime.py: preparation, role filtering and placement.
+- test_wind_blade_creation_runtime.py: completion callback and detached-object guard.
+- test_device_actions_runtime.py: wrappers, charge/scroll consumption, identities, area lifetime and cancellation.
+- test_wonder_actions_runtime.py: twenty native outcomes, captured random choices, legality, consumption and lifetime.
+
+These supersede earlier inspected-only notes for these harnesses. Tests use synthetic runtime dependencies; they do not establish durable accounting or backend parity. Inventory counts and support flags remain unchanged. Whitespace validation passed.
