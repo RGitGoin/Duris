@@ -149,15 +149,30 @@ int main()
 	economic_bank_publication_pulse();
 	assert(acknowledgements == 2 && !economic_bank_publication_pending() && saves == 2 &&
 	       publications == 1);
+	// Simulate revision-state replacement between pulses without exposing a missing PID.
+	// The wallet domain is already current, but the status save was never acknowledged.
+	assert(economic_bank_publication_restore(command, nullptr));
+	economic_bank_publication_pulse();
+	assert(saves == 3 && queued_revision == 12);
+	player_revision_forget(7);
+	assert(player_revision_hydrate(7, 10));
+	economic_bank_publication_pulse();
+	assert(acknowledgements == 2 && economic_bank_publication_pending() == 1);
+	economic_bank_publication_pulse();
+	assert(saves == 4 && queued_revision == 11 && acknowledgements == 2 &&
+	       economic_bank_publication_pending() == 1 && publications == 2);
+	assert(player_revision_acknowledge(7, queued_revision, queued_components));
+	economic_bank_publication_pulse();
+	assert(acknowledgements == 3 && !economic_bank_publication_pending());
 	// A retained business rejection has no publication/save effect to repeat.
 	assert(economic_bank_publication_restore(command, nullptr));
 	receipt.outcome = critical_apply_outcome::terminal_failure;
 	receipt.error_code = ESTALE;
 	economic_bank_publication_pulse();
-	assert(!economic_bank_publication_pending() && saves == 2 && publications == 1);
+	assert(!economic_bank_publication_pending() && saves == 4 && publications == 2);
 	assert(economic_bank_publication_restore(command, nullptr));
 	receipt.outcome = critical_apply_outcome::ambiguous_commit;
 	economic_bank_publication_pulse();
-	assert(economic_bank_publication_pending() == 1 && saves == 2);
+	assert(economic_bank_publication_pending() == 1 && saves == 4);
 	economic_bank_publication_reset();
 }

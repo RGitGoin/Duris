@@ -98,6 +98,13 @@ bool advance(obligation &entry)
 		entry.save_revision = 0;
 		return false;
 	}
+	if (revision.current_revision < entry.save_revision)
+	{
+		// Revision state may be reset and rehydrated entirely between pulses.
+		// Its old unsaved generation cannot complete; capture the current wallet again.
+		entry.save_revision = 0;
+		return false;
+	}
 	if (revision.acknowledged_revision >= entry.save_revision &&
 	    !(revision.unacknowledged_components & PLAYER_COMPONENT_STATUS))
 		return critical_command_coordinator_acknowledge_publication(

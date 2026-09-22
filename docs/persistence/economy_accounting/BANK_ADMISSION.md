@@ -100,7 +100,8 @@ The focused sanitizer harness links the real owner, currency publisher and playe
 revision state in SQL and flatfile compilation modes. Save/coordinator endpoints
 are controlled: it covers immutable replay registration, conflict refusal,
 offline retention, failed capture, unrelated-component acknowledgement, exact
-status-save acknowledgement, failed/retried journal acknowledgement, rejection
+status-save acknowledgement, recapture after simulated state replacement loses an unsaved revision
+generation, failed/retried journal acknowledgement, rejection
 and uncertainty. It is not a native database/save integration or full boot test.
 
 Gameplay producers are not switched by this increment. Offline completion without
