@@ -1896,3 +1896,15 @@ This documents the semantic boundary without adding a currency category.
 Draft validation passed 13 fixtures: 524 routes, 2756 raw matches, 2698 unique
 coordinates, 1790 mapped, 43 reviewed declarations, 865 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Highway special item mutations
+
+Fifteen coordinates classified: wand random gems, ankh/sword exchange, spider
+web creation, fire smoke scheduling and smoke/fire conversion. Wand rerolls loop
+bound and clears source flags; sword exchange consumes ankh and moves existing
+sword. Smoke conversion detaches smoke without local extraction. Event/object
+publication and compound input/output durability remain qualification work.
+
+Draft validation passed 13 fixtures: 529 routes, 2756 raw matches, 2698 unique
+coordinates, 1805 mapped, 43 reviewed declarations, 850 unclassified.
+No gameplay changes; release readiness remains false.

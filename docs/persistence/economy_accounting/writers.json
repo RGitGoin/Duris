@@ -24863,6 +24863,231 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.wonder_wand_gems",
+      "path": "src/specs/specs.highway.c",
+      "symbol": "wand_of_wonder",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Gem outcome repeatedly checks a freshly randomized loop bound, selects random gem prototype and publishes successful allocations to room. Clears ITEM_SECRET on source wand, not gem. Damage uses iteration count including failed allocations. Replay must preserve actual output set and effects.",
+      "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.highway.c",
+          343,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          353,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.blackness_sword_ankh",
+      "path": "src/specs/specs.highway.c",
+      "symbol": "blackness_sword",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After local matching/eligibility checks, makes existing sword takeable/noncursed, unequips and destroys ankh with artifact retirement enabled, then transfers sword room-to-player. Source flag edits, ankh consumption and existing sword transfer form a compound operation.",
+      "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.highway.c",
+          508,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          507,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          511,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          512,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.mir_spider_web",
+      "path": "src/specs/specs.highway.c",
+      "symbol": "mir_spider",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Idle awake nonfighting periodic spider refuses when either web prototype already present; chance selects checked web allocation and room publication. Preserve selected prototype and room with transient policy qualification.",
+      "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.highway.c",
+          578,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          588,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          584,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          594,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.mir_fire_smoke",
+      "path": "src/specs/specs.highway.c",
+      "symbol": "mir_fire",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic fire finds web in reachable neighboring room, allocates smoke, schedules randomized room-based smoke-to-fire event then publishes smoke. Event registration and object publication are separate; replay must not multiply pending events or smoke.",
+      "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.highway.c",
+          656,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          666,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.mir_smoke_fire_conversion",
+      "path": "src/specs/specs.highway.c",
+      "symbol": "event_smoke_to_fire",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Room event finds first smoke, checks fire allocation, detaches smoke from room then publishes fire and returns. Smoke is not extracted locally; this is detached custody plus new fire, not proven smoke retirement.",
+      "authority_boundary": "Preserve exact source identities, selected output payloads and destinations. Distinguish first admission, existing-item movement, consumed inputs and detached objects. Commit/publication/save and fault replay remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.highway.c",
+          694,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          702,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.highway.c",
+          703,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
