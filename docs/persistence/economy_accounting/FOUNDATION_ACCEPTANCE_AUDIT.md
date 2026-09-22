@@ -1219,3 +1219,13 @@ qualification remain, so this is lexical inventory completion only.
 Draft validator passed 13 fixtures: 387 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,344 mapped, 43 reviewed declarations and 1,311 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Spell component consumption helper
+
+One coordinate classified. Matching top-level inventory components are immediately
+consumed up to the requested maximum, including partial availability. Returned count
+does not establish spell success; artifact exclusion is a comment, not a predicate.
+
+Draft validator passed 13 fixtures: 388 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,345 mapped, 43 reviewed declarations and 1,310 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

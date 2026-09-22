@@ -18515,6 +18515,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.spell_component_consumption",
+      "path": "src/magic/magic.c",
+      "symbol": "int get_spell_component(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Scans top-level character inventory and immediately extracts matching-prototype components up to requested maximum, returning number consumed.",
+      "authority_boundary": "Partial availability consumes the partial set; helper does not require full count or prove downstream spell success. Retain each component UID and source cast attempt; artifact exclusion exists only as a comment, not a predicate here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          429,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
