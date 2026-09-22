@@ -21765,6 +21765,166 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.npc_generated_cadaver",
+      "path": "src/mob/mobact.c",
+      "symbol": "bool CastMageSpell(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Eligible idle unmastered NPC with raise spells and no suitable corpse can allocate prototype2, randomize level/description, set two-minute decay and publish to room, then clear best_corpse.",
+      "authority_boundary": "Allocation has no local null check; bind one generated UID/payload to NPC lifetime and preserve chance/refusals. Publication does not immediately raise this new corpse in the same best_corpse branch.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/mobact.c",
+          1117,
+          "item_lifecycle"
+        ],
+        [
+          "src/mob/mobact.c",
+          1140,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.npc_backstab_equipment",
+      "path": "src/mob/mobact.c",
+      "symbol": "bool MobThief(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Detaches carried backstab weapon then equips free slot or replaces uncursed weapon to inventory. Two cursed slots restore selected weapon to inventory; cursed two-handed primary returns early without local restoration of detached weapon.",
+      "authority_boundary": "Preserve same-owner item UIDs and failed-swap disposition; detached early-return branch needs integration review rather than assumed no-op. Subsequent fleeing/combat and saves are separate effects.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/mobact.c",
+          6078,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6083,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6086,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6096,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6097,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6105,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6106,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6110,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6111,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          6116,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.npc_better_equipment",
+      "path": "src/mob/mobact.c",
+      "symbol": "int IsBetterObject(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "For eligible better differently-prototyped item replacing uncursed equipment, moves old equipment to inventory, calls wear on new item, waits and recursively evaluates displaced item in later slots.",
+      "authority_boundary": "Capture complete recursive same-owner equipment transition; wear helper owns new-item mutation. Equipment scoring randomness and save failure must not produce duplicate ownership during replay.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/mob/mobact.c",
+          7079,
+          "item_publication"
+        ],
+        [
+          "src/mob/mobact.c",
+          7080,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

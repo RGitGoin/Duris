@@ -1622,3 +1622,15 @@ is #486. Allocation and CheckEqWorthUsing are distinct from economic admission.
 Draft validation passed13 fixtures:459 routes,2756 raw matches,2698 unique
 coordinates,1562 mapped,43 reviewed declarations,1093 unclassified.
 No gameplay changes; release readiness remains false.
+
+## NPC cadavers and equipment selection
+
+Fourteen coordinates classified. NPC cadaver generation preserves random payload
+and decay; allocation lacks a local null guard. MobThief detaches selected weapon
+before slot checks; cursed two-handed primary can return without local restoration.
+IsBetterObject relocates old equipment and recursively reuses it after wear helper.
+UID custody and partial-failure/replay behavior remain unqualified.
+
+Draft validation passed13 fixtures:462 routes,2756 raw matches,2698 unique
+coordinates,1576 mapped,43 reviewed declarations,1079 unclassified.
+No gameplay changes; release readiness remains false.
