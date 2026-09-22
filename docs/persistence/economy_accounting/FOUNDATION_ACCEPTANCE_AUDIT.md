@@ -975,3 +975,14 @@ NPC custody must survive retry; narration and command invocation are not receipt
 Draft validator passed 13 fixtures: 330 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,161 mapped, 43 reviewed declarations and 1,494 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Alignment offering and devour fallback
+
+Five sites classified. Harpy choice consumes feather before character alignment
+transformation. Devour first permits durable corpse release handling; fallback moves
+corpse children to room before retiring root. Contents are transferred rather than
+destroyed with root. Neither narration nor sequential live mutations prove receipt.
+
+Draft validator passed 13 fixtures: 332 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,166 mapped, 43 reviewed declarations and 1,489 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

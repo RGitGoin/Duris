@@ -15890,6 +15890,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.harpy_alignment_offering",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int harpy_evil(",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Good and evil give hooks consume carried choice feather for neutral character, then set harpy race, racewar side and alignment.",
+      "authority_boundary": "Offering retirement precedes character transformation; narration does not establish custody transfer to NPC. Bind exact consumed UID and selected branch, with durable character effect acknowledgement separate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          160,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          209,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.devour_release",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int devour(",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Periodic awake NPC finds food/corpse, first calls persistence_defer_corpse_room_release, and only on fallback releases corpse children to room then extracts root.",
+      "authority_boundary": "Handled durable corpse release is distinct from shown fallback. Child custody transfer and root retirement must not be combined as destruction of contents; sequential room publication/extraction is not an atomic receipt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          2468,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          2469,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          2477,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
