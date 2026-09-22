@@ -2392,8 +2392,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Conserving wallet to shared bank.",
-      "authority_boundary": "One typed currency command",
+      "classification": "ATM deposit pairs negative wallet and positive shared-bank denomination vectors for all-positive carried coins or a requested denomination. NPCs and absent ATM are refused before submission.",
+      "authority_boundary": "Both endpoint deltas enter one currency submission; accepted enqueue is not commit. Completion reports errors or displays balance only if ATM remains present. Command callback does not establish native save acknowledgement or common-accounting qualification.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2416,7 +2416,18 @@
         "tests/async/test_flatfile_accounting_bank.py",
         "tests/async/test_economic_flatfile_admission_native.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          2560,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actoth.c",
+          2611,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -2427,8 +2438,8 @@
       "integration_issue": 480,
       "owner": "primary / #480",
       "coverage": "legacy",
-      "classification": "Conserving shared bank to wallet.",
-      "authority_boundary": "One typed currency command",
+      "classification": "ATM withdrawal pairs positive wallet and negative shared-bank denomination vectors for the requested amount. NPCs and absent ATM are refused before submission.",
+      "authority_boundary": "Both endpoint deltas enter one currency submission; accepted enqueue is not commit. Completion reports errors or displays balance only if ATM remains present. Command callback does not establish native save acknowledgement or common-accounting qualification.",
       "current_support": "Existing behavior only; accounting integration unverified",
       "backends": {
         "mysql": {
@@ -2451,7 +2462,13 @@
         "tests/async/test_flatfile_accounting_bank.py",
         "tests/async/test_economic_flatfile_admission_native.py"
       ],
-      "sites": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          2667,
+          "economic_submit"
+        ]
+      ],
       "evidence": []
     },
     {
@@ -14599,6 +14616,46 @@
           "src/cmd/actoth.c",
           1698,
           "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "currency.steal_live_transfer",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_steal(",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Successful coin theft selects denomination counts by randomized loop, decrements victim cash directly and calls ADD_MONEY for equivalent copper value on thief, then announces and updates skill/vitals.",
+      "authority_boundary": "Victim live debit precedes independent thief credit helper. No paired commit or failure compensation is demonstrated here; bind both owners, selected denominations and original theft attempt rather than recording the credit as a new reward. NPC authority and persistence of each endpoint require qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          4038,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4046,
+          "money_helper"
         ]
       ],
       "evidence": []

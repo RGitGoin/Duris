@@ -797,3 +797,16 @@ ordinary reachability but do not justify declaring compiled branches absent.
 Draft validator passed 13 fixtures: 302 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,072 mapped, 43 reviewed declarations and 1,583 unclassified.
 No runtime changes; census and qualification remain incomplete.
+
+## ATM and coin theft endpoints
+
+Five sites classified. Deposit/withdraw submit paired opposite denomination vectors
+for wallet and shared bank; callback balance display is not native save evidence.
+Coin theft instead decrements victim live cash before a separate ADD_MONEY call for
+the thief. Its credit is a transfer endpoint, not fresh reward issuance. Selected
+random denominations, both owners and original attempt must be retained for common
+accounting; the shown path does not establish paired commit or compensation.
+
+Draft validator passed 13 fixtures: 303 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,077 mapped, 43 reviewed declarations and 1,578 unclassified.
+No gameplay change; census and runtime qualification remain incomplete.
