@@ -2277,3 +2277,14 @@ not executed evidence.
 Draft validation passed 13 fixtures: 626 routes, 2756 raw matches, 2698 unique
 coordinates, 2032 mapped, 43 reviewed nonwriters, 623 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Random NPC currency and loot generation
+
+Four coordinates classified for generated platinum/gold and random equipment
+attachment. Local generation level differs from capped displayed level; loot
+loop has no explicit three-item cap despite comment. Map placement failure
+extracts NPC after generation, requiring indirect cleanup qualification.
+
+Draft validation passed 13 fixtures: 628 routes, 2756 raw matches, 2698 unique
+coordinates, 2036 mapped, 43 reviewed nonwriters, 619 unclassified.
+No gameplay changes; release readiness remains false.

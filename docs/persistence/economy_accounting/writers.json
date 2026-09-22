@@ -29154,6 +29154,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.random_mob_wallet",
+      "path": "src/world/random.mob.c",
+      "symbol": "create_random_mob",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Assigns randomized platinum and gold from local level, which can differ from capped displayed level. Copper/silver assignments are commented out. This generates an NPC balance rather than restoring a snapshot.",
+      "authority_boundary": "Bind generated balance to accepted NPC generation; distinguish later corpse transfer and recovery from new issuance, and qualify cleanup when map placement fails.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.mob.c",
+          873,
+          "coin_assignment"
+        ],
+        [
+          "src/world/random.mob.c",
+          874,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.random_mob_loot",
+      "path": "src/world/random.mob.c",
+      "symbol": "create_random_mob",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "For map theme or random half of other themes, creates and attaches random equipment then repeats while number(0,2) is zero; despite 1-3 comment, loop has no explicit three-item cap. Wears equipment afterward. Map placement failure subsequently extracts NPC and returns null.",
+      "authority_boundary": "Bind accepted generated item identities to NPC generation, including indirect generator allocation and cleanup on placement failure. Do not double-count later wearing, corpse transfer or recovery as issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/random.mob.c",
+          1015,
+          "item_publication"
+        ],
+        [
+          "src/world/random.mob.c",
+          1020,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
