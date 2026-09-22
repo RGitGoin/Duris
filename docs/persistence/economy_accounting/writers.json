@@ -14670,6 +14670,106 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.potion_consumption",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_quaff(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Quaff consumes a carried/held potion on combat spill, epic gain, lethal self-damage or normal spell processing. Held potion is unequipped after spill check; no-magic room still consumes.",
+      "authority_boundary": "Different outcomes consume with or without benefit. Effects and item retirement are live sequential steps; no begin_device_action gate appears in quaff. Preserve chosen outcome and effect ordering without assuming compound retirement/save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          4724,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4743,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4752,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4790,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4736,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.scroll_legacy_consumption",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_recite(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Only begin_device_action legacy result enters this branch. Held scroll is unequipped, spells are attempted and scroll extracted normally or when caster/target disappears; no-magic and rejected spell targets can still consume it.",
+      "authority_boundary": "Do not count these legacy sites as evidence for the separate durable device action. Spell benefits, target checks and retirement are sequential; refusal before routing differs from successful routing with no applied spell. Save acknowledgement and replay safety remain unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          4854,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4895,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actoth.c",
+          4920,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

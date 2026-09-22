@@ -823,3 +823,15 @@ or compensation is demonstrated by this command; gameplay remains unchanged.
 Draft validator passed 13 fixtures: 303 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,079 mapped, 43 reviewed declarations and 1,576 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Potion and legacy scroll consumption
+
+Eight sites classified. Quaff consumes on spill, epic gain, lethal self-damage or
+normal spell completion, including no-magic outcomes, without a device-action gate.
+Recite reaches its old unequip/spell/extraction path only when begin_device_action
+returns legacy. These paths distinguish retirement with/without benefit and cannot
+serve as proof of durable device replay or compound save acknowledgement.
+
+Draft validator passed 13 fixtures: 305 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,087 mapped, 43 reviewed declarations and 1,568 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
