@@ -6095,6 +6095,11 @@
           "src/core/files.c",
           3749,
           "item_lifecycle"
+        ],
+        [
+          "src/core/files.c",
+          3716,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
@@ -12207,6 +12212,16 @@
           "src/economy/auction_houses.c",
           1647,
           "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          247,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1636,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
@@ -12357,6 +12372,16 @@
           "src/economy/auction_houses.c",
           3058,
           "item_publication"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3003,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          3019,
+          "item_lifecycle"
         ]
       ],
       "evidence": []
@@ -12436,6 +12461,21 @@
         [
           "src/economy/auction_houses.c",
           2382,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1018,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          1465,
+          "item_lifecycle"
+        ],
+        [
+          "src/economy/auction_houses.c",
+          2320,
           "item_lifecycle"
         ]
       ],
@@ -39520,6 +39560,17 @@
       "rationale": "Extern function prototype only; implementation and callers require independent classification.",
       "end_line": 126,
       "source_sha256": "23225371d99335237609c959007d01d7e875eb5afe8eb0ba9187d658fe40c454"
+    },
+    {
+      "site": [
+        "src/core/prototypes.h",
+        1138,
+        "item_lifecycle"
+      ],
+      "classification": "declaration",
+      "rationale": "Single-item decoder prototype; callers and implementation are classified separately.",
+      "end_line": 1138,
+      "source_sha256": "278d2370c1a36b02b07aace88b4c25fbe36f9ad7c1b285dbcf35c07031af22ce"
     }
   ],
   "census": [
@@ -40271,6 +40322,7 @@
     {"path": "src/core/files.c", "line": 1989, "family": "item_lifecycle", "excerpt": "extract_obj(obj);"},
     {"path": "src/core/files.c", "line": 3356, "family": "item_lifecycle", "excerpt": "obj = read_object(V_num, VIRTUAL);"},
     {"path": "src/core/files.c", "line": 3690, "family": "item_lifecycle", "excerpt": "obj = read_object(V_num, VIRTUAL);"},
+    {"path": "src/core/files.c", "line": 3716, "family": "item_lifecycle", "excerpt": "P_obj read_one_object(char *read_buf)"},
     {"path": "src/core/files.c", "line": 3749, "family": "item_lifecycle", "excerpt": "obj = read_object(V_num, VIRTUAL);"},
     {"path": "src/core/files.c", "line": 4077, "family": "item_lifecycle", "excerpt": "extract_obj(cobj, TRUE); // If arti is confiscated.. ouch."},
     {"path": "src/core/files.c", "line": 4120, "family": "item_lifecycle", "excerpt": "extract_obj(cobj, TRUE); // If arti is confiscated.. ouch."},
@@ -40301,6 +40353,7 @@
     {"path": "src/core/prototypes.h", "line": 828, "family": "item_lifecycle", "excerpt": "void MakeScrap(P_char, P_obj);"},
     {"path": "src/core/prototypes.h", "line": 838, "family": "item_lifecycle", "excerpt": "P_obj read_object(int, int);"},
     {"path": "src/core/prototypes.h", "line": 892, "family": "item_lifecycle", "excerpt": "void vnum_from_inv(P_char ch, int item, int count);"},
+    {"path": "src/core/prototypes.h", "line": 1138, "family": "item_lifecycle", "excerpt": "P_obj read_one_object(char *);"},
     {"path": "src/core/prototypes.h", "line": 1292, "family": "item_lifecycle", "excerpt": "P_obj create_money(int, int, int, int);"},
     {"path": "src/core/prototypes.h", "line": 1352, "family": "item_lifecycle", "excerpt": "void extract_obj(P_obj obj,"},
     {"path": "src/core/prototypes.h", "line": 1301, "family": "item_publication", "excerpt": "P_obj unequip_char(P_char, int, bool = FALSE);"},
@@ -40383,11 +40436,18 @@
     {"path": "src/economy/auction_houses.c", "line": 1819, "family": "coin_bulk_mutation", "excerpt": "memcpy(payload.object_blob.data(), serialized, serialized_size + 1);"},
     {"path": "src/economy/auction_houses.c", "line": 2857, "family": "coin_bulk_mutation", "excerpt": "memcpy(payload.object_blob.data(), row[4], lengths[4]);"},
     {"path": "src/economy/auction_houses.c", "line": 193, "family": "item_lifecycle", "excerpt": "extract_obj(object);"},
+    {"path": "src/economy/auction_houses.c", "line": 247, "family": "item_lifecycle", "excerpt": "P_obj object = read_one_object(const_cast<char *>("},
+    {"path": "src/economy/auction_houses.c", "line": 1018, "family": "item_lifecycle", "excerpt": "P_obj tmp_obj = read_one_object(blob_str);"},
     {"path": "src/economy/auction_houses.c", "line": 1035, "family": "item_lifecycle", "excerpt": "extract_obj(tmp_obj);"},
+    {"path": "src/economy/auction_houses.c", "line": 1465, "family": "item_lifecycle", "excerpt": "P_obj tmp_obj = read_one_object(obj_str);"},
     {"path": "src/economy/auction_houses.c", "line": 1482, "family": "item_lifecycle", "excerpt": "extract_obj(tmp_obj);"},
     {"path": "src/economy/auction_houses.c", "line": 1570, "family": "item_lifecycle", "excerpt": "extract_obj(object);"},
+    {"path": "src/economy/auction_houses.c", "line": 1636, "family": "item_lifecycle", "excerpt": "P_obj object = read_one_object(const_cast<char *>("},
     {"path": "src/economy/auction_houses.c", "line": 2076, "family": "item_lifecycle", "excerpt": "extract_obj(removed[--removed_count]);"},
+    {"path": "src/economy/auction_houses.c", "line": 2320, "family": "item_lifecycle", "excerpt": "P_obj tmp_obj = read_one_object(obj_str);"},
     {"path": "src/economy/auction_houses.c", "line": 2382, "family": "item_lifecycle", "excerpt": "extract_obj(tmp_obj);"},
+    {"path": "src/economy/auction_houses.c", "line": 3003, "family": "item_lifecycle", "excerpt": "P_obj tmp_obj = read_one_object(row[1]);"},
+    {"path": "src/economy/auction_houses.c", "line": 3019, "family": "item_lifecycle", "excerpt": "temp_obj->next_content = read_one_object(row[1]);"},
     {"path": "src/economy/auction_houses.c", "line": 3036, "family": "item_lifecycle", "excerpt": "extract_obj(tmp_obj);"},
     {"path": "src/economy/auction_houses.c", "line": 192, "family": "item_publication", "excerpt": "obj_from_char(object);"},
     {"path": "src/economy/auction_houses.c", "line": 258, "family": "item_publication", "excerpt": "obj_to_char(object, ch);"},

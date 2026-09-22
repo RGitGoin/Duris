@@ -21,6 +21,18 @@ class AccountingContractTest(unittest.TestCase):
     def validate(self,name):
         return contract.validate_fixture(self.examples[name],self.registry)
 
+    def test_single_item_decoder_is_a_lifecycle_candidate(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            (root/'src').mkdir()
+            (root/'src/probe.c').write_text(
+                'P_obj restored = read_one_object(blob);\n'
+                '// read_one_object(comment);\n'
+                'const char *label = "read_one_object(string)";\n')
+            sites=contract.scan_sources(root)
+            self.assertEqual([(s['line'],s['family']) for s in sites],
+                             [(1,'item_lifecycle')])
+
     def test_all_golden_examples(self):
         contract.validate_registry(self.registry)
         for name in self.examples:
