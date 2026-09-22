@@ -36714,6 +36714,366 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "inspection.wizard_do_deathobj",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "do_deathobj",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Unreachable prototype listing after unconditional disabled-command return. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          1300,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          1304,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_do_stat",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "do_stat",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Temporary numeric-stat and shop-stock description prototypes. Cleanup on duplicate, failed lookup or completed display; existing inspected objects are not the temporary cleanup target. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          1856,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          1866,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          1892,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          2355,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          3331,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          3345,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_which_stat",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "which_stat",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Greater/lesser/equal comparison loops instantiate and discard prototype copies for affect-stat listings. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          11971,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          11993,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          12002,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          12024,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          12033,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          12055,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_which_food",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "which_food",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Food listing instantiates prototypes for modifiers and discards each copy. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          12292,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          12304,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_which_armor",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "which_armor",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Armor listing instantiates prototypes for condition filters and discards each copy. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          13389,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          13407,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_which_weapon",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "which_weapon",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Weapon listing instantiates prototypes for type filters and discards each copy. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          13461,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          13475,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_eqrate_show_vnum",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "eqrate_show_vnum",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Detailed rating helper loads prototype copy and discards it after display. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          14432,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          14439,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "inspection.wizard_do_eqrate",
+      "path": "src/cmd/actwiz.c",
+      "symbol": "do_eqrate",
+      "reason": "baseline",
+      "integration_issue": 475,
+      "owner": "primary / #475",
+      "coverage": "legacy",
+      "classification": "Equipment ranking stores computed rating metadata, then discards each prototype copy before sorting. No room or inventory admission at these paths; excluded from gameplay issuance/destruction.",
+      "authority_boundary": "Temporary prototype inspection or disabled code, not an economic producer. Preserve exclusion when establishing first-admission accounting so allocation alone does not emit gameplay events.",
+      "current_support": "Source-reviewed inspection exclusion; no runtime qualification claimed",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actwiz.c",
+          14582,
+          "item_lifecycle"
+        ],
+        [
+          "src/cmd/actwiz.c",
+          14596,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2980,3 +2980,13 @@ Other modes publish new storage before writeSavedItem or mutate directly.
 Backend parity and postcommit publication recovery remain qualification gaps.
 No runtime changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 807 routes, 2756 raw matches, 2698 unique coordinates, 2454 mapped, 43 reviewed nonwriters, 201 unclassified.
+
+
+## Administrative prototype inspection exclusions
+
+Twenty-four coordinates classified as temporary stat/list/rating copies or
+unreachable disabled death-object listing. These have no gameplay admission;
+allocation alone must not generate issuance. This completes raw actwiz matches,
+not semantic coverage of every indirect administrative mutation.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 815 routes, 2756 raw matches, 2698 unique coordinates, 2478 mapped, 43 reviewed nonwriters, 177 unclassified.
