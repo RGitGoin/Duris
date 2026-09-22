@@ -18405,6 +18405,116 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.necroplasm_custody",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int living_necroplasm(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic necroplasm removes itself on artifact conflict, can jump from ground to eligible player inventory, leaves HOLD and equips appropriate body slot after displacing existing equipment.",
+      "authority_boundary": "Retain item and selected owner identities, class/artifact restrictions, native versus legacy slot behavior and related form effects. Native post-equip runtime-ID/UID validation is not durable publication acknowledgement; room pickup and same-owner slot moves are distinct custody changes.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          2858,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2914,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2915,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2929,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2963,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2965,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          2967,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.vapor_forced_equip",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int vapor(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "GOT_HIT branch moves occupied race-dependent body/legs slot into same owner inventory, then equips carried vapor into that slot.",
+      "authority_boundary": "No new vapor is created despite ground narration. Preserve existing UID, displaced item ownership and chosen slot; nodrop and magical effects require payload qualification separately.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          3142,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3144,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          3145,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

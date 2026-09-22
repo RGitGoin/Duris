@@ -1207,3 +1207,15 @@ does not establish registration or justify excluding a writer.
 Draft validator passed 13 fixtures: 385 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,334 mapped, 43 reviewed declarations and 1,321 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Necroplasm and vapor custody
+
+Ten coordinates classified for necroplasm conflict removal, room pickup and body
+slot equipment, plus vapor forced equipment. Existing identities persist; native
+and legacy slot selection differ and must not be silently normalized. All current
+specs.object.c scanner coordinates are mapped; payload blind spots and runtime
+qualification remain, so this is lexical inventory completion only.
+
+Draft validator passed 13 fixtures: 387 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,344 mapped, 43 reviewed declarations and 1,311 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
