@@ -1045,3 +1045,17 @@ prototype allocation. These ordering distinctions remain integration obligations
 Draft validator passed 13 fixtures: 342 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,211 mapped, 43 reviewed declarations and 1,444 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Remaining mobile custody paths
+
+Twenty-four sites classified: janitor pickup, spiritist disarm, ice-wolf and
+assistant transformations, ice-malice death transfer, Malevolence transformation,
+and butler source-form transfer. These preserve existing item identities across
+room/equipment/NPC custody. Source death and prototype cash disposition remain
+separate obligations; assistant allocation failures permit partial transformation.
+All current scanner coordinates in specs.mobile.c are mapped. This is lexical
+inventory completion only, not semantic completeness or runtime qualification.
+
+Draft validator passed 13 fixtures: 348 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,235 mapped, 43 reviewed declarations and 1,420 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

@@ -16500,6 +16500,306 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.janitor_pickup",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int janitor(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Awake idle janitor moves one qualifying room object into NPC inventory.",
+      "authority_boundary": "Preserve the existing takeability, weight and type/cost predicates; this is custody transfer, not trash destruction. Track exact item and NPC lifetime.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          3963,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          3964,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.spiritist_disarm",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int barbarian_spiritist(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Random spirit attack marks primary weapon, or secondary if primary absent, secret and unequips it into the victim room.",
+      "authority_boundary": "Preserve weapon identity and secret-flag payload together with equipment-to-room movement; no creation or retirement occurs. Random selection is not replay identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          6480,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          6489,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ice_wolf_transform",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int ice_wolf(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Fighting ice wolf transforms to NPC 97054, moving inventory/equipment before extraction; world-list assistants 97031/97032 similarly move possessions to new 97055 forms.",
+      "authority_boundary": "Each assistant has a distinct source lifetime and allocation failure skips that assistant. Existing item identity must survive; no explicit cash transfer appears in these blocks. Sequential transformations are not one proven atomic bundle.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          8950,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          8951,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          8959,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          8960,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9018,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9019,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9025,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9026,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ice_malice_death_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int ice_malice(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death handler allocates vapor 97056 and transfers inventory/equipment before returning true.",
+      "authority_boundary": "No source extraction occurs in this handler block; caller death completion and cash disposition need qualification. Transfer existing items rather than issue duplicate loot, binding both NPC lifetimes.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          9107,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9108,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9116,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          9117,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.malevolence_form_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int Malevolence(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Below one-third health in combat, creates vapor 45571 and transfers existing inventory/equipment, then relocates source to room 1 and calls die.",
+      "authority_boundary": "Bind old and new NPC lifetimes and subsequent death disposition; prototype cash is not transferred explicitly. Movement of existing possessions is not issuance, and die completion is not a durable publication receipt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          11380,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11381,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11389,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          11390,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.shabo_butler_source_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int shabo_butler(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Fighting butler creates form 32844 and transfers its own inventory/equipment before extracting itself; assistant transformations are classified separately.",
+      "authority_boundary": "Preserve item identity across source and replacement NPC lifetimes. Cash is not explicitly transferred in this block, and later assistant processing does not establish atomic publication of this transfer.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          12194,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12195,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12203,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          12204,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
