@@ -231,6 +231,21 @@ class AccountingContractTest(unittest.TestCase):
             backends={name:dict(status='unverified') for name in ('mysql','mariadb','flatfile')})
         return dict(schema_version=1,writers=[writer],census=contract.scan_sources(root),census_complete=True)
 
+    def test_inventory_rejects_duplicate_site_ownership(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            for across_writers in (False,True):
+                duplicate=copy.deepcopy(inventory)
+                if across_writers:
+                    second=copy.deepcopy(duplicate['writers'][0])
+                    second.update(id='other',owner='another integration owner',integration_issue=481)
+                    duplicate['writers'].append(second)
+                else:
+                    duplicate['writers'][0]['sites']*=2
+                with self.subTest(across_writers=across_writers), self.assertRaisesRegex(
+                        contract.ContractError,'duplicate writer source site ownership'):
+                    contract.validate_inventory(duplicate,self.registry,root)
+
     def test_complete_census_does_not_require_gameplay_enforcement(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);inventory=self.census_fixture(root)

@@ -3524,3 +3524,7 @@ The device harness now repeats scheduler/cleanup pulses after successful and can
 ### Native artifact candidate audit
 
 Sword and wand-of-wonder ASan/UBSan suites pass. Linked sword poof (extraction/unequip for incompatible racewar in both action modes) and legacy wand gems (all twenty outcomes in both modes, gem count/placement and interruption checks). Controlled endpoints do not establish durable issuance or retirement. Studio ability tests exercise typed ability dispatch rather than object load/give/purge, so those routes remain without candidates. There are 656 missing candidate links; no production or support-status change.
+
+### Unique source-site ownership validation
+
+The validator now refuses repeated path/line/family assignments, whether repeated within one writer or assigned to a second writer with a different integration owner. Previously the mapped-site set silently collapsed both cases. A current-inventory audit found no duplicates; the new regression exercises both failures and all 47 contract tests pass. This enforces unambiguous ownership of identified census sites without claiming semantic completeness; 656 candidate gaps remain.

@@ -222,6 +222,7 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
     unique(inventory['writers'],'id','writer ID')
     reasons={r['id'] for r in registry['reasons']}
     census_sites={(site['path'],site['line'],site['family']) for site in inventory['census']}
+    site_owners={}
     for writer in inventory['writers']:
         require(writer['reason'] in reasons,'unknown writer reason')
         require(bool(writer['owner']),'missing integration owner')
@@ -235,6 +236,9 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
         require(writer['symbol'] in (root/writer['path']).read_text(encoding='utf-8',errors='replace'),'missing source anchor')
         for site in writer.get('sites',[]):
             require(tuple(site) in census_sites,'writer source site missing from census')
+            key=tuple(site)
+            require(key not in site_owners,'duplicate writer source site ownership')
+            site_owners[key]=writer['id']
         for test in writer['test_candidates']:
             require((root/test).is_file(),'missing test candidate')
         if release:
