@@ -1352,3 +1352,13 @@ across custody locations; helper does not prove replacement or player save compl
 Draft validator passed 13 fixtures: 403 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,376 mapped, 43 reviewed declarations and 1,279 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Soulbind recreation publication
+
+Four coordinates classified. Reload allocates a fresh customized object; NPC direct
+publication/cleanup differs from PC creation submission/completion. Rejected PC
+submission cleans unpublished output. Submission acceptance is not save acknowledgement.
+
+Draft validator passed 13 fixtures: 404 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,380 mapped, 43 reviewed declarations and 1,275 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
