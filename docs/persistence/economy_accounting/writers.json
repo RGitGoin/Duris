@@ -31197,6 +31197,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.verzanan_dog_one_consumption",
+      "path": "src/specs/specs.verzanan.c",
+      "symbol": "int dog_one",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Awake noncombat idle dog consumes the first eligible room corpse or food. Corpse decay time above 2550 defers immediately; persistence_defer_corpse_room_release can take over before direct mutation. Otherwise all contents are moved to room before shell extraction. Existing contents are retained custody, not issuance; food and corpse shell are sinks.",
+      "authority_boundary": "Qualify both persistence-deferred and direct paths as content release plus shell retirement, preserving stable IDs and the existing age/refusal gates. Trace deferred helper completion and distinguish submission from durable publication/save acknowledgement; replay must neither lose contents nor consume another shell.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.verzanan.c",
+          764,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.verzanan.c",
+          752,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.verzanan.c",
+          753,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.verzanan_dog_two_consumption",
+      "path": "src/specs/specs.verzanan.c",
+      "symbol": "int dog_two",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Awake noncombat idle dog consumes the first eligible room corpse or food. Corpse decay time above 2550 defers immediately; persistence_defer_corpse_room_release can take over before direct mutation. Otherwise all contents are moved to room before shell extraction. Existing contents are retained custody, not issuance; food and corpse shell are sinks.",
+      "authority_boundary": "Qualify both persistence-deferred and direct paths as content release plus shell retirement, preserving stable IDs and the existing age/refusal gates. Trace deferred helper completion and distinguish submission from durable publication/save acknowledgement; replay must neither lose contents nor consume another shell.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.verzanan.c",
+          841,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.verzanan.c",
+          829,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.verzanan.c",
+          830,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

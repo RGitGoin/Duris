@@ -2575,3 +2575,14 @@ custody/save/replay effects remain qualification work, not incidental fixes.
 Draft validation passed 13 fixtures: 675 routes, 2756 raw matches, 2698 unique
 coordinates, 2145 mapped, 43 reviewed nonwriters, 510 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Verzanan dog consumption
+
+Six coordinates classified in two handlers: eligible corpse/food contents
+release followed by shell destruction. Preserve age, awake and combat gates.
+The persistence defer helper precedes direct mutation; its completion path and
+direct fallback both require qualification. Existing contents are not issuance.
+
+Draft validation passed 13 fixtures: 677 routes, 2756 raw matches, 2698 unique
+coordinates, 2151 mapped, 43 reviewed nonwriters, 504 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
