@@ -20016,7 +20016,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_runtime.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20053,7 +20055,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20144,7 +20148,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20191,7 +20197,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20228,7 +20236,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20265,7 +20275,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_550_conjuration_commit_aware.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -26519,7 +26531,8 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_issue_550_conjuration_commit_aware.py"
+        "tests/async/test_issue_550_conjuration_commit_aware.py",
+        "tests/async/test_issue_550_conjuration_runtime.py"
       ],
       "sites": [
         [
