@@ -35921,7 +35921,7 @@
       "coverage": "legacy",
       "classification": "Restores saved NPC gold after recreating the NPC and restoring its identity. Balance assignment is recovery, not a reward or independent currency issuance.",
       "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
-      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified Extracted production buffer save/restore harness checks gold, stock counts and equipment over five recovery cycles under ASan/UBSan with controlled world I/O. It does not qualify durable accounting, original item UIDs or file-based NPC recovery.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35936,7 +35936,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_world_singletons.py"
+      ],
       "sites": [
         [
           "src/persistence/copyover.c",
@@ -35958,7 +35960,7 @@
       "coverage": "legacy",
       "classification": "Recreates NPC equipment and carried items from saved prototype vnums, then equips or attaches them. This is intended recovery but these calls do not restore prior object UIDs or complete item graphs; fresh object construction must not be mistaken for ordinary gameplay issuance.",
       "authority_boundary": "Qualify recovery identity, duplicate replay, missing prototypes/allocation failure and partial publication against the authoritative pre-copyover assets. Native attachment alone does not establish durable accounting recovery.",
-      "current_support": "Existing NPC copyover recovery; accounting qualification unverified",
+      "current_support": "Existing NPC copyover recovery; accounting qualification unverified Extracted production buffer save/restore harness checks gold, stock counts and equipment over five recovery cycles under ASan/UBSan with controlled world I/O. It does not qualify durable accounting, original item UIDs or file-based NPC recovery.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35973,7 +35975,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_world_singletons.py"
+      ],
       "sites": [
         [
           "src/persistence/copyover.c",

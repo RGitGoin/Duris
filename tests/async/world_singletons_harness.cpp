@@ -480,6 +480,7 @@ int main()
 	assert(mob_index[2].number == 1 && obj_index[3].number == 1 && obj_index[4].number == 1);
 	keeper = world[3].people;
 	equip_char(keeper, read_object(2, REAL), 1, 0);
+	GET_GOLD(keeper) = 137;
 	for (int cycle = 0; cycle < 5; ++cycle)
 	{
 		char snapshot[4096] = {};
@@ -489,6 +490,7 @@ int main()
 		size_t consumed = 0;
 		keeper = copyover_restore_mob_from_buffer(snapshot, bytes, &consumed);
 		assert(keeper && consumed == static_cast<size_t>(bytes));
+		assert(GET_GOLD(keeper) == 137);
 		reconcile_shopkeepers(true);
 		assert(mob_index[2].number == 1 && obj_index[3].number == 1 &&
 		       obj_index[4].number == 1);
