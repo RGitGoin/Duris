@@ -3031,3 +3031,13 @@ clear is not live-item extraction; timer change is not issuance. SQL main/mortal
 partial deletion and delegated offline persistence remain qualification concerns.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 828 routes, 2756 raw matches, 2698 unique coordinates, 2534 mapped, 43 reviewed nonwriters, 121 unclassified.
+
+
+## Artifact maintenance movement
+
+Eleven coordinates grouped as invalid-location Limbo salvage, corpse-expiry
+preparation and artifact-wars forced drops. Salvage may move an outer container;
+corpse save can precede poof; wars timer failure does not prevent native drop.
+Compound custody/registry/publication qualification remains open.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 831 routes, 2756 raw matches, 2698 unique coordinates, 2545 mapped, 43 reviewed nonwriters, 110 unclassified.

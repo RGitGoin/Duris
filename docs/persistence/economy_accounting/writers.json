@@ -37744,6 +37744,151 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.location_salvage",
+      "path": "src/guild/artifact.c",
+      "symbol": "void artifact_update_sql(P_obj",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Repairs malformed artifact/container location by setting nowhere then attaching artifact or outer container to Limbo before registry update. Existing asset movement can affect entire containing graph; not first admission.",
+      "authority_boundary": "Qualify retained item/root identity, registry location/timer consistency and partial failure across native movement, expiry and saves. These maintenance paths remain economic owner/topology changes despite being automatic.",
+      "current_support": "Existing artifact maintenance; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          1291,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          1307,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          1365,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          1392,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.corpse_expiry_move",
+      "path": "src/guild/artifact.c",
+      "symbol": "void event_artifact_check_poof_sql",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Finds artifact in matching PC corpse, detaches it, saves directly enclosing corpse where applicable, moves to outer room or carrier room, then delegates poof_artifact. Intermediate movement and pre-poof corpse save require compound expiry qualification.",
+      "authority_boundary": "Qualify retained item/root identity, registry location/timer consistency and partial failure across native movement, expiry and saves. These maintenance paths remain economic owner/topology changes despite being automatic.",
+      "current_support": "Existing artifact maintenance; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3026,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          3039,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          3046,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.wars_drop",
+      "path": "src/guild/artifact.c",
+      "symbol": "void event_artifact_wars_sql",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After timer penalty attempt, forcibly drops equipped and directly carried artifacts of online owner into room. Timer update failures do not prevent this native movement; nested carried contents are not traversed here.",
+      "authority_boundary": "Qualify retained item/root identity, registry location/timer consistency and partial failure across native movement, expiry and saves. These maintenance paths remain economic owner/topology changes despite being automatic.",
+      "current_support": "Existing artifact maintenance; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          3348,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          3364,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          3388,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          3389,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
