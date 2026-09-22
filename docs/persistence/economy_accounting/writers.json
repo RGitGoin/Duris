@@ -20105,7 +20105,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_549_cross_player_transfer_contract.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -20384,7 +20386,10 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_549_cross_player_transfer_contract.py",
+        "tests/async/test_issue_549_cross_player_transfer_runtime.py"
+      ],
       "sites": [
         [
           "src/magic/magic.c",
@@ -29971,7 +29976,10 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_issue_549_cross_player_transfer_contract.py",
+        "tests/async/test_issue_549_cross_player_transfer_runtime.py"
+      ],
       "sites": [
         [
           "src/classes/rogues.c",
