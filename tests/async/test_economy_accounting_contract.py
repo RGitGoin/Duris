@@ -181,9 +181,10 @@ class AccountingContractTest(unittest.TestCase):
     def census_fixture(self, root):
         (root/'src').mkdir()
         (root/'src/example.c').write_text('void example() { ch->points.cash[index] += amount; }\n')
+        (root/'test.py').write_text('print("synthetic fixture")\n')
         writer=dict(id='example',reason='bank_transfer',owner='test',authority_boundary='test',
             classification='transfer',integration_issue=480,coverage='legacy',path='src/example.c',
-            symbol='example',test_candidates=[],sites=[['src/example.c',1,'direct_cash_assignment']],
+            symbol='example',source='wallet',destination='bank',test_candidates=['test.py'],sites=[['src/example.c',1,'direct_cash_assignment']],
             backends={name:dict(status='unverified') for name in ('mysql','mariadb','flatfile')})
         return dict(schema_version=1,writers=[writer],census=contract.scan_sources(root),census_complete=True)
 
@@ -193,6 +194,19 @@ class AccountingContractTest(unittest.TestCase):
             contract.validate_inventory(inventory,self.registry,root,census=True)
             with self.assertRaisesRegex(contract.ContractError,'executable evidence'):
                 contract.validate_inventory(inventory,self.registry,root,release=True)
+
+    def test_complete_census_requires_transfer_and_test_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);inventory=self.census_fixture(root)
+            for field,value in (('source',None),('source',' '),('destination',''),
+                                ('destination',42),('test_candidates',[])):
+                changed=copy.deepcopy(inventory)
+                changed['writers'][0][field]=value
+                with self.subTest(field=field,value=value):
+                    with self.assertRaisesRegex(contract.ContractError,'missing'):
+                        contract.validate_inventory(changed,self.registry,root,census=True)
+                    changed['census_complete']=False
+                    contract.validate_inventory(changed,self.registry,root)
 
     def test_census_gate_refuses_unreviewed_inventory(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -327,3 +327,10 @@ exception, auction removal without refund, and crafting success versus intended
 failure and replay. These are qualification requirements, not claims that the
 current tests exercise them. Existing candidate tests stay separately identified
 in `writers.json`; source review alone does not advance backend coverage.
+
+The completed census gate requires each route to provide explicit nonempty `source`
+and `destination` classifications and an existing `test_candidates` link. These
+fields describe economic endpoints, including provisional objects and projections;
+they do not assert backend enforcement. Review must still establish that the linked
+test covers the route: file existence alone cannot prove executable coverage. Draft
+validation permits unfinished metadata while `census_complete` remains false.

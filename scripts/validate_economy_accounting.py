@@ -258,6 +258,13 @@ def validate_inventory(inventory, registry, root, release=False, census=False):
     if census or release or inventory.get('census_complete',False):
         require(inventory.get('census_complete') is True,'writer census not complete')
         require(census_sites <= mapped | excluded,'unclassified writer candidate')
+
+        for writer in inventory['writers']:
+            for field in ('source','destination'):
+                require(isinstance(writer.get(field),str) and writer[field].strip(),
+                        f"writer {writer['id']} missing {field} classification")
+            require(bool(writer['test_candidates']),
+                    f"writer {writer['id']} missing executable test candidate")
     if release:
         require(registry['status']=='frozen','registry contract not frozen')
 
