@@ -2331,3 +2331,14 @@ helper side effects and lifecycle qualification remain open.
 Draft validation passed 13 fixtures: 636 routes, 2756 raw matches, 2698 unique
 coordinates, 2055 mapped, 43 reviewed nonwriters, 600 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Thought beacon replacement
+
+Three coordinates classified: prior beacon removal and affect update precede
+replacement allocation, decay/PID configuration and room admission. Prior-object
+lookup does not locally compare PID. Failure, ownership selection and replay
+qualification remain open; no behavior change introduced.
+
+Draft validation passed 13 fixtures: 637 routes, 2756 raw matches, 2698 unique
+coordinates, 2058 mapped, 43 reviewed nonwriters, 597 unclassified.
+Release readiness remains false.

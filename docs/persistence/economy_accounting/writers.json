@@ -29575,6 +29575,51 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.thought_beacon_replacement",
+      "path": "src/classes/psionics.c",
+      "symbol": "spell_thought_beacon",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After room restrictions, existing beacon affect selects first matching prototype in previous room and extracts it with FALSE, then updates location; otherwise creates affect. Only afterward allocates checked replacement, sets decay and actor PID, and publishes to current room. Old-object selection does not locally compare stored PID.",
+      "authority_boundary": "Couple old beacon retirement, affect location and new admission. Qualify failed allocation after old removal/state update, shared-room ownership selection and repeated recovery; timed decay alone does not prove transient exemption.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/psionics.c",
+          2985,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/psionics.c",
+          2999,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/psionics.c",
+          3018,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
