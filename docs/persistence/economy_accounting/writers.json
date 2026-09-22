@@ -31906,7 +31906,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_device_actions_runtime.py"
+      ],
       "sites": [
         [
           "src/item/device_actions.c",
