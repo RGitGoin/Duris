@@ -14970,6 +14970,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.old_descend_equipment",
+      "path": "src/cmd/actoth.c",
+      "symbol": "void do_old_descend(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy descent routine returns worn items to same-character inventory during character reset. Non-NPC actors are explicitly refused at entry; source search finds only this definition.",
+      "authority_boundary": "Compiled legacy placement is not proven active player behavior. Do not remove it from inventory or claim qualified descent integration; same-owner equipment movement is not issuance, and residual NPC path safety is unverified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actoth.c",
+          7772,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

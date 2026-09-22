@@ -847,3 +847,14 @@ returns equipment to the same actor; offering commit is not saved item placement
 Draft validator passed 13 fixtures: 310 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,097 mapped, 43 reviewed declarations and 1,558 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## actoth lexical inventory completed
+
+The final old-descent equipment site is classified as compiled legacy same-owner
+placement. Its entry rejects non-NPC actors, and src search finds only the definition;
+it is not proven active player behavior. All current actoth.c scanner coordinates
+are now mapped. This does not establish semantic exhaustiveness or runtime coverage.
+
+Draft validator passed 13 fixtures: 311 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,098 mapped, 43 reviewed declarations and 1,557 unclassified.
+No gameplay change; census and runtime qualification remain incomplete.
