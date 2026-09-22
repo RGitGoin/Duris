@@ -2803,3 +2803,15 @@ classification under the current declaration-only nonwriter schema.
 Draft validation passed 13 fixtures: 727 routes, 2756 raw matches, 2698 unique
 coordinates, 2273 mapped, 43 reviewed nonwriters, 382 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Player item graph materialization
+
+Five coordinates classified as staged rollback, identity-preserving graph
+materialization and local discard. Shared graph helper serves restore and
+creation payload callers; allocation is not a second issuance. UID clearing
+and memory publication flags do not prove persisted deletion or commit.
+Ownership hydration, caller lifecycle and save/replay qualification remain open.
+
+Draft validation passed 13 fixtures: 730 routes, 2756 raw matches, 2698 unique
+coordinates, 2278 mapped, 43 reviewed nonwriters, 377 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

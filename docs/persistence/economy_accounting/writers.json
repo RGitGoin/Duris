@@ -33407,6 +33407,121 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.load_staging_cleanup",
+      "path": "src/player/player_load_items.c",
+      "symbol": "class staged_item_graph",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Unpublished staged graph destructor clears UIDs, extracts linked roots recursively or unlinked objects separately. Published graph skips cleanup. This releases failed materialization memory, not an authoritative asset sink.",
+      "authority_boundary": "Materialize existing authoritative identities without minting again; creation payload publication derives from its upstream operation. Qualify ownership hydration, staged rollback, detached versus attached success, discard callers and restart/save acknowledgement. Local published flag is memory ownership, not proof of durable accounting commit.",
+      "current_support": "Existing materialization behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_load_items.c",
+          39,
+          "item_lifecycle"
+        ],
+        [
+          "src/player/player_load_items.c",
+          44,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.load_graph_materialization",
+      "path": "src/player/player_load_items.c",
+      "symbol": "bool materialize_item_graph",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Allocates prototype copies then restores supplied UID/database ID and snapshot fields, clears creation-candidate flag, links graph and optionally hydrates ownership before attachment or detached-root return. Shared callers include restoration and validated creation payload materialization; upstream operation determines issuance, not read_object.",
+      "authority_boundary": "Materialize existing authoritative identities without minting again; creation payload publication derives from its upstream operation. Qualify ownership hydration, staged rollback, detached versus attached success, discard callers and restart/save acknowledgement. Local published flag is memory ownership, not proof of durable accounting commit.",
+      "current_support": "Existing materialization behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_load_items.c",
+          567,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.load_discard",
+      "path": "src/player/player_load_items.c",
+      "symbol": "void player_load_items_discard",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Discard detaches equipment/inventory, recursively clears UIDs and extracts representations, then resets carry totals. Does not locally delete persisted holdings; caller rollback/lifecycle must establish when discard is appropriate.",
+      "authority_boundary": "Materialize existing authoritative identities without minting again; creation payload publication derives from its upstream operation. Qualify ownership hydration, staged rollback, detached versus attached success, discard callers and restart/save acknowledgement. Local published flag is memory ownership, not proof of durable accounting commit.",
+      "current_support": "Existing materialization behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_load_items.c",
+          882,
+          "item_lifecycle"
+        ],
+        [
+          "src/player/player_load_items.c",
+          892,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
