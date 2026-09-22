@@ -33759,6 +33759,181 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "storage.item_owner_insert",
+      "path": "src/item/item_transfer_repository.c",
+      "symbol": "bool insert_created_item",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Inserts initial current-owner row with supplied UID/root, revision zero and state one. SQL helper is part of upstream creation transaction, not an independent gameplay issuer.",
+      "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_repository.c",
+          597,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.item_owner_update",
+      "path": "src/item/item_transfer_repository.c",
+      "symbol": "bool update_item",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Changes topology, owner and custody state with expected item revision; next revision is prior+1. Requires caller transaction ownership and affected-row qualification.",
+      "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_repository.c",
+          630,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.item_ownership_ledger",
+      "path": "src/item/item_transfer_repository.c",
+      "symbol": "bool insert_ledger",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Appends operation/event-index item ownership event with resolved target topology, owner/item revisions and reason/source metadata.",
+      "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_repository.c",
+          710,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.item_coin_payload",
+      "path": "src/item/item_transfer_repository.c",
+      "symbol": "bool update_coin_payload",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Validates single money-item snapshot identity/prototype and nonnegative denomination fields, then updates serialized coin payload under item UID/revision; destruction binds null payload.",
+      "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_repository.c",
+          801,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.item_owner_destruction",
+      "path": "src/item/item_transfer_repository.c",
+      "symbol": "bool item_transfer_repository_destroy_owners",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Builds multi-root destruction command from current owner items with generated operation ID and operator-repair source, executes repository and requires successful mutation. Caller transaction/retry boundary determines safety across repeated invocations.",
+      "authority_boundary": "Storage-side component of an enclosing economic operation. Qualify atomic current-state/ledger/result updates, bounded bundles, expected revisions, caller-owned commit/rollback and ambiguous retry across MySQL/MariaDB. SQL statement success is not native publication/save acknowledgement.",
+      "current_support": "Existing SQL ownership repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/item_transfer_repository.c",
+          1552,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

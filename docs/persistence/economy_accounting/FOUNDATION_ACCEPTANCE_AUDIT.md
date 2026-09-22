@@ -2848,3 +2848,14 @@ and rollback membership require qualification. No new issuance inferred.
 Draft validation passed 13 fixtures: 734 routes, 2756 raw matches, 2698 unique
 coordinates, 2301 mapped, 43 reviewed nonwriters, 354 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Item ownership repository mutations
+
+Five coordinates classified as current-owner insert/update, ownership ledger,
+coin payload and owner-destruction command construction. These are storage
+components, not independent gameplay issuance. Enclosing transaction, revision,
+ambiguous retry and native publication qualification remain open.
+
+Draft validation passed 13 fixtures: 739 routes, 2756 raw matches, 2698 unique
+coordinates, 2306 mapped, 43 reviewed nonwriters, 349 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
