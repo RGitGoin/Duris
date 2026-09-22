@@ -1489,3 +1489,16 @@ source. Deferred persistence and durable acknowledgement remain unqualified.
 Draft validation: 13 fixtures, 425 routes, 2756 raw matches, 2698 unique
 coordinates, 1456 mapped, 43 reviewed declarations, 1199 unclassified.
 No runtime changes; release readiness remains false.
+
+## Raised-item recipient and pet wallet reset
+
+Six coordinates classified. place_raised_item routes non-money objects to a PC
+caster, otherwise to follower; compare current routing to master baseline before
+claiming gameplay compatibility. setup_pet PET_NOCASH zeroes all denominations
+after linked affect application without a local restore exclusion or NPC guard.
+Caller provenance must distinguish prototype initialization from existing-value
+retirement. These are classifications, not runtime fixes or qualified behavior.
+
+Draft validation passed 13 fixtures: 427 routes, 2756 raw matches, 2698 unique
+coordinates, 1462 mapped, 43 reviewed declarations, 1193 unclassified.
+Release readiness remains false.

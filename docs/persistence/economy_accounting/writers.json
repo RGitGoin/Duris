@@ -20215,6 +20215,96 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.raised_item_recipient",
+      "path": "src/classes/necromancy.c",
+      "symbol": "static void place_raised_item(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Legacy raise helper routes non-money objects to a player caster; money objects and other cases route to follower. Caller supplies existing object and is responsible for detachment.",
+      "authority_boundary": "Record actual recipient, item UID and source corpse graph. Player-directed equipment is current worktree behavior; compare against master gameplay baseline before accepting economic compatibility. Money-object routing is not proof of wallet credit or durable pet inventory save.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          49,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          51,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.pet_nocash_reset",
+      "path": "src/classes/necromancy.c",
+      "symbol": "int setup_pet(",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "PET_NOCASH clears all four mob wallet denominations after linked charm application. This block has no PET_RESTORE exclusion and no local IS_NPC guard.",
+      "authority_boundary": "Determine caller provenance and preexisting balance: prototype initialization versus retirement of an admitted balance cannot be inferred from zero assignment. Preserve PET_NOCASH/restore combinations, guard refusals and lifetime identity; no conservation or save qualification claimed.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          252,
+          "coin_assignment"
+        ],
+        [
+          "src/classes/necromancy.c",
+          253,
+          "coin_assignment"
+        ],
+        [
+          "src/classes/necromancy.c",
+          254,
+          "coin_assignment"
+        ],
+        [
+          "src/classes/necromancy.c",
+          255,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
