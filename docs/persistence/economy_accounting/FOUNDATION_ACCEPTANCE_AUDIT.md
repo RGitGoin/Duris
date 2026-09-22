@@ -2309,3 +2309,14 @@ publication. These are not active issuance sites; reactivation needs qualificati
 Draft validation passed 13 fixtures: 632 routes, 2756 raw matches, 2698 unique
 coordinates, 2042 mapped, 43 reviewed nonwriters, 613 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Weather item transitions
+
+Five coordinates classified: timed flower replacement allocates before old
+flower extraction and room publication; wind stows existing worn light into
+same character inventory. Paired replacement/recovery and movement persistence
+remain unqualified.
+
+Draft validation passed 13 fixtures: 634 routes, 2756 raw matches, 2698 unique
+coordinates, 2047 mapped, 43 reviewed nonwriters, 608 unclassified.
+No gameplay changes; release readiness remains false.

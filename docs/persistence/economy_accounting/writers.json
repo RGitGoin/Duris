@@ -29384,6 +29384,91 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.hour_flower_replacement",
+      "path": "src/world/weather.c",
+      "symbol": "replace_hour_flower",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Validates room and replacement prototype, finds first matching flower, checks replacement allocation, extracts existing flower then publishes replacement. Hour event switches prototypes 41004/41005 in room 41059 at hours 23 and 1.",
+      "authority_boundary": "Pair existing flower retirement and replacement admission with timed world-state transition; qualify failed placement and restart without treating mere allocation as admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/weather.c",
+          66,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/weather.c",
+          69,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/weather.c",
+          70,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.wind_light_stow",
+      "path": "src/world/weather.c",
+      "symbol": "blow_out_torches",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "For outdoor characters wearing light with nonzero wind threshold, excessive wind and random half chance unequips light and places same object in character inventory. No new object or explicit retirement occurs.",
+      "authority_boundary": "Same-owner equipment-to-inventory movement; qualify PC/NPC, placement side effects and persistence without counting new issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/world/weather.c",
+          822,
+          "item_publication"
+        ],
+        [
+          "src/world/weather.c",
+          823,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
