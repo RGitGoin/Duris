@@ -28133,6 +28133,88 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.chaos_material_prefetch",
+      "path": "src/combat/chaos_materials.c",
+      "symbol": "chaos_materials_initialize",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "When starter materials enabled, loads each salvage/encrust prototype, skips failed allocation and immediately extracts successful temporary object with FALSE. No inventory or room publication occurs.",
+      "authority_boundary": "Temporary description prefetch is not admitted economic issuance or retirement. Preserve separation from subsequent real material generation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_chaos_material_prefetch.py"
+      ],
+      "sites": [
+        [
+          "src/combat/chaos_materials.c",
+          525,
+          "item_lifecycle"
+        ],
+        [
+          "src/combat/chaos_materials.c",
+          529,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.chaos_pouch_collection",
+      "path": "src/combat/chaos_materials.c",
+      "symbol": "submit_pouch_collection",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Records collected scoreboard before submitting batch player-to-destruction transfer, with one in-memory pending collection per PID. Submission failure attempts scoreboard rollback. Completion removes pending entry first; invalid encoded context logs but continues. Noncommit attempts rollback; commit extracts live material UIDs with FALSE and marks player dirty.",
+      "authority_boundary": "Couple scoreboard change and consumed item identities; qualify rollback failure, missing pending state after restart, invalid context, duplicate completion and save acknowledgment. FALSE extraction follows committed destruction and must not be mistaken for mere provisional cleanup.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/chaos_materials.c",
+          491,
+          "economic_submit"
+        ],
+        [
+          "src/combat/chaos_materials.c",
+          370,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

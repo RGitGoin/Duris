@@ -2151,3 +2151,15 @@ unqualified. Existing forced-drop test listed as candidate, not executed evidenc
 Draft validation passed 13 fixtures: 602 routes, 2756 raw matches, 2698 unique
 coordinates, 1974 mapped, 43 reviewed nonwriters, 681 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Chaos material prefetch and collection
+
+Four coordinates classified: temporary description prefetch is not economic
+admission, while collection extracts existing material UIDs after committed
+batch destruction. Collection scoreboard mutates before submit; rollback,
+in-memory pending state, context validation and restart/save ordering remain
+qualification concerns. Prefetch test inspected and listed, not executed.
+
+Draft validation passed 13 fixtures: 604 routes, 2756 raw matches, 2698 unique
+coordinates, 1978 mapped, 43 reviewed nonwriters, 677 unclassified.
+No gameplay changes; release readiness remains false.
