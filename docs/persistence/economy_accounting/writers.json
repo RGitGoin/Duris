@@ -19515,7 +19515,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible terrain and spring750 template",
+      "destination": "Caster-level room spring with timed decay"
     },
     {
       "id": "item.divine_font_creation",
@@ -19555,7 +19557,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Font469 template and caster level",
+      "destination": "Timed room font"
     },
     {
       "id": "item.summon_insects_component",
@@ -19590,7 +19594,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected top-level mandrake without existing room affect",
+      "destination": "Consumed root and duration250 insect affect"
     },
     {
       "id": "item.unmaking_legacy_corpse_release",
@@ -19635,7 +19641,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Room corpse contents after persistence deferral fallback",
+      "destination": "Released room contents, healing and retired corpse"
     },
     {
       "id": "item.sticks_to_snakes_arrows",
@@ -19675,7 +19683,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected nonartifact victim arrows",
+      "destination": "Temporary detached list then processed-arrow consumption and damage"
     },
     {
       "id": "item.channel_orb_retirement",
@@ -19710,7 +19720,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Channel orb over threshold and eligible leader",
+      "destination": "Consumed orb after successful avatar morph"
     },
     {
       "id": "item.flame_blade_creation",
@@ -19750,7 +19762,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Blade366 template and caster payload",
+      "destination": "Timed norent caster-inventory blade"
     },
     {
       "id": "item.minor_creation_publication",
@@ -19785,7 +19799,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-supplied provisional object",
+      "destination": "Room object with STOREITEM and caster height"
     },
     {
       "id": "item.doom_blade_creation",
@@ -19830,7 +19846,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Class-selected weapon426/352",
+      "destination": "New caster weapon with branch-specific timer"
     },
     {
       "id": "item.moonstone_replacement",
@@ -19875,7 +19893,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior bound stone and room-binding affect",
+      "destination": "Retired prior stone and new PID-bound decaying room stone"
     },
     {
       "id": "item.tree_track_cleanup",
@@ -19910,7 +19930,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching room tracks after tree-spell eligibility",
+      "destination": "Extracted tracks and hiding-state transition"
     },
     {
       "id": "item.general_portal_creation",
@@ -19965,7 +19987,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Outbound/optional return portal candidates",
+      "destination": "Sequential room endpoints or unpublished-first cleanup on second allocation failure"
     },
     {
       "id": "item.soulbind_duplicate_cleanup",
@@ -20000,7 +20024,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching soulbound objects excluding retained UID and kingdom binding",
+      "destination": "Retired duplicate objects"
     },
     {
       "id": "item.soulbind_reload_creation",
@@ -20050,7 +20076,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Stored soulbind prototype and customized candidate",
+      "destination": "Direct NPC item or pending PC creation, with rejected candidate cleanup"
     },
     {
       "id": "item.soulbind_player_transfer_submit",
@@ -20085,7 +20113,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Owned source item and capacity-checked recipient",
+      "destination": "Pending cross-player transfer with captured UID/PID/room context"
     },
     {
       "id": "item.conjured_weapon_submission",
@@ -20130,7 +20160,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Supplied provisional blade and captured caster effect context",
+      "destination": "Direct NPC weapon/effect or pending PC creation"
     },
     {
       "id": "item.ensis_unguis_allocation",
@@ -20165,7 +20197,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype56 and caster-derived payload",
+      "destination": "Provisional timed blade delegated to conjured-weapon submission"
     },
     {
       "id": "item.lancea_cineralae_allocation",
@@ -20200,7 +20234,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype93 and caster-derived payload",
+      "destination": "Provisional timed blade delegated to conjured-weapon submission"
     },
     {
       "id": "item.simulacrum_anguis_allocation",
@@ -20235,7 +20271,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prototype171 and caster-derived payload",
+      "destination": "Provisional timed blade delegated to conjured-weapon submission"
     },
     {
       "id": "item.corpse_portal_relocation",
@@ -20275,7 +20313,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "First matching victim-keyed room object400220",
+      "destination": "Same object in caster room"
     },
     {
       "id": "item.soulbind_nonplayer_publication",
@@ -20315,7 +20355,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Verified source-carried item",
+      "destination": "Recipient live custody"
     },
     {
       "id": "item.soulbind_committed_publication",
@@ -20355,7 +20397,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed transfer and source-carried/detached item",
+      "destination": "Recipient live item plus required save retry"
     },
     {
       "id": "item.teleport_charge_exhaustion",
@@ -20395,7 +20439,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Positive teleporter charge after use",
+      "destination": "Decremented value2 or zero-charge item retirement"
     },
     {
       "id": "item.resurrection_committed_inventory",
@@ -20475,7 +20521,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed player/corpse disposition and live item copies",
+      "destination": "Old-room drops, recovered player items and retired transient/money/corpse copies"
     },
     {
       "id": "economy.resurrect_fallback",
@@ -20724,7 +20772,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Consent-gated cursed equipment/inventory or direct target",
+      "destination": "Room-dropped still-cursed items, or direct-target NODROP removal"
     },
     {
       "id": "item.recall_weight_drop",

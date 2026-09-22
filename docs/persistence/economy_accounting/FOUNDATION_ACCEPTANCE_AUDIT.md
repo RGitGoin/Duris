@@ -3255,3 +3255,7 @@ Added 25 item endpoints for transformations, offerings, charge exhaustion, ferry
 ## Item effect and spell endpoints (2026-09-22)
 
 Added 25 endpoints for ward/charge/periodic retirement, alignment rejection, same-owner equipment changes, portals, components and spell creation. Explicit endpoints: 622; missing endpoints: 229; test-link gaps remain 710. Draft validation and diff checks pass; no effect policy, randomness or runtime qualification changed.
+
+## Spell materialization and transfer endpoints (2026-09-22)
+
+Added 25 endpoints for spell objects, soulbinding, portals, components and resurrection publication. Retained provisional allocation, captured-context submission, duplicate cleanup and same-object relocation distinctions. Explicit endpoints: 647; missing endpoints: 204; test-link gaps remain 710. Draft validation and diff checks pass; no spell economics or runtime qualification changed.
