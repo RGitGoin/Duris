@@ -33934,6 +33934,221 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "storage.corpse_world_transfer",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool execute_world_item_transfer",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Builds nested item transfer using outer operation ID/source/deadline and acceptance time; executes at event offset and requires mutation.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          730,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.corpse_bank_prepare",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool prepare_wallet",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Ensures account/racewar bank row with INSERT IGNORE then locks and reads bank denominations/revision. Row existence is not an economic deposit.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          1347,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.corpse_wallet_apply",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool apply_wallet",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Builds corpse-lifecycle wallet delta from after-before using outer operation ID and expected wallet/bank revisions; requires mutation and both revisions advanced by one.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          1489,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.corpse_room_materialization",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool materialize_items",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Copies corpse item rows into saved_items with operation-derived key, destination room, parent mapping and retained object UID. This changes persistence representation/custody, not independent issuance.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          1687,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.corpse_world_raise_retirement",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool execute_world_corpse_raise",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Deletes saved root row guarded by row ID and object UID, requires one affected row, then releases domain savepoint after prior world-corpse raise work. Savepoint release is not outer commit.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          2074,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.corpse_compound_transfers",
+      "path": "src/persistence/corpse_lifecycle_repository.c",
+      "symbol": "bool corpse_lifecycle_repository_execute",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Transient destruction and physical transfer share outer operation ID; physical ledger event offset follows transient item count. Updates expected revisions between transfers and rolls domain back on business refusal.",
+      "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
+      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          2239,
+          "economic_submit"
+        ],
+        [
+          "src/persistence/corpse_lifecycle_repository.c",
+          2275,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

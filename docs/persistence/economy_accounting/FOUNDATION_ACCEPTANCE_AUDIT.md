@@ -2859,3 +2859,14 @@ ambiguous retry and native publication qualification remain open.
 Draft validation passed 13 fixtures: 739 routes, 2756 raw matches, 2698 unique
 coordinates, 2306 mapped, 43 reviewed nonwriters, 349 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Corpse repository compound mutations
+
+Seven coordinates classified across bank preparation, wallet delta, nested
+item transfers, physical row materialization and world-root retirement.
+Shared operation IDs/event offsets and savepoint release require enclosing
+transaction qualification; no separate issuance or native publication inferred.
+
+Draft validation passed 13 fixtures: 745 routes, 2756 raw matches, 2698 unique
+coordinates, 2313 mapped, 43 reviewed nonwriters, 342 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
