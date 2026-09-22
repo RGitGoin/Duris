@@ -3071,3 +3071,13 @@ and five objects, not uniformly one; preserve actual probabilities and counts.
 Stable death identity and partial publication need qualification.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 840 routes, 2756 raw matches, 2698 unique coordinates, 2619 mapped, 43 reviewed nonwriters, 36 unclassified.
+
+
+## Winterhaven decay and gifts
+
+Twenty-one coordinates grouped as death object, corpse/heart replacement,
+gem factory and wrapper opening. Heart countdown advances before allocation;
+gem factory allocates but returns zero, so intended gift delivery is not proven.
+Input contents, worn topology and partial publication require qualification.
+No runtime fixes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 845 routes, 2756 raw matches, 2698 unique coordinates, 2640 mapped, 43 reviewed nonwriters, 15 unclassified.

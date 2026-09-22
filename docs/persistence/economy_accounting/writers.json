@@ -38529,6 +38529,261 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "winterhaven.corpse_object",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int wh_corpse_to_object",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death creates object sharing NPC vnum, checks allocation and publishes room object with decay countdown; returns false to continue death processing.",
+      "authority_boundary": "Qualify input/output identity, actual replacement topology, allocation failure and partial publication. Intended reward behavior and native helper calls are not proof of durable or even successful delivery.",
+      "current_support": "Existing scripted conversion; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          76,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          83,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.corpse_decay",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int wh_corpse_decay",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Expired countdown creates replacement corpse at carried/room/container location, or discards replacement for unsupported location, then extracts original. Allocation failure retains original; input contents are not explicitly transferred.",
+      "authority_boundary": "Qualify input/output identity, actual replacement topology, allocation failure and partial publication. Intended reward behavior and native helper calls are not proof of durable or even successful delivery.",
+      "current_support": "Existing scripted conversion; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          105,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          135,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          137,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          122,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          127,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          131,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.heart_decay",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int dragon_heart_decay",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Zero countdown creates decayed heart and replaces carried/worn/room/container position, then extracts original. Unsupported location discards replacement; worn-slot fallback uses inventory. Countdown decrements before allocation, so failure does not automatically retry zero condition.",
+      "authority_boundary": "Qualify input/output identity, actual replacement topology, allocation failure and partial publication. Intended reward behavior and native helper calls are not proof of durable or even successful delivery.",
+      "current_support": "Existing scripted conversion; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4693,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4755,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4777,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4706,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4726,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4739,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4741,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4747,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4751,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.gem_factory",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "P_obj make_gem_gift",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates one of five gems and sets randomized item cost, but returns literal zero rather than allocated gift. Provisional creation is not successful inventory admission and item cost is not wallet issuance.",
+      "authority_boundary": "Qualify input/output identity, actual replacement topology, allocation failure and partial publication. Intended reward behavior and native helper calls are not proof of durable or even successful delivery.",
+      "current_support": "Existing scripted conversion; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4897,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "winterhaven.gift_open",
+      "path": "src/specs/specs.winterhaven.c",
+      "symbol": "int lancer_gift",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Opening while alive and not fighting consumes gift wrapper then calls gem factory twice and attempts inventory placement. Factory currently returns zero, so intended two-gem output is not established by source. Preserve finding for qualification rather than claiming successful issuance.",
+      "authority_boundary": "Qualify input/output identity, actual replacement topology, allocation failure and partial publication. Intended reward behavior and native helper calls are not proof of durable or even successful delivery.",
+      "current_support": "Existing scripted conversion; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.winterhaven.c",
+          4930,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4932,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.winterhaven.c",
+          4935,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
