@@ -665,3 +665,23 @@ implementation/test obligations for #482; this inventory changes no game behavio
 Draft validator passed 13 fixtures: 277 routes, 2,756 raw matches, 2,698 unique
 coordinates, 906 mapped, 43 reviewed declarations and 1,749 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Bulk pickup and drop operation boundaries
+
+Eight more command sites are classified. Bulk pickup admits missing stock roots to
+source custody individually before transferring the durable forest. Earlier source
+admissions can survive later pickup refusal, so they are neither delivered items
+nor proof of issuance. Deferred coin pickup and MakeScrap run separately after the
+forest transfer; a whole get command is not therefore one atomic economic event.
+
+Bulk drop publishes durable roots only after rechecking the actor's original room
+and all root carriage. Stale committed publication alerts and clears live batch
+state without undoing custody. Synchronous candidates are selected from current
+inventory afterwards (or directly if no durable roots exist), not from the durable
+snapshot. Coin insertion can merge/free a representation without destroying value.
+Room-get publication, floor hints and corpse writes likewise do not prove native
+save acknowledgement. These are inventory findings, not changed gameplay.
+
+Draft validator passed 13 fixtures: 282 routes, 2,756 raw matches, 2,698 unique
+coordinates, 914 mapped, 43 reviewed declarations and 1,741 unclassified.
+Census and runtime qualification remain incomplete.

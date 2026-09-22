@@ -13022,6 +13022,196 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.room_get_publication",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void get(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Existing item is detached from room and inserted into character after the command admission/acknowledgement branches; no-loot checks are bypassed during acknowledgement publication.",
+      "authority_boundary": "Floor hint removal, dirty marking, lighting and corpse write calls do not independently prove durable ownership or acknowledged saving.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          1286,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          1290,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bulk_get_adoption",
+      "path": "src/cmd/actobj.c",
+      "symbol": "static void continue_bulk_get(P_char actor, uint32_t actor_pid)\n{",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Bulk pickup first admits missing roots one at a time to the same source owner, then submits the complete durable forest to the player. Known roots with mismatching ownership are refused.",
+      "authority_boundary": "Source availability and each selected root are rechecked between adoption callbacks. Earlier source admissions can remain committed if the final pickup fails; they are not player delivery or proof of fresh issuance. Durable forest publication and deferred coin pickups are distinct operations.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          2176,
+          "economic_submit"
+        ],
+        [
+          "src/cmd/actobj.c",
+          2191,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bulk_get_scrap",
+      "path": "src/cmd/actobj.c",
+      "symbol": "finish_bulk_get_after_commit",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Selected scrap invokes MakeScrap after bulk durable pickup completion, with source revalidation; selected coin piles separately continue through bounded coin pickup.",
+      "authority_boundary": "Scrapping and coin continuation are outside the preceding durable forest transfer. Ordinary source proximity is required, with a stable original-room corpse exception for selected coins. Do not claim command-wide atomicity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          1974,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bulk_drop_submission",
+      "path": "src/cmd/actobj.c",
+      "symbol": "start_bulk_drop",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Select durable inventory roots and submit one custody batch to the resolved destination; with no durable roots, synchronous candidates run directly.",
+      "authority_boundary": "Completion requires actor still in original room and all durable roots still carried before publication. Committed failure erases live batch state and alerts; that does not undo custody or establish recovery. Synchronous candidates are scanned from current inventory afterwards.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3539,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bulk_drop_synchronous",
+      "path": "src/cmd/actobj.c",
+      "symbol": "drop_transient_object",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Coins, unowned transient objects and PC corpse roots move from inventory to room outside generic durable batch custody. Room insertion can merge and free a money object.",
+      "authority_boundary": "Post-batch synchronous selection uses then-current inventory and filter, not the durable root snapshot. Floor hints and corpse writes are not save receipts; merged live pile representation must not be mistaken for economic destruction.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          3377,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          3378,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
