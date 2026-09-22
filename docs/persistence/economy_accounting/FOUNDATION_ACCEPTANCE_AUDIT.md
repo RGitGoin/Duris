@@ -1302,3 +1302,13 @@ allocation/admission remains distinct from this helper.
 Draft validator passed 13 fixtures: 398 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,363 mapped, 43 reviewed declarations and 1,292 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Doom blade creation branches
+
+Three coordinates classified. Class selects prototype426 or352; only the latter
+branch explicitly sets timer1800. Preserve prototype-derived payload and branch
+semantics, recording fresh admission separately from narration and placement.
+
+Draft validator passed 13 fixtures: 399 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,366 mapped, 43 reviewed declarations and 1,289 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

@@ -18940,6 +18940,51 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.doom_blade_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_doom_blade(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Creates prototype426 for theurgist or352 otherwise; both guard allocation, only non-theurgist branch explicitly sets timer0 to1800, then places new weapon in caster inventory.",
+      "authority_boundary": "Preserve class-selected prototype and branch-specific timer semantics rather than normalize duration. Bind fresh UID and complete prototype-derived payload to cast attempt; narration and inventory placement do not establish durable admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          20780,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          20803,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          20817,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
