@@ -2746,3 +2746,14 @@ progression save/replay qualification remain open.
 Draft validation passed 13 fixtures: 714 routes, 2756 raw matches, 2698 unique
 coordinates, 2234 mapped, 43 reviewed nonwriters, 421 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Random-object admin and preview paths
+
+Seven coordinates classified as trusted grants, temporary preview cleanup and
+provisional base factory. Recipe helper effects remain separate from disposal
+of its input object. Grant null/refusal handling and caller publication/save/
+replay qualification remain open.
+
+Draft validation passed 13 fixtures: 717 routes, 2756 raw matches, 2698 unique
+coordinates, 2241 mapped, 43 reviewed nonwriters, 414 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

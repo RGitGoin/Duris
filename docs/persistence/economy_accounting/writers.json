@@ -32822,6 +32822,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.randobj_admin_grants",
+      "path": "src/item/randobj.c",
+      "symbol": "void do_randobj",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Trusted command material/stone/equipment branches publish factory results to actor without local null checks. Equipment branch then inspects object name. These are actual admin admissions with caller-owned factory results.",
+      "authority_boundary": "Separate admin publication from temporary inspection and provisional factory allocation. Bind command/caller identity to accepted asset and selected random fields; qualify refusal, indirect recipe effects, save acknowledgement and replay without duplicating grants.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randobj.c",
+          178,
+          "item_publication"
+        ],
+        [
+          "src/item/randobj.c",
+          184,
+          "item_publication"
+        ],
+        [
+          "src/item/randobj.c",
+          190,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.randobj_preview_cleanup",
+      "path": "src/item/randobj.c",
+      "symbol": "void do_randobj",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Trusted recipe/encrust branches allocate temporary random-zone objects and extract them without local publication. Recipe branch may call create_recipe before cleanup; that indirect effect needs separate qualification. Temporary input cleanup is not automatically an admitted-asset sink.",
+      "authority_boundary": "Separate admin publication from temporary inspection and provisional factory allocation. Bind command/caller identity to accepted asset and selected random fields; qualify refusal, indirect recipe effects, save acknowledgement and replay without duplicating grants.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randobj.c",
+          211,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/randobj.c",
+          215,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/randobj.c",
+          242,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.random_base_factory",
+      "path": "src/item/randobj.c",
+      "symbol": "P_obj createRandomItemType",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Checked random base-prototype allocation returns provisional object without placement. Caller owns admission; factory invocation alone is not issuance.",
+      "authority_boundary": "Separate admin publication from temporary inspection and provisional factory allocation. Bind command/caller identity to accepted asset and selected random fields; qualify refusal, indirect recipe effects, save acknowledgement and replay without duplicating grants.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/item/randobj.c",
+          489,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
