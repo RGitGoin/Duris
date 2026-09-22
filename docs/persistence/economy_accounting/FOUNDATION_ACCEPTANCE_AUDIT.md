@@ -1270,3 +1270,14 @@ fallback, and sequential publication does not establish durable completion.
 Draft validator passed 13 fixtures: 394 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,357 mapped, 43 reviewed declarations and 1,298 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Sticks-to-snakes arrow consumption
+
+Two coordinates classified. Selected arrows detach into a temporary reversed list;
+each attack precedes retirement. Victim death stops consumption and the function
+has no cleanup for remaining detached arrows. This is a custody/retirement gap to
+qualify during integration, not proof of full batch destruction or restoration.
+
+Draft validator passed 13 fixtures: 395 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,359 mapped, 43 reviewed declarations and 1,296 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
