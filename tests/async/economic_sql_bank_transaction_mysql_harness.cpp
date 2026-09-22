@@ -1,3 +1,4 @@
+#include "persistence/economic_sql_coin_transaction.h"
 #include "persistence/economic_sql_bank_transaction.h"
 #include "persistence/critical_command_repository.h"
 #include <openssl/sha.h>
@@ -18,10 +19,22 @@
 // the repository. This exercises its ambiguous outcome and fresh reconciliation.
 static MYSQL *lose_commit_reply = nullptr;
 static MYSQL *lost_commit_connection = nullptr;
+static unsigned int coin_insert_fault = 0;
+static MYSQL *coin_insert_error = nullptr;
 extern "C" int __real_mysql_real_query(MYSQL *, const char *, unsigned long);
 extern "C" unsigned int __real_mysql_errno(MYSQL *);
 extern "C" int __wrap_mysql_real_query(MYSQL *connection, const char *sql, unsigned long length)
 {
+	constexpr char child_insert[] = "INSERT INTO economic_accounting_child(";
+	if (coin_insert_fault && length >= sizeof(child_insert) - 1 &&
+	    !memcmp(sql, child_insert, sizeof(child_insert) - 1))
+	{
+		if (coin_insert_fault == 2)
+			assert(__real_mysql_real_query(connection, sql, length) == 0);
+		coin_insert_fault = 0;
+		coin_insert_error = connection;
+		return 1;
+	}
 	const int result = __real_mysql_real_query(connection, sql, length);
 	if (!result && connection == lose_commit_reply && length == 6 && !memcmp(sql, "COMMIT", 6))
 	{
@@ -33,7 +46,9 @@ extern "C" int __wrap_mysql_real_query(MYSQL *connection, const char *sql, unsig
 }
 extern "C" unsigned int __wrap_mysql_errno(MYSQL *connection)
 {
-	return connection == lost_commit_connection ? 2013 : __real_mysql_errno(connection);
+	return connection == lost_commit_connection || connection == coin_insert_error ?
+		       2013 :
+		       __real_mysql_errno(connection);
 }
 
 namespace
@@ -189,7 +204,9 @@ void pending(MYSQL *connection, const critical_command &command)
 	execute(connection,
 		"INSERT INTO critical_operation_inbox(operation_id,command_hash,keys_hash,command_type,schema_version,payload_version,status,result_payload) VALUES(" +
 			literal(command.operation_id) + "," + digest(bytes) + "," + digest(keys) +
-			",3,2,1,0,'')");
+			"," + std::to_string(static_cast<uint16_t>(command.type)) + "," +
+			std::to_string(command.schema_version) + "," +
+			std::to_string(command.payload_version) + ",0,'')");
 }
 std::array<uint8_t, CURRENCY_RESULT_PAYLOAD_BYTES>
 encoded_result(const economic_sql_bank_transaction &transaction)
@@ -274,6 +291,185 @@ int main()
 			std::to_string(other_pid) + "," + literal(bootstrap) + ")");
 	const economic_account_key other_wallet = { lineage, economic_account_kind::wallet,
 						    mysql_insert_id(connection), 0 };
+	// Typed compound component under a fixture root owner. These cases do not
+	// enable dispatcher admission or claim retained-root replay qualification.
+	for (unsigned int mode = 0; mode < 9; ++mode)
+	{
+		const auto old_bank_revision =
+			scalar(connection, "SELECT bank_revision FROM account_banks WHERE id=" +
+						   std::to_string(bank_id));
+		execute(connection, "START TRANSACTION");
+		const std::array<uint32_t, 2> pids = { static_cast<uint32_t>(pid),
+						       static_cast<uint32_t>(other_pid) };
+		const std::array<economic_account_key, 2> wallets = { wallet, other_wallet };
+		std::array<economic_account_key, 2> banks = { bank, bank };
+		std::array<std::string, 2> account_names = { account, account };
+		if (mode == 8)
+		{
+			account_names[1] = account + "_coin";
+			execute(connection, "INSERT INTO accounts(account_name,password) VALUES('" +
+						    account_names[1] + "','')");
+			execute(connection, "UPDATE player_data SET account_name='" +
+						    account_names[1] +
+						    "' WHERE pid=" + std::to_string(other_pid));
+			execute(connection,
+				"INSERT INTO account_banks(account_name,racewar,bank_copper,bank_revision) VALUES('" +
+					account_names[1] + "',1,500," +
+					std::to_string(old_bank_revision) + ")");
+			const auto new_bank = mysql_insert_id(connection);
+			execute(connection,
+				"INSERT INTO economic_account_mapping(lineage,account_kind,context_id,backend_kind,locator_kind,native_id,active_native_id,creating_operation_id) VALUES(" +
+					literal(lineage) + ",2,1,1,2," + std::to_string(new_bank) +
+					"," + std::to_string(new_bank) + "," + literal(bootstrap) +
+					")");
+			banks[1] = { lineage, economic_account_kind::bank,
+				     mysql_insert_id(connection), 1 };
+		}
+		coin_transfer_payload endpoints;
+		coin_transfer_endpoint *ends[] = { &endpoints.source, &endpoints.destination };
+		for (size_t i = 0; i < 2; ++i)
+		{
+			auto &end = *ends[i];
+			constexpr const char *names[] = { "copper", "silver", "gold", "platinum" };
+			currency_command_payload native{};
+			native.pid = pids[i];
+			native.racewar = 1;
+			native.reason = currency_reason_type::coin_transfer;
+			std::memcpy(native.account_name.data(), account_names[i].data(),
+				    account_names[i].size());
+			for (size_t part = 0; part < 4; ++part)
+				end.before[part] =
+					scalar(connection, std::string("SELECT ") + names[part] +
+								   " FROM player_data WHERE pid=" +
+								   std::to_string(pids[i]));
+			end.after = end.before;
+			end.after[0] += i ? 10 : -10;
+			native.wallet_delta.amount[0] = i ? 10 : -10;
+			const auto revision = scalar(
+				connection, "SELECT wallet_revision FROM player_data WHERE pid=" +
+						    std::to_string(pids[i]));
+			assert(currency_command_build(&end.change, new_id(), native, revision,
+						      old_bank_revision,
+						      critical_source_site::command,
+						      critical_deadline_class::interactive));
+		}
+		critical_command root;
+		assert(coin_transfer_command_build(&root, new_id(), endpoints,
+						   critical_source_site::command,
+						   critical_deadline_class::interactive));
+		root.accepted_at_usec = 1;
+		assert(economic_coin_wallets_intent(root, epoch, wallets, banks,
+						    &root.accounting_intent) ==
+		       economic_accounting_error::ok);
+		root.schema_version = CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
+		pending(connection, root);
+		execute(connection, "SAVEPOINT before_coin_component");
+		std::unique_ptr<economic_sql_coin_transaction> component;
+		assert(economic_sql_coin_transaction::prepare(connection, root, &component) == 0);
+		assert(component->finalize() == EPERM);
+		assert(component->apply_endpoint(1) == EPERM);
+		auto complete_child = [&](size_t i)
+		{
+			const auto &child = component->child_command(i);
+			const auto &after = component->result().wallets[i];
+			std::array<uint8_t, CURRENCY_RESULT_PAYLOAD_BYTES> bytes;
+			assert(currency_command_encode_result(after, &bytes));
+			execute(connection,
+				"UPDATE critical_operation_inbox SET status=1,result_code=0,durable_revision=" +
+					std::to_string(std::max(after.wallet_revision,
+								after.bank_revision)) +
+					",result_payload=" + binary(bytes) +
+					" WHERE operation_id=" + literal(child.operation_id));
+			assert(critical_command_repository_insert_outbox_event(
+				connection, child.operation_id, 0, 3, 1, 1, bytes.data(),
+				bytes.size()));
+		};
+		if (mode == 1)
+		{
+			execute(connection, "ROLLBACK TO SAVEPOINT before_coin_component");
+			pending(connection, component->child_command(0));
+			assert(component->apply_endpoint(0) != 0);
+		}
+		else if (mode == 2)
+		{
+			// Missing unique inbox reservation cannot authorize a debit.
+			assert(component->apply_endpoint(0) != 0);
+		}
+		else
+		{
+			pending(connection, component->child_command(0));
+			assert(component->apply_endpoint(0) == 0);
+			assert(component->apply_endpoint(0) == EPERM);
+			complete_child(0);
+			pending(connection, component->child_command(1));
+			assert(component->apply_endpoint(1) == 0);
+			if (mode != 3)
+				complete_child(1);
+			if (mode == 4)
+				execute(connection,
+					"UPDATE currency_ledger SET wallet_after_copper=wallet_after_copper+1 WHERE operation_id=" +
+						literal(component->child_command(1).operation_id));
+			if (mode == 5)
+				execute(connection,
+					"UPDATE account_banks SET bank_revision=bank_revision+1 WHERE id=" +
+						std::to_string(bank_id));
+			if (mode == 6 || mode == 7)
+				coin_insert_fault = mode - 5;
+			const auto finalized = component->finalize();
+			if (mode == 6 || mode == 7)
+			{
+				assert(finalized == 2013 && !coin_insert_fault &&
+				       coin_insert_error == connection);
+				coin_insert_error = nullptr;
+			}
+			if (mode && mode != 8)
+				assert(finalized != 0);
+			else
+			{
+				assert(finalized == 0);
+				assert(component->finalize() == EPERM);
+				assert(scalar(connection,
+					      "SELECT child_count FROM economic_accounting_operation WHERE operation_id=" +
+						      literal(root.operation_id)) == 2);
+				assert(scalar(connection,
+					      "SELECT COUNT(*) FROM economic_accounting_child WHERE operation_id=" +
+						      literal(root.operation_id) +
+						      " AND receipt_operation_id=child_operation_id") ==
+				       2);
+				assert(scalar(connection,
+					      "SELECT COUNT(*) FROM economic_accounting_account_effect WHERE operation_id=" +
+						      literal(root.operation_id)) ==
+				       (mode == 8 ? 4 : 3));
+				assert(scalar(connection,
+					      "SELECT COUNT(*) FROM economic_accounting_coin_posting WHERE operation_id=" +
+						      literal(root.operation_id)) == 2);
+				assert(scalar(connection,
+					      "SELECT bank_revision FROM account_banks WHERE id=" +
+						      std::to_string(bank_id)) ==
+				       old_bank_revision + (mode == 8 ? 1 : 2));
+				assert(scalar(observer,
+					      "SELECT COUNT(*) FROM economic_accounting_operation WHERE operation_id=" +
+						      literal(root.operation_id)) == 0);
+				assert(scalar(observer,
+					      "SELECT copper FROM player_data WHERE pid=" +
+						      std::to_string(pid)) == 1000);
+			}
+		}
+		execute(connection, "ROLLBACK");
+		assert(scalar(connection, "SELECT copper FROM player_data WHERE pid=" +
+						  std::to_string(pid)) == 1000);
+		assert(scalar(connection, "SELECT copper FROM player_data WHERE pid=" +
+						  std::to_string(other_pid)) == 1000);
+		assert(scalar(connection, "SELECT bank_revision FROM account_banks WHERE id=" +
+						  std::to_string(bank_id)) == old_bank_revision);
+		for (const char *table :
+		     { "economic_accounting_operation", "economic_accounting_child",
+		       "economic_accounting_account_effect", "economic_accounting_coin_posting" })
+			assert(scalar(connection, std::string("SELECT COUNT(*) FROM ") + table +
+							  " WHERE operation_id=" +
+							  literal(root.operation_id)) == 0);
+	}
+	puts("coin accounting component: locked writes, child receipts, evidence, rollback and tamper refusal passed");
 	std::vector<critical_operation_id> operations;
 	auto command_for = [&](int64_t amount, uint32_t payer = 0,
 			       const economic_account_key *payer_wallet = nullptr,

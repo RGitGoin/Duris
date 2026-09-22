@@ -18,6 +18,7 @@ files = re.findall(r'(?:tests|src)/[A-Za-z0-9_/.-]+\.(?:cpp|c)',chunk)[1:]
 files += ['tests/async/economic_sql_bank_transaction_mysql_harness.cpp',
           'src/persistence/economic_accounting_repository.c',
           'src/persistence/economic_sql_bank_transaction.c',
+          'src/persistence/economic_sql_coin_transaction.c','src/economy/economic_coin_adapter.c',
           'src/economy/economic_currency_adapter.c','src/economy/economic_accounting_types.c',
           'src/economy/economic_accounting_plan.c','src/economy/economic_accounting_intent.c']
 files = list(dict.fromkeys(files))

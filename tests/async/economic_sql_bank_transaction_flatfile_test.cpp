@@ -1,3 +1,4 @@
+#include "persistence/economic_sql_coin_transaction.h"
 #include "persistence/economic_sql_bank_transaction.h"
 #include <cassert>
 #include <cerrno>
@@ -32,6 +33,10 @@ int main()
 	assert(economic_sql_bank_transaction::prepare(nullptr, command, &transaction) == ENOTSUP &&
 	       !transaction);
 	assert(economic_sql_bank_verify_retained(nullptr, command, 0, {}) == ENOTSUP);
+	std::unique_ptr<economic_sql_coin_transaction> coin;
+	assert(economic_sql_coin_transaction::prepare(reinterpret_cast<MYSQL *>(1), command,
+						      &coin) == ENOTSUP &&
+	       !coin);
 	command.accounting_intent.back() ^= 1;
 	assert(!economic_sql_bank_command_supported(command));
 }

@@ -89,8 +89,9 @@ above qualify storage and identity locking only, not an accounting command commi
 
 Source review on 2026-09-22 confirms this remains implementation work. The public
 economic_accounting_repository API only locks identity mappings; its snapshot is
-not append authority. economic_sql_bank_transaction::evidence requires exactly
-two account effects and postings and refuses children/items. Flat-file
+not append authority. The bank component requires exactly two account effects
+and postings and refuses children/items; private wallet SQL helpers now also
+serve the typed coin component described below. Flat-file
 validate_record refuses children because no child reservation exists. Neither
 backend currently supplies a general compound accounting transaction owner.
 
@@ -118,8 +119,8 @@ coin_endpoints savepoint, inserts each derived child into critical_operation_inb
 with a plain INSERT before its native effect, and finalizes each child receipt and
 outbox before the root commit. On endpoint failure it rolls back the compound
 scope. Reuse this owner and its shared inbox identity namespace for accounting
-integration; the missing work is typed accounting evidence validation/finalization,
-not a second generic transaction framework. The child-link table's unique key
+integration. The wallet-to-wallet component now implements typed evidence
+validation/finalization; dispatcher completion and retained replay remain missing. The child-link table's unique key
 alone is still not an identity reservation mechanism. Flat-file reservations
 require their own equivalent durable implementation.
 
@@ -180,9 +181,40 @@ both identify the same bank. Divergent shared snapshots, mapping aliases, stale
 fences and altered intent are rejected without replacing the prepared output.
 
 This is a pure typed adapter, not a storage capability. Coin runtime admission
-remains refused. SQL must acquire/verify all native mappings and locks, execute
-these exact prepared effects under the existing root/child inbox owner, and
-append/verify evidence in that transaction before enabling it. Pile custody
+remains refused until the SQL component below is connected to root completion
+and retained replay. Pile custody
 adapters and flat-file compound reservations remain separate incomplete work.
 The adapter test runs both SQL and client-free compilation modes with ASan/UBSan;
 its arithmetic parity does not prove backend storage parity.
+
+### Borrowed SQL coin component
+
+`economic_sql_coin_transaction` now acquires the complete retained mapping set,
+locks both native wallet/bank snapshots, and prepares typed wallet effects.
+`apply_endpoint` requires the matching pending child inbox reservation, applies
+only its private prepared native mutation, and enforces source-before-destination
+ordering. The root owner supplies the exact child command (including a rebased
+shared-bank revision), reserves its inbox row, and completes its receipt/outbox.
+
+`finalize` requires both successful native writes and exact completed child
+receipts, currency ledgers, and outbox payloads. It checks current balances and
+mapping revisions before and after appending the canonical root, account effects,
+postings, and child links bound to the actual inbox receipts. Session/savepoint
+checks detect lost or rolled-back transactions. Errors poison the component;
+the caller must roll back the borrowed transaction. The component never commits,
+retries, inserts inbox rows, or publishes. SQL wallet helpers are internal shared
+implementation, not a public arbitrary-plan append API.
+
+Remaining before runtime admission: root completion and retained replay
+verification, durable business rejection handling, dispatcher integration and
+end-to-end fault qualification. The component alone does not close #477 or #474.
+`--suite wallet` on the disposable local runner selects the maintained bank
+harness plus the new component cases; the default accounting suite includes it.
+
+Verification on 2026-09-22: private MariaDB 10.11.14 with ASan/UBSan passed nine
+coin-component cases (shared/distinct banks, lost savepoint, missing reservation,
+incomplete receipt, ledger/balance tampering, before-query and hidden-write-ACK
+child-evidence failures) and the maintained bank native/replay/rejection/
+retirement/fault suite. Each coin case uses a fixture root owner and rolls back;
+it does not qualify runtime admission or committed coin replay. Client-free bank
+and coin refusal passed, including a non-null invalid connection sentinel.

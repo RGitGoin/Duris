@@ -3,6 +3,7 @@
 #include "economy/currency_command.h"
 #include <mysql/mysql.h>
 class economic_sql_bank_transaction;
+class economic_sql_coin_transaction;
 // Shared legacy currency writer. Its accounting entry is available only to the
 // typed transaction after locked preparation. It never grants an audit receipt.
 class currency_sql_mutation_writer
@@ -11,5 +12,6 @@ class currency_sql_mutation_writer
 	static unsigned int write(MYSQL *, const critical_command &,
 				  const currency_prepared_mutation &, uint32_t bank_id);
 	friend class economic_sql_bank_transaction;
+	friend class economic_sql_coin_transaction;
 };
 #endif

@@ -85,6 +85,8 @@ def run_local(suite="accounting"):
                 run("bash", "migrations/immutable/0031_economy_accounting.sh")
                 if suite == "currency":
                     run("python3", "tests/async/run_currency_transaction_local.py")
+                elif suite == "wallet":
+                    run("python3", "tests/async/run_economic_sql_bank_transaction_mysql.py")
                 else:
                     run("python3", "tests/async/test_economic_accounting_schema_mysql.py", "-v")
                     run("python3", "migrations/verify_economic_baseline_schema.py")
@@ -109,7 +111,7 @@ def run_local(suite="accounting"):
 def main():
     global ROOT
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--suite", choices=("accounting", "currency"), default="accounting")
+    parser.add_argument("--suite", choices=("accounting", "currency", "wallet"), default="accounting")
     args = parser.parse_args()
     # Some tracked helper scripts contain CRLF. Normalize an execution copy,
     # never the source checkout or sealed immutable migration bytes.

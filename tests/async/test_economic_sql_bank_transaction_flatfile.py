@@ -8,7 +8,8 @@ work=ROOT/'bin/tests/economic-sql-bank-flatfile';work.mkdir(parents=True,exist_o
 with tempfile.TemporaryDirectory(prefix='run-',dir=work) as temporary:
     executable=Path(temporary)/'test'
     files=['tests/async/economic_sql_bank_transaction_flatfile_test.cpp',
-           'src/persistence/economic_sql_bank_transaction.c','src/economy/economic_currency_adapter.c',
+           'src/persistence/economic_sql_bank_transaction.c','src/persistence/economic_sql_coin_transaction.c',
+           'src/economy/economic_currency_adapter.c',
            'src/economy/economic_accounting_intent.c','src/economy/economic_accounting_plan.c',
            'src/economy/economic_accounting_types.c','src/economy/currency_command.c',
            'src/persistence/critical_command.c','src/item/item_transfer_command.c']
