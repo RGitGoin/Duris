@@ -129,11 +129,20 @@ extern "C" critical_apply_result unexpected_legacy(const critical_command &, voi
 	assert(false && "accounting operation must not enter legacy dispatch");
 	return { critical_apply_outcome::terminal_failure, 0, EINVAL };
 }
+critical_command restored_command;
+bool saw_restored_command = false;
+bool observe_restore(const critical_command &cmd, void *context)
+{
+	assert(!saw_restored_command || critical_command_equal(restored_command, cmd));
+	restored_command = cmd;
+	saw_restored_command = true;
+	return economic_bank_publication_restore(cmd, context);
+}
 void initialize_coordinator(const std::string &journal)
 {
 	assert(critical_command_coordinator_init(
 		journal.c_str(), flatfile_accounting_apply_selected, native_root.data(), 1,
-		economic_bank_publication_restore, nullptr, economic_command_admission_supported));
+		observe_restore, nullptr, economic_command_admission_supported));
 }
 critical_completion await_completion()
 {
@@ -155,15 +164,20 @@ int main(int argc, char **argv)
 	const std::string mode = argv[2];
 	const std::string base = argv[1];
 	native_root = base + "/authority";
-	setup(native_root, false);
-	fs::create_directories(native_root + "/players");
-	fs::permissions(native_root + "/players", fs::perms::owner_all);
+	const bool recovering = mode == "recover-commit" || mode == "recover-save" ||
+				mode == "recover-save-ack";
 	std::string error;
-	const auto baseline = flatfile_player_snapshot_apply(
-		native_root, snapshot(10, PLAYER_CHECKPOINT_COMPONENT_ALL), &error);
-	if (baseline.outcome != player_save_apply_outcome::applied)
-		std::cerr << error << '\n';
-	assert(baseline.outcome == player_save_apply_outcome::applied);
+	if (!recovering)
+	{
+		setup(native_root, false);
+		fs::create_directories(native_root + "/players");
+		fs::permissions(native_root + "/players", fs::perms::owner_all);
+		const auto baseline = flatfile_player_snapshot_apply(
+			native_root, snapshot(10, PLAYER_CHECKPOINT_COMPONENT_ALL), &error);
+		if (baseline.outcome != player_save_apply_outcome::applied)
+			std::cerr << error << '\n';
+		assert(baseline.outcome == player_save_apply_outcome::applied);
+	}
 	pc_only_data player{};
 	player.pid = 1;
 	player.wallet_revision = 1;
@@ -190,19 +204,43 @@ int main(int argc, char **argv)
 	GET_GOLD(&actor) = 3;
 	GET_PLATINUM(&actor) = 1;
 	online = character_list = &actor;
-	assert(player_revision_hydrate(1, 10));
-	const auto cmd = command(native_root, 100);
 	const std::string journal = base + "/critical";
 	const std::string saves_journal = base + "/saves";
-	initialize_coordinator(journal);
-	assert(economic_bank_publication_submit(cmd) ==
-	       critical_submit_result::awaiting_durability);
-	const auto completed = await_completion();
-	assert(completed.outcome == critical_apply_outcome::applied);
+	critical_command cmd;
+	critical_completion completed{};
+	if (recovering)
+	{
+		// A new process gets its command only from the durable coordinator journal.
+		assert(player_save_pipeline_init(saves_journal.c_str()));
+		wait_for([] { return player_save_pipeline_health_copy().replay_complete; });
+		player_snapshot durable{};
+		assert(flatfile_player_snapshot_load(native_root, 1, &durable, &error) ==
+		       flatfile_player_load_result::ok);
+		assert(durable.revision == (mode == "recover-commit" ? 10U : 11U));
+		assert(player_revision_hydrate(1, durable.revision));
+		initialize_coordinator(journal);
+		completed = await_completion();
+		assert(completed.outcome == critical_apply_outcome::already_applied);
+		assert(saw_restored_command);
+		cmd = restored_command;
+		assert(critical_operation_id_equal(cmd.operation_id, id(100)));
+	}
+	else
+	{
+		assert(player_revision_hydrate(1, 10));
+		cmd = command(native_root, 100);
+		initialize_coordinator(journal);
+		assert(economic_bank_publication_submit(cmd) ==
+		       critical_submit_result::awaiting_durability);
+		completed = await_completion();
+		assert(completed.outcome == critical_apply_outcome::applied);
+	}
 	const auto committed = state(native_root);
 	assert(committed.domains.wallet[0] == 101 && committed.domains.bank[0] == 99);
 	assert(GET_COPPER(&actor) == 100);
 	retained(cmd);
+	if (mode == "crash-commit")
+		std::_Exit(73); // No destructors or pipeline shutdown.
 	if (mode == "committed-replay")
 	{
 		critical_command_coordinator_shutdown();
@@ -214,11 +252,30 @@ int main(int argc, char **argv)
 		       replay.result_size == completed.result_size);
 		retained(cmd);
 	}
-	assert(player_save_pipeline_init(saves_journal.c_str()));
+	if (!recovering)
+		assert(player_save_pipeline_init(saves_journal.c_str()));
 	economic_bank_publication_pulse();
 	assert(GET_COPPER(&actor) == 101);
 	wait_for([] { return player_save_journal_health_copy().appended == 1; });
 	retained(cmd);
+	if (mode == "crash-save")
+		std::_Exit(74); // Journal durable, native worker not submitted.
+	if (mode == "crash-save-ack")
+	{
+		wait_for(
+			[]
+			{
+				player_save_pipeline_pulse();
+				player_revision_snapshot revision{};
+				return player_revision_snapshot_copy(1, &revision) &&
+				       revision.acknowledged_revision == 11 &&
+				       !(revision.unacknowledged_components &
+					 PLAYER_COMPONENT_STATUS);
+			});
+		retained(cmd);
+		std::_Exit(
+			75); // Native save complete; owner has not acknowledged the original command.
+	}
 	player_snapshot loaded{};
 	if (mode == "save-replay")
 	{
@@ -263,7 +320,10 @@ int main(int argc, char **argv)
 		assert(!critical_command_coordinator_is_fenced(key, nullptr));
 	assert(flatfile_player_snapshot_load(native_root, 1, &loaded, &error) ==
 	       flatfile_player_load_result::ok);
-	assert(loaded.revision == (mode == "save-replay" ? 12U : 11U));
+	assert(loaded.revision ==
+	       ((mode == "save-replay" || mode == "recover-save" || mode == "recover-save-ack") ?
+			12U :
+			11U));
 	bool copper = false;
 	for (const auto &row : loaded.status_integers)
 		if (row.field == player_status_field::copper)

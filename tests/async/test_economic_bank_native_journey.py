@@ -72,4 +72,9 @@ with tempfile.TemporaryDirectory(prefix="duris-bank-native-journey-") as tempora
         "-Wl,--wrap=_Z51flatfile_critical_command_repository_apply_selectedRK16critical_commandPv", "-lcrypto", "-lz", "-pthread", "-o", str(binary)], cwd=ROOT, check=True)
     for mode in ("normal", "committed-replay", "save-replay"):
         subprocess.run([str(binary), str(Path(temporary) / mode), mode], cwd=ROOT, check=True, timeout=30)
+    for boundary, expected_exit in (("commit", 73), ("save", 74), ("save-ack", 75)):
+        state = str(Path(temporary) / ("process-" + boundary))
+        crashed = subprocess.run([str(binary), state, "crash-" + boundary], cwd=ROOT, timeout=30)
+        assert crashed.returncode == expected_exit, (boundary, crashed.returncode)
+        subprocess.run([str(binary), state, "recover-" + boundary], cwd=ROOT, check=True, timeout=30)
     print("Native accounting-to-save retention journey passed", flush=True)

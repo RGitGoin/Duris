@@ -133,7 +133,16 @@ must remain until status-save acknowledgement; final native snapshot and domain
 readback verify the saved balance/revision and one wallet/bank movement. No manual
 coordinator acknowledgement is used.
 
-The actor, account-bank cache and world are synthetic. Unused item/pet capture
-surfaces are assertion sentinels. Replay resets owners in-process, so this does not
-prove process-crash handling, login/materialization, production startup or SQL
-runtime behavior. Gameplay producers and activation remain unchanged.
+The journey also exits without destructors or shutdown at three durable boundaries:
+after accounting commit, after save-journal append before worker submission, and
+after native save acknowledgement before the publication owner retires the command.
+The runner checks each distinct exit code and starts a fresh recovery process on
+the same files. Recovery obtains the original command only from its journal;
+it does not reconstruct and resubmit a new bank operation. All three recoveries
+must retain the original fences until saving completes and preserve one balance
+movement. These cases exercise abrupt process exit, not host power loss.
+
+The actor, account-bank cache and world remain synthetic. Unused item/pet capture
+surfaces are assertion sentinels. Login/materialization, production startup and SQL
+runtime behavior remain unqualified here. Gameplay producers and activation remain
+unchanged.
