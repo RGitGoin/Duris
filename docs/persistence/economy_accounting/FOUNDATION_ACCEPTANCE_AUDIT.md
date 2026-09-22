@@ -2539,3 +2539,15 @@ conservation remain unverified.
 Draft validation passed 13 fixtures: 668 routes, 2756 raw matches, 2698 unique
 coordinates, 2125 mapped, 43 reviewed nonwriters, 530 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Dragonnia disarm, false key and remains
+
+Seven unique coordinates (eight raw matches) classified as disarm custody,
+false-key stow/destruction and customized remains admission. Key selection uses
+first carried match after stowing; remains name alone does not prove wallet
+conversion. Prototype semantics, caller lifetime and save/replay qualification
+remain open. No incidental fixes or runtime evidence added.
+
+Draft validation passed 13 fixtures: 671 routes, 2756 raw matches, 2698 unique
+coordinates, 2132 mapped, 43 reviewed nonwriters, 523 unclassified.
+No gameplay changes; release readiness remains false.

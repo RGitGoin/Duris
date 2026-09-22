@@ -30887,6 +30887,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.dragonnia_mob_disarm",
+      "path": "src/specs/specs.dragonnia.c",
+      "symbol": "void do_mobdisarm",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Successful disarm removes the victim wielded weapon and places it in the attacker room, with posture and wait effects. Existing custody transfer, not issuance. Safe-room, weapon and NPC roll failures do not move it.",
+      "authority_boundary": "Bind source and destination asset identity and semantic mutation to the triggering operation; distinguish existing transfer/destruction from first admission. Qualify refusal, allocation failure, publication/save acknowledgement and replay. Direct native helpers alone do not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.dragonnia.c",
+          161,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.dragonnia.c",
+          162,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.dragonnia_false_key",
+      "path": "src/specs/specs.dragonnia.c",
+      "symbol": "int room_of_sanctum",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Unlock while archbishop holds its key first stows a matching held player key, then destroys the first matching carried key and applies HP/vitality effects. Inventory ordering can choose a different matching key than the stowed one. Bishop refusal does not consume a key.",
+      "authority_boundary": "Bind source and destination asset identity and semantic mutation to the triggering operation; distinguish existing transfer/destruction from first admission. Qualify refusal, allocation failure, publication/save acknowledgement and replay. Direct native helpers alone do not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.dragonnia.c",
+          452,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.dragonnia.c",
+          464,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.dragonnia.c",
+          465,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.dragonnia_remains",
+      "path": "src/specs/specs.dragonnia.c",
+      "symbol": "void make_remains",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates prototype 3 without a local null check, customizes descriptions and value[2]=50, and publishes in the character room. Name gold remains alone does not establish wallet conversion; native prototype/value semantics and caller lifetime need qualification.",
+      "authority_boundary": "Bind source and destination asset identity and semantic mutation to the triggering operation; distinguish existing transfer/destruction from first admission. Qualify refusal, allocation failure, publication/save acknowledgement and replay. Direct native helpers alone do not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.dragonnia.c",
+          1172,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.dragonnia.c",
+          1186,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
