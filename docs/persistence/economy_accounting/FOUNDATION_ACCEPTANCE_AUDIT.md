@@ -3010,3 +3010,14 @@ player artifact list temporary prototypes. Display copies have no owner
 publication and must not create gameplay issuance/destruction events.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 822 routes, 2756 raw matches, 2698 unique coordinates, 2517 mapped, 43 reviewed nonwriters, 138 unclassified.
+
+
+## Artifact swap
+
+Ten unique coordinates grouped as validation copy, replacement preparation
+and publication/old-artifact retirement. Existing replacement-vnum copy removal
+precedes original lookup; replacement publication precedes registry update and
+owner/corpse saves. Offline failed terminal save retains dummy for recovery.
+Refusal cleanup and compound durability require qualification, not scope expansion.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 825 routes, 2756 raw matches, 2698 unique coordinates, 2527 mapped, 43 reviewed nonwriters, 128 unclassified.

@@ -37479,6 +37479,146 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.swap_preview",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_swap_sql",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Loads original prototype to validate artifact and obtain description, then discards it. Nonartifact refusal returns before cleanup; this provisional copy is not the owned original.",
+      "authority_boundary": "Qualify replacement identity, existing-copy retirement, registry timer/location and online/offline/corpse persistence as a compound administrative operation. Native publication before saves is not proof of durable completion.",
+      "current_support": "Existing artifact swap; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4075,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4093,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.swap_prepare",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_swap_sql",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Allocates replacement prototype, checks old/new registry timer state, then removes found replacement-vnum copy from zone before locating original online/offline. Refusal paths do not uniformly clean provisional replacement; removing existing copy is distinct from provisional cleanup.",
+      "authority_boundary": "Qualify replacement identity, existing-copy retirement, registry timer/location and online/offline/corpse persistence as a compound administrative operation. Native publication before saves is not proof of durable completion.",
+      "current_support": "Existing artifact swap; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4106,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4148,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.swap_publish",
+      "path": "src/guild/artifact.c",
+      "symbol": "void arti_swap_sql",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Publishes replacement to original carried/worn/room/container position, then extracts old artifact with registry-removal flag and updates replacement registry retaining timer/location. Saves online owner/offline dummy or corpse afterward. Offline terminal save failure retains dummy for recovery; publication and registry/save atomicity remain unqualified.",
+      "authority_boundary": "Qualify replacement identity, existing-copy retirement, registry timer/location and online/offline/corpse persistence as a compound administrative operation. Native publication before saves is not proof of durable completion.",
+      "current_support": "Existing artifact swap; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4229,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          4239,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          4240,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          4245,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          4248,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          4265,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
