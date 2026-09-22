@@ -3223,3 +3223,7 @@ Added 17 artifact endpoints separating registry/binding/timer changes, temporary
 ## Wizard and inspection endpoints (2026-09-22)
 
 Added endpoints for 12 wizard and 11 inspection routes. Actual grants/purges/storage graph changes remain distinct from report prototypes and disabled commands. Sequential storage removal and backend differences remain visible. Explicit endpoints: 399; missing endpoints: 452; test-link gaps remain 710. Draft validation and diff checks pass; no administrator behavior or native qualification changed.
+
+## Service and entitlement endpoints (2026-09-22)
+
+Added 28 staff, boon, kingdom, reward, guildhall and service endpoints. Preserved entitlement versus live instance, non-coin realm resources, temporary fixture lifecycle, disabled boon code, and unchecked/post-payment service limits. Explicit endpoints: 427; missing endpoints: 424; test-link gaps remain 710. Draft validation and diff checks pass; no reward/service behavior or backend qualification changed.

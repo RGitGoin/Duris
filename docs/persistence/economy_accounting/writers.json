@@ -1792,7 +1792,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Authorized staff request and object template",
+      "destination": "New object with required actor/source provenance"
     },
     {
       "id": "staff.purge",
@@ -1821,7 +1823,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Staff-selected live objects",
+      "destination": "Removal; actual destruction versus synthetic cleanup still distinguished by branch"
     },
     {
       "id": "staff.zone_reset",
@@ -1850,7 +1854,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Zone reset state and optional purge targets",
+      "destination": "Reset-created world assets and selected prior-asset retirement"
     },
     {
       "id": "staff.storage_repair",
@@ -1879,7 +1885,9 @@
       },
       "test_candidates": [],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Storage repair request and existing/provisional state",
+      "destination": "Explicit establishment, change or removal"
     },
     {
       "id": "import.legacy_dump",
@@ -4349,7 +4357,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected bank reward obligation",
+      "destination": "Auction claim fallback or refusal; successful result only reports prior credit"
     },
     {
       "id": "crafting.recipe",
@@ -5025,7 +5035,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buyer coins and realm materials",
+      "destination": "Bound generated item plus coin sink and consumed non-coin resources"
     },
     {
       "id": "kingdom.store_refund",
@@ -5063,7 +5075,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rejected store delivery and reserved materials",
+      "destination": "Buyer refund and restored realm resources without duplicate grants"
     },
     {
       "id": "kingdom.workshop_build",
@@ -5095,7 +5109,9 @@
         "tests/async/run_kingdom_works_journey.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Guild treasury construction funds",
+      "destination": "Workshop/store construction or returned treasury funds on failure"
     },
     {
       "id": "kingdom.workshop_props",
@@ -5143,7 +5159,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Hall construction/load state and prop templates",
+      "destination": "Room props or retired copies; reload distinct from new construction"
     },
     {
       "id": "world.object_template",
@@ -5966,7 +5984,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing reward-container children",
+      "destination": "Parent/owner/room placement or rollback to original container"
     },
     {
       "id": "recovery.legacy_item_publication",
@@ -7272,7 +7292,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Reward entitlement/reservation and provisional or reusable instance",
+      "destination": "Player creation submission or rejected candidate cleanup"
     },
     {
       "id": "reward.revocation_duplicates",
@@ -7315,7 +7337,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired grant instances or extra duplicate live copies",
+      "destination": "Promoted contents and retired instances; failed promotion retains copies"
     },
     {
       "id": "reward.dismiss",
@@ -7353,7 +7377,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Empty live reward instance",
+      "destination": "Extracted representation while grant entitlement remains"
     },
     {
       "id": "reward.death_container",
@@ -7391,7 +7417,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Account-bound corpse reward container and its children",
+      "destination": "Promoted children, retired shell and recoverable summon marker"
     },
     {
       "id": "crafting.grant",
@@ -10759,7 +10787,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Hall configuration and fixture templates",
+      "destination": "Placed hall-linked room fixtures; load/construction boundary must remain explicit"
     },
     {
       "id": "guildhall.golem_initial_cash",
@@ -10809,7 +10839,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Configured golem prototype wallet",
+      "destination": "Zeroed pre-placement wallet with guild/racewar metadata"
     },
     {
       "id": "guildhall.fixture_unlink",
@@ -10884,7 +10916,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing room fixtures/member links and entrance golems",
+      "destination": "Unlinked fixture representations; separately extracted golems"
     },
     {
       "id": "currency.wallet_projection",
@@ -11792,7 +11826,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Compile-disabled legacy boon code",
+      "destination": "No active cash/item/flag transfer"
     },
     {
       "id": "boon.cash_reward_publish",
@@ -11827,7 +11863,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed cash boon entry and boon identity",
+      "destination": "Separate bank reward submission and later fallback if rejected"
     },
     {
       "id": "boon.item_reward_publish",
@@ -11867,7 +11905,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Completed item boon entry and configured template",
+      "destination": "New player item or no output on allocation failure"
     },
     {
       "id": "collector.live_detachment",
@@ -15707,7 +15747,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Customer payment through transact",
+      "destination": "Cleric cash cleared then selected spell/resurrection attempted"
     },
     {
       "id": "service.carnival_admission",
@@ -15742,7 +15784,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Customer 500-copper payment",
+      "destination": "Carnival room admission; no physical ticket"
     },
     {
       "id": "service.world_quest_fee",
@@ -15787,7 +15831,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wallet service fee and captured quest context",
+      "destination": "Committed callback quest action after state validation"
     },
     {
       "id": "service.world_quest_refund",
@@ -15822,7 +15868,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Failed/stale quest action after committed charge",
+      "destination": "Player refund through ADD_MONEY"
     },
     {
       "id": "craft.smelter_deposits",
@@ -15972,7 +16020,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing task affect and player payment",
+      "destination": "Removed task followed by unchecked debit"
     },
     {
       "id": "service.monk_remort",
@@ -16007,7 +16057,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible cleric class/spells and payment",
+      "destination": "Monk class reset after unchecked debit"
     },
     {
       "id": "service.witch_elixir",
@@ -16047,7 +16099,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Customer payment through transact",
+      "destination": "Timed affect and cleared witch platinum; no potion item"
     },
     {
       "id": "service.artifact_locator",
@@ -16102,7 +16156,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Customer type-priced payment",
+      "destination": "NPC wallet cleared and matching-location report"
     },
     {
       "id": "item.shabo_butler_assistant_transfer",
