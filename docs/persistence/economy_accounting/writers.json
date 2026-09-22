@@ -18830,6 +18830,41 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.channel_orb_retirement",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_channel(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Channel increments orb timer and when timer exceeds13 for leader target, morphs leader into alignment-specific avatar; successful morph retires orb before avatar channel affect and helper handling.",
+      "authority_boundary": "Morph failure retains orb with advanced timer. Bind orb UID and channel attempt to avatar lifetime; retirement does not prove subsequent helper processing or save completion. Timer progression and morph custody effects require separate qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          9454,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

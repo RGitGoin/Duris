@@ -1281,3 +1281,13 @@ qualify during integration, not proof of full batch destruction or restoration.
 Draft validator passed 13 fixtures: 395 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,359 mapped, 43 reviewed declarations and 1,296 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Channel orb retirement
+
+One coordinate classified. Successful leader morph precedes orb retirement and
+avatar affect/helper handling. Failed morph preserves orb with advanced timer;
+retirement alone does not establish completion of the broader channel operation.
+
+Draft validator passed 13 fixtures: 396 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,360 mapped, 43 reviewed declarations and 1,295 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
