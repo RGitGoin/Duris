@@ -2353,3 +2353,14 @@ otherwise mutating HP. Failure/recovery/effect coupling remain unqualified.
 Draft validation passed 13 fixtures: 639 routes, 2756 raw matches, 2698 unique
 coordinates, 2061 mapped, 43 reviewed nonwriters, 594 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Epic skill payment and magical device infusion
+
+Three coordinates classified: committed epic purchase callback debits wallet
+before skill update/save or submits refund on changed state; infusion consumes
+stone before semantic device charge/wear changes and cooldown. Compound replay,
+refund and save acknowledgment remain unqualified.
+
+Draft validation passed 13 fixtures: 641 routes, 2756 raw matches, 2698 unique
+coordinates, 2064 mapped, 43 reviewed nonwriters, 591 unclassified.
+No gameplay changes; release readiness remains false.

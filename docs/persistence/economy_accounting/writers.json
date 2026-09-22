@@ -29695,6 +29695,81 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.epic_skill_purchase",
+      "path": "src/classes/epic_skills.c",
+      "symbol": "epic_skill_purchase_committed",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After epic transaction commits, checks wallet and expected skill; mismatch submits epic refund and returns. Otherwise wallet debit precedes taught/learned update and silent save, with failure logged.",
+      "authority_boundary": "Couple already-committed epic cost, wallet debit and skill grant; qualify refund submission failure, duplicate completion and save acknowledgment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/epic_skills.c",
+          51,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.magical_device_infusion",
+      "path": "src/classes/epic_skills.c",
+      "symbol": "SKILL_INFUSE_MAGICAL_DEVICE",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After device eligibility checks, consumes first carried encrustable stone with FALSE before charge loop. Increments device charges until full or random stop, then applies cooldown and increments device wear counter by skill-dependent amount.",
+      "authority_boundary": "Existing stone retirement plus device charge/wear mutations, not item issuance. Qualify charge-loop outcomes, cooldown, failure/replay and durable save ordering.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/epic_skills.c",
+          1311,
+          "item_publication"
+        ],
+        [
+          "src/classes/epic_skills.c",
+          1312,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
