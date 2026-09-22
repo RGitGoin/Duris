@@ -3215,3 +3215,7 @@ Added 37 endpoint classifications preserving real inputs versus probes, provisio
 ## Alchemy endpoints (2026-09-22)
 
 Added 17 alchemy endpoints distinguishing preview copies, physical/generated materials, intended craft failure, replacement identities and paid delayed enchantment. Existing loop consumption and partial-allocation limits remain visible. Explicit endpoints: 359; missing endpoints: 492; test-link gaps remain 710. Draft validation and diff checks pass; gameplay economics and runtime qualification are unchanged.
+
+## Artifact endpoints (2026-09-22)
+
+Added 17 artifact endpoints separating registry/binding/timer changes, temporary inspection, duplicate cleanup, reconstruction, replacement and expiry. Retained missing-UID recovery, partial cleanup and separate-save limits. Explicit endpoints: 376; missing endpoints: 475; test-link gaps remain 710. Draft validation and diff checks pass; no artifact mechanics or runtime qualification changed.

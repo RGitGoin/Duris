@@ -37917,7 +37917,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Owned artifact registry vnum/room without supplied prior UID",
+      "destination": "Reconstructed ground copy or invalid-room cleanup; identity continuity unqualified"
     },
     {
       "id": "artifact.npc_restore",
@@ -37977,7 +37979,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Owned artifact registry vnum and NPC location",
+      "destination": "Reconstructed NPC-held copy or missing-NPC cleanup"
     },
     {
       "id": "artifact.poof",
@@ -38042,7 +38046,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Expired artifact and nested/live location",
+      "destination": "Intermediate relocation then extraction and owner/corpse save"
     },
     {
       "id": "artifact.nuke_equipment",
@@ -38092,7 +38098,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Loaded character equipment/inventory",
+      "destination": "Runtime teardown retaining artifact registry; durable fate belongs to caller"
     },
     {
       "id": "inspection.artifact_cache",
@@ -38302,7 +38310,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary original-artifact prototype",
+      "destination": "Validation/description and conditional cleanup, not owned-original destruction"
     },
     {
       "id": "artifact.swap_prepare",
@@ -38342,7 +38352,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Replacement prototype plus existing replacement-vnum zone copy",
+      "destination": "Prepared candidate and removed conflicting live copy; refusal cleanup incomplete"
     },
     {
       "id": "artifact.swap_publish",
@@ -38402,7 +38414,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original owned artifact, position/timer and prepared replacement",
+      "destination": "Replacement at prior position, old retirement, registry update and separate save"
     },
     {
       "id": "artifact.clear_command",
@@ -38442,7 +38456,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact authority records and temporary display copy",
+      "destination": "Deleted registry records with live item untouched by probe cleanup"
     },
     {
       "id": "artifact.poof_command",
@@ -38487,7 +38503,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary validation copy and located live/offline artifact",
+      "destination": "Delegated expiry plus offline load teardown"
     },
     {
       "id": "artifact.timer_command",
@@ -38527,7 +38545,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact expiry metadata and temporary display prototype",
+      "destination": "Updated timer retaining owner/location/type; no direct custody change"
     },
     {
       "id": "artifact.location_salvage",
@@ -38577,7 +38597,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Malformed artifact or outer-container location",
+      "destination": "Existing graph relocated to Limbo and registry updated"
     },
     {
       "id": "artifact.corpse_expiry_move",
@@ -38622,7 +38644,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact in matching PC corpse",
+      "destination": "Outer room/carrier room placement then delegated expiry"
     },
     {
       "id": "artifact.wars_drop",
@@ -38672,7 +38696,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Online owner equipped/directly carried artifacts",
+      "destination": "Room artifacts after attempted timer penalty, even if timer update fails"
     },
     {
       "id": "artifact.file_import",
@@ -38737,7 +38763,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy authority plus conflicting/missing live or offline copies",
+      "destination": "Updated registry and optional reconstructed offline holding/save"
     },
     {
       "id": "artifact.offline_hunt",
@@ -38787,7 +38815,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Loaded offline artifact holdings and conflicting zone copies",
+      "destination": "Corrected registry and selected duplicate-copy removal"
     },
     {
       "id": "artifact.bind_maintenance",
@@ -38827,7 +38857,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Artifact authority and online-owner eligibility",
+      "destination": "Updated binding/timer metadata and cleaned description probe"
     },
     {
       "id": "artifact.binding_repair",
@@ -38882,7 +38914,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player binding and artifact timer",
+      "destination": "Repaired metadata/report; temporary-copy lifetime concern remains"
     },
     {
       "id": "winterhaven.cerberus_optional",
