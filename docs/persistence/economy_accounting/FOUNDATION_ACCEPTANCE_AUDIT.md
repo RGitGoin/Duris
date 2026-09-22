@@ -2067,3 +2067,14 @@ and disabled behavior; compound durability remains unqualified.
 Draft validation passed 13 fixtures: 582 routes, 2756 raw matches, 2698 unique
 coordinates, 1931 mapped, 43 reviewed declarations, 724 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship weapon repair, ammunition and rename fee
+
+Three payment coordinates classified. Weapon repair and selected/all ammunition
+reload debit before state/time changes and queued save. Reload is abstract ammo
+counter refill, not item allocation. Rename helper reports success before wallet
+debit, so cross-state durable ordering still requires qualification.
+
+Draft validation passed 13 fixtures: 585 routes, 2756 raw matches, 2698 unique
+coordinates, 1934 mapped, 43 reviewed declarations, 721 unclassified.
+No gameplay changes; release readiness remains false.

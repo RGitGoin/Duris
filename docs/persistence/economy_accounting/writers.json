@@ -27308,6 +27308,111 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.ship_weapon_repair",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int repair_weapon",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates weapon slot/damage, charges half list cost for destroyed weapon or damage times1000, then clears damage and adds maintenance before queued save. Coupled payment/repair must not repeat on recovery.",
+      "authority_boundary": "Capture original ship state, exact price and resulting service state. Local success/queued persistence is not proof of atomic wallet/ship durability; refusal, crash and replay qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1826,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_ammunition_reload",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int reload_ammo",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Builds selected-slot mask and aggregate missing-round cost at1000 per round, checks affordability then debits once and fills selected ammo counters. Adds75 maintenance per selected weapon before queued save; no separate inventory item allocation.",
+      "authority_boundary": "Capture original ship state, exact price and resulting service state. Local success/queued persistence is not proof of atomic wallet/ship durability; refusal, crash and replay qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1919,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_rename_payment",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int rename_ship(P_char",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Validates proposed name and affordability at10percent hull cost, invokes rename helper first, then debits only on reported success. Renamed ship durability and subsequent wallet debit are separate boundaries requiring compound recovery.",
+      "authority_boundary": "Capture original ship state, exact price and resulting service state. Local success/queued persistence is not proof of atomic wallet/ship durability; refusal, crash and replay qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1970,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
