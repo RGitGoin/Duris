@@ -756,3 +756,18 @@ native save acknowledgement must remain distinct. No runtime behavior changed.
 Draft validator passed 13 fixtures: 295 routes, 2,756 raw matches, 2,698 unique
 coordinates, 965 mapped, 43 reviewed declarations and 1,690 unclassified.
 Census and runtime qualification remain incomplete.
+
+## Remaining actobj drop and trusted recovery sites
+
+Seven final lexical candidates in actobj.c classified. Trusted get nowhere forces
+invalid/detached live objects into staff inventory outside ordinary pickup submission;
+missing location is not proof of abandoned authority or fresh issuance. NPC all-drop
+fallbacks and single synchronous drops move existing items, with branch-specific
+restrictions preserved. Room pile merging and subsequent reads remain qualification
+concerns, not proof that disappearing representations destroy economic value.
+
+All current scanner candidates in actobj.c now map to reviewed routes. This is not
+semantic exhaustiveness: indirect helpers, direct payload/value[] changes, authority
+proof and executable integration evidence remain required. No runtime change.
+Draft validator passed 13 fixtures: 298 routes, 2,756 raw matches, 2,698 unique
+coordinates, 972 mapped, 43 reviewed declarations and 1,683 unclassified.

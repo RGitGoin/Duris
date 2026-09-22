@@ -13857,6 +13857,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.trusted_nowhere_recovery",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_get(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Trusted get nowhere scans object_list for missing or invalid location representations, forces LOC_NOWHERE and inserts existing objects into the trusted character inventory.",
+      "authority_boundary": "Recovery does not establish fresh issuance or rightful ownership. This bypasses ordinary pickup submission and needs explicit reconciliation against retained authority; pending detached objects must not be assumed abandoned merely from live location.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          2760,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.npc_drop_fallback",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_dropalldot(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Named-all and all drop paths for non-PC actors move live carried items to room; PCs return earlier through bulk drop. Named-all rejects soulbound items while the shown ordinary-all branch checks nodrop/trust.",
+      "authority_boundary": "NPC/source lifetime and room destination require explicit authority treatment. Room insertion can merge/free money representation; subsequent object reads require qualification. Do not silently harmonize differing existing restrictions as census work.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4673,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4674,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4873,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4898,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.single_drop_fallback",
+      "path": "src/cmd/actobj.c",
+      "symbol": "void do_drop(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Single-item drop moves directly from character to room after restrictions when the PC durable-ownership branch does not apply. This includes NPCs and excluded ownership classes.",
+      "authority_boundary": "Room insertion, floor hints, dirty marks and corpse save invocation are distinct from acknowledged custody. Potential pile merging means live-copy disappearance is not necessarily value destruction; no transactional receipt is established here.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/cmd/actobj.c",
+          4966,
+          "item_publication"
+        ],
+        [
+          "src/cmd/actobj.c",
+          4991,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
