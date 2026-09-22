@@ -13300,7 +13300,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed player item drop and verified live source",
+      "destination": "Recorded room custody/live placement"
     },
     {
       "id": "item.player_give_publication",
@@ -13345,7 +13347,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed player gift and sender live item",
+      "destination": "Recipient PID inventory, dirty state and give hooks"
     },
     {
       "id": "item.pet_give_publication",
@@ -13395,7 +13399,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed owner/pet gift with verified identity/topology",
+      "destination": "Pet live inventory; stale copy cleanup requests reconnect recovery"
     },
     {
       "id": "item.room_get_publication",
@@ -13435,7 +13441,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing room item after admission/acknowledgement",
+      "destination": "Character inventory live projection"
     },
     {
       "id": "item.bulk_get_adoption",
@@ -13475,7 +13483,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing source custody roots plus already-tracked roots",
+      "destination": "Same-source admission then complete forest transfer to player"
     },
     {
       "id": "item.bulk_get_scrap",
@@ -13510,7 +13520,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Revalidated selected broken item after bulk completion",
+      "destination": "Scrap transformation; coins continue through separate pickup"
     },
     {
       "id": "item.bulk_drop_submission",
@@ -13522,7 +13534,7 @@
       "coverage": "legacy",
       "classification": "Select durable inventory roots and submit one custody batch to the resolved destination; with no durable roots, synchronous candidates run directly.",
       "authority_boundary": "Completion requires actor still in original room and all durable roots still carried before publication. Committed failure erases live batch state and alerts; that does not undo custody or establish recovery. Synchronous candidates are scanned from current inventory afterwards.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; linked test validates source routing, not native durable execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -13537,7 +13549,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_bulk_drop_put_durable_chain.py"
+      ],
       "sites": [
         [
           "src/cmd/actobj.c",
@@ -13545,7 +13559,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected durable inventory roots",
+      "destination": "One requested destination custody batch; synchronous-only selection bypasses batch"
     },
     {
       "id": "item.bulk_drop_synchronous",
@@ -13585,7 +13601,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Coins/transient objects/PC corpse roots in inventory",
+      "destination": "Room placement outside generic batch; coins may merge"
     },
     {
       "id": "item.give_synchronous",
@@ -13625,7 +13643,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing item outside distinct-PC/durable-pet branch",
+      "destination": "Recipient inventory and give hooks without generic durable submission"
     },
     {
       "id": "item.weight_relocation",
@@ -13685,7 +13705,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Same carried/worn/nested item before weight adjustment",
+      "destination": "Same owner/location after temporary detach/reinsert and aggregate update"
     },
     {
       "id": "item.drink_container_consumption",
@@ -13725,7 +13747,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Drink liquid and owned transient container",
+      "destination": "Drinking effect and reduced liquid; empty transient container retired"
     },
     {
       "id": "item.eat_consumption",
@@ -13765,7 +13789,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible carried food or privileged nonfood item",
+      "destination": "Eating effects then consumed instance; special progression/save remains separate"
     },
     {
       "id": "item.equipment_wear",
@@ -13850,7 +13876,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character carried item",
+      "destination": "Same-character equipment slot or belt attachment"
     },
     {
       "id": "item.equipment_remove",
@@ -13900,7 +13928,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character worn item and dependent belt attachments",
+      "destination": "Same-character inventory and removed equipment effects"
     },
     {
       "id": "item.wear_broken_scrap",
@@ -13935,7 +13965,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Broken carried wear target",
+      "destination": "Scrap transformation instead of equip"
     },
     {
       "id": "item.poison_application",
@@ -13975,7 +14007,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected inventory/belt poison liquid",
+      "destination": "Weapon poison payload and consumed liquid; empty transient container retired"
     },
     {
       "id": "item.food_catalog_probe",
@@ -14010,7 +14044,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Allocated food prototype for diagnostic",
+      "destination": "Logged properties without placement; no local extraction"
     },
     {
       "id": "item.empty_publication",
@@ -14037,7 +14073,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_durable_empty_runtime.py"
+      ],
       "sites": [
         [
           "src/cmd/actobj.c",
@@ -14080,7 +14118,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected source-container children and committed destination graph",
+      "destination": "Destination children or attempted source rollback after failure"
     },
     {
       "id": "item.empty_submission",
@@ -14107,7 +14147,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_durable_empty_runtime.py"
+      ],
       "sites": [
         [
           "src/cmd/actobj.c",
@@ -14115,7 +14157,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected container roots and target parent",
+      "destination": "Pending durable batch or synchronous publication for excluded selection"
     },
     {
       "id": "item.bulk_put_submission",
@@ -14127,7 +14171,7 @@
       "coverage": "legacy",
       "classification": "Select durable roots under cumulative capacity constraints and submit one resolved container custody batch. Completion revalidates source carriage and destination/capacity, then calls put under acknowledgement guard.",
       "authority_boundary": "Publication refusal can follow earlier live insertions and clears batch state without undoing committed custody. Remaining pass skips exactly batch-claimed UIDs and may submit newly durable candidates separately; it counts only actual live insertion, not put return alone. No command-wide atomicity or save receipt is established.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; linked test validates source routing, not native durable execution",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -14142,7 +14186,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_bulk_drop_put_durable_chain.py"
+      ],
       "sites": [
         [
           "src/cmd/actobj.c",
@@ -14150,7 +14196,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Capacity-selected durable inventory roots",
+      "destination": "Container custody batch followed by revalidated publication"
     },
     {
       "id": "item.container_put_publication",
@@ -14220,7 +14268,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing character/room item after put admission or bypass",
+      "destination": "Container/quiver/storage/corpse with space/count updates"
     },
     {
       "id": "item.trusted_nowhere_recovery",
@@ -14255,7 +14305,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing invalid/missing-location live item",
+      "destination": "Trusted actor inventory after forced nowhere reset"
     },
     {
       "id": "item.npc_drop_fallback",
@@ -14305,7 +14357,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Non-PC carried items allowed by drop policy",
+      "destination": "Room live placement"
     },
     {
       "id": "item.single_drop_fallback",
@@ -14345,7 +14399,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Single carried item outside PC durable ownership branch",
+      "destination": "Room live placement after restrictions"
     },
     {
       "id": "item.forage_sector_creation",
@@ -14825,7 +14881,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Sector-specific randomized prototype and optional poison adjustment",
+      "destination": "New object in forager inventory"
     },
     {
       "id": "item.forage_display_probe",
