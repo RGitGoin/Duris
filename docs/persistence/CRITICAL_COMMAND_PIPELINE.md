@@ -76,6 +76,22 @@ unsupported versions, checksum mismatch, unsafe ownership or permissions, I/O fa
 or quota exhaustion fails closed. Identical repeated frames replay once; conflicting
 bytes for one operation ID are corruption. Replay retains the original operation ID.
 
+Accounting commands use journal frame version 2: the existing 40-byte header
+followed by a one-byte publication-retention flag (0 or 1) and the unchanged
+canonical command bytes. Length and CRC cover both the flag and command; command
+identity/digests do not change. Checkpoint rewrites preserve complete frame bytes.
+Mixed version-1 and version-2 journals are readable; unknown flags or conflicting
+metadata for the same operation ID are corruption. Older binaries reject version
+2, so a rollback must preserve these journals for a reader that understands them.
+
+The coordinator persists retention for schema-2 submissions, including uncertain
+append recovery, and restores it before replay execution. A publication-retained
+result remains fenced until explicit acknowledgement. Historical version-1
+schema-2 records conservatively retain because they cannot prove publication was
+unnecessary. Legacy schema-1 submissions keep their previous replay behavior.
+The command-only replay API remains an inspection interface; execution uses the
+metadata-aware replay API. This does not implement domain publication or saving.
+
 Default bounds are 1,024 active operations, 64 MiB of command memory, 2,048 pending
 completion records, 4,096 journal records, a 256 MiB journal, eight retries, and a
 256-operation/8 MiB recent-completion cache. The admission queue counts against the

@@ -52,18 +52,17 @@ review remain pending. Native gameplay publication is not established by these t
 
 ## Flat-file publication boundary
 
-Native bank effects and retained receipts can be reconciled exactly once through
-the coordinator after restart. This does not prove restart-safe live publication.
-`enqueue_replayed` currently value-initializes `retain_until_publication` to false;
-the journal does not persist that opt-in flag. A replayed command may therefore
-checkpoint after its durable owner result without waiting for a live publication
-acknowledgement. Fresh `submit_for_publication` still holds fences until explicit
-acknowledgement. The native dispatcher tests distinguish these behaviors.
+Native bank effects and retained receipts reconcile exactly once through the
+coordinator after restart. Accounting submissions now persist their publication
+retention policy in journal version 2. Replay restores the policy before execution
+and keeps the original fences and journal entry until explicit acknowledgement.
+Older version-1 accounting records have no policy; replay conservatively retains
+them. Legacy schema-1 coordinator submissions keep their existing replay behavior.
 
-Restoring the required publication/save acknowledgement across restart is an open
-requirement of the wallet/bank gameplay deliverable, before activation. The
-standalone bank owner and this dispatcher must not be reported as a complete
-player journey or as completing #474, #478, #479 or #480.
+This establishes durable coordinator retention, not native gameplay publication
+or save acknowledgement. Reconstructing domain publication obligations and proving
+that the game-thread publisher acknowledges only after the required save remains
+open before activation. This does not complete #474, #478, #479 or #480.
 
 ## Flat-file focused evidence
 
@@ -73,9 +72,9 @@ and refusal of unsupported families without legacy fallback. The native
 coordinator/bank sanitizer journey proves assigned timestamp preservation,
 exact-command retained replay after committed-but-unacknowledged shutdown,
 unchanged balances/revisions, fresh acknowledgement retirement, and durable
-unsupported-work refusal without execution or checkpoint. Its explicit replay
-auto-retirement assertion records the publication gap above, not completion of
-that requirement. Existing pure admission tests pass in both modes, and the
+unsupported-work refusal without execution or checkpoint. Both version-2 frames
+and synthetic historical version-1 accounting frames retain replay fences until
+explicit acknowledgement. Existing pure admission tests pass in both modes, and the
 legacy flat-file gates still reject schema-2 calls without native file changes.
 The source census and changed C++ formatting pass. Full build/boot evidence is
 reported with the increment's PR.

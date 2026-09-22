@@ -39,17 +39,27 @@ struct critical_command_journal_health
 	bool initialized;
 };
 
+using critical_command_publication_replay_fn = bool (*)(critical_command command,
+							bool retain_until_publication,
+							void *context);
+
 using critical_command_replay_fn = bool (*)(critical_command command, void *context);
 
 bool critical_command_journal_init(const char *directory,
 				   size_t quota_bytes = CRITICAL_COMMAND_JOURNAL_DEFAULT_QUOTA);
 void critical_command_journal_shutdown(void);
-critical_command_journal_result critical_command_journal_append(const critical_command &command);
+critical_command_journal_result
+critical_command_journal_append(const critical_command &command,
+				bool retain_until_publication = false);
 critical_command_journal_result critical_command_journal_sync(void);
 critical_command_journal_result
 critical_command_journal_checkpoint(const critical_operation_id &operation_id);
 critical_command_journal_result critical_command_journal_replay(critical_command_replay_fn replay,
 								void *context);
+// Metadata-aware execution replay. Older schema-2 frames conservatively retain.
+critical_command_journal_result
+critical_command_journal_replay_with_publication(critical_command_publication_replay_fn replay,
+						 void *context);
 critical_command_journal_health critical_command_journal_health_copy(void);
 const char *critical_command_journal_result_name(critical_command_journal_result result);
 void critical_command_journal_reset_for_tests(void);

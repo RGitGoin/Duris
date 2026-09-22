@@ -327,7 +327,7 @@ bool execution_supported(const critical_command &command)
 	       extension_validator_callback(command);
 }
 
-bool enqueue_replayed(critical_command command, void *context)
+bool enqueue_replayed(critical_command command, bool retain_until_publication, void *context)
 {
 	std::vector<uint8_t> encoded;
 	if (!execution_supported(command) ||
@@ -342,6 +342,7 @@ bool enqueue_replayed(critical_command command, void *context)
 	{
 		auto state = std::make_unique<operation_state>();
 		state->command = std::move(command);
+		state->retain_until_publication = retain_until_publication;
 		state->retained_bytes = encoded.size();
 		state->queued_at_usec = now_usec();
 		state->attempt = 1;
@@ -468,7 +469,13 @@ bool recovery_due_locked()
 
 bool recover_uncertain_on_worker()
 {
-	std::vector<std::pair<std::string, critical_command>> candidates;
+	struct uncertain_candidate
+	{
+		std::string identity;
+		critical_command command;
+		bool retain;
+	};
+	std::vector<uncertain_candidate> candidates;
 	try
 	{
 		std::lock_guard<std::mutex> lock(coordinator_mutex);
@@ -476,7 +483,11 @@ bool recover_uncertain_on_worker()
 			return false;
 		for (const auto &[identity, state] : operations)
 			if (operation_is_uncertain(*state))
-				candidates.emplace_back(identity, state->command);
+				candidates.push_back(
+					{ identity, state->command,
+					  state->retain_until_publication &&
+						  state->command.schema_version ==
+							  CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION });
 	}
 	catch (const std::bad_alloc &)
 	{
@@ -512,13 +523,13 @@ bool recover_uncertain_on_worker()
 
 	bool recovered = true;
 	bool woke_worker = false;
-	for (const auto &[identity, command] : candidates)
+	for (const auto &[identity, command, retain] : candidates)
 	{
 		const bool journaled = journal_identities.find(identity) !=
 				       journal_identities.end();
 		const critical_command_journal_result result =
 			journaled ? critical_command_journal_result::ok :
-				    critical_command_journal_append(command);
+				    critical_command_journal_append(command, retain);
 		std::lock_guard<std::mutex> lock(coordinator_mutex);
 		auto found = operations.find(identity);
 		if (found == operations.end() || !operation_is_uncertain(*found->second))
@@ -632,6 +643,7 @@ void admission_worker_main()
 		std::string identity;
 		critical_command command;
 		bool recover = false;
+		bool retain = false;
 		{
 			std::unique_lock<std::mutex> lock(coordinator_mutex);
 			for (;;)
@@ -680,6 +692,9 @@ void admission_worker_main()
 				try
 				{
 					command = found->second->command;
+					retain = found->second->retain_until_publication &&
+						 command.schema_version ==
+							 CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
 				}
 				catch (const std::bad_alloc &)
 				{
@@ -701,7 +716,7 @@ void admission_worker_main()
 			(void)recover_uncertain_on_worker();
 			continue;
 		}
-		finish_admission(identity, critical_command_journal_append(command));
+		finish_admission(identity, critical_command_journal_append(command, retain));
 	}
 	{
 		std::lock_guard<std::mutex> lock(coordinator_mutex);
@@ -852,8 +867,8 @@ bool critical_command_coordinator_init(const char *journal_directory_path, criti
 	uncertain_recovery_not_before_usec = 0;
 	uncertain_recovery_delay_usec = 1000000;
 	replay_observer_context replay = { replay_observer, replay_context };
-	if (critical_command_journal_replay(enqueue_replayed,
-					    replay_observer ? &replay : nullptr) !=
+	if (critical_command_journal_replay_with_publication(enqueue_replayed,
+							     replay_observer ? &replay : nullptr) !=
 	    critical_command_journal_result::ok)
 	{
 		health = {};

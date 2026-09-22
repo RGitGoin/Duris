@@ -19,6 +19,7 @@ namespace
 {
 constexpr unsigned char JOURNAL_MAGIC[4] = { 'C', 'C', 'J', '1' };
 constexpr uint32_t JOURNAL_VERSION = 1;
+constexpr uint32_t JOURNAL_PUBLICATION_VERSION = 2;
 constexpr size_t JOURNAL_HEADER_SIZE = 40;
 constexpr const char *JOURNAL_FILE = "critical-command.journal";
 constexpr const char *JOURNAL_TEMP = "critical-command.journal.tmp";
@@ -27,6 +28,7 @@ struct journal_frame
 {
 	critical_operation_id operation_id;
 	critical_command command;
+	bool retain_until_publication = false;
 	std::vector<uint8_t> bytes;
 };
 
@@ -91,7 +93,8 @@ bool safe_directory(const std::string &path)
 	       status.st_uid == geteuid() && !(status.st_mode & 0077);
 }
 
-bool build_frame(const critical_command &command, journal_frame *frame)
+bool build_frame(const critical_command &command, bool retain_until_publication,
+		 journal_frame *frame)
 {
 	std::vector<uint8_t> payload;
 	if (!frame ||
@@ -99,10 +102,17 @@ bool build_frame(const critical_command &command, journal_frame *frame)
 		return false;
 	try
 	{
+		const bool metadata = retain_until_publication ||
+				      command.schema_version ==
+					      CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
+		if (metadata)
+			payload.insert(payload.begin(), retain_until_publication ? 1 : 0);
+		frame->retain_until_publication = retain_until_publication;
 		frame->bytes.clear();
 		frame->bytes.reserve(JOURNAL_HEADER_SIZE + payload.size());
 		frame->bytes.insert(frame->bytes.end(), JOURNAL_MAGIC, JOURNAL_MAGIC + 4);
-		append_le<uint32_t>(frame->bytes, JOURNAL_VERSION);
+		append_le<uint32_t>(frame->bytes,
+				    metadata ? JOURNAL_PUBLICATION_VERSION : JOURNAL_VERSION);
 		append_le<uint64_t>(frame->bytes, JOURNAL_HEADER_SIZE + payload.size());
 		append_le<uint32_t>(frame->bytes, static_cast<uint32_t>(payload.size()));
 		append_le<uint32_t>(frame->bytes, crc32(0, payload.data(), payload.size()));
@@ -172,7 +182,7 @@ critical_command_journal_result scan(std::vector<journal_frame> *frames)
 		    !read_le(data.data(), data.size(), &cursor, &record_size) ||
 		    !read_le(data.data(), data.size(), &cursor, &payload_size) ||
 		    !read_le(data.data(), data.size(), &cursor, &checksum) ||
-		    version != JOURNAL_VERSION ||
+		    (version != JOURNAL_VERSION && version != JOURNAL_PUBLICATION_VERSION) ||
 		    record_size != JOURNAL_HEADER_SIZE + payload_size ||
 		    record_size > data.size() - offset)
 			return critical_command_journal_result::corrupt_data;
@@ -182,9 +192,12 @@ critical_command_journal_result scan(std::vector<journal_frame> *frames)
 		const uint8_t *payload = data.data() + cursor;
 		if (crc32(0, payload, payload_size) != checksum)
 			return critical_command_journal_result::corrupt_data;
+		const size_t metadata_bytes = version == JOURNAL_PUBLICATION_VERSION ? 1 : 0;
+		if (metadata_bytes && (!payload_size || payload[0] > 1))
+			return critical_command_journal_result::corrupt_data;
 		critical_command command = {};
-		if (critical_command_decode(payload, payload_size, &command) !=
-			    critical_command_codec_result::ok ||
+		if (critical_command_decode(payload + metadata_bytes, payload_size - metadata_bytes,
+					    &command) != critical_command_codec_result::ok ||
 		    !critical_operation_id_equal(operation_id, command.operation_id))
 			return critical_command_journal_result::corrupt_data;
 		const std::string key(reinterpret_cast<const char *>(operation_id.bytes.data()),
@@ -202,6 +215,10 @@ critical_command_journal_result scan(std::vector<journal_frame> *frames)
 		seen.emplace(key, encoded);
 		journal_frame frame;
 		frame.operation_id = operation_id;
+		frame.retain_until_publication =
+			metadata_bytes ? payload[0] != 0 :
+					 command.schema_version ==
+						 CRITICAL_COMMAND_ACCOUNTING_SCHEMA_VERSION;
 		frame.command = std::move(command);
 		frame.bytes.assign(data.begin() + offset, data.begin() + offset + record_size);
 		frames->push_back(std::move(frame));
@@ -354,7 +371,8 @@ void critical_command_journal_shutdown(void)
 	journal_quota = 0;
 }
 
-critical_command_journal_result critical_command_journal_append(const critical_command &command)
+critical_command_journal_result critical_command_journal_append(const critical_command &command,
+								bool retain_until_publication)
 {
 	std::lock_guard<std::mutex> lock(journal_mutex);
 	if (!health.initialized)
@@ -365,7 +383,7 @@ critical_command_journal_result critical_command_journal_append(const critical_c
 		return critical_command_journal_result::append_uncertain;
 	}
 	journal_frame frame;
-	if (!build_frame(command, &frame))
+	if (!build_frame(command, retain_until_publication, &frame))
 	{
 		record_result(critical_command_journal_result::invalid);
 		return critical_command_journal_result::invalid;
@@ -480,8 +498,9 @@ critical_command_journal_checkpoint(const critical_operation_id &operation_id)
 	return result;
 }
 
-critical_command_journal_result critical_command_journal_replay(critical_command_replay_fn replay,
-								void *context)
+critical_command_journal_result
+critical_command_journal_replay_with_publication(critical_command_publication_replay_fn replay,
+						 void *context)
 {
 	if (!replay)
 		return critical_command_journal_result::invalid;
@@ -499,7 +518,7 @@ critical_command_journal_result critical_command_journal_replay(critical_command
 		++health.replays;
 	}
 	for (journal_frame &frame : frames)
-		if (!replay(std::move(frame.command), context))
+		if (!replay(std::move(frame.command), frame.retain_until_publication, context))
 		{
 			std::lock_guard<std::mutex> lock(journal_mutex);
 			health.last_result = critical_command_journal_result::replay_blocked;
@@ -510,6 +529,25 @@ critical_command_journal_result critical_command_journal_replay(critical_command
 		health.last_result = critical_command_journal_result::ok;
 	}
 	return critical_command_journal_result::ok;
+}
+
+critical_command_journal_result critical_command_journal_replay(critical_command_replay_fn replay,
+								void *context)
+{
+	if (!replay)
+		return critical_command_journal_result::invalid;
+	struct adapter
+	{
+		critical_command_replay_fn replay;
+		void *context;
+	} value{ replay, context };
+	return critical_command_journal_replay_with_publication(
+		[](critical_command command, bool, void *opaque)
+		{
+			auto &entry = *static_cast<adapter *>(opaque);
+			return entry.replay(std::move(command), entry.context);
+		},
+		&value);
 }
 
 critical_command_journal_health critical_command_journal_health_copy(void)

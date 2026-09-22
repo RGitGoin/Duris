@@ -34,6 +34,7 @@ with tempfile.TemporaryDirectory(prefix="duris-flat-admission-") as temporary:
                     *sources, "-Wl,--wrap=_Znwm,--wrap=_Znam",
                     "-Wl,--wrap=_Z51flatfile_critical_command_repository_apply_selectedRK16critical_commandPv", "-lcrypto", "-lz", "-pthread", "-o", str(binary)],
                    cwd=ROOT, check=True)
-    subprocess.run([str(binary), str(work / "state")], check=True, timeout=90,
+    for mode in ("0", "1"):
+        subprocess.run([str(binary), str(work / ("state-" + mode)), mode], check=True, timeout=90,
                    env=dict(os.environ, ASAN_OPTIONS="detect_leaks=1:halt_on_error=1",
                             UBSAN_OPTIONS="halt_on_error=1:print_stacktrace=1"))

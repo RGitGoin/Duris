@@ -9,6 +9,7 @@
 #include <chrono>
 #include <mutex>
 #include <thread>
+#include <zlib.h>
 
 #include "flatfile_accounting_dispatch_native_fixture.h"
 struct native_execution
@@ -74,7 +75,7 @@ void journal_contains(const std::string &path, const critical_command &expected,
 }
 int main(int argc, char **argv)
 {
-	assert(argc == 2);
+	assert(argc == 3);
 	const fs::path base = argv[1];
 	fs::create_directories(base);
 	fs::permissions(base, fs::perms::owner_all);
@@ -102,6 +103,24 @@ int main(int argc, char **argv)
 		assert(critical_command_coordinator_is_fenced(key, nullptr));
 	critical_command_coordinator_shutdown(); // Deliberately no publication acknowledgement.
 	journal_contains(journal, exact, 1);
+	if (argv[2][0] == '1')
+	{
+		// Simulate a pre-metadata accounting journal: retain conservatively.
+		const auto path = fs::path(journal) / "critical-command.journal";
+		auto data = read(path);
+		assert(data.size() > 41 && data[4] == 2 && data[40] == 1);
+		data.erase(data.begin() + 40);
+		auto put = [&](size_t offset, uint64_t value, size_t width)
+		{
+			for (size_t i = 0; i < width; ++i)
+				data[offset + i] = uint8_t(value >> (8 * i));
+		};
+		put(4, 1, 4);
+		put(8, data.size(), 8);
+		put(16, data.size() - 40, 4);
+		put(20, crc32(0, data.data() + 40, data.size() - 40), 4);
+		write(path, data);
+	}
 
 	assert(critical_command_coordinator_init(journal.c_str(), native_apply, &execution, 1,
 						 nullptr, nullptr,
@@ -115,11 +134,11 @@ int main(int argc, char **argv)
 	       replay_state.domains.bank == first_state.domains.bank &&
 	       replay_state.domains.wallet_revision == first_state.domains.wallet_revision &&
 	       replay_state.domains.bank_revision == first_state.domains.bank_revision);
-	// Current coordinator replay does not retain the publication flag. This is
-	// evidence of automatic retirement, NOT proof of restart-safe publication.
-	// Publication/save acknowledgement must be fixed before gameplay activation.
+	assert(critical_command_journal_health_copy().checkpoints == 0);
+	for (const auto &key : exact.keys)
+		assert(critical_command_coordinator_is_fenced(key, nullptr));
+	assert(critical_command_coordinator_acknowledge_publication(exact.operation_id));
 	assert(critical_command_journal_health_copy().checkpoints == 1);
-	assert(!critical_command_coordinator_acknowledge_publication(exact.operation_id));
 	for (const auto &key : exact.keys)
 		assert(!critical_command_coordinator_is_fenced(key, nullptr));
 	critical_command_coordinator_shutdown();
@@ -186,5 +205,5 @@ int main(int argc, char **argv)
 	std::cout
 		<< "native flatfile admission: exact original-ID replay changes balances once; fresh ack retires; unsupported durable work stays uncheckpointed\n";
 	std::cout
-		<< "known publication gap: replay auto-retires without restoring publication retention\n";
+		<< "restart publication retention: replay stays fenced until explicit acknowledgement\n";
 }

@@ -90,8 +90,10 @@ static critical_command make_command(uint8_t tag)
     return command;
 }
 
-static bool collect(critical_command command, void *raw)
+static bool retain_mode = false;
+static bool collect(critical_command command, bool retain, void *raw)
 {
+    assert(retain == retain_mode);
     static_cast<std::vector<critical_command> *>(raw)->push_back(std::move(command));
     return true;
 }
@@ -114,7 +116,7 @@ static void reset_journal(const char *directory)
 static void assert_only_baseline(const char *directory)
 {
     std::vector<critical_command> replayed;
-    assert(critical_command_journal_replay(collect, &replayed) ==
+    assert(critical_command_journal_replay_with_publication(collect, &replayed) ==
            critical_command_journal_result::ok);
     assert(replayed.size() == 1 && replayed[0].payload[0] == 1);
     (void)directory;
@@ -122,43 +124,44 @@ static void assert_only_baseline(const char *directory)
 
 int main(int argc, char **argv)
 {
-    assert(argc == 2);
+    assert(argc == 3);
+    retain_mode = argv[2][0] == '1';
     const char *directory = argv[1];
     reset_journal(directory);
     const auto baseline = make_command(1);
-    assert(critical_command_journal_append(baseline) == critical_command_journal_result::ok);
+    assert(critical_command_journal_append(baseline, retain_mode) == critical_command_journal_result::ok);
     const auto baseline_size = std::filesystem::file_size(journal_path(directory));
 
     write_fault = 1;
-    assert(critical_command_journal_append(make_command(2)) ==
+    assert(critical_command_journal_append(make_command(2), retain_mode) ==
            critical_command_journal_result::io_failure);
     assert(std::filesystem::file_size(journal_path(directory)) == baseline_size);
     assert_only_baseline(directory);
 
     write_fault = 2;
-    assert(critical_command_journal_append(make_command(3)) ==
+    assert(critical_command_journal_append(make_command(3), retain_mode) ==
            critical_command_journal_result::io_failure);
     assert(std::filesystem::file_size(journal_path(directory)) == baseline_size);
     assert_only_baseline(directory);
 
     fsync_fault = 1;
-    assert(critical_command_journal_append(make_command(4)) ==
+    assert(critical_command_journal_append(make_command(4), retain_mode) ==
            critical_command_journal_result::io_failure);
     assert(std::filesystem::file_size(journal_path(directory)) == baseline_size);
     assert_only_baseline(directory);
 
     close_fault = 1;
-    assert(critical_command_journal_append(make_command(5)) ==
+    assert(critical_command_journal_append(make_command(5), retain_mode) ==
            critical_command_journal_result::io_failure);
     assert(std::filesystem::file_size(journal_path(directory)) == baseline_size);
     assert_only_baseline(directory);
 
     close_fault = 2;
-    assert(critical_command_journal_append(make_command(6)) ==
+    assert(critical_command_journal_append(make_command(6), retain_mode) ==
            critical_command_journal_result::append_uncertain);
     assert(std::filesystem::file_size(journal_path(directory)) == baseline_size);
     close_fault = 0;
-    assert(critical_command_journal_append(make_command(7)) ==
+    assert(critical_command_journal_append(make_command(7), retain_mode) ==
            critical_command_journal_result::append_uncertain);
     assert(critical_command_journal_sync() == critical_command_journal_result::ok);
     assert_only_baseline(directory);
@@ -184,6 +187,7 @@ with tempfile.TemporaryDirectory(prefix="duris-journal-faults-") as temporary:
         cwd=ROOT,
         check=True,
     )
-    subprocess.run([str(binary), str(root / "journal")], check=True, timeout=20)
+    for mode in ("0", "1"):
+        subprocess.run([str(binary), str(root / ("journal-" + mode)), mode], check=True, timeout=20)
 
 print("critical command journal append fault checks passed")
