@@ -570,6 +570,65 @@ int main(int argc, char **argv)
 	assert(argc == 2);
 	const fs::path root = argv[1];
 	qualify_storage_guards(root / "storage-guards");
+	// The structural evidence store must retain the largest item witness/event
+	// plan. This fixture does not claim that a native item owner applied it.
+	{
+		const auto item_root = root / "item-boundary";
+		provision(item_root);
+		auto value = record(61000);
+		economic_accounting_plan plan;
+		assert(economic_plan_decode(value.plan, &plan) == economic_accounting_error::ok);
+		for (size_t index = 0; index < ECONOMIC_ACCOUNTING_MAX_ITEM_WITNESSES; ++index)
+		{
+			const uint64_t uid = index + 1;
+			economic_item_position before = {
+				{ item_owner_type::player, 1, 0 }, uid, 0, 1,
+				item_custody_state::active
+			};
+			auto after = before;
+			if (index < ECONOMIC_ACCOUNTING_MAX_ITEM_EVENTS)
+			{
+				after.owner.id = 2;
+				after.revision = 2;
+				plan.item_events.push_back(
+					{ static_cast<uint32_t>(index), 0, uid, before, after });
+			}
+			plan.items_before.push_back({ uid, before });
+			plan.items_after.push_back({ uid, after });
+		}
+		assert(economic_plan_encode(plan, &value.plan) == economic_accounting_error::ok);
+		const auto maximum_plan = value.plan;
+		auto over = plan;
+		over.items_before.push_back(plan.items_before.front());
+		assert(economic_plan_encode(over, &value.plan) == economic_accounting_error::capacity);
+		assert(value.plan == maximum_plan);
+		over = plan;
+		over.item_events.push_back(plan.item_events.front());
+		assert(economic_plan_encode(over, &value.plan) == economic_accounting_error::capacity);
+		assert(value.plan == maximum_plan);
+		std::string item_error;
+		{
+			flatfile_authority_lock lock;
+			assert(lock.acquire(item_root.string(), &item_error));
+			std::vector<flatfile_authority_operation> operations;
+			assert(flatfile_accounting_test_access::initialize(item_root.string(), lock,
+				id(1), 1, &operations, &item_error) == status::ok);
+			assert(flatfile_accounting_test_access::commit(item_root.string(), lock,
+				operations, &item_error) == flatfile_authority_transaction_result::ok);
+			operations.clear();
+			assert(flatfile_accounting_test_access::stage(item_root.string(), lock, value,
+				&operations, &item_error) == status::ok);
+			assert(flatfile_accounting_test_access::commit(item_root.string(), lock,
+				operations, &item_error) == flatfile_authority_transaction_result::ok);
+		}
+		flatfile_authority_lock reopened;
+		assert(reopened.acquire(item_root.string(), &item_error));
+		flatfile_accounting_record retained;
+		assert(flatfile_accounting_lookup(item_root.string(), reopened, value.command,
+			&retained, &item_error) == status::ok);
+		assert(retained.plan == maximum_plan && retained.result == value.result);
+		puts("flatfile accounting: maximum item evidence retained after reopen; oversized plans refuse");
+	}
 	provision(root);
 	std::string error;
 	auto first = record(100);
