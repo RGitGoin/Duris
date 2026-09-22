@@ -107,3 +107,19 @@ and uncertainty. It is not a native database/save integration or full boot test.
 Gameplay producers are not switched by this increment. Offline completion without
 login, account lifecycle changes, native end-to-end save qualification, restricted
 startup drain and activation remain open before issue closure.
+
+## Native flatfile save qualification
+
+`tests/async/test_economic_bank_native_save.py` links the production bank publisher,
+player save pipeline, dispatcher, worker, save journal, revision tracking and native
+flatfile player repository. Capture, live-player lookup and accounting completion
+are controlled fixtures; the baseline represents an already committed bank result.
+The test therefore qualifies the native save side, not a complete accounting
+transaction or deployed gameplay journey.
+
+The scenarios check retention before worker submission, while the worker waits on
+the real player snapshot lock, after a corrupt snapshot causes native save failure,
+and across save-pipeline shutdown/reinitialization with journal replay. After save
+completion, native readback must contain the expected revision and copper balance.
+The replay scenario resets runtime state in-process; process-crash coverage and
+production capture/coordinator integration remain separate requirements.
