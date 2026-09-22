@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from _paths import SRC
+from _paths import SRC, extract_function
 from pathlib import Path
 
 
@@ -14,3 +14,19 @@ assert "return list_hulls(ch, ship, owned);" in list_branch
 assert list_branch.index("if (!*arg1)") < list_branch.index("if (*arg1)")
 
 print("[PASS] bare list at a ship shop defaults to the purchasable hull catalog")
+
+# Whole-ship sale deliberately has no reachable payout/destruction path. Match
+# the complete entry prefix, not merely the presence of a return somewhere in
+# the function: moving the refusal below a mutation must fail this contract.
+import re
+sale = extract_function("ships/ship_shop.c", "int sell_ship(")
+entry = sale[sale.index("{") + 1:sale.index("return TRUE;") + len("return TRUE;")]
+assert re.fullmatch(
+    r'\s*int i = 0, k = 0, j;\s*'
+    r'send_to_char\("&\+RSelling ships completely is not allowed\.&N\\r\\n", ch\);\s*'
+    r'return TRUE;', entry
+), "Whole-ship sale must refuse before any mutation or argument-dependent branch"
+assert sale.index("return TRUE;") < sale.index("ADD_MONEY(ch, cost);")
+assert sale.index("return TRUE;") < sale.index("shipObjHash.erase(ship);")
+assert sale.index("return TRUE;") < sale.index("delete_ship(ship);")
+print("[PASS] whole-ship sale refuses unconditionally before payout and destruction")

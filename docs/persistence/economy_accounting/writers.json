@@ -28479,7 +28479,7 @@
       "coverage": "legacy",
       "classification": "Unconditional refusal and return precede legacy payout and ship deletion code. This lexical money writer is unreachable in current function; preserve disabled behavior rather than enable sale during integration.",
       "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Executable source contract checks the complete unconditional refusal prefix before payout, ship hash removal and deletion. Disabled route remains inventoried; no runtime sale execution or accounting backend qualification is claimed.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -28494,7 +28494,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_ship_shop_list_contract.py"
+      ],
       "sites": [
         [
           "src/ships/ship_shop.c",

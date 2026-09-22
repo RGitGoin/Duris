@@ -3568,3 +3568,7 @@ Mapped the successful private MariaDB ASan/UBSan run at 63746714f to five existi
 ### Corpse bank creation and preservation regression
 
 Extended the native corpse harness: coinless raise begins with no bank row and asserts exactly one zero-balance row at revision 1 after exact replay; resurrection begins with nonzero bank denominations and asserts they remain unchanged. Full private MariaDB bootstrap, migration replay, runtime/schema checks and native ASan/UBSan suite passed. Linked bank preparation to this executable candidate, leaving 636 missing candidates. No production behavior or backend qualification status changed.
+
+### Disabled whole-ship sale contract
+
+Rechecked live #474/#475 requirements: unsupported operations must remain visible and existing refusals preserved. Extended the ship-shop source test to require the complete unconditional entry refusal before legacy payout, hash removal and deletion. Both list and disabled-sale contracts pass. Linked the disabled sale writer to this limited executable source evidence, leaving 635 candidate gaps. This does not qualify enabled ship commerce or any accounting backend.
