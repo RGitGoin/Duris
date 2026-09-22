@@ -18630,6 +18630,86 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.spring_spell_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_create_spring(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Creates prototype750 spring in caster room after excluding no-ground/underworld-no-ground/ocean sectors; sets value0 to caster level and decay affect600 before room publication.",
+      "authority_boundary": "Retain fresh UID, caster-level payload and decay schedule once per cast. Commented indoor restriction is inactive. Allocation guard does not prove durable admission or decay retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          12687,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          12697,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.divine_font_creation",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_divine_font(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Creates prototype469 font in caster room, setting value0 to caster level and decay affect600 before publication.",
+      "authority_boundary": "Retain fresh UID and initial payload/decay schedule; this handler has no spring-style sector restriction. Room narration precedes publication and is not save acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          12705,
+          "item_lifecycle"
+        ],
+        [
+          "src/magic/magic.c",
+          12716,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
