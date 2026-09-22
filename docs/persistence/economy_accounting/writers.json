@@ -699,7 +699,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character wallet denominations",
+      "destination": "Coin pile custody; NPC direct publication or player compound command"
     },
     {
       "id": "currency.pile_constructor",
@@ -844,7 +846,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Incoming coin pile denominations and UID",
+      "destination": "Surviving pile value; incoming UID retired without destroying transferred value"
     },
     {
       "id": "quest.reward",
@@ -1454,7 +1458,9 @@
           "direct_cash_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Table stake and game payout obligation",
+      "destination": "Player gross winnings or returned stake; includes original stake"
     },
     {
       "id": "lifecycle.character_delete",
@@ -2151,9 +2157,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_flatfile_player_domain_repository.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/core/utility.c",
@@ -2186,7 +2190,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-defined reward/refund/transfer value",
+      "destination": "Persisted-player wallet command or direct transient/NPC wallet increment"
     },
     {
       "id": "currency.credit_pending_claim",
@@ -2221,7 +2227,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Wallet credit rejected by submission",
+      "destination": "Auction pending claim if fallback succeeds; otherwise staff-review obligation"
     },
     {
       "id": "currency.wallet_debit",
@@ -2248,9 +2256,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_flatfile_player_domain_repository.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/core/utility.c",
@@ -2308,7 +2314,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Character wallet value",
+      "destination": "Caller-defined payment/expense with denomination change returned to wallet"
     },
     {
       "id": "currency.bank_payment",
@@ -2350,7 +2358,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared bank payment value",
+      "destination": "Caller expense and wallet denomination change in same payment"
     },
     {
       "id": "currency.bank_reward",
@@ -2392,7 +2402,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-defined bank reward/refund value",
+      "destination": "Canonical shared-bank credit command"
     },
     {
       "id": "currency.deposit",
@@ -2438,7 +2450,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor wallet denominations",
+      "destination": "Shared-account bank denominations"
     },
     {
       "id": "currency.withdraw",
@@ -2479,7 +2493,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared-account bank denominations",
+      "destination": "Actor wallet denominations"
     },
     {
       "id": "currency.split",
@@ -2519,7 +2535,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Sender wallet shareable denominations",
+      "destination": "Visible same-room eligible group wallets; remainder and sender share retained"
     },
     {
       "id": "currency.identify",
@@ -2554,7 +2572,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prepared wallet or bank service payment",
+      "destination": "Identify expense and possible wallet change; builder alone does not commit"
     },
     {
       "id": "currency.compat_sql_bank",
@@ -2601,7 +2621,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy shared-bank row and requested delta",
+      "destination": "Committed legacy bank balances/change without accounting operation identity"
     },
     {
       "id": "currency.sql_apply",
@@ -2632,7 +2654,9 @@
         "tests/async/run_currency_transaction_schema_mysql.sh"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Locked wallet/shared-bank state and revisions",
+      "destination": "Updated balances/revisions and legacy currency ledger"
     },
     {
       "id": "currency.flat_apply",
@@ -2665,7 +2689,9 @@
         "tests/async/test_economic_flatfile_admission_native.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Flat-file wallet/bank currency state",
+      "destination": "Updated currency images and retained receipts"
     },
     {
       "id": "coin.player_give",
@@ -6642,7 +6668,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared-account identity and legacy bank storage",
+      "destination": "Missing bank row and legacy baseline snapshot; not epoch admission or issuance"
     },
     {
       "id": "recovery.sql_locker_items",
@@ -8354,9 +8382,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_flatfile_player_domain_repository.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/core/utility.c",
@@ -8364,7 +8390,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Bank payment request",
+      "destination": "Queued command and rejection callback; acceptance not durable debit"
     },
     {
       "id": "currency.bank_single_projection",
@@ -8391,9 +8419,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_flatfile_player_domain_repository.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/core/utility.c",
@@ -8416,7 +8442,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "One shared bank denomination snapshot",
+      "destination": "Matching online account/racewar live copies, without revision fence"
     },
     {
       "id": "currency.bank_revision_projection",
@@ -8443,9 +8471,7 @@
           "evidence": []
         }
       },
-      "test_candidates": [
-        "tests/async/test_flatfile_player_domain_repository.py"
-      ],
+      "test_candidates": [],
       "sites": [
         [
           "src/core/utility.c",
@@ -8468,7 +8494,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared bank vector and explicit revision or compatibility sentinel",
+      "destination": "Matching online account/racewar copies; older explicit revisions suppressed"
     },
     {
       "id": "item.creation_reconstruction",
@@ -10725,7 +10753,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed wallet vector/revision",
+      "destination": "Live wallet and GMCP projection; no second economic event"
     },
     {
       "id": "currency.coin_endpoint",
@@ -10760,7 +10790,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Current wallet vector/revisions and proposed bounded delta",
+      "destination": "Prepared endpoint before/after vectors; no mutation"
     },
     {
       "id": "currency.coin_submit",
@@ -10800,7 +10832,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated coin endpoints/fences and callback context",
+      "destination": "Coordinator command, retained pending work and later publication"
     },
     {
       "id": "currency.generic_submit",
@@ -10860,7 +10894,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Typed wallet/bank delta, operation identity and revisions",
+      "destination": "Pending coordinator operation and callback; duplicate pending shortcut needs payload review"
     },
     {
       "id": "currency.wallet_value_adapter",
@@ -10900,7 +10936,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Signed wallet value change",
+      "destination": "Denomination delta delegated to generic submission; no separate value event"
     },
     {
       "id": "currency.command_builder",
@@ -10912,7 +10950,7 @@
       "coverage": "legacy",
       "classification": "Encodes a currency payload and assigns player/account keys and expected revisions under the supplied operation ID. The constructed command has no admission timestamp and does not mutate balances.",
       "authority_boundary": "Caller-owned operation and backend transaction determine commit; builder success is not economic delivery.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified; linked contract test includes source/codec structure, not native runtime qualification",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -10927,7 +10965,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_transaction_contract.py"
+      ],
       "sites": [
         [
           "src/economy/currency_command.c",
@@ -10935,7 +10975,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Currency payload, player/account keys and operation identity",
+      "destination": "Encoded command and expected revisions; no balance change"
     },
     {
       "id": "coin.command_builder",
@@ -11500,7 +11542,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Player wager denomination/value",
+      "destination": "Live table stake after debit submission acceptance; commit callback absent"
     },
     {
       "id": "boon.disabled_legacy_rewards",
@@ -14892,7 +14936,9 @@
           "money_helper"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim selected denominations",
+      "destination": "Thief equivalent copper-value credit via ADD_MONEY"
     },
     {
       "id": "item.potion_consumption",
@@ -15339,7 +15385,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "New replacement skeleton prototype cash",
+      "destination": "Zeroed provisional NPC wallets before room placement"
     },
     {
       "id": "service.rentacleric",
@@ -16249,7 +16297,9 @@
           "direct_cash_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Customer input denomination",
+      "destination": "Converted output denomination after fee/truncation and rounding"
     },
     {
       "id": "item.ship_ticket_consumption",
