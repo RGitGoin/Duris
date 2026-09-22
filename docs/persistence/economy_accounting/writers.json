@@ -26143,6 +26143,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.chaos_starter_bank",
+      "path": "src/account/nanny.c",
+      "symbol": "schedule_chaos_starting_bank",
+      "reason": "bank_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Enabled pending CHAOS starter reward submits identified currency transaction for one million platinum bank delta with empty wallet delta. Operation identity and pending intent distinguish one-time grant from login retry; queued acceptance is not callback/save acknowledgement.",
+      "authority_boundary": "Preserve baseline/grant identity and distinguish provisional ownership from durable admission. Repeated login/recovery must not issue reward twice or erase existing balances; backend and publication/save qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          532,
+          "economic_submit"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.new_character_zero_baseline",
+      "path": "src/account/nanny.c",
+      "symbol": "void init_char",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Initial character setup zeroes wallet denominations and adjacent bank spare fields/revisions, plus other progression state. This establishes fresh baseline rather than ordinary currency destruction; caller lifecycle must exclude existing persisted characters.",
+      "authority_boundary": "Preserve baseline/grant identity and distinguish provisional ownership from durable admission. Repeated login/recovery must not issue reward twice or erase existing balances; backend and publication/save qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          4580,
+          "coin_assignment"
+        ],
+        [
+          "src/account/nanny.c",
+          4581,
+          "coin_assignment"
+        ],
+        [
+          "src/account/nanny.c",
+          4582,
+          "coin_assignment"
+        ],
+        [
+          "src/account/nanny.c",
+          4583,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.chaos_kit_provisional_cleanup",
+      "path": "src/account/nanny.c",
+      "symbol": "~chaos_kit_objects",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Builder destructor extracts owned unpublished roots with FALSE. Successful batch admission transfers ownership by resetting root count; failed preparation/submission leaves destructor responsible for provisional forest. Cleanup is not retirement of admitted player inventory.",
+      "authority_boundary": "Preserve baseline/grant identity and distinguish provisional ownership from durable admission. Repeated login/recovery must not issue reward twice or erase existing balances; backend and publication/save qualification remain outstanding.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/account/nanny.c",
+          552,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

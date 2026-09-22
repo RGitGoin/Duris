@@ -1994,3 +1994,15 @@ ship-generation manifest must prevent rerolled or duplicate rewards on recovery.
 Draft validation passed 13 fixtures: 553 routes, 2756 raw matches, 2698 unique
 coordinates, 1872 mapped, 43 reviewed declarations, 783 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Login bank reward, zero baseline and provisional kit cleanup
+
+Six coordinates classified. CHAOS bank grant uses identified operation and pending
+intent for million-platinum bank delta; queue acceptance is not saved completion.
+Fresh character zero wallet/bank baseline differs from economic retirement. Kit
+destructor owns unpublished roots until successful coordinator handoff. Remaining
+kit materialization, ordinary newbie grant and wipe paths still require review.
+
+Draft validation passed 13 fixtures: 556 routes, 2756 raw matches, 2698 unique
+coordinates, 1878 mapped, 43 reviewed declarations, 777 unclassified.
+No gameplay changes; release readiness remains false.
