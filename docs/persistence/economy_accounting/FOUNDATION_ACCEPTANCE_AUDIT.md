@@ -1476,3 +1476,16 @@ Draft validation passed13 fixtures:423 routes,2756 raw matches,2698 unique
 coordinates,1447 mapped,43 reviewed declarations,1208 unclassified.
 All current magic.c lexical matches are mapped; broader census and runtime
 qualification remain incomplete. No gameplay changes.
+
+## Necromancy corpse conversion fallbacks
+
+Nine coordinates classified for wall of bones and corpse compaction. Wall success
+releases children and retires its source; implicit scale components may already
+be consumed before wall creation fails. Compaction unloads children before bone
+pile allocation, so allocation failure preserves an emptied corpse rather than
+undoing child transfers. Successful output copies corpse level and replaces the
+source. Deferred persistence and durable acknowledgement remain unqualified.
+
+Draft validation: 13 fixtures, 425 routes, 2756 raw matches, 2698 unique
+coordinates, 1456 mapped, 43 reviewed declarations, 1199 unclassified.
+No runtime changes; release readiness remains false.

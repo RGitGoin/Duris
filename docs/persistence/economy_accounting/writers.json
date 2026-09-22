@@ -20110,6 +20110,111 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.wall_of_bones_fallback",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_wall_of_bones(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After deferred-persistence offer, successful corpse wall creation releases corpse children into caster room and retires corpse. Scale wall success consumes explicit scale object. Implicit carried scale components are consumed earlier via get_spell_component before create_walls.",
+      "authority_boundary": "Bind source corpse/bone/scale identity and destination room; distinguish explicit success-only retirement from helper-consumed components on failed wall creation. Wall creation and item removal are separate effects, not atomic acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          3376,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3377,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3380,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3403,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.compact_corpse_fallback",
+      "path": "src/classes/necromancy.c",
+      "symbol": "void spell_compact_corpse(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After corpse-type/carved refusal checks and deferred-persistence offer, unloads all children into caster room before allocating bone pile. Successful allocation copies CORPSE_LEVEL, retires corpse and publishes pile; allocation failure leaves emptied corpse and released contents.",
+      "authority_boundary": "Preserve child UIDs and corpse lineage. New bone pile is replacement output, not replay issuance. Failed allocation is not a no-op: prior child transfers remain. Source retirement, output admission and save/recovery must be qualified together.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/necromancy.c",
+          3433,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3434,
+          "item_publication"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3437,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3446,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/necromancy.c",
+          3447,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
