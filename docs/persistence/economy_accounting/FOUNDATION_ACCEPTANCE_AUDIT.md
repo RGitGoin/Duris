@@ -3247,3 +3247,7 @@ Added 30 remaining world endpoints, including NPC/ship loot, keeper reconciliati
 ## Consumption and NPC transformation endpoints (2026-09-22)
 
 Added 25 item endpoints covering consumption, fallback theft, donations, same-owner equipment moves, NPC-form transfers and death rewards. Preserved normal-death continuation, separate existing-item movement/new output, and known allocation limits. Explicit endpoints: 572; missing endpoints: 279; test-link gaps remain 710. Draft validation and diff checks pass; gameplay and runtime qualification unchanged.
+
+## Scripted item movement and consumption endpoints (2026-09-22)
+
+Added 25 item endpoints for transformations, offerings, charge exhaustion, ferry/pool relocation and random outputs. Preserved same-object transfers, parent-only digestion, sequential output creation and detached chest state. Explicit endpoints: 597; missing endpoints: 254; test-link gaps remain 710. Draft validation and diff checks pass; no gameplay or runtime qualification changed.

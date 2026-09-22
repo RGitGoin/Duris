@@ -17106,7 +17106,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible room object then held container",
+      "destination": "Blob inventory; direct children preserved before parent digestion"
     },
     {
       "id": "item.rainbow_key_shards",
@@ -17156,7 +17158,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried rainbow key",
+      "destination": "Destroyed key and room shards followed by mage extraction"
     },
     {
       "id": "item.fooquest_transform_reward",
@@ -17201,7 +17205,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Trusted transformation and alignment-selected item template",
+      "destination": "New NPC65013 holding new item21/22"
     },
     {
       "id": "item.newbie_paladin_sword",
@@ -17241,7 +17247,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible newbie tag and sword template",
+      "destination": "Removed tag and blessed sword in player inventory"
     },
     {
       "id": "item.janitor_pickup",
@@ -17281,7 +17289,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Qualifying room object",
+      "destination": "Idle janitor inventory"
     },
     {
       "id": "item.spiritist_disarm",
@@ -17321,7 +17331,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim primary or secondary weapon",
+      "destination": "Secret-marked weapon unequipped into room"
     },
     {
       "id": "item.ice_wolf_transform",
@@ -17391,7 +17403,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ice wolf/assistant NPC possessions",
+      "destination": "Replacement-form inventory/equipment before source extraction"
     },
     {
       "id": "item.ice_malice_death_transfer",
@@ -17441,7 +17455,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC possessions",
+      "destination": "New vapor97056 holdings"
     },
     {
       "id": "item.malevolence_form_transfer",
@@ -17491,7 +17507,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Low-health NPC inventory/equipment",
+      "destination": "Vapor45571 holdings before relocated source death"
     },
     {
       "id": "item.shabo_butler_source_transfer",
@@ -17541,7 +17559,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Fighting butler possessions",
+      "destination": "Replacement32844 holdings before source extraction"
     },
     {
       "id": "item.alchemy_bag_generation",
@@ -17651,7 +17671,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Elapsed worn-pouch generation timer",
+      "destination": "Eight sequential ingredient/bottle outputs inside pouch"
     },
     {
       "id": "item.llyms_offering_retirement",
@@ -17696,7 +17718,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible held nonartifact treasure",
+      "destination": "Retired offering before blessing/cash/bonus reward"
     },
     {
       "id": "coin.llyms_offering_reward",
@@ -17808,7 +17832,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Rare offering bonus roll",
+      "destination": "One selected bonus object in room"
     },
     {
       "id": "item.monolith_absorption",
@@ -17843,7 +17869,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching donor object charges",
+      "destination": "Added monolith charges and retired donor"
     },
     {
       "id": "item.elemental_ring_exhaustion",
@@ -17883,7 +17911,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Charged ring after target selection",
+      "destination": "Decremented charge or retired zero-charge ring"
     },
     {
       "id": "item.menden_figurine_consumption",
@@ -17923,7 +17953,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held/wielded figurine and depicted NPC template",
+      "destination": "Published pet/follower and consumed figurine"
     },
     {
       "id": "item.banana_peel_conversion",
@@ -17968,7 +18000,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Accepted banana",
+      "destination": "Fullness effect, consumed banana and new decaying room peel"
     },
     {
       "id": "item.crystal_spike_exhaustion",
@@ -18008,7 +18042,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Held spike value0 charge",
+      "destination": "Decremented charge or exact-zero retirement"
     },
     {
       "id": "item.charon_ship_movement",
@@ -18058,7 +18094,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing route galleon",
+      "destination": "Same object in next route room"
     },
     {
       "id": "item.charon_cargo_unload",
@@ -18098,7 +18136,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Loose ferry-interior objects",
+      "destination": "Exterior-room objects after occupant evacuation"
     },
     {
       "id": "item.floating_pool_movement",
@@ -18138,7 +18178,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing idle pool and movement roll",
+      "destination": "Same pool in eligible adjacent room"
     },
     {
       "id": "item.teleporting_pool_movement",
@@ -18178,7 +18220,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing pool and zone teleport roll",
+      "destination": "Same pool in eligible zone room"
     },
     {
       "id": "item.teleporting_map_pool_movement",
@@ -18218,7 +18262,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing map pool and teleport roll",
+      "destination": "Same pool in eligible zone room"
     },
     {
       "id": "item.treasure_chest_reward",
@@ -18263,7 +18309,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Chest opening and nested random potion trials",
+      "destination": "Zero-to-four new potions and chest detached from room"
     },
     {
       "id": "item.zarbon_curse_creation",
@@ -18303,7 +18351,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible wielder melee roll and prototype36761",
+      "destination": "New object in victim inventory"
     },
     {
       "id": "item.imprison_retirement",
