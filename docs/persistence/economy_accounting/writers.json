@@ -30542,6 +30542,176 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.vecna_corpse_north",
+      "path": "src/specs/specs.vecna.c",
+      "symbol": "vecna_torturerroom",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Moves the first room corpse through the north exit, with contents retained; checks exit presence/nonzero destination then detaches and places the existing corpse.",
+      "authority_boundary": "Existing-item custody movement, not new issuance or destruction. Bind original and final location plus retained contents to operation identity; qualify refusal, partial movement, native save acknowledgement and replay. Local detach/place sequence alone does not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.vecna.c",
+          300,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          301,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.vecna_corpse_down",
+      "path": "src/specs/specs.vecna.c",
+      "symbol": "vecna_ghosthands",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Moves the first room corpse through the down exit, with contents retained; checks exit presence/nonzero destination then detaches and places the existing corpse.",
+      "authority_boundary": "Existing-item custody movement, not new issuance or destruction. Bind original and final location plus retained contents to operation identity; qualify refusal, partial movement, native save acknowledgement and replay. Local detach/place sequence alone does not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.vecna.c",
+          341,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          342,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.oaken_staff_death_drop",
+      "path": "src/specs/specs.vecna.c",
+      "symbol": "vecna_staffoaken",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Lethal indoor staff absorption unequips all equipment, drops carried objects in the current room, then relocates the character to room 40 and invokes die. Existing assets move before the death path; indirect unequip and death consequences require joint qualification.",
+      "authority_boundary": "Existing-item custody movement, not new issuance or destruction. Bind original and final location plus retained contents to operation identity; qualify refusal, partial movement, native save acknowledgement and replay. Local detach/place sequence alone does not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.vecna.c",
+          686,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          691,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.krindor_container_reset",
+      "path": "src/specs/specs.vecna.c",
+      "symbol": "void reset_krindor",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Container reset detaches contents and places them in the device room or carrier/wearer inventory before changing the device type, flags and timers. Unsupported device location logs after detachment. Iteration follows next_content after placement, so complete multi-item traversal is unproven and must not be assumed.",
+      "authority_boundary": "Existing-item custody movement, not new issuance or destruction. Bind original and final location plus retained contents to operation identity; qualify refusal, partial movement, native save acknowledgement and replay. Local detach/place sequence alone does not establish durable accounting.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.vecna.c",
+          1111,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          1113,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          1120,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.vecna.c",
+          1122,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

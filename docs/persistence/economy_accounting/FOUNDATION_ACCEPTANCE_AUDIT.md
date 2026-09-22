@@ -2500,3 +2500,16 @@ publication/save acknowledgement and cancellation qualification remain open.
 Draft validation passed 13 fixtures: 661 routes, 2756 raw matches, 2698 unique
 coordinates, 2098 mapped, 43 reviewed nonwriters, 557 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Vecna special item custody
+
+Ten coordinates grouped into four existing-item movement routes: north/down
+corpse movement, oaken-staff pre-death inventory drop, and Krindor container
+reset. Include indirect unequip/death effects and device semantic mutation in
+qualification. Krindor traverses next_content after relocating each item;
+complete traversal and unsupported-location behavior remain concerns, not fixes.
+No dedicated runtime test evidence added.
+
+Draft validation passed 13 fixtures: 665 routes, 2756 raw matches, 2698 unique
+coordinates, 2108 mapped, 43 reviewed nonwriters, 547 unclassified.
+No gameplay changes; release readiness remains false.
