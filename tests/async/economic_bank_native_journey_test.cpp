@@ -8,6 +8,7 @@
 #include "player/player_save_pipeline.h"
 #include "sql/sql_player.h"
 #include "core/utils.h"
+#include "account/account.h"
 #include <cassert>
 #include <cstring>
 #include <cstdlib>
@@ -42,7 +43,7 @@ bool item_ownership_runtime_snapshot_owner(const item_owner_identity &, size_t,
 	return false;
 }
 P_room world = nullptr;
-P_char online = nullptr;
+P_desc descriptor_list = nullptr;
 unsigned publications = 0;
 [[noreturn]] int panic_corruption_int(const char *, const char *, ...)
 {
@@ -52,17 +53,9 @@ const char *get_account_name_safe(P_char)
 {
 	return "account-one";
 }
-P_char find_player_by_pid(int pid)
-{
-	return online && GET_PID(online) == pid ? online : nullptr;
-}
 void gmcp_char_vitals(P_char)
 {
 	++publications;
-}
-void publish_account_bank_balances_revision(const char *, int, const AccountBankBalances *,
-					    uint64_t)
-{
 }
 #include "flatfile/flatfile_player_repository.h"
 #include "flatfile/flatfile_identity_repository.h"
@@ -79,9 +72,13 @@ const char *persistence_mode_flatfile_root()
 {
 	return native_root.c_str();
 }
-void logit(const char *, const char *, ...) {}
-void persistence_alert(int, const char *, const char *, const char *, const char *, const char *,
-		       const char *, ...)
+extern "C" void fixture_logit(const char *, const char *, ...) asm("__wrap__Z5logitPKcS0_z");
+extern "C" void fixture_logit(const char *, const char *, ...) {}
+extern "C" void fixture_alert(int, const char *, const char *, const char *, const char *,
+			      const char *, const char *,
+			      ...) asm("__wrap__Z17persistence_alertiPKcS0_S0_S0_S0_S0_z");
+extern "C" void fixture_alert(int, const char *, const char *, const char *, const char *,
+			      const char *, const char *, ...)
 {
 }
 player_snapshot snapshot(player_revision_t revision, player_component_mask_t components)
@@ -203,7 +200,32 @@ int main(int argc, char **argv)
 	GET_SILVER(&actor) = 20;
 	GET_GOLD(&actor) = 3;
 	GET_PLATINUM(&actor) = 1;
-	online = character_list = &actor;
+	character_list = &actor;
+	descriptor_data session{};
+	session.character = &actor;
+	actor.desc = &session;
+	STATE(&session) = CON_PLAYING;
+	descriptor_list = &session;
+	acct_entry account{};
+	char account_name[] = "account-one";
+	account.acct_name = account_name;
+	session.account = &account;
+	GET_BALANCE_COPPER(&actor) = 100;
+	player.bank_revision = 1;
+	pc_only_data peer_player{};
+	peer_player.pid = 2;
+	peer_player.bank_revision = 1;
+	char_data peer{};
+	peer.only.pc = &peer_player;
+	peer.player.racewar = 1;
+	GET_COPPER(&peer) = 55;
+	GET_BALANCE_COPPER(&peer) = 100;
+	descriptor_data peer_session{};
+	peer_session.character = &peer;
+	peer_session.account = &account;
+	peer.desc = &peer_session;
+	STATE(&peer_session) = CON_PLAYING;
+	session.next = &peer_session;
 	const std::string journal = base + "/critical";
 	const std::string saves_journal = base + "/saves";
 	critical_command cmd;
@@ -254,8 +276,24 @@ int main(int argc, char **argv)
 	}
 	if (!recovering)
 		assert(player_save_pipeline_init(saves_journal.c_str()));
+	// Use the production descriptor lookup: login and link-dead actors are unavailable.
+	STATE(&session) = CON_PLAYER_LOAD;
+	economic_bank_publication_pulse();
+	retained(cmd);
+	assert(GET_COPPER(&actor) == 100 && publications == 0);
+	STATE(&session) = CON_PLAYING;
+	descriptor_list = nullptr;
+	economic_bank_publication_pulse();
+	retained(cmd);
+	assert(GET_COPPER(&actor) == 100 && publications == 0);
+	descriptor_list = &session;
 	economic_bank_publication_pulse();
 	assert(GET_COPPER(&actor) == 101);
+	assert(GET_BALANCE_COPPER(&actor) == 99 &&
+	       player.bank_revision == committed.domains.bank_revision);
+	assert(GET_BALANCE_COPPER(&peer) == 99 &&
+	       peer_player.bank_revision == committed.domains.bank_revision);
+	assert(GET_COPPER(&peer) == 55);
 	wait_for([] { return player_save_journal_health_copy().appended == 1; });
 	retained(cmd);
 	if (mode == "crash-save")
@@ -307,6 +345,22 @@ int main(int argc, char **argv)
 				return player_save_worker_health_copy().inflight_pids == 1;
 			});
 	}
+	// A native ACK alone cannot publish through a descriptor that left CON_PLAYING.
+	player_revision_snapshot target{};
+	assert(player_revision_snapshot_copy(1, &target));
+	STATE(&session) = CON_PLAYER_LOAD;
+	wait_for(
+		[&]
+		{
+			player_save_pipeline_pulse();
+			economic_bank_publication_pulse();
+			retained(cmd);
+			player_revision_snapshot durable{};
+			return player_revision_snapshot_copy(1, &durable) &&
+			       durable.acknowledged_revision >= target.current_revision &&
+			       !(durable.unacknowledged_components & PLAYER_COMPONENT_STATUS);
+		});
+	STATE(&session) = CON_PLAYING;
 	wait_for(
 		[]
 		{

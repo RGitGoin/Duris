@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 NAMES = [
+    "utility.c",
     "player_snapshot_capture.c",
     'flatfile_accounting_dispatch.c',
     'flatfile_accounting_bank_transaction.c',
@@ -68,7 +69,8 @@ with tempfile.TemporaryDirectory(prefix="duris-bank-native-journey-") as tempora
     subprocess.run(["g++", "-std=c++20", "-Wall", "-Wextra", "-Werror", "-O1", "-g",
         "-D__NO_MYSQL__", "-DDURIS_FLATFILE_ACCOUNTING_TEST", "-Itests/async", "-Isrc", "-Isrc/no_mysql", "-ffunction-sections", "-fdata-sections",
         "tests/async/economic_bank_native_journey_test.cpp", *[rel(name) for name in NAMES],
-        "-Wl,--gc-sections", "-Wl,--wrap=_Znwm,--wrap=_Znam",
+        "-Wl,--gc-sections", "-Wl,--wrap=_Z5logitPKcS0_z",
+        "-Wl,--wrap=_Z17persistence_alertiPKcS0_S0_S0_S0_S0_z", "-Wl,--wrap=_Znwm,--wrap=_Znam",
         "-Wl,--wrap=_Z51flatfile_critical_command_repository_apply_selectedRK16critical_commandPv", "-lcrypto", "-lz", "-pthread", "-o", str(binary)], cwd=ROOT, check=True)
     for mode in ("normal", "committed-replay", "save-replay"):
         subprocess.run([str(binary), str(Path(temporary) / mode), mode], cwd=ROOT, check=True, timeout=30)

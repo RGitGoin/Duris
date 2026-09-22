@@ -142,7 +142,18 @@ it does not reconstruct and resubmit a new bank operation. All three recoveries
 must retain the original fences until saving completes and preserve one balance
 movement. These cases exercise abrupt process exit, not host power loss.
 
-The actor, account-bank cache and world remain synthetic. Unused item/pet capture
+The actor, account descriptors and world remain synthetic. Unused item/pet capture
 surfaces are assertion sentinels. Login/materialization, production startup and SQL
 runtime behavior remain unqualified here. Gameplay producers and activation remain
 unchanged.
+
+The native journey uses `find_player_by_pid` from production `utility.c`, with
+synthetic descriptors and the production shared-bank publisher. It verifies that a
+loading descriptor or a missing descriptor
+does not receive balance publication, and that leaving `CON_PLAYING` keeps the
+original command retained even after native save acknowledgement. Returning to
+`CON_PLAYING` permits normal retirement. A second playing session on the same
+account receives the bank balance and revision without changing its wallet.
+Logging endpoints are wrapped; the lookup
+itself is not. This tests the descriptor admission boundary, not a full nanny/login
+or player materialization journey.
