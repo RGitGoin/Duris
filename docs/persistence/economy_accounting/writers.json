@@ -27477,7 +27477,10 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_chaos_kit_runtime.py",
+        "tests/async/test_chaos_new_character_kit.py"
+      ],
       "sites": [
         [
           "src/account/nanny.c",
@@ -27544,7 +27547,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_chaos_new_character_kit.py"
+      ],
       "sites": [
         [
           "src/account/nanny.c",
