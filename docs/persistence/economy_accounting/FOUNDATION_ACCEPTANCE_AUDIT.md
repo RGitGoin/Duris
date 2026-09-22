@@ -2055,3 +2055,15 @@ outcomes and replay remain unqualified.
 Draft validation passed 13 fixtures: 577 routes, 2756 raw matches, 2698 unique
 coordinates, 1924 mapped, 43 reviewed declarations, 731 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Disabled ship sale and repair charges
+
+Seven coordinates classified. Whole-ship sale payout is unreachable after explicit
+refusal. Repair-all, sail, armor and internal fees precede state/time changes.
+All-armor branch lacks local save/status call used by single arc. Internal price
+is1000 per point despite comment suggesting greater cost. Preserve actual formulas
+and disabled behavior; compound durability remains unqualified.
+
+Draft validation passed 13 fixtures: 582 routes, 2756 raw matches, 2698 unique
+coordinates, 1931 mapped, 43 reviewed declarations, 724 unclassified.
+No gameplay changes; release readiness remains false.

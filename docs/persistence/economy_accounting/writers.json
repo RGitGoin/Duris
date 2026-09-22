@@ -27123,6 +27123,191 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.disabled_whole_ship_sale",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int sell_ship",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Unconditional refusal and return precede legacy payout and ship deletion code. This lexical money writer is unreachable in current function; preserve disabled behavior rather than enable sale during integration.",
+      "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1434,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_repair_all",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int repair_all",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Calculates combined sail/armor/internal/weapon damage cost, checks nonzero cost and affordability, debits then restores components and adds maintenance time before queued save. Preserve aggregate pricing and repaired state as one outcome.",
+      "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1502,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_repair_sail",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int repair_sail",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Positive sail damage priced at2000 per point; affordability then debit, full sail restoration, maintenance time and queued ship save.",
+      "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1557,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_repair_armor",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int repair_armor",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "All/single arc armor costs1000 per damage point. Debit precedes repair/time. All-arcs branch returns without local status update/save call used by single arc; durable caller behavior requires verification.",
+      "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1605,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          1656,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.ship_repair_internal",
+      "path": "src/ships/ship_shop.c",
+      "symbol": "int repair_internal",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "All/single internal structure costs1000 per damage point despite nearby prose claiming higher rate. Debit precedes full selected repair/time and queued save. Preserve actual formula rather than comment.",
+      "authority_boundary": "Preserve reachability, exact pricing and coupled ship state. Payment helper and queued save do not establish compound durable acknowledgement; crash/replay and backend parity remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_shop.c",
+          1703,
+          "money_helper"
+        ],
+        [
+          "src/ships/ship_shop.c",
+          1756,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
