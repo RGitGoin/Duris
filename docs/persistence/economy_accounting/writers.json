@@ -16800,6 +16800,271 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.alchemy_bag_generation",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int alch_bag(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic worn belt pouch advances its timer then sequentially allocates eight ingredients/bottles into itself when the randomized interval elapses.",
+      "authority_boundary": "Bind generation attempt to pouch UID and retain selected timing/outcomes. Allocation failure leaves earlier products and advanced timer intact; do not assume all-or-nothing generation. Each new child needs unique admission and parent linkage.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          10744,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10749,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10752,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10757,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10760,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10765,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10768,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10773,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10776,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10781,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10784,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10789,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10792,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10797,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10800,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          10805,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.llyms_offering_retirement",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int llyms_altar(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Offer accepts visible held nonartifact treasure worth at least 10000, unequips and retires it before granting blessing or random money and possible bonus.",
+      "authority_boundary": "Input retirement precedes every reward; bind exact treasure UID to the offering attempt. Spell, money, item and pet branches are distinct effects, and later allocation failure does not restore the treasure.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          6305,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6306,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6307,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coin.llyms_offering_reward",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int llyms_altar(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Already blessed offerer receives one random money award: denomination scale 1000,100,10 or1 times random1..10, through unchecked ADD_MONEY.",
+      "authority_boundary": "Preserve actual random distribution and chosen value across retry; this is reward issuance rather than transfer from altar funds. No local check proves credit succeeded, and prior treasure retirement is not atomic with wallet credit.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          6327,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6330,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6333,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6336,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.llyms_bonus_reward",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int llyms_altar(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Three outcomes in random1..700 allocate bonus objects88831/88832/88833 into the room after the ordinary offering reward.",
+      "authority_boundary": "Bonus allocation failure leaves consumed offering and prior blessing/money intact. Bind selected outcome and fresh object identity to the same source attempt; pet bonus branches and PET_NOCASH behavior require separate lifetime qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          6372,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6379,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6384,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6391,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6396,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          6403,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

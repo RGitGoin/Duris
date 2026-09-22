@@ -1059,3 +1059,15 @@ inventory completion only, not semantic completeness or runtime qualification.
 Draft validator passed 13 fixtures: 348 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,235 mapped, 43 reviewed declarations and 1,420 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Alchemy pouch and altar issuance
+
+Twenty-nine sites classified. Alchemy pouch advances its timer before sequential
+creation of eight children; allocation failure leaves a partial set. Llyms altar
+retires the held treasure before blessing or unchecked random wallet credit and
+optional bonus creation. Persist chosen outcomes without changing distributions;
+partial failure and pet lifetime behavior require explicit integration treatment.
+
+Draft validator passed 13 fixtures: 352 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,264 mapped, 43 reviewed declarations and 1,391 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
