@@ -110,3 +110,39 @@ pre-transaction index. Missing/corrupt reservation state must not become an empt
 index. Include its format, bounds, compatibility and backup registration with
 the implementation. Keep the current child refusal until these invariants are
 implemented and qualified; structural codec acceptance is not an alternative.
+
+### Reuse the existing compound SQL owner
+
+The legacy coin branch in critical_command_repository_apply already creates the
+coin_endpoints savepoint, inserts each derived child into critical_operation_inbox
+with a plain INSERT before its native effect, and finalizes each child receipt and
+outbox before the root commit. On endpoint failure it rolls back the compound
+scope. Reuse this owner and its shared inbox identity namespace for accounting
+integration; the missing work is typed accounting evidence validation/finalization,
+not a second generic transaction framework. The child-link table's unique key
+alone is still not an identity reservation mechanism. Flat-file reservations
+require their own equivalent durable implementation.
+
+### Disposable local MariaDB qualification
+
+When Docker is unavailable, run
+`python3 tests/async/run_economic_accounting_schema_local.py` in the Linux build
+environment with MariaDB server/client core binaries and compiler dependencies.
+The runner starts its own private temporary data directory on loopback, verifies
+that the connected server owns that directory before writing, uses generated test
+credentials, and stops the process and removes its data on completion or failure.
+It never uses an existing database or installs/starts a system service. If tracked
+helper scripts contain CRLF, it uses a temporary source copy and normalizes only
+non-immutable shell helpers; sealed migration bytes and the checkout stay intact.
+
+This runs the existing schema, authority, bank, baseline, source and enrollment
+suites on MariaDB. It does not substitute for MySQL-engine qualification or prove
+the still-missing common compound accounting path.
+
+Verification on 2026-09-22: the completed local MariaDB 10.11.14 run passed
+runtime compatibility, 10 accounting-schema tests, 10 baseline-schema tests,
+authority locking/disconnect, typed bank, baseline retention, source capture and
+initial enrollment suites, including their native fault/replay cases and
+client-free refusal variants. The revised runner also completed successfully
+with private-instance verification and automatic LF-copy handling. These results
+qualify the existing components, not the missing compound accounting integration.
