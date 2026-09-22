@@ -3488,3 +3488,7 @@ through `Community-Duris/Duris`. The configured `origin` is the separate
 `Community-Duris/DurisMUD` repository (`4b56d8a1ec3e1d64163d31f179665100326e0320`).
 Use the issue repository explicitly for master comparisons and final PR publication.
 This scoped refresh is not a whole-master census review or issue closure audit.
+
+### Quest test candidate audit
+
+Linked four world-quest reward/fee/refund routes to inspected source-contract tests, reducing missing candidates from 674 to 670. The reward rejection test existed but was omitted from its standalone runner; it is now included and passes. Both quest scripts and all 45 accounting contract tests pass. These candidates cover selected item publication, payment ordering and refund invocation contracts, not native backend atomicity, durable refund identity or currency issuance. Each route records that limit; support and completeness flags remain unchanged. Crafting/salvage symbol-only checks were not assigned to economic output routes.

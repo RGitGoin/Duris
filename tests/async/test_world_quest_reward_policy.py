@@ -166,6 +166,7 @@ if __name__ == "__main__":
         test_catalog_withholds_top_value_items_before_pools_and_scores,
         test_nofear_block_reads_the_fourth_affect_field,
         test_kill_quests_pay_one_reward_on_completion,
+        test_reward_grant_rejection_does_not_publish_a_stale_object,
         test_quests_are_unshareable_by_default,
         test_bartender_fee_is_a_property,
         test_properties_ship_the_documented_defaults,
