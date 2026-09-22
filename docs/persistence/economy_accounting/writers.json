@@ -8587,7 +8587,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_account_bank_delta_safety.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
@@ -8595,7 +8597,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Source contract checks SUB_BALANCE uses typed payment submission; no service completion journey."
+      ],
       "source": "Bank payment request",
       "destination": "Queued command and rejection callback; acceptance not durable debit"
     },
@@ -8624,7 +8628,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_account_bank_delta_safety.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
@@ -8647,7 +8653,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Source contract checks online account/racewar filtering; not native publication execution."
+      ],
       "source": "One shared bank denomination snapshot",
       "destination": "Matching online account/racewar live copies, without revision fence"
     },
@@ -8676,7 +8684,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_account_bank_delta_safety.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
@@ -8699,7 +8709,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Source contract checks vector publication assignments and online account/racewar filtering; does not execute revision rejection."
+      ],
       "source": "Shared bank vector and explicit revision or compatibility sentinel",
       "destination": "Matching online account/racewar copies; older explicit revisions suppressed"
     },
@@ -11015,7 +11027,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_completion_retention.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",
@@ -11038,7 +11052,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native adapter harness checks committed wallet/revision publication and unresolved retention with controlled coordinator/world endpoints; no database execution."
+      ],
       "source": "Committed wallet vector/revision",
       "destination": "Live wallet and GMCP projection; no second economic event"
     },
@@ -11067,7 +11083,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_completion_retention.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",
@@ -11075,7 +11093,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native adapter harness constructs wallet coin endpoints for controlled transfer completion scenarios; not all endpoint custody types."
+      ],
       "source": "Current wallet vector/revisions and proposed bounded delta",
       "destination": "Prepared endpoint before/after vectors; no mutation"
     },
@@ -11104,7 +11124,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_completion_retention.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",
@@ -11117,7 +11139,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native adapter harness submits coin transfers and checks ambiguous/retry/malformed completion retention; no backend transaction."
+      ],
       "source": "Validated coin endpoints/fences and callback context",
       "destination": "Coordinator command, retained pending work and later publication"
     },
@@ -11146,7 +11170,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_completion_retention.py"
+      ],
       "sites": [
         [
           "src/economy/currency_transaction.c",
@@ -11179,7 +11205,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native adapter harness covers prepared resubmission, pending operation identity and completion retention with a controlled coordinator."
+      ],
       "source": "Typed wallet/bank delta, operation identity and revisions",
       "destination": "Pending coordinator operation and callback; duplicate pending shortcut needs payload review"
     },
@@ -36541,7 +36569,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_transaction_contract.py"
+      ],
       "sites": [
         [
           "src/persistence/critical_command_repository.c",
@@ -36554,7 +36584,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Source/schema contract checks paired revisioned writes and ledger/result/outbox commit ordering; not database fault execution."
+      ],
       "source": "Prepared wallet/bank state and expected revisions",
       "destination": "Updated balances/revisions and currency evidence within outer transaction"
     },
@@ -36583,7 +36615,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_currency_transaction_contract.py"
+      ],
       "sites": [
         [
           "src/persistence/critical_command_repository.c",
@@ -36591,7 +36625,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Source contract checks bank-row ensure precedes locked read; no database rollback journey."
+      ],
       "source": "Account/racewar identity",
       "destination": "Ensured bank row before locked mutation preparation, not deposit"
     },
