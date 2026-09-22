@@ -7061,7 +7061,7 @@
       "coverage": "legacy",
       "classification": "Stage a validated shopkeeper catalog and item graph, discard failed stages, restore affects, then equip and attach inventory. The memset candidate only resets item affects, not coins. Missing produced-stock representative materialization is a separate route.",
       "authority_boundary": "Validate shop/room/catalog topology before publishing a stage. Staging cleanup does not destroy retained stock; existing saved payload and derived representatives require distinct identity policy.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production restore/reset harness checks duplicate snapshots, shared keeper templates, failed-stage cleanup and invalid identity under ASan/UBSan with fake DB/world I/O; native SQL transactions and accounting identity remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -7076,7 +7076,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_shopkeeper_population.py"
+      ],
       "sites": [
         [
           "src/sql/sql_player.c",
@@ -7143,7 +7145,7 @@
       "coverage": "legacy",
       "classification": "Create a missing representative for each configured produced item during restore staging. This is derived catalog materialization, not restoration of a saved instance. Prove non-authoritative representative status or admit authoritative stock exactly once before assigning issuance.",
       "authority_boundary": "Produced-stock/catalog policy must distinguish a representative from a sold or owned item; no blanket fresh-issuance or projection assumption.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production restore harness checks distinct produced representatives for shops sharing a keeper template; fake DB/world I/O does not establish authoritative admission or issuance policy.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -7158,7 +7160,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_shopkeeper_population.py"
+      ],
       "sites": [
         [
           "src/sql/sql_player.c",
@@ -8162,7 +8166,7 @@
       "coverage": "legacy",
       "classification": "Credit player before finding/debiting keeper and writing keeper state. Missing keeper or failed debit is logged; refund is separate from the failed output grant.",
       "authority_boundary": "Retain original payment/refund identity and both holdings. Partial reversal or uncertain persistence must reconcile without repeating player credit.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Source-contract candidate checks terminal grant failure invokes refund before sequence removal; it does not execute the refund helper or prove atomic reversal, credit success or replay identity.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -8177,7 +8181,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_shop_multi_buy_sequence.py"
+      ],
       "sites": [
         [
           "src/economy/shop.c",
