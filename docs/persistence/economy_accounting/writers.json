@@ -20809,7 +20809,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Overweight recalling character equipment",
+      "destination": "Original-room dropped items before character relocation"
     },
     {
       "id": "item.fire_breath_disabled_drop",
@@ -20849,7 +20851,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable post-damage drop branch",
+      "destination": "No active inventory movement"
     },
     {
       "id": "item.frost_breath_disabled_drop",
@@ -20889,7 +20893,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable post-damage drop branch",
+      "destination": "No active inventory movement"
     },
     {
       "id": "item.fire_disabled_drop",
@@ -20929,7 +20935,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unreachable post-damage drop branch",
+      "destination": "No active inventory movement"
     },
     {
       "id": "item.wraithform_disabled_drop",
@@ -20974,7 +20982,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Compile-disabled drop code after disabled return",
+      "destination": "No active equipment/inventory movement"
     },
     {
       "id": "item.unequip_dale",
@@ -21009,7 +21019,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Last matching worn item slot",
+      "destination": "Unequipped same-UID object with caller-owned destination"
     },
     {
       "id": "item.wall_of_bones_fallback",
@@ -21059,7 +21071,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Corpse/scale inputs after deferral and wall result",
+      "destination": "Released corpse children and consumed corpse/scale under branch-specific ordering"
     },
     {
       "id": "item.compact_corpse_fallback",
@@ -21114,7 +21128,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Corpse root and children",
+      "destination": "Released children then replacement bones on success; emptied corpse retained on allocation failure"
     },
     {
       "id": "item.raised_item_recipient",
@@ -21154,7 +21170,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-detached existing object",
+      "destination": "Player caster for nonmoney or follower for remaining cases"
     },
     {
       "id": "coin.pet_nocash_reset",
@@ -21246,7 +21264,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible spell action and prototype2",
+      "destination": "New randomized-level room cadaver with decay/embalming"
     },
     {
       "id": "item.summon_host_cadaver",
@@ -21286,7 +21306,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Innate/trusted summon and prototype2",
+      "destination": "New randomized-level room cadaver with cooldown/decay/embalming"
     },
     {
       "id": "item.corpseform_consumption",
@@ -21331,7 +21353,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Corpse children/root and eligible caster",
+      "destination": "Released children, consumed corpse and transformed caster/followers"
     },
     {
       "id": "item.saved_corpse_cleanup",
@@ -21366,7 +21390,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Event-referenced corpse in storage room",
+      "destination": "Extracted stored corpse copy"
     },
     {
       "id": "item.saved_corpse_clone",
@@ -21401,7 +21427,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "PC corpse shell and contents",
+      "destination": "Cloned saved corpse in room40 with marker/SAVEID/event"
     },
     {
       "id": "item.nested_raise_discard",
@@ -21441,7 +21469,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nested money/transient live copies",
+      "destination": "Detached/extracted copies while retaining other container contents"
     },
     {
       "id": "item.committed_raise_inventory",
@@ -21506,7 +21536,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed raise corpse children",
+      "destination": "Retained items to follower/caster or selected equipment destruction, with corpse/money cleanup"
     },
     {
       "id": "item.raise_undead_legacy_contents",
@@ -21546,7 +21578,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.spell_call_titan_legacy_contents",
@@ -21586,7 +21620,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.spell_create_dracolich_legacy_contents",
@@ -21626,7 +21662,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.create_golem_legacy_contents",
@@ -21666,7 +21704,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.spell_call_avatar_legacy_contents",
@@ -21706,7 +21746,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.spell_create_greater_dracolich_legacy_contents",
@@ -21746,7 +21788,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing corpse and children",
+      "destination": "Saved copy when nonempty, routed children to caster/follower, and retired original corpse"
     },
     {
       "id": "item.gather_projectiles",
@@ -21811,7 +21855,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "PID-tagged room/corpse missiles and worn quiver",
+      "destination": "Quiver contents/count after same-owner unequip/re-equip"
     },
     {
       "id": "item.thrown_weapon_drop",
@@ -21871,7 +21917,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Nonreturning equipped thrown weapon",
+      "destination": "Inventory intermediate then target/current room object"
     },
     {
       "id": "item.reload_ammunition",
@@ -21911,7 +21959,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Compatible ammunition quantity and weapon capacity",
+      "destination": "Weapon ammo increase and consumed or reduced ammo object"
     },
     {
       "id": "item.fired_projectile_disposition",
