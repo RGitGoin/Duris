@@ -1338,7 +1338,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Retained SQL saved-item forest, source rows and UIDs",
+      "destination": "Validated live room forest and acknowledged destination; superseded source retired"
     },
     {
       "id": "recovery.saved_dispatch",
@@ -1369,7 +1371,9 @@
         "tests/async/test_flatfile_world_item_repository.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved-world restore request",
+      "destination": "SQL restore dispatcher or already-published flat-file catalog; no second issuance"
     },
     {
       "id": "recovery.pet_hydration",
@@ -1403,7 +1407,9 @@
         "tests/async/test_player_load_items.py"
       ],
       "sites": [],
-      "evidence": []
+      "evidence": [],
+      "source": "Retained pet snapshot and custody",
+      "destination": "Live pet projection; invalid/expired/over-capacity durable pets retained"
     },
     {
       "id": "currency.card_game_payout",
@@ -5868,7 +5874,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy saved item bytes, stored identities when available",
+      "destination": "Reconstructed container/equipment/inventory/room graph; unknown identities require baseline policy"
     },
     {
       "id": "recovery.serializer_probes",
@@ -5928,7 +5936,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing live item and comparison prototype",
+      "destination": "Serialized item bytes and temporary prototype cleanup; missing UID assignment requires baseline policy"
     },
     {
       "id": "lifecycle.character_save_items",
@@ -6085,7 +6095,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy saved wallet denomination bytes",
+      "destination": "Live player wallet reconstruction, subject to newer authoritative state"
     },
     {
       "id": "recovery.single_item_decode",
@@ -6125,7 +6137,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Serialized single item, template and optional saved UID",
+      "destination": "Detached reconstructed object with creation-candidate state cleared"
     },
     {
       "id": "expenses.item_confiscation",
@@ -6315,7 +6329,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved pet wallet denominations",
+      "destination": "Transient pet wallet cleared before convertMob recalculation; not established conservation"
     },
     {
       "id": "recovery.sql_serializer_probe",
@@ -6355,7 +6371,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Live item and temporary comparison prototype",
+      "destination": "Saved-field differences and temporary object cleanup"
     },
     {
       "id": "recovery.sql_player_status",
@@ -6425,7 +6443,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "SQL player wallet vector and revision",
+      "destination": "Live wallet projection; shared bank staged as zero pending account load"
     },
     {
       "id": "recovery.sql_player_items",
@@ -6485,7 +6505,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved SQL player item payloads and custody identities",
+      "destination": "Validated live player item graph; rejected temporary copies discarded"
     },
     {
       "id": "recovery.sql_shared_bank",
@@ -6555,7 +6577,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Shared-account bank row and revision",
+      "destination": "Live shared bank vector/revision after bounded parsing; staged zero is not an economic debit"
     },
     {
       "id": "currency.compat_sql_bank_open",
@@ -6647,7 +6671,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locker/private-chest payloads and stored UIDs",
+      "destination": "Validated reconstructed locker graph, with legacy identity limits retained"
     },
     {
       "id": "recovery.sql_migration_cleanup",
@@ -6697,7 +6723,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary migration character item graph",
+      "destination": "Freed in-memory migration copies; durable holdings are not automatically retired"
     },
     {
       "id": "recovery.sql_corpses",
@@ -6784,7 +6812,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved corpse lifecycle and item identities",
+      "destination": "Validated live room corpses and contents; failed temporary materialization discarded"
     },
     {
       "id": "recovery.sql_shopkeeper_stage",
@@ -6864,7 +6894,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Validated shopkeeper catalog and item graph",
+      "destination": "Equipped/inventory live shopkeeper projection; failed stage discarded"
     },
     {
       "id": "shop.sql_derived_stock",
@@ -6939,7 +6971,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Current saved-item tree payload, affects and descriptions",
+      "destination": "Replacement saved_items projection in SQL transaction; not independent issuance/destruction"
     },
     {
       "id": "recovery.sql_saved_delete",
@@ -6974,7 +7008,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved-item rows selected by source key",
+      "destination": "Removed recovery rows; caller must distinguish superseded copy from authoritative retirement"
     },
     {
       "id": "recovery.sql_saved_source_retirement",
@@ -7011,7 +7047,9 @@
           "sql_economy"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Locked source rows with matching digest and acknowledged handoff destination",
+      "destination": "Retired recovery source and receipt; item holdings remain at destination"
     },
     {
       "id": "reward.summon",
@@ -34302,7 +34340,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved copyover NPC gold and identity",
+      "destination": "Recreated NPC wallet projection"
     },
     {
       "id": "recovery.copyover_file_items",
@@ -34352,7 +34392,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Saved copyover NPC equipment/inventory prototype vnums",
+      "destination": "Recreated equipped/carried objects; these calls do not retain original UID or full graph"
     },
     {
       "id": "recovery.copyover_buffer_wallet",
@@ -34387,7 +34429,9 @@
           "coin_assignment"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buffered copyover NPC gold and identity",
+      "destination": "Recreated NPC wallet projection"
     },
     {
       "id": "recovery.copyover_buffer_items",
@@ -34437,7 +34481,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Buffered NPC equipment/inventory prototype vnums",
+      "destination": "Recreated equipped/carried objects; original identity/full graph not restored by these calls"
     },
     {
       "id": "building.evacuation",

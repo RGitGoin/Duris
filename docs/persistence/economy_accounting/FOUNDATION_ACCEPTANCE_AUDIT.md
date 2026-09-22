@@ -3155,3 +3155,7 @@ Completed census validation now rejects routes without explicit nonblank source/
 ## Auction endpoint and test metadata (2026-09-21)
 
 All 25 auction routes now have explicit source/destination classifications, including command preparation, live projections, legacy definitions and temporary catalog copies. Linked the existing SQL journey harness to seven SQL helper routes and the codec/publication tests to their corresponding routes, retaining partial-coverage limits. Moved `test_auction_finalize_claim.py` from current item claim to legacy finalization because its assertions target the legacy SQL finalization guard. There are now 715 routes without test candidates. Draft contract validation (13 fixtures) and diff checks pass; no native auction suite was run for this metadata change and no backend status advanced.
+
+## Recovery endpoint metadata (2026-09-21)
+
+Added explicit source/destination classifications for all 23 recovery routes, preserving identity gaps, temporary staging and source-retirement distinctions. Test review rejected superficial matches: `test_copyover_custody.py` explicitly has no NPCs, `test_shopkeeper_copyover_compat.py` checks format/version gates, and `test_player_load_items.py` targets the newer player-load path rather than legacy `sql_load_player_items`. These were not assigned as coverage for legacy NPC/item restoration. Missing test candidates remain 715; metadata is still incomplete overall. Draft validation passes with unchanged source counts; no runtime behavior changed.
