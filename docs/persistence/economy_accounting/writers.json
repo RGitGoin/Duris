@@ -32459,7 +32459,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Map prototype selected by matching dialogue",
+      "destination": "New map in actor inventory"
     },
     {
       "id": "item.chyron_stock_replacement",
@@ -32514,7 +32516,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing room stock and provisional replacement",
+      "destination": "Existing item in actor inventory and secret replacement in room"
     },
     {
       "id": "world.slime_lake_death_admission",
@@ -32653,7 +32657,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible room food/corpse and contents",
+      "destination": "Retired shell/food with contents released to room, or deferred corpse operation"
     },
     {
       "id": "item.verzanan_dog_two_consumption",
@@ -32698,7 +32704,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible room food/corpse and contents",
+      "destination": "Retired shell/food with contents released to room, or deferred corpse operation"
     },
     {
       "id": "item.lohrr_scripted_death",
@@ -32753,7 +32761,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Actor headgear and provisional head; subsequent matching corpse",
+      "destination": "Hidden room headgear, new head and death/corpse destruction effects"
     },
     {
       "id": "world.studio_object_load",
@@ -32835,7 +32845,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Script-selected object prototype",
+      "destination": "New gift in actor inventory"
     },
     {
       "id": "item.studio_object_purge",
@@ -32870,7 +32882,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Script context self object and nested contents",
+      "destination": "Recursive extraction and cleared context"
     },
     {
       "id": "world.kingdom_guard_arm",
@@ -32956,7 +32970,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Collected banners matching realm or all when association zero",
+      "destination": "Extracted selected banner instances"
     },
     {
       "id": "world.kingdom_banner_admission",
@@ -33037,7 +33053,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Attacked room banner and HP",
+      "destination": "Reduced HP or banner extraction with realm effects"
     },
     {
       "id": "item.kingdom_orphan_banner_cleanup",
@@ -33074,7 +33092,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Banners lacking valid live realm association",
+      "destination": "Extracted orphan instances"
     },
     {
       "id": "item.ioun_overuse_destruction",
@@ -33139,7 +33159,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Source ioun and eligible room players nonartifact equipment",
+      "destination": "Released contents and destroyed shells/source with player effects; source lifetime unresolved"
     },
     {
       "id": "world.random_fountains",
@@ -33216,7 +33238,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Quality tier and random material family",
+      "destination": "Provisional material returned to caller"
     },
     {
       "id": "item.random_stone_factory",
@@ -33251,7 +33275,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Random encrust prototype selection",
+      "destination": "Provisional stone returned to caller"
     },
     {
       "id": "item.random_equipment_factory",
@@ -33291,7 +33317,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected blank and randomized equipment parameters",
+      "destination": "Configured provisional equipment returned to caller"
     },
     {
       "id": "item.beholder_disintegration",
@@ -33351,7 +33379,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected victim equipment condition and contents",
+      "destination": "Reduced condition or extracted shell with contents released to caster room"
     },
     {
       "id": "item.npc_special_theft",
@@ -33401,7 +33431,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected player carried/worn item",
+      "destination": "Same item and contents in thief inventory"
     },
     {
       "id": "coin.npc_special_theft",
@@ -33700,7 +33732,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing outpost rubble and building ownership state",
+      "destination": "Retired rubble and scheduled building repair"
     },
     {
       "id": "world.outpost_death_assets",
@@ -33839,7 +33873,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Justice NPC equipment and carried assets",
+      "destination": "Extracted roots before NPC removal"
     },
     {
       "id": "item.chaos_test_seed",
@@ -33884,7 +33920,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Five independently allocated fixture prototypes",
+      "destination": "Independent queued player grants or provisional cleanup on refusal"
     },
     {
       "id": "coin.chaos_questroom_test",
@@ -34045,7 +34083,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Prior matching bloodstone and actor affect",
+      "destination": "Old stone removed, affect updated and new player-stamped room stone if allocation succeeds"
     },
     {
       "id": "item.ship_evacuation",
@@ -34085,7 +34125,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship-room objects excluding panel and player corpses",
+      "destination": "Same objects at hull location"
     },
     {
       "id": "item.ship_clear_contents",
@@ -34130,7 +34172,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship-room objects and character holdings",
+      "destination": "Player corpses outside, panel retained and other objects extracted; NPC holdings indirect"
     },
     {
       "id": "item.ship_jettison_crates",
@@ -34170,7 +34214,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Ship cargo conversion attempts",
+      "destination": "Surviving crate outputs at ship location; source cargo reduction handled by caller"
     },
     {
       "id": "item.ship_salvage_crates",
@@ -34205,7 +34251,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "World crates accepted within ship capacity",
+      "destination": "Ship cargo entries and consumed accepted crates"
     },
     {
       "id": "item.githyanki_level_weapon",
@@ -34265,7 +34313,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Eligible first level-fifty advancement and class-selected prototype",
+      "destination": "Personalized weapon in character inventory if allocation succeeds"
     },
     {
       "id": "item.randobj_admin_grants",
@@ -34310,7 +34360,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Caller-owned random material/stone/equipment factory outputs",
+      "destination": "Admin actor inventory publication"
     },
     {
       "id": "item.randobj_preview_cleanup",
@@ -34355,7 +34407,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary random-zone template",
+      "destination": "Released template with optional distinct recipe creation"
     },
     {
       "id": "item.random_base_factory",
@@ -34390,7 +34444,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Random base prototype",
+      "destination": "Provisional object returned without placement"
     },
     {
       "id": "infrastructure.pfile_object_stubs",
@@ -34487,7 +34543,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Keyword-selected prototype",
+      "destination": "NOSELL provisional object passed to minor-creation delegate"
     },
     {
       "id": "world.channel_avatar_focus",
@@ -34569,7 +34627,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Up to four carried green herbs for PC/pet",
+      "destination": "Consumed herbs before vine effect; other NPCs have no item input"
     },
     {
       "id": "world.paired_spell_walls",
@@ -34656,7 +34716,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Quest item prototype and optional descriptions",
+      "destination": "Configured provisional quest item"
     },
     {
       "id": "coin.nq_reward",
@@ -34733,7 +34795,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Sequential quest factory outputs",
+      "destination": "Mob inventory for kill branch or player inventory otherwise"
     },
     {
       "id": "item.nq_action_payment",
@@ -34788,7 +34852,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Selected components, instance tags and mob wallet",
+      "destination": "Consumed components, removed tags and reduced mob denominations before subsequent reward"
     },
     {
       "id": "infrastructure.testcmd_object_reports",
@@ -34900,7 +34966,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Unpublished staged item graph",
+      "destination": "Cleared UIDs and released failed materialization representations"
     },
     {
       "id": "item.load_graph_materialization",
@@ -34935,7 +35003,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Supplied snapshot or validated creation payload",
+      "destination": "Restored identifiers and linked graph attached or returned detached; admission determined upstream"
     },
     {
       "id": "item.load_discard",
@@ -34975,7 +35045,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Loaded character item representations",
+      "destination": "Detached representations with cleared UIDs and reset carry totals; persisted holdings not locally deleted"
     },
     {
       "id": "coin.player_load_domain_restore",
@@ -35109,7 +35181,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Missing reset-defined NPC stock and selected prototypes",
+      "destination": "New carried/equipped NPC stock; rejected provisional objects released"
     },
     {
       "id": "item.world_recovery_graph",
@@ -35179,7 +35253,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Existing root or persisted snapshot graph",
+      "destination": "Reused root or reconstructed same-UID graph in planned room; failed partial graph released"
     },
     {
       "id": "item.world_recovery_rollback",
@@ -35214,7 +35290,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Tracked newly recovered roots and NPCs",
+      "destination": "Reverse-order runtime extraction without intended authoritative destruction"
     },
     {
       "id": "storage.item_owner_insert",

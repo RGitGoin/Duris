@@ -3283,3 +3283,7 @@ Added verified source/destination descriptions for 30 existing starter-kit, ship
 ### 2026-09-22: consumption, class and scripted endpoints
 
 Specified 35 source-verified endpoint pairs for smoking, slip/disguise, innate objects, tickets, mail, spell devices and scripted transfers. Temporary restored copies/probes remain distinct from retirement; dormant branches remain labeled; compound effects and save attempts do not imply durable completion. Endpoint coverage is 812/851, leaving 39. Test-candidate gaps remain 710 and backend qualification is unchanged. Draft validator (13 fixtures, unchanged census) and whitespace checks passed. No gameplay changes.
+
+### 2026-09-22: endpoint description pass complete
+
+Added the final 39 source/destination pairs, checking scripted gifts/retirement, factories, NPC theft, ship cargo conversion and recovery source sites. All 851 inventory routes now have explicit endpoints. Restoration and temporary cleanup remain distinct from issuance/destruction; recovered NPC reset replenishment is new stock. This completes only endpoint metadata: 710 routes still lack test candidates, ownership reconciliation and other foundation acceptance work remain, census_complete stays false, and no runtime/backend qualification changed. Draft validation passed (13 fixtures; unchanged 2765 matches, 2707 coordinates, 2662 mapped, 45 nonwriters, zero unclassified), as did whitespace validation.
