@@ -1413,3 +1413,13 @@ transfer; live custody checks alone do not establish metadata/save completion.
 Draft validator passed 13 fixtures: 412 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,393 mapped, 43 reviewed declarations and 1,262 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Teleport item charge exhaustion
+
+Two coordinates classified. Positive charge decrement reaches retirement after
+travel/follower processing; worn item detaches before extraction. Retain charge
+and UID without treating item exhaustion as durable travel or save proof.
+
+Draft validator passed 13 fixtures: 413 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,395 mapped, 43 reviewed declarations and 1,260 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
