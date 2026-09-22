@@ -15655,6 +15655,101 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.shabo_palle_transfer",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int shabo_palle(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Transformation transfers inventory and equipment to replacement NPC then extracts original character. Two read_mobile calls occur before placement and the second overwrites the first local pointer.",
+      "authority_boundary": "Existing items are transferred, not issued. Replacement allocation/lifetime and partial graph handoff require qualification; source does not dispose first successful allocation here. Do not silently repair spawning policy during census.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          13545,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          13546,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          13552,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          13553,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.dracolich_death_release",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int necro_dracolich(",
+      "reason": "item_move",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death handler checks saved corpse then drops carried and worn items directly to room, bypassing ordinary corpse containment; unmastered periodic path may initiate death.",
+      "authority_boundary": "Existing possessions move to room, not new loot. Saved-corpse helper, owner death and each live insertion are distinct; durable pet/NPC lifetime and floor authority must be reconciled without assuming atomic release.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          13910,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          13911,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          13915,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

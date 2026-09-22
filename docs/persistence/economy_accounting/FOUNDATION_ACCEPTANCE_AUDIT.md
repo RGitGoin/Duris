@@ -952,3 +952,15 @@ remain distinct from a qualified atomic transfer.
 Draft validator passed 13 fixtures: 325 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,144 mapped, 43 reviewed declarations and 1,511 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Transformation and dracolich death release
+
+Seven sites classified. Shabo Palle moves possessions to replacement then extracts
+original NPC; two allocations overwrite the local replacement pointer, so allocation
+lifetime remains unqualified. Dracolich death releases carried/worn items directly
+to room after saved-corpse check. These move existing items, not newly issued loot;
+partial publication and source lifetime require explicit accounting boundaries.
+
+Draft validator passed 13 fixtures: 327 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,151 mapped, 43 reviewed declarations and 1,504 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
