@@ -27898,6 +27898,110 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "world.shopkeeper_reconcile_stock",
+      "path": "src/world/world_singletons.c",
+      "symbol": "reconcile_shopkeepers",
+      "reason": "item_move",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "When recovered_inventory is true and keeper is not a boot keeper, duplicate equipment is unequipped and moved into empty keeper slots or inventory; carried shop-produced templates are detached and extracted, while distinct stock is moved to keeper. Duplicate character extraction follows regardless of transfer branch.",
+      "authority_boundary": "Preserve existing stock identities across recovery reconciliation. Distinguish template disposal from economic retirement; qualify indirect item cleanup in extract_char and the branch that skips inventory transfer. Dirty/retry reset is not durable save acknowledgment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_world_singletons.py"
+      ],
+      "sites": [
+        [
+          "src/world/world_singletons.c",
+          216,
+          "item_publication"
+        ],
+        [
+          "src/world/world_singletons.c",
+          218,
+          "item_publication"
+        ],
+        [
+          "src/world/world_singletons.c",
+          220,
+          "item_publication"
+        ],
+        [
+          "src/world/world_singletons.c",
+          225,
+          "item_publication"
+        ],
+        [
+          "src/world/world_singletons.c",
+          227,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_singletons.c",
+          229,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "world.shopkeeper_reconcile_templates",
+      "path": "src/world/world_singletons.c",
+      "symbol": "reconcile_shopkeepers",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "For each produced prototype, searches keeper carrying list by R_num; missing nonnegative prototype is allocated with null check and published to keeper. Reconciliation subsequently marks shop dirty and resets save retry.",
+      "authority_boundary": "Regenerated shop templates require explicit template/baseline policy, not automatic first issuance accounting. Qualify repeated reconciliation and later sale admission separately from restore/move of finite stock.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_world_singletons.py"
+      ],
+      "sites": [
+        [
+          "src/world/world_singletons.c",
+          242,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_singletons.c",
+          243,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

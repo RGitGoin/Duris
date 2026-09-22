@@ -2127,3 +2127,15 @@ It remains a dormant classified site, not a second active payment route.
 Draft validation passed 13 fixtures: 597 routes, 2756 raw matches, 2698 unique
 coordinates, 1959 mapped, 43 reviewed nonwriters, 696 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Shopkeeper singleton reconciliation
+
+Eight coordinates classified separately for existing stock transfer/template
+cleanup and missing produced-template regeneration. Recovery policy must avoid
+counting templates as fresh finite-stock issuance. Duplicate character extraction
+is an indirect cleanup boundary requiring qualification, including branches that
+skip stock transfer. Listed singleton test is a candidate, not executed evidence.
+
+Draft validation passed 13 fixtures: 599 routes, 2756 raw matches, 2698 unique
+coordinates, 1967 mapped, 43 reviewed nonwriters, 688 unclassified.
+No gameplay changes; release readiness remains false.
