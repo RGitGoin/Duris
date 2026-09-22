@@ -365,6 +365,7 @@ OBJS =  $(SHIP_OBJS) \
 				 economy/economic_accounting_plan.o \
 				 economy/economic_accounting_intent.o \
 				 economy/economic_command_admission.o \
+				 economy/economic_bank_publication.o \
 				 economy/economic_baseline_adapter.o \
 				 economy/economic_baseline_codec.o \
 				 economy/economic_enrollment_command.o \

@@ -78,3 +78,31 @@ explicit acknowledgement. Existing pure admission tests pass in both modes, and 
 legacy flat-file gates still reject schema-2 calls without native file changes.
 The source census and changed C++ formatting pass. Full build/boot evidence is
 reported with the increment's PR.
+
+## Game-thread bank publication owner
+
+`economic_bank_publication` now restores schema-2 bank obligations from immutable
+journal commands alongside the existing restitution replay observer. Its submit
+entrypoint always requests publication retention. Each normal game-thread pulse
+advances at most 32 entries, rotating past offline/unready players within the
+existing 1,024-operation bound.
+
+For a committed result, the owner validates player/account/racewar identity,
+uses the existing currency balance publisher, and requests a status checkpoint
+through `player_save_pipeline`. It holds the original operation until revision
+tracking reports the requested save acknowledged with no unacknowledged status
+component, then retries the coordinator acknowledgement if needed. Capture
+failure, missing players, malformed/uncertain results, and save backpressure keep
+the obligation. A terminal rejection has no new live/save effect and may retire.
+Replay restores no historical actor callback and never reapplies balance deltas.
+
+The focused sanitizer harness links the real owner, currency publisher and player
+revision state in SQL and flatfile compilation modes. Save/coordinator endpoints
+are controlled: it covers immutable replay registration, conflict refusal,
+offline retention, failed capture, unrelated-component acknowledgement, exact
+status-save acknowledgement, failed/retried journal acknowledgement, rejection
+and uncertainty. It is not a native database/save integration or full boot test.
+
+Gameplay producers are not switched by this increment. Offline completion without
+login, account lifecycle changes, native end-to-end save qualification, restricted
+startup drain and activation remain open before issue closure.

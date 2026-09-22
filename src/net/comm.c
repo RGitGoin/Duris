@@ -112,6 +112,7 @@
 #include "persistence/maintenance_snapshot.h"
 #include "persistence/critical_command_coordinator.h"
 #include "economy/economic_command_admission.h"
+#include "economy/economic_bank_publication.h"
 #include "persistence/critical_command_repository.h"
 #include "persistence/critical_outbox.h"
 #include "persistence/corpse_lifecycle_transaction.h"
@@ -169,6 +170,12 @@ long sentbytes = 0;
 long receivedbytes = 0;
 bool game_booted = FALSE;
 static std::vector<int32_t> maintenance_catalog_candidate;
+
+static bool restore_economic_publication(const critical_command &command, void *context)
+{
+	return economic_bank_publication_restore(command, context) &&
+	       player_death_restitution_runtime_restore_replayed_command(command, context);
+}
 
 static bool hydrate_flatfile_system_item_owner(void)
 {
@@ -269,6 +276,7 @@ static void critical_gameplay_handle_completions(const critical_completion *comp
 {
 	epic_transaction_handle_completions(completions, count);
 	currency_transaction_handle_completions(completions, count);
+	economic_bank_publication_pulse();
 	locker_identify_pulse();
 	corpse_lifecycle_transaction_handle_completions(completions, count);
 	item_movement_transaction_handle_completions(completions, count);
@@ -946,10 +954,11 @@ void run_the_game(int port, int sslport)
 		!critical_command_coordinator_init(
 			critical_journal_directory, critical_apply, NULL,
 			CRITICAL_COORDINATOR_DEFAULT_WORKERS,
-			player_death_restitution_runtime_restore_replayed_command, NULL,
+			restore_economic_publication, NULL,
 			critical_extension_validator))
 	{
 		player_death_restitution_runtime_abort_all();
+		economic_bank_publication_reset();
 		critical_command_coordinator_shutdown();
 		critical_outbox_shutdown();
 		logit(LOG_STATUS,
