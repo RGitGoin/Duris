@@ -35404,6 +35404,566 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "alchemy.poison_components",
+      "path": "src/classes/salchemist.c",
+      "symbol": "extract_used_poison_ingredients",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Consumes matched carried ingredient instances by prototype; each requirement selects a distinct object. Caller owns craft result and vial lifecycle.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          630,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.potion_components",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void extract_used_ingredients",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Consumes carried components matched by get_id_for, distinct per requirement. Caller controls when ingredients are spent across repeated mix attempts.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          670,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.ingredient_preview",
+      "path": "src/classes/salchemist.c",
+      "symbol": "print_poison_ingredients",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Temporary ingredient prototypes used for descriptions and extracted without publication; exclude preview from gameplay issuance.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          714,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          723,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.poison_preview",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_mixpoison",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Temporary poison prototype for recipe listing, extracted without owner admission. Separate from actual poison creation.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          757,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          761,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.poison_craft",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_mixpoison",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Publishes crafted poison before consuming vial and matched ingredients, repeats while requirements/vials remain. Qualify one operation per completed craft and partial allocation/publication.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          787,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          796,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          795,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.potion_craft",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_mix",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Successful roll creates potion; each attempt destroys bottle and may create replacement bottle. Ingredients are consumed under later loop condition, not necessarily once per output. Preserve actual recipe economics.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          858,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          875,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          879,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          868,
+          "item_publication"
+        ],
+        [
+          "src/classes/salchemist.c",
+          880,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.repair_preview",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_fix",
+      "reason": "baseline",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Temporary material prototype supplies missing-material description, then is extracted on both branches. Not admitted gameplay material.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1476,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1483,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1486,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.repair_material",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_fix",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "After condition change, loop removes and extracts all matching carried material objects in its traversal despite done counter implying one. Condition mutation is an indirect census concern; preserve current consumption pending qualification.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1523,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1522,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.smelt_single",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_smelt",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Single nonartifact furnace input is destroyed before ash allocation/publication. Failure must not be confused with successful conversion.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1577,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1581,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1582,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.smelt_pair",
+      "path": "src/classes/salchemist.c",
+      "symbol": "void do_smelt",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Two nonartifact inputs map to larger metal, alloy or ash; both are destroyed before output is attached to furnace. Skill failure can overwrite provisional output pointer with new alloy without extraction. Qualify paired input sinks and output identity; metal objects are not wallet coins.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1606,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1609,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1612,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1615,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1618,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1621,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1624,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1627,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1630,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1633,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1636,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1639,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1642,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1645,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1648,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1651,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1660,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1664,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1675,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1679,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1680,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1681,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "alchemy.npc_potions",
+      "path": "src/classes/salchemist.c",
+      "symbol": "bool MobAlchemistGetPotions",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Creates requested count of level-adjusted potions directly in NPC inventory. Qualify repeated issuance and partial allocation, not recovery of prior item identity.",
+      "authority_boundary": "Qualify component/output identity, actual recipe quantities and failure/publication boundaries as one crafting behavior. Temporary preview objects are excluded from gameplay issuance; native helper execution is not durable accounting evidence.",
+      "current_support": "Existing alchemist behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/salchemist.c",
+          1697,
+          "item_lifecycle"
+        ],
+        [
+          "src/classes/salchemist.c",
+          1699,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

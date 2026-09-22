@@ -2937,3 +2937,14 @@ Rename service precedes unchecked debit; web success acknowledges submission.
 These are qualification observations, not incidental gameplay fixes.
 No runtime changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 778 routes, 2756 raw matches, 2698 unique coordinates, 2366 mapped, 43 reviewed nonwriters, 289 unclassified.
+
+
+## Alchemist mixing, repair and smelting
+
+Grouped ingredient sinks, temporary recipe previews, poison/potion crafting,
+repair material consumption, furnace conversion and NPC potion grants. Preserve
+actual quantities: repair traversal consumes every matching material; potion
+components are spent under loop conditions. Smelt failure can overwrite a
+provisional result pointer. These are qualification findings, not recipe changes.
+Encrust/enchant classifications remain pending. No runtime changes or tests.
+Draft validation passed 13 fixtures: 789 routes, 2756 raw matches, 2698 unique coordinates, 2412 mapped, 43 reviewed nonwriters, 243 unclassified. Release readiness remains false.
