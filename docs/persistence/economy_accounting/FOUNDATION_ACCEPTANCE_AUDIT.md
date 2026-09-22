@@ -2018,3 +2018,15 @@ commented ship/wallet resets are not active behavior. Recovery remains unqualifi
 Draft validation passed 13 fixtures: 561 routes, 2756 raw matches, 2698 unique
 coordinates, 1893 mapped, 43 reviewed declarations, 762 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Ship shells and rejected insurance delivery
+
+Seven coordinates classified. Ship constructor registers runtime hash before panel
+allocation; allocation is not proven admission and can serve restore callers.
+Deletion detaches/extracts panel and representation after layout cleanup; caller
+lifecycle must distinguish runtime cleanup from retirement. Rejected bank insurance
+stages auction pickup from captured entitlement; repeat-safe fallback unqualified.
+
+Draft validation passed 13 fixtures: 564 routes, 2756 raw matches, 2698 unique
+coordinates, 1900 mapped, 43 reviewed declarations, 755 unclassified.
+No gameplay changes; release readiness remains false.

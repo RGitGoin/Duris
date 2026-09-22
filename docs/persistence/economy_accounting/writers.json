@@ -26488,6 +26488,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.ship_insurance_rejected_delivery",
+      "path": "src/ships/ship_base.c",
+      "symbol": "ship_insurance_committed",
+      "reason": "coin_transfer",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Rejected insurance bank transaction stages auction pickup using captured PID and platinum times1000; staging failure alerts. Successful callback logs only. Bind same insurance entitlement across original transaction and fallback so retries cannot duplicate payment.",
+      "authority_boundary": "Bind persistent ship/entitlement identity and caller lifecycle. Distinguish construction, restoration, retirement and fallback payout; partial-state cleanup and commit/publication/save remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          160,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_shell_allocation",
+      "path": "src/ships/ship_base.c",
+      "symbol": "struct ShipData *new_ship",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Allocates ship representation then inserts ship in runtime hash before allocating panel. Missing ship object returns with allocated ship structure; missing panel returns after hash registration. These are construction objects, not proven new economic admission; callers may use construction during restoration.",
+      "authority_boundary": "Bind persistent ship/entitlement identity and caller lifecycle. Distinguish construction, restoration, retirement and fallback payout; partial-state cleanup and commit/publication/save remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          707,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_base.c",
+          718,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.ship_shell_retirement",
+      "path": "src/ships/ship_base.c",
+      "symbol": "void delete_ship",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "After runtime/layout/reference cleanup detaches panel and ship representation, extracts both with artifact retirement enabled and clears pointers before freeing ship. Qualify caller intent: permanent ship deletion versus runtime cleanup must not erase durable recovered assets incorrectly.",
+      "authority_boundary": "Bind persistent ship/entitlement identity and caller lifecycle. Distinguish construction, restoration, retirement and fallback payout; partial-state cleanup and commit/publication/save remain unqualified.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/ships/ship_base.c",
+          1215,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_base.c",
+          1216,
+          "item_lifecycle"
+        ],
+        [
+          "src/ships/ship_base.c",
+          1213,
+          "item_publication"
+        ],
+        [
+          "src/ships/ship_base.c",
+          1214,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
