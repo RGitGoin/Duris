@@ -28215,6 +28215,147 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.material_report_exists",
+      "path": "src/item/material_rarity.c",
+      "symbol": "material_template_exists",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Loads a temporary material prototype to check existence, returns false on allocation failure, otherwise extracts it without publication.",
+      "authority_boundary": "Report-only temporary object lifecycle is not economic admission or retirement. Allocation and extraction helper side effects still need qualification; report tallies are not live inventory or economic scarcity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_material_rarity_report_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/material_rarity.c",
+          135,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          138,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.material_report_name",
+      "path": "src/item/material_rarity.c",
+      "symbol": "material_template_name",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Loads temporary prototype to read display name; missing allocation produces fallback text, successful object is extracted without publication.",
+      "authority_boundary": "Report-only temporary object lifecycle is not economic admission or retirement. Allocation and extraction helper side effects still need qualification; report tallies are not live inventory or economic scarcity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_material_rarity_report_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/material_rarity.c",
+          144,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          151,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.material_report_templates",
+      "path": "src/item/material_rarity.c",
+      "symbol": "write_material_rarity_report",
+      "reason": "baseline",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Iterates prototypes with checked allocation, derives static composition report, extracts on each exclusion and successful-report path. No room, inventory or container admission occurs; helper material loads are separately classified.",
+      "authority_boundary": "Report-only temporary object lifecycle is not economic admission or retirement. Allocation and extraction helper side effects still need qualification; report tallies are not live inventory or economic scarcity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_material_rarity_report_contract.py"
+      ],
+      "sites": [
+        [
+          "src/item/material_rarity.c",
+          215,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          227,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          234,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          245,
+          "item_lifecycle"
+        ],
+        [
+          "src/item/material_rarity.c",
+          282,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

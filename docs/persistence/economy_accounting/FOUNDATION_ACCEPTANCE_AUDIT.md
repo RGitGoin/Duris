@@ -2163,3 +2163,15 @@ qualification concerns. Prefetch test inspected and listed, not executed.
 Draft validation passed 13 fixtures: 604 routes, 2756 raw matches, 2698 unique
 coordinates, 1978 mapped, 43 reviewed nonwriters, 677 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Static material-rarity reporting
+
+Nine coordinates classified across template existence/name helpers and report
+iteration. All allocate temporary objects and extract without publication;
+report counts are static composition, not economic issuance or live scarcity.
+Allocation/extraction side effects remain unqualified. Existing report test is
+listed as a candidate, not executed evidence.
+
+Draft validation passed 13 fixtures: 607 routes, 2756 raw matches, 2698 unique
+coordinates, 1987 mapped, 43 reviewed nonwriters, 668 unclassified.
+No gameplay changes; release readiness remains false.
