@@ -33522,6 +33522,76 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "coin.player_load_domain_restore",
+      "path": "src/player/player_load_materialize.c",
+      "symbol": "bool player_load_materialize",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Validated player load assigns all wallet and bank denominations from domain snapshot and copies wallet/bank revisions. Snapshot validator rejects denominations above INT_MAX before materialization. These assignments restore saved balances, not reward/deposit flows; other character state is applied in the same materializer.",
+      "authority_boundary": "Use source domain revision and authoritative load identity to restore balances without appending issuance or replaying deltas. Qualify snapshot freshness, concurrent pending publication, partial character failure and caller admission; successful assignment alone does not establish cutover enrollment or save acknowledgement.",
+      "current_support": "Existing snapshot restoration; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_load_materialize.c",
+          544,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          545,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          546,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          547,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          548,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          549,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          550,
+          "coin_assignment"
+        ],
+        [
+          "src/player/player_load_materialize.c",
+          551,
+          "coin_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

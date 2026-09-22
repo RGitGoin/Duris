@@ -2815,3 +2815,14 @@ Ownership hydration, caller lifecycle and save/replay qualification remain open.
 Draft validation passed 13 fixtures: 730 routes, 2756 raw matches, 2698 unique
 coordinates, 2278 mapped, 43 reviewed nonwriters, 377 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Player wallet and bank restoration
+
+Eight assignments restore validated snapshot denominations with domain
+revisions. They are not issuance or deposit. Snapshot freshness, pending
+publication, partial character materialization and caller admission require
+qualification; no cutover or acknowledgement proof inferred.
+
+Draft validation passed 13 fixtures: 731 routes, 2756 raw matches, 2698 unique
+coordinates, 2286 mapped, 43 reviewed nonwriters, 369 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.
