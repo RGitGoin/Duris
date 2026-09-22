@@ -1259,3 +1259,14 @@ consumption; root identity and effect publication need retained cast linkage.
 Draft validator passed 13 fixtures: 393 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,354 mapped, 43 reviewed declarations and 1,301 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Unmaking fallback corpse release
+
+Three coordinates classified. Persistence deferral gets first opportunity; fallback
+releases existing children, heals caster, then retires corpse. Preserve child UIDs,
+room/type refusals and corpse-level conversion. Deferral handling must exclude
+fallback, and sequential publication does not establish durable completion.
+
+Draft validator passed 13 fixtures: 394 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,357 mapped, 43 reviewed declarations and 1,298 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

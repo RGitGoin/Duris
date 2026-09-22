@@ -18745,6 +18745,51 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.unmaking_legacy_corpse_release",
+      "path": "src/magic/magic.c",
+      "symbol": "void spell_unmaking(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Room corpse unmaking first offers persistence deferral; fallback moves direct corpse contents to caster room, applies corpse-level healing, then extracts corpse and updates position.",
+      "authority_boundary": "Existing child identities survive corpse retirement; deferral-handled path must not also run fallback. Healing precedes extraction and neither sequential release nor helper return establishes durable corpse/child publication. Preserve room/type refusals and PC corpse level sign handling.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/magic/magic.c",
+          6800,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          6801,
+          "item_publication"
+        ],
+        [
+          "src/magic/magic.c",
+          6822,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
