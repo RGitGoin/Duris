@@ -15005,6 +15005,46 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "shop.mobile_sales_spec",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int sales_spec(",
+      "reason": "item_move",
+      "integration_issue": 483,
+      "owner": "primary / #483",
+      "coverage": "legacy",
+      "classification": "Salesman offers wielded item or first carried stock at twice item cost plus three. Implicit or named seller buy branch calls transact for selected current stock, then stops following and clears sentinel on helper success.",
+      "authority_boundary": "Existing stock sale couples item and money through transact; helper success and NPC behavior changes are not proof of common atomic settlement or publication/save acknowledgement. Bind seller lifetime, exact stock UID and quoted price rather than treating delivery as fresh issuance.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          4196,
+          "money_helper"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          4235,
+          "money_helper"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

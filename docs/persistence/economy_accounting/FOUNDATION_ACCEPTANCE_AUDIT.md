@@ -858,3 +858,14 @@ are now mapped. This does not establish semantic exhaustiveness or runtime cover
 Draft validator passed 13 fixtures: 311 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,098 mapped, 43 reviewed declarations and 1,557 unclassified.
 No gameplay change; census and runtime qualification remain incomplete.
+
+## Mobile salesman stock sale
+
+Two sales_spec sites classified. Wielded or first carried stock is priced at twice
+cost plus three; both seller-selection paths call transact and change NPC behavior
+on helper success. Exact stock UID, seller lifetime and quote need settlement
+identity. Helper success does not itself prove atomic common-accounting delivery.
+
+Draft validator passed 13 fixtures: 312 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,100 mapped, 43 reviewed declarations and 1,555 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
