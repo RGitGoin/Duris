@@ -34829,6 +34829,331 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "storage.remaining_combat_reward_storage",
+      "path": "src/combat/combat_outcome_repository.c",
+      "symbol": "combat_outcome_repository_execute",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Advances bank revision alongside canonicalized wallet reward and inserts currency ledger using derived child operation ID. Bank balance delta is zero; this is compound combat reward storage, not an independent bank deposit.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/combat/combat_outcome_repository.c",
+          483,
+          "sql_economy"
+        ],
+        [
+          "src/combat/combat_outcome_repository.c",
+          490,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_currency_state_write",
+      "path": "src/persistence/critical_command_repository.c",
+      "symbol": "write_currency_state",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Writes prepared wallet and bank after-state with expected prior revisions and one-row checks, then inserts currency ledger. Opening baseline inserts precede these updates; outer transaction must cover all statements.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/critical_command_repository.c",
+          833,
+          "sql_economy"
+        ],
+        [
+          "src/persistence/critical_command_repository.c",
+          836,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_currency_bank_ensure",
+      "path": "src/persistence/critical_command_repository.c",
+      "symbol": "execute_currency_state",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Ensures account/racewar bank row before locked read and mutation preparation. Row creation is not a customer deposit; refusal and rollback handling require outer transaction evidence.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/critical_command_repository.c",
+          984,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_restitution_owner",
+      "path": "src/persistence/player_death_restitution_repository.c",
+      "symbol": "bool update_owner",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Changes restitution item owner/root/parent/state and advances item revision, guarded by prior owner, graph, state, vnum and revision. Ownership movement retains item UID.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/player_death_restitution_repository.c",
+          1076,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_restitution_ledger",
+      "path": "src/persistence/player_death_restitution_repository.c",
+      "symbol": "insert_ownership_ledger",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Records restitution transfer with outer operation ID/event index, delivered graph, owner revisions and death revision reason. Must commit with current ownership and physical representation.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/persistence/player_death_restitution_repository.c",
+          1324,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_bank_load",
+      "path": "src/player/player_load_repository.c",
+      "symbol": "bool load_bank",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Reads account/racewar bank denominations and revision into load result. No SQL write or new money; later materialization and range validation are separate boundaries.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_load_repository.c",
+          594,
+          "direct_cash_assignment"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_death_quarantine",
+      "path": "src/player/player_snapshot_repository.c",
+      "symbol": "query_result apply_death",
+      "reason": "baseline",
+      "integration_issue": 477,
+      "owner": "primary / #477",
+      "coverage": "legacy",
+      "classification": "Quarantines active player-owned items matching death custody rows after advancing owner revision. Prevents disputed items from restoring while retaining custody for recovery; this is a state change rather than destruction.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/player/player_snapshot_repository.c",
+          1167,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_pwipe_auction",
+      "path": "src/sql/sql.c",
+      "symbol": "bool sql_pwipe",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Season reset deletes auction history, item pickups, money pickups and auctions through chained SQL calls. Destructive lifecycle boundary, not ordinary claim settlement; interrupted reset and archive/epoch qualification remain.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql.c",
+          4792,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "storage.remaining_pwipe_saved_items",
+      "path": "src/sql/sql.c",
+      "symbol": "bool sql_pwipe",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Season reset deletes saved item recovery handoffs, affects, descriptions and rows. Physical graph retirement must agree with reset lifecycle and accounting epoch; not independent gameplay item sinks.",
+      "authority_boundary": "Qualify enclosing transaction or lifecycle authority, retry/rollback and durable state consistency on applicable backends. SQL helper success or load-result assignment alone does not prove native publication or save acknowledgement.",
+      "current_support": "Existing storage/lifecycle behavior; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/sql/sql.c",
+          5134,
+          "sql_economy"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -2914,3 +2914,14 @@ uses a separate single-stake payout. Actor, durable wager identity, interruption
 and repeat settlement require qualification. Credit messaging ignores outcome.
 No gameplay changes or runtime tests; release readiness remains false.
 Draft validation passed 13 fixtures: 762 routes, 2756 raw matches, 2698 unique coordinates, 2347 mapped, 43 reviewed nonwriters, 308 unclassified.
+
+
+## Remaining storage and season-reset candidates
+
+Eleven coordinates classified across combat reward storage, prepared currency
+writes/bank row creation, restitution ownership and ledger, bank load results,
+death quarantine, and auction/saved-item season reset. Read-result assignment
+is not issuance; quarantine is not destruction; reset is a lifecycle boundary.
+Transaction, restart and publication qualification remain unverified.
+No runtime changes or runtime tests; release readiness remains false.
+Draft validation passed 13 fixtures: 771 routes, 2756 raw matches, 2698 unique coordinates, 2358 mapped, 43 reviewed nonwriters, 297 unclassified.
