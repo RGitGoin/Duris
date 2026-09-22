@@ -2209,3 +2209,15 @@ restore-failure cleanup remain qualification work.
 Draft validation passed 13 fixtures: 614 routes, 2756 raw matches, 2698 unique
 coordinates, 2001 mapped, 43 reviewed nonwriters, 654 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Rogue Slip custody paths
+
+Seven coordinates classified: durable PC-to-PC success, direct legacy success,
+and failed-skill floor drop. Failure still mutates custody without the success
+branch transaction. Committed publication accepts already-delivered inventory
+before character saves/notching; restart and save acknowledgments remain
+qualification work. No behavior changes were made.
+
+Draft validation passed 13 fixtures: 617 routes, 2756 raw matches, 2698 unique
+coordinates, 2008 mapped, 43 reviewed nonwriters, 647 unclassified.
+Release readiness remains false.

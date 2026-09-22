@@ -28636,6 +28636,131 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.slip_durable",
+      "path": "src/classes/rogues.c",
+      "symbol": "slip_transfer_publication",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful distinct PC-to-PC durable slip validates ownership and recipient crumble policy before submit. Committed callback validates result UID, live parties, source topology and capacity, transfers existing item and writes both characters. Already carried by victim returns before save/notch side effects.",
+      "authority_boundary": "Separate commit from recipient publication and both save acknowledgments; qualify missing actor/item, capacity change and restart/retry after already-published state.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/rogues.c",
+          324,
+          "economic_submit"
+        ],
+        [
+          "src/classes/rogues.c",
+          135,
+          "item_publication"
+        ],
+        [
+          "src/classes/rogues.c",
+          136,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.slip_legacy",
+      "path": "src/classes/rogues.c",
+      "symbol": "do_slip",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Successful slip outside distinct-PC durable branch notches skill then directly transfers existing item to recipient. Different participants are saved afterward; no transaction is submitted here.",
+      "authority_boundary": "Existing-item custody transfer, not issuance; qualify NPC/non-durable/self branches and publication helper refusal independently.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/rogues.c",
+          349,
+          "item_publication"
+        ],
+        [
+          "src/classes/rogues.c",
+          350,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.slip_failed_drop",
+      "path": "src/classes/rogues.c",
+      "symbol": "do_slip",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Failed skill check directly detaches carried item, moves it to actor room and writes actor. This failure branch does not use the durable transfer submission used by successful PC-to-PC slip.",
+      "authority_boundary": "Failure is an economic custody mutation; qualify durable items, environmental placement and save/recovery ordering rather than treating skill failure as no-op.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/classes/rogues.c",
+          385,
+          "item_publication"
+        ],
+        [
+          "src/classes/rogues.c",
+          386,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
