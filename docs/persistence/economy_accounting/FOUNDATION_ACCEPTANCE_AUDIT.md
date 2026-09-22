@@ -2826,3 +2826,14 @@ qualification; no cutover or acknowledgement proof inferred.
 Draft validation passed 13 fixtures: 731 routes, 2756 raw matches, 2698 unique
 coordinates, 2286 mapped, 43 reviewed nonwriters, 369 unclassified.
 No gameplay changes or runtime tests; release readiness remains false.
+
+## Recovered NPC reset stock
+
+Six coordinates classified as recovery-triggered reset replenishment, not
+snapshot UID restoration. Preserve artifact, population, chance and existing
+count/slot gates. Loaded count does not verify placement. Admission authority,
+repeat recovery and save/replay qualification remain open; test is candidate only.
+
+Draft validation passed 13 fixtures: 732 routes, 2756 raw matches, 2698 unique
+coordinates, 2292 mapped, 43 reviewed nonwriters, 363 unclassified.
+No gameplay changes or runtime tests; release readiness remains false.

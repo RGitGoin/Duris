@@ -33592,6 +33592,68 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.recovery_npc_reset_replenishment",
+      "path": "src/world/world_recovery_npc_items.c",
+      "symbol": "P_obj load_recovery_object",
+      "reason": "first_admission",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Recovered NPCs selected by prototype/birthplace receive missing reset-defined carried counts or equipment. Loader allocates prototype copies subject to population limit, artifact ownership/respawn and load chance; rejected candidates are extracted. Publication helpers increment loaded count without verifying placement. Unlike snapshot restoration, this path creates missing reset stock rather than restoring supplied item UIDs.",
+      "authority_boundary": "Distinguish recovery-triggered replenishment from existing-identity restoration. Establish whether each missing asset is authorized issuance or reconstruction before ledger integration; bind NPC/reset identity, preserve artifact/chance/count gates, and qualify repeated recovery, equip refusal, partial publication and save acknowledgement.",
+      "current_support": "Existing reset replenishment; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [
+        "tests/async/test_world_recovery_npc_items.py"
+      ],
+      "sites": [
+        [
+          "src/world/world_recovery_npc_items.c",
+          64,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_npc_items.c",
+          71,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_npc_items.c",
+          76,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_npc_items.c",
+          82,
+          "item_lifecycle"
+        ],
+        [
+          "src/world/world_recovery_npc_items.c",
+          101,
+          "item_publication"
+        ],
+        [
+          "src/world/world_recovery_npc_items.c",
+          122,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
