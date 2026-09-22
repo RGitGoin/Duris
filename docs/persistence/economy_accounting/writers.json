@@ -16145,6 +16145,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.stone_crumble_death",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int stone_crumble(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death creates a stone container, transfers existing inventory/equipment into it, materializes positive NPC cash as a money object, and publishes the pile to the resolved room.",
+      "authority_boundary": "Cash is copied into a money payload without an explicit wallet debit in this handler; caller death disposition must prove conservation and exactly-once admission. Wrong-type pile returns without local cleanup. Existing children are not issuance; pile creation and money conversion require distinct accounting treatment.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          5797,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5814,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5815,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5823,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5830,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5832,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5835,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.bahamut_death_heart",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int bahamut(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death releases existing inventory/equipment to the room and creates a new dragon heart, then initializes its decay payload.",
+      "authority_boundary": "Existing possessions retain identity; only the heart is new issuance. Publication precedes payload initialization, with no allocation guard here. Death lifetime, cash disposition, and restart-safe publication require caller qualification; successful handler return is not persistence acknowledgement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          5936,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5937,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5942,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5944,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          5945,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

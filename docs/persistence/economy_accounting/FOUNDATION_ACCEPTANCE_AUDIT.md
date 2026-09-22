@@ -1020,3 +1020,15 @@ in these blocks, so prototype balances and source disposition require separate r
 Draft validator passed 13 fixtures: 335 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,182 mapped, 43 reviewed declarations and 1,473 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Special death pile and heart publication
+
+Twelve sites classified in stone_crumble and bahamut. Existing possessions move
+without fresh issuance; stone-pile container and dragon heart are new objects.
+Stone cash materialization has no local wallet debit: caller lifetime disposition
+must establish conservation. Heart publication precedes decay payload initialization.
+Neither handler proves durable publication or restart-safe exactly-once behavior.
+
+Draft validator passed 13 fixtures: 337 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,194 mapped, 43 reviewed declarations and 1,461 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
