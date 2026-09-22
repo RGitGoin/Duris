@@ -3243,3 +3243,7 @@ Added 25 world endpoints covering reset/prototype preparation, reconstruction, r
 ## Remaining world endpoints (2026-09-22)
 
 Added 30 remaining world endpoints, including NPC/ship loot, keeper reconciliation, ferries, death outputs, nodes and spell fixtures. Preserved reuse, partial allocation, indirect carried holdings and unresolved death-wallet conversion. All world routes now have explicit endpoints. Inventory total: 547 explicit, 304 missing; test-link gaps remain 710. Draft validation and diff checks pass; no runtime qualification claimed.
+
+## Consumption and NPC transformation endpoints (2026-09-22)
+
+Added 25 item endpoints covering consumption, fallback theft, donations, same-owner equipment moves, NPC-form transfers and death rewards. Preserved normal-death continuation, separate existing-item movement/new output, and known allocation limits. Explicit endpoints: 572; missing endpoints: 279; test-link gaps remain 710. Draft validation and diff checks pass; gameplay and runtime qualification unchanged.

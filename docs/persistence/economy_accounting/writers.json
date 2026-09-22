@@ -15193,7 +15193,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Temporary forage prototype",
+      "destination": "Doodle message and probe cleanup"
     },
     {
       "id": "item.forage_tree_creation",
@@ -15233,7 +15235,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Successful giant terrain roll after regular forage failure",
+      "destination": "Prototype20 tree in room"
     },
     {
       "id": "item.quit_disposition",
@@ -15293,7 +15297,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Lower-level quitting character equipment/inventory",
+      "destination": "Transient retirement or room drops before terminal save; higher-level holdings retained"
     },
     {
       "id": "currency.steal_live_transfer",
@@ -15390,7 +15396,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Carried/held potion",
+      "destination": "Consumed potion on spill, epic gain, lethal effect or normal processing, including no-magic"
     },
     {
       "id": "item.scroll_legacy_consumption",
@@ -15435,7 +15443,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy-path held/carried scroll",
+      "destination": "Attempted spells and consumed scroll even under documented failure cases"
     },
     {
       "id": "item.hide_tracks_cleanup",
@@ -15470,7 +15480,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching room track objects",
+      "destination": "Extracted tracks before final hiding result"
     },
     {
       "id": "item.steal_fallback",
@@ -15520,7 +15532,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Victim equipment/inventory outside trusted-PC helper",
+      "destination": "Thief inventory and branch-specific artifact/invisibility updates"
     },
     {
       "id": "item.donation_well",
@@ -15565,7 +15579,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Accepted carried donation",
+      "destination": "Well contents below duplicate limit or excess-duplicate destruction"
     },
     {
       "id": "item.blood_lick_consumption",
@@ -15600,7 +15616,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching room blood object",
+      "destination": "Consumed blood then vampire healing/wait effect"
     },
     {
       "id": "item.ascend_equipment_projection",
@@ -15635,7 +15653,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Committed ascension equipment",
+      "destination": "Same-character inventory after property reset"
     },
     {
       "id": "item.old_descend_equipment",
@@ -15670,7 +15690,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Legacy NPC-only descent equipment",
+      "destination": "Same-character inventory; no caller found beyond definition"
     },
     {
       "id": "shop.mobile_sales_spec",
@@ -16294,7 +16316,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original assistant inventory/equipment",
+      "destination": "Replacement NPC32844 inventory/equipment"
     },
     {
       "id": "item.shabo_petre_assistant_transfer",
@@ -16344,7 +16368,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original assistant inventory/equipment",
+      "destination": "Replacement NPC32844 inventory/equipment"
     },
     {
       "id": "item.shabo_palle_transfer",
@@ -16394,7 +16420,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original NPC holdings and replacement allocation",
+      "destination": "Replacement NPC holdings then source extraction; overwritten allocation remains unresolved"
     },
     {
       "id": "item.dracolich_death_release",
@@ -16439,7 +16467,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC carried/worn items",
+      "destination": "Room items bypassing ordinary corpse containment"
     },
     {
       "id": "item.eligoth_rift_creation",
@@ -16479,7 +16509,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death-triggered rift template",
+      "destination": "New rift in dying NPC room"
     },
     {
       "id": "item.tentacler_death_creation",
@@ -16539,7 +16571,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death random selection among five templates",
+      "destination": "New object in fixed room89227"
     },
     {
       "id": "item.assistant_rose_creation",
@@ -16579,7 +16613,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Visitor-triggered rose allocation",
+      "destination": "NPC-held rose then attempted give"
     },
     {
       "id": "item.harpy_alignment_offering",
@@ -16619,7 +16655,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Neutral character choice feather",
+      "destination": "Consumed feather and race/racewar/alignment change"
     },
     {
       "id": "item.devour_release",
@@ -16664,7 +16702,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Food/corpse root and contents after durable deferral refusal",
+      "destination": "Released corpse children and retired root"
     },
     {
       "id": "currency.mobile_exchange",
@@ -16766,7 +16806,9 @@
           "item_lifecycle"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Matching player or ticket-taker ticket",
+      "destination": "Consumed ticket before normal entry processing"
     },
     {
       "id": "item.xexos_form_transfer",
@@ -16836,7 +16878,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Original combat/idle NPC form holdings",
+      "destination": "Opposite-form NPC holdings then source extraction"
     },
     {
       "id": "item.stone_crumble_death",
@@ -16901,7 +16945,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC items and positive wallet",
+      "destination": "Stone container holding transferred items and money projection"
     },
     {
       "id": "item.bahamut_death_heart",
@@ -16956,7 +17002,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Dying NPC items and heart reward template",
+      "destination": "Released room inventory/equipment plus new decaying heart"
     },
     {
       "id": "item.phalanx_death_drop",
@@ -16996,7 +17044,9 @@
           "item_publication"
         ]
       ],
-      "evidence": []
+      "evidence": [],
+      "source": "Death reward prototype12000",
+      "destination": "New room object before ordinary death continuation"
     },
     {
       "id": "item.blob_absorb_digest",
