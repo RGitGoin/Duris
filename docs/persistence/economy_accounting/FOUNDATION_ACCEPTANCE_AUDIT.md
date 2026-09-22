@@ -1646,3 +1646,15 @@ All current mobact.c lexical matches mapped; semantic/runtime work remains.
 Draft validation passed13 fixtures:463 routes,2756 raw matches,2698 unique
 coordinates,1592 mapped,43 reviewed declarations,1063 unclassified.
 No gameplay changes; release readiness remains false.
+
+## Underworld orb, weapons and dragon loot
+
+Twelve coordinates classified. Sea orb slips to inventory, not ground. Gith weapon
+usage can retire the object; separate return proc transfers existing ownership.
+Tiamat releases existing equipment before unchecked heart allocation, publishes
+heart before timer assignment, and needs one death/output identity for recovery.
+No runtime correction or durable save qualification is claimed.
+
+Draft validation passed13 fixtures:467 routes,2756 raw matches,2698 unique
+coordinates,1604 mapped,43 reviewed declarations,1051 unclassified.
+Release readiness remains false.

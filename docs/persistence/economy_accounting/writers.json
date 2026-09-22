@@ -22035,6 +22035,186 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.sea_orb_slip",
+      "path": "src/specs/specs.underworld.c",
+      "symbol": "int orb_of_the_sea(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Melee-triggered class-use/random-count condition unequips orb into same character inventory, not room.",
+      "authority_boundary": "Preserve existing UID and actual destination despite slipping narration; proc counter and combat effects are separate.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.underworld.c",
+          679,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          680,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.gith_weapon_exhaustion",
+      "path": "src/specs/specs.underworld.c",
+      "symbol": "int githyanki(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Melee proc increments value7 for PC; threshold over20 plus chance sits wielder, unequips primary and extracts weapon.",
+      "authority_boundary": "Preserve usage counter and one retirement; effect ordering and NPC threshold behavior must follow actual conditions, not assumed PC-only retirement.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.underworld.c",
+          1951,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1952,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.gith_weapon_return",
+      "path": "src/specs/specs.underworld.c",
+      "symbol": "int githpc_special_weap(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Conditional return branch unequips primary through wielder inventory then transfers proc object to victim.",
+      "authority_boundary": "Same UID ownership transfer; qualify recipient selection and preceding proc effects separately. Narration alone does not prove rightful durable owner.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.underworld.c",
+          2107,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2108,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2109,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.tiamat_death_loot",
+      "path": "src/specs/specs.underworld.c",
+      "symbol": "int tiamat(",
+      "reason": "first_admission",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Death branch releases all inventory/equipment to room then allocates dragonheart and publishes before assigning countdown values0\u20134.",
+      "authority_boundary": "Existing equipment transfer is not issuance; only heart is new output. Allocation has no local null check; capture final timer payload and NPC death identity once. Earlier drops persist if allocation fails.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.underworld.c",
+          2230,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2231,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2236,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2238,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          2239,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
