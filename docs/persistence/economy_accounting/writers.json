@@ -15750,6 +15750,146 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.eligoth_rift_creation",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int eligoth_rift_spawn(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death special allocates rift object and places it in dying NPC room; allocation failure returns without placement.",
+      "authority_boundary": "Encounter-created world object needs source death/generation identity and lifecycle policy; rift narration is not transformation of corpse UID or proof of ordinary loot admission.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          15919,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15933,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.tentacler_death_creation",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int tentacler_death(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Death special randomly selects one of five prototypes and places successful allocation in fixed room 89227.",
+      "authority_boundary": "Destination differs from NPC death room; bind original death attempt, selected outcome and output UID to avoid retry reroll/duplicate admission. Successful placement alone is not durable receipt.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          15964,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15972,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15980,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15988,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          15996,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          16006,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.assistant_rose_creation",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int io_assistant(",
+      "reason": "first_admission",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "Assistant detects named visitor arrival using static flag, allocates rose, inserts into own inventory then invokes give command.",
+      "authority_boundary": "Creation admission and subsequent gift are separate; failed gift can leave rose held by NPC. Static presence flag is not restart-safe operation identity; do not infer final recipient custody from gift invocation.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          14175,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          14178,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

@@ -964,3 +964,14 @@ partial publication and source lifetime require explicit accounting boundaries.
 Draft validator passed 13 fixtures: 327 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,151 mapped, 43 reviewed declarations and 1,504 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Encounter objects and assistant gift creation
+
+Ten sites classified. Eligoth creates a room rift, tentacler death selects one of
+five objects for fixed room 89227, and assistant visitor detection creates a rose
+before invoking give. Death/visit source identity, selected outcome and intermediate
+NPC custody must survive retry; narration and command invocation are not receipts.
+
+Draft validator passed 13 fixtures: 330 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,161 mapped, 43 reviewed declarations and 1,494 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
