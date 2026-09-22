@@ -2240,7 +2240,7 @@
       "coverage": "legacy",
       "classification": "ADD_MONEY submits a wallet reward for a persisted player; NPCs and players without a persistent PID use direct denomination increments. The generic helper lacks the enclosing transfer, refund or issuance provenance.",
       "authority_boundary": "Caller must provide original economic identity and reason, especially transfers/refunds. Direct native denomination updates represent one value credit, not independent minting per coin type. Submission success is not durable completion.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production helper harness tests submission/refusal without live publication, credit claim fallback and direct NPC denomination conservation under ASan/UBSan. Controlled submission/claim endpoints do not qualify persistence, original-ID replay or fallback durability.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -2255,7 +2255,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_money_helpers_runtime.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
@@ -2302,7 +2304,7 @@
       "coverage": "legacy",
       "classification": "When wallet submission fails, ADD_MONEY attempts an auction-house pickup claim, otherwise asks for staff review. The fallback retains value as a claim rather than immediately crediting wallet coins.",
       "authority_boundary": "Wallet credit and fallback claim must share original credit identity and disposition; retries cannot create both or duplicate a claim. A logged rejection is not retained recovery evidence.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production helper harness tests submission/refusal without live publication, credit claim fallback and direct NPC denomination conservation under ASan/UBSan. Controlled submission/claim endpoints do not qualify persistence, original-ID replay or fallback durability.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -2317,7 +2319,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_money_helpers_runtime.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
@@ -2339,7 +2343,7 @@
       "coverage": "legacy",
       "classification": "SUB_MONEY validates available value and mode, then returns success on transaction submission for persisted players. Other characters spend denominations directly and make change through ADD_MONEY.",
       "authority_boundary": "Do not deliver an irreversible item/service based solely on enqueue success. Direct denomination reduction and returned change belong to one debit; preserve caller provenance and original outcome.",
-      "current_support": "Existing behavior only; accounting integration unverified",
+      "current_support": "Existing behavior only; accounting integration unverified Extracted production helper harness tests submission/refusal without live publication, credit claim fallback and direct NPC denomination conservation under ASan/UBSan. Controlled submission/claim endpoints do not qualify persistence, original-ID replay or fallback durability.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -2354,7 +2358,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_money_helpers_runtime.py"
+      ],
       "sites": [
         [
           "src/core/utility.c",
