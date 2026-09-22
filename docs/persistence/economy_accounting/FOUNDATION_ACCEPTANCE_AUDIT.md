@@ -3560,3 +3560,7 @@ Offline corpse contracts initially failed stale hardcoded table count (212 versu
 ### Private native corpse qualification
 
 Added --suite corpse to the existing private local MariaDB runner and a guarded native harness launcher using the maintained disposable-container source list. The private instance verifies its datadir, never loads .env, and cleans up on exit. Fresh bootstrap/migration/runtime validation and native corpse lifecycle ASan/UBSan harness passed. This qualifies the existing corpse transaction harness on local MariaDB only, not MySQL or common accounting activation. Docker WSL integration was unavailable; Docker Desktop diagnosis continued separately.
+
+### Native corpse inventory evidence
+
+Mapped the successful private MariaDB ASan/UBSan run at 63746714f to five existing corpse routes after reading their assertions: world transfer, wallet application, nested room materialization, world-root retirement and compound rollback. Four previously empty candidate lists are now populated, leaving 637 gaps. Bank-row preparation remains without a candidate because the inspected assertions do not establish its row-creation semantics. Backend qualification statuses remain unverified: this is legacy repository evidence, not common accounting activation, MySQL parity or native save acknowledgement. Coinless raise records one currency ledger entry; it is not a no-ledger operation.

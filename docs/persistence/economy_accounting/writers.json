@@ -35627,7 +35627,7 @@
       "coverage": "legacy",
       "classification": "Builds nested item transfer using outer operation ID/source/deadline and acceptance time; executes at event offset and requires mutation.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Existing corpse repository; accounting qualification unverified Native MariaDB equipped and hostile world-corpse raise assert retained nested custody, retired source rows, destruction revisions and exact replay. Passed through private run_economic_accounting_schema_local.py --suite corpse at 63746714f with ASan/UBSan. Existing legacy repository evidence only; common accounting integration, MySQL parity, native publication and save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35642,7 +35642,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_corpse_lifecycle_local.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",
@@ -35701,7 +35703,7 @@
       "coverage": "legacy",
       "classification": "Builds corpse-lifecycle wallet delta from after-before using outer operation ID and expected wallet/bank revisions; requires mutation and both revisions advanced by one.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Existing corpse repository; accounting qualification unverified Native MariaDB follower and nested-player raises assert exact persisted wallet balances and returned revisions; stale-wallet refusal preserves wallet and leaves operation ledgers/outbox empty. Passed through private run_economic_accounting_schema_local.py --suite corpse at 63746714f with ASan/UBSan. Existing legacy repository evidence only; common accounting integration, MySQL parity, native publication and save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35716,7 +35718,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_corpse_lifecycle_local.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",
@@ -35738,7 +35742,7 @@
       "coverage": "legacy",
       "classification": "Copies corpse item rows into saved_items with operation-derived key, destination room, parent mapping and retained object UID. This changes persistence representation/custody, not independent issuance.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Existing corpse repository; accounting qualification unverified Native MariaDB nested-room release asserts materialized root container_id and retained root/child UID ancestry and revisions. Passed through private run_economic_accounting_schema_local.py --suite corpse at 63746714f with ASan/UBSan. Existing legacy repository evidence only; common accounting integration, MySQL parity, native publication and save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35753,7 +35757,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_corpse_lifecycle_local.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",
@@ -35775,7 +35781,7 @@
       "coverage": "legacy",
       "classification": "Deletes saved root row guarded by row ID and object UID, requires one affected row, then releases domain savepoint after prior world-corpse raise work. Savepoint release is not outer commit.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified",
+      "current_support": "Existing corpse repository; accounting qualification unverified Native MariaDB equipped and hostile world raises assert all source saved_items retired, destination pet custody or destruction state, and exact replay. Passed through private run_economic_accounting_schema_local.py --suite corpse at 63746714f with ASan/UBSan. Existing legacy repository evidence only; common accounting integration, MySQL parity, native publication and save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35790,7 +35796,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/run_corpse_lifecycle_local.py"
+      ],
       "sites": [
         [
           "src/persistence/corpse_lifecycle_repository.c",
@@ -35812,7 +35820,7 @@
       "coverage": "legacy",
       "classification": "Transient destruction and physical transfer share outer operation ID; physical ledger event offset follows transient item count. Updates expected revisions between transfers and rolls domain back on business refusal.",
       "authority_boundary": "Part of compound corpse transaction spanning currency, item ownership and physical rows. Qualify atomic rollback/commit, event offsets, expected revisions, ambiguous retry and bounded bundles on both SQL backends. No native publication or save acknowledgement inferred from repository success.",
-      "current_support": "Existing corpse repository; accounting qualification unverified Offline source-contract candidate checks savepoint ordering around item execution and corpse finalization plus lifecycle registration. It does not execute SQL rollback, compound transfers or receipt replay.",
+      "current_support": "Existing corpse repository; accounting qualification unverified Offline source-contract candidate checks savepoint ordering around item execution and corpse finalization plus lifecycle registration. It does not execute SQL rollback, compound transfers or receipt replay. Native MariaDB follower/world/nested transfers and stale-wallet rejection exercise compound custody and currency; refusal asserts original corpse/items/catalogs and no item/currency/collector ledger or outbox rows. Passed through private run_economic_accounting_schema_local.py --suite corpse at 63746714f with ASan/UBSan. Existing legacy repository evidence only; common accounting integration, MySQL parity, native publication and save acknowledgement remain unqualified.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -35828,7 +35836,8 @@
         }
       },
       "test_candidates": [
-        "tests/async/test_corpse_lifecycle_repository.py"
+        "tests/async/test_corpse_lifecycle_repository.py",
+        "tests/async/run_corpse_lifecycle_local.py"
       ],
       "sites": [
         [
