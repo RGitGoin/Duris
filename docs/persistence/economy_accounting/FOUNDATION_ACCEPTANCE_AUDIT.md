@@ -1106,3 +1106,15 @@ struggle payload and flag clearing, without proving offline player save completi
 Draft validator passed 13 fixtures: 365 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,293 mapped, 43 reviewed declarations and 1,362 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Ward and beacon retirement
+
+Six sites classified: huntsman ward trigger retirement after arming-state cleanup
+and alarm/damage/affect scheduling; inactive skill beacon random decay; thought
+beacon dispel using explicit false extraction mode. Disarm and active beacon skill
+changes are payload paths not established by the extraction census. Historical
+not-in-game comments do not establish current deployment status.
+
+Draft validator passed 13 fixtures: 368 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,299 mapped, 43 reviewed declarations and 1,356 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.

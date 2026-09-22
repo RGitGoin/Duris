@@ -17600,6 +17600,126 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.huntsman_ward_trigger",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int huntsman_ward(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Armed hidden ward triggers on eligible other-player movement with online remote nongrouped owner, clears arming state/events, applies alarm/darts/cripple/poison by prototype, then retires itself.",
+      "authority_boundary": "Preserve owner PID, chosen trigger and object UID. Damage or scheduled bleed precedes retirement; failed spell effects do not imply item preservation. Disarm-only CMD_FOUND clears state without retirement and is a payload path outside these lexical sites.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          12720,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          12747,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          12786,
+          "item_lifecycle"
+        ],
+        [
+          "src/specs/specs.object.c",
+          12805,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.skill_beacon_decay",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int skill_beacon(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Inactive skill beacon can randomly retire on periodic processing; active beacon instead may choose a room-specific skill payload.",
+      "authority_boundary": "Preserve active/inactive branch behavior and existing identity. Historical not-in-game comment is not deployment evidence; random decay and payload changes need distinct accounting qualification.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          12869,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "item.thought_beacon_dispel",
+      "path": "src/specs/specs.object.c",
+      "symbol": "int thought_beacon(",
+      "reason": "item_destroy",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Room thought beacon retires on CMD_DISPEL via extract_obj with false argument.",
+      "authority_boundary": "Preserve explicit extraction mode and UID; fog narration is not proof of durable retirement. Accounting integration must qualify helper semantics rather than substitute the usual true extraction mode.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.object.c",
+          13732,
+          "item_lifecycle"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
