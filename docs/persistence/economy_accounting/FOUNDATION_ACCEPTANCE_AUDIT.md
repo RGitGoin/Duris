@@ -2990,3 +2990,14 @@ allocation alone must not generate issuance. This completes raw actwiz matches,
 not semantic coverage of every indirect administrative mutation.
 No runtime changes or tests; release readiness remains false.
 Draft validation passed 13 fixtures: 815 routes, 2756 raw matches, 2698 unique coordinates, 2478 mapped, 43 reviewed nonwriters, 177 unclassified.
+
+
+## Artifact recovery and retirement
+
+Twenty-three coordinates grouped as ground/NPC reconstruction, artifact poof
+and unsaved-character equipment teardown. Recovery uses prototype/location
+records rather than prior item UIDs at these calls. Poof moves nested items
+then extracts before owner/corpse saves. Teardown deliberately preserves
+artifact registry and must not be assumed to destroy durable assets.
+No runtime changes or tests; release readiness remains false.
+Draft validation passed 13 fixtures: 819 routes, 2756 raw matches, 2698 unique coordinates, 2501 mapped, 43 reviewed nonwriters, 154 unclassified.

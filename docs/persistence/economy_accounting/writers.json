@@ -37074,6 +37074,241 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "artifact.ground_restore",
+      "path": "src/guild/artifact.c",
+      "symbol": "void addOnGroundArtis_sql",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Both compile-time backends reconstruct owned ground artifacts from prototype vnum and recorded room. Invalid room cleans provisional copy. No prior object UID supplied at these calls; recovery identity and duplicate placement require qualification.",
+      "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          870,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          880,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          902,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          914,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          883,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          917,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.npc_restore",
+      "path": "src/guild/artifact.c",
+      "symbol": "void addOnMobArtis_sql",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Both compile-time backends reconstruct owned NPC artifacts from prototype vnum and attach to found NPC by location vnum; missing NPC extracts copy. Qualify exact NPC/item identity and duplicate recovery rather than treating restored artifact as new reward.",
+      "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          4960,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4970,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4990,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          5002,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          4973,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          5005,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.poof",
+      "path": "src/guild/artifact.c",
+      "symbol": "void poof_artifact",
+      "reason": "item_destroy",
+      "integration_issue": 486,
+      "owner": "primary / #486",
+      "coverage": "legacy",
+      "classification": "When artifact updates enabled, pulls nested artifact to containing room/character for messages then extracts with in-game flag. Saves owner and applicable PC corpse afterward. Intermediate movement belongs to same expiry behavior, not separate issuance.",
+      "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          2165,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2113,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2114,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2123,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2124,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2136,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2137,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
+    },
+    {
+      "id": "artifact.nuke_equipment",
+      "path": "src/guild/artifact.c",
+      "symbol": "void nuke_eq",
+      "reason": "baseline",
+      "integration_issue": 489,
+      "owner": "primary / #489",
+      "coverage": "legacy",
+      "classification": "Removes unsaved character equipment/inventory and extracts with false flag to preserve artifact registry. Runtime teardown of loaded objects must be distinguished from durable economic destruction; caller lifecycle determines authority.",
+      "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/guild/artifact.c",
+          2192,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2200,
+          "item_lifecycle"
+        ],
+        [
+          "src/guild/artifact.c",
+          2190,
+          "item_publication"
+        ],
+        [
+          "src/guild/artifact.c",
+          2198,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [
