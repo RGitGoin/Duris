@@ -3608,3 +3608,7 @@ Native extracted thrusted_eq_proc and BOUNDED pass ASan/UBSan with controlled wo
 ### NPC potion issuance selection
 
 Added native extracted MobAlchemistGetPotions test with production headers and controlled successful allocation, publication and wait endpoints. ASan/UBSan passes exact three-object publication order, level cap at 50, and zero/negative count producing none while still waiting. One candidate linked; 627 gaps remain. Allocation failure is unchecked in production and remains unqualified, as do durable issuance and recovery. No production change.
+
+### #475 golden acceptance recheck
+
+Live upstream master remains feed2939125c3e9a955b92adbf627a2ad568586e, matching the recorded current-master census comparison. Verified all eight issue-named golden scenarios are present and exercised by test_all_golden_examples: wallet/bank, wallet/pile change, multi-recipient split, reward, expense, item/container move, 100-gold shop sale with fee and staged auction settlement. The contract also asserts exact denomination results and that staged settlement does not debit the buyer twice. Rechecked `python3 tests/async/test_economy_accounting_contract.py`: all 49 tests pass. This closes no route-census gap; 627 writers still lack executable candidates and census_complete remains false.
