@@ -250,6 +250,25 @@ int main() {
     roundtrip({pile({1,2,3,4}, zero), wallet(1, zero, {1,2,3,4})});
     roundtrip({pile({1,2,3,4}, {1,2,3,2}), wallet(1, zero, {0,0,0,2})});
     roundtrip({wallet(1, {0,0,0,1}, {0,0,9,0}), wallet(2, zero, {0,0,1,0})});
+    // Shared-account participants start from one bank revision. The second
+    // endpoint must use the first endpoint's committed revision without changing
+    // the original replay envelope or child operation identity.
+    coin_transfer_payload shared = {wallet(1, {0,0,0,1}, zero),
+                                    wallet(2, zero, {0,0,0,1})};
+    coin_transfer_result applied = {};
+    applied.wallets[0].bank_revision = 6;
+    critical_command destination;
+    const auto child_id = shared.destination.change.operation_id;
+    shared.destination.change.accepted_at_usec = 12345;
+    assert(coin_transfer_command_destination_after_source(shared, applied, &destination));
+    assert(destination.expected_revisions[1].revision == 6);
+    assert(destination.expected_revisions[0].revision == 4);
+    assert(destination.accepted_at_usec == 12345);
+    assert(critical_operation_id_equal(destination.operation_id, child_id));
+    assert(shared.destination.change.expected_revisions[1].revision == 5);
+    shared.destination.change.expected_revisions[1].revision = 9;
+    assert(!coin_transfer_command_destination_after_source(shared, applied, &destination));
+    assert(!coin_transfer_command_destination_after_source(shared, applied, nullptr));
     // Area-authored money retains its prototype through every endpoint.
     roundtrip({pile({0,0,0,10}, zero, false, 402013), wallet(1, zero, {0,0,0,10})});
     roundtrip({pile({0,0,0,10}, {0,0,0,3}, false, 402013), wallet(1, zero, {0,0,0,7})});

@@ -11317,7 +11317,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_coin_custody_lifecycle.py"
+      ],
       "sites": [
         [
           "src/economy/coin_transfer_command.c",
@@ -11330,7 +11332,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native codec harness covers conservation, endpoint amounts, pile identity, malformed payloads and distinct child operation IDs; no database execution."
+      ],
       "source": "Distinct endpoint identities, conserved value and topology",
       "destination": "Canonical parent/child commands without economic mutation"
     },
@@ -11359,7 +11363,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_coin_custody_lifecycle.py"
+      ],
       "sites": [
         [
           "src/economy/coin_transfer_command.c",
@@ -11367,7 +11373,9 @@
           "economic_submit"
         ]
       ],
-      "evidence": [],
+      "evidence": [
+        "Native helper test covers shared-bank revision advancement, mismatched initial revisions, immutable original request and retained child ID/timestamp; item-owner revision branch remains unqualified."
+      ],
       "source": "Destination command sharing bank/custody with executed source",
       "destination": "Adjusted expected revisions retaining operation identity and admission timestamp"
     },
