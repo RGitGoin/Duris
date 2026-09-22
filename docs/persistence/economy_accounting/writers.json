@@ -22215,6 +22215,66 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "item.purple_worm_corpse_custody",
+      "path": "src/specs/specs.underworld.c",
+      "symbol": "int purple_worm(",
+      "reason": "item_move",
+      "integration_issue": 482,
+      "owner": "primary / #482",
+      "coverage": "legacy",
+      "classification": "Periodic branch releases one expired PC corpse on chance and calls writeCorpse. Death releases all carried objects. Swallow kills victim then moves room objects whose value3 matches victim PID/vnum into worm; PC corpse save precedes digestion timer assignment.",
+      "authority_boundary": "Swallow selection checks value3 before corpse type and mutates list while advancing through moved object next_content; do not assume only the new corpse or all matches are selected. Preserve actual object graph, NPC lifetime and timer ordering. writeCorpse results are not checked here; death/custody/save must be qualified together without duplicate ownership.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.underworld.c",
+          1488,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1489,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1505,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1506,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1572,
+          "item_publication"
+        ],
+        [
+          "src/specs/specs.underworld.c",
+          1573,
+          "item_publication"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

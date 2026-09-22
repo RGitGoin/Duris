@@ -1658,3 +1658,15 @@ No runtime correction or durable save qualification is claimed.
 Draft validation passed13 fixtures:467 routes,2756 raw matches,2698 unique
 coordinates,1604 mapped,43 reviewed declarations,1051 unclassified.
 Release readiness remains false.
+
+## Purple worm corpse custody
+
+Six coordinates classified. Periodic release saves PC corpse; death drops all
+carried items. Swallow selects room objects by value3 before corpse-type check,
+moves them while traversing the mutated list, and saves PC corpse before setting
+digestion timer. Exact selected graph and death/custody/save ordering remain
+unqualified. All current underworld lexical matches mapped, not runtime coverage.
+
+Draft validation passed13 fixtures:468 routes,2756 raw matches,2698 unique
+coordinates,1610 mapped,43 reviewed declarations,1045 unclassified.
+No gameplay changes; release readiness remains false.
