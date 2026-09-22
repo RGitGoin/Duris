@@ -15975,6 +15975,56 @@
         ]
       ],
       "evidence": []
+    },
+    {
+      "id": "currency.mobile_exchange",
+      "path": "src/specs/specs.mobile.c",
+      "symbol": "int money_changer(",
+      "reason": "coin_transfer",
+      "integration_issue": 480,
+      "owner": "primary / #480",
+      "coverage": "legacy",
+      "classification": "Exchange directly debits one customer cash denomination and credits another. Lower conversion retains 90 percent value; higher conversion truncates rate/10 and rounds exchanged amount to whole output units before debit.",
+      "authority_boundary": "Customer-only live mutation has implicit fee/rounding sink, no NPC credit or currency submission. Preserve actual integer arithmetic rather than advertised nominal percentages. Input length is not proof of output capacity or cross-platform long arithmetic bounds; paired denomination mutation and explicit sink need common commit identity.",
+      "current_support": "Existing behavior only; accounting integration unverified",
+      "backends": {
+        "mysql": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "mariadb": {
+          "status": "unverified",
+          "evidence": []
+        },
+        "flatfile": {
+          "status": "unverified",
+          "evidence": []
+        }
+      },
+      "test_candidates": [],
+      "sites": [
+        [
+          "src/specs/specs.mobile.c",
+          1618,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          1619,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          1676,
+          "direct_cash_assignment"
+        ],
+        [
+          "src/specs/specs.mobile.c",
+          1680,
+          "direct_cash_assignment"
+        ]
+      ],
+      "evidence": []
     }
   ],
   "nonwriters": [

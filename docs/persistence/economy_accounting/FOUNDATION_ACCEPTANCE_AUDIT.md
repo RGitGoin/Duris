@@ -986,3 +986,15 @@ destroyed with root. Neither narration nor sequential live mutations prove recei
 Draft validator passed 13 fixtures: 332 routes, 2,756 raw matches, 2,698 unique
 coordinates, 1,166 mapped, 43 reviewed declarations and 1,489 unclassified.
 No gameplay changes; census and runtime qualification remain incomplete.
+
+## Money changer fee and rounding sink
+
+Four direct wallet sites classified. Exchange debits/credits customer denominations
+without NPC credit or transaction submission. Lower conversion retains 90 percent;
+higher conversion uses truncated rate/10 and whole-output rounding. Preserve actual
+integer economics, not advertised nominal percentages; explicit fee sink and bounds
+remain common-accounting obligations.
+
+Draft validator passed 13 fixtures: 333 routes, 2,756 raw matches, 2,698 unique
+coordinates, 1,170 mapped, 43 reviewed declarations and 1,485 unclassified.
+No gameplay changes; census and runtime qualification remain incomplete.
