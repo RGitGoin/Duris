@@ -38921,7 +38921,7 @@
       "coverage": "legacy",
       "classification": "Both compile-time backends reconstruct owned ground artifacts from prototype vnum and recorded room. Invalid room cleans provisional copy. No prior object UID supplied at these calls; recovery identity and duplicate placement require qualification.",
       "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
-      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified Native flat-file gameplay harness checks restoration counts for owned ground and NPC artifacts and rejection of corrupt authority; controlled world loading does not prove original item UID preservation or common accounting admission.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -38936,7 +38936,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_flatfile_artifact_repository.py"
+      ],
       "sites": [
         [
           "src/guild/artifact.c",
@@ -38983,7 +38985,7 @@
       "coverage": "legacy",
       "classification": "Both compile-time backends reconstruct owned NPC artifacts from prototype vnum and attach to found NPC by location vnum; missing NPC extracts copy. Qualify exact NPC/item identity and duplicate recovery rather than treating restored artifact as new reward.",
       "authority_boundary": "Qualify artifact registry versus item custody, exact identity, restart/replay, nested contents and save acknowledgement. Prototype reconstruction or runtime extraction alone does not prove durable issuance/destruction.",
-      "current_support": "Existing artifact lifecycle; accounting qualification unverified",
+      "current_support": "Existing artifact lifecycle; accounting qualification unverified Native flat-file gameplay harness checks restoration counts for owned ground and NPC artifacts and rejection of corrupt authority; controlled world loading does not prove original item UID preservation or common accounting admission.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -38998,7 +39000,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_flatfile_artifact_repository.py"
+      ],
       "sites": [
         [
           "src/guild/artifact.c",
@@ -39486,7 +39490,7 @@
       "coverage": "legacy",
       "classification": "Uses temporary prototype for display while erasing artifact authority record (flatfile) or main then mortal SQL rows. Live artifact is not extracted by this temporary cleanup. Partial registry deletion and custody reconciliation require qualification.",
       "authority_boundary": "Separate provisional object lifecycle from artifact registry edits and delegated durable item destruction. Qualify refusal, registry consistency, offline save and replay before claiming administrative accounting completion.",
-      "current_support": "Existing artifact administration; accounting qualification unverified",
+      "current_support": "Existing artifact administration; accounting qualification unverified Source-contract candidate checks staff clear delegates to flat catalog erase; it does not execute live object retirement or qualify correction identity.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -39501,7 +39505,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_flatfile_artifact_repository.py"
+      ],
       "sites": [
         [
           "src/guild/artifact.c",
@@ -39887,7 +39893,7 @@
       "coverage": "legacy",
       "classification": "Creates temporary description prototype while reconciling binding owner/timer from artifact authority and online-owner eligibility. Cleans copy after each row. Binding metadata update is separate from physical owner movement.",
       "authority_boundary": "Separate temporary description objects from durable binding/timer metadata. Qualify backend consistency and refusal/reporting; this classification does not prove runtime safety or accounting integration.",
-      "current_support": "Existing artifact binding maintenance; accounting qualification unverified",
+      "current_support": "Existing artifact binding maintenance; accounting qualification unverified Source-contract candidate checks flat catalog selection and persistence calls for three binding outcomes; this is not runtime event or common accounting qualification.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -39902,7 +39908,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_flatfile_artifact_repository.py"
+      ],
       "sites": [
         [
           "src/guild/artifact.c",
@@ -39929,7 +39937,7 @@
       "coverage": "legacy",
       "classification": "Repairs player binding and resets artifact timer; prototype only supplies report description. Flatfile helper outcome is checked. SQL mismatch branch extracts prototype before reporting then reaches second extraction, a lifetime concern for qualification; do not count either as owned-item destruction.",
       "authority_boundary": "Separate temporary description objects from durable binding/timer metadata. Qualify backend consistency and refusal/reporting; this classification does not prove runtime safety or accounting integration.",
-      "current_support": "Existing artifact binding maintenance; accounting qualification unverified",
+      "current_support": "Existing artifact binding maintenance; accounting qualification unverified Source-contract candidate checks flat catalog selection and atomic repair delegation; it does not execute the staff repair route or qualify correction identity.",
       "backends": {
         "mysql": {
           "status": "unverified",
@@ -39944,7 +39952,9 @@
           "evidence": []
         }
       },
-      "test_candidates": [],
+      "test_candidates": [
+        "tests/async/test_flatfile_artifact_repository.py"
+      ],
       "sites": [
         [
           "src/guild/artifact.c",
